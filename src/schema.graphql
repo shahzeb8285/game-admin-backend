@@ -1,0 +1,262 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Admin {
+  admin_id: ID!
+  admin_name: String!
+  admin_role_id: String!
+  admin_roles: AdminRoles!
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  udate: DateTime!
+}
+
+type AdminAccesses {
+  access_name: String
+  admin_access_id: ID
+}
+
+type AdminRoles {
+  admin_accesses: [AdminAccesses!]
+  admin_role_id: ID!
+  admin_role_name: String!
+  enabled: Boolean!
+}
+
+type Agent {
+  agent_id: String!
+  agent_name: String!
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  parent_agent_id: String
+  udate: DateTime!
+}
+
+type Auth {
+  """JWT access token"""
+  access_token: JWT!
+
+  """JWT refresh token"""
+  refresh_token: JWT!
+}
+
+type BankAccountEntity {
+  account_number: String!
+  admin_bank_account_id: ID!
+  bank_name: String!
+  deposit_transactions: [DepositEntity!]
+  enabled: Boolean!
+  holder_name: String!
+  method: String!
+  withdrawal_transactions: [WithdrawalEntity!]
+}
+
+input CreateAdminInput {
+  admin_name: String!
+  admin_password: String!
+  admin_roles_id: String!
+}
+
+input CreateAgentInput {
+  agent_name: String!
+  agent_password: String!
+  parent_agent_id: String
+}
+
+input CreateBankAccountInput {
+  account_number: String!
+  bank_name: String!
+  enabled: Boolean
+  holder_name: String!
+  method: String!
+}
+
+input CreateManualAdjustment {
+  amount: Float!
+  cdate: DateTime
+  player_id: String!
+  reason: String!
+}
+
+input CreateRoleInput {
+  admin_role_name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DepositEntity {
+  admin_bank_account_id: String!
+  admin_bank_accounts: BankAccountEntity!
+  amount: Float!
+  currency: String!
+  deposit_transaction_id: String!
+  player_id: String!
+  players: Player!
+  process_time: DateTime!
+  processed_by: String!
+  request_time: DateTime!
+  status: TransactionType!
+  transaction_date: String!
+}
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
+type LoginHistory {
+  admin_id: String!
+  admins: Admin!
+  ip: String!
+  login_id: ID!
+  login_time: DateTime!
+}
+
+input LoginInput {
+  admin_name: String!
+  password: String!
+}
+
+type ManualAdjustment {
+  admins: Admin!
+  amount: Float!
+  cdate: DateTime!
+  created_by: String!
+  manual_adjustment_id: ID!
+  player_id: String!
+  players: Player!
+  reason: String!
+}
+
+type Mutation {
+  createAdmin(data: CreateAdminInput!): Admin!
+  createAdminRole(data: CreateRoleInput!): AdminRoles!
+  createAgent(data: CreateAgentInput!): Agent!
+  createBankAccount(data: CreateBankAccountInput!): BankAccountEntity!
+  createManualAdjustment(data: CreateManualAdjustment!): ManualAdjustment!
+  login(data: LoginInput!): Auth!
+  refreshToken(token: JWT!): Token!
+  updateAdmin(data: UpdateAdminInput!): Admin!
+  updateAdminRole(data: UpdateRoleInput!): AdminRoles!
+  updateAgent(data: UpdateAgentInput!): Agent!
+  updateBankAccount(data: UpdateBankAccountInput!): BankAccountEntity!
+  updateDeposit(data: UpdateFinanceInput!): DepositEntity!
+  updateUser(data: UpdatePlayerInput!): Player!
+  updateWithdrawal(data: UpdateFinanceInput!): WithdrawalEntity!
+}
+
+type Player {
+  agent: Agent!
+  agent_id: String!
+  cdate: DateTime!
+  enabled: Boolean!
+  name: String!
+  player_id: String!
+  registrationIp: String!
+  registration_date: String!
+  tg_first_name: String!
+  tg_id: String!
+  tg_last_name: String!
+  tg_photo_url: String!
+  tg_username: String!
+  udate: DateTime!
+  user_language: String!
+}
+
+type Query {
+  accesses: [AdminAccesses!]!
+  admins: [Admin!]!
+  agents: [Agent!]!
+  bankaccounts: [BankAccountEntity!]!
+  deposits: [DepositEntity!]!
+  gamerebates: [BankAccountEntity!]!
+  loginhistory: [UserLoginHistory!]!
+  manualadjustments: [ManualAdjustment!]!
+  roles: [AdminRoles!]!
+  users: [Player!]!
+  withdrawals: [WithdrawalEntity!]!
+}
+
+type Token {
+  """JWT access token"""
+  access_token: JWT!
+
+  """JWT refresh token"""
+  refresh_token: JWT!
+}
+
+enum TransactionType {
+  PENDING
+  REJECTED
+  SUCCESS
+}
+
+input UpdateAdminInput {
+  adminID: String!
+  adminName: String
+  adminPassword: String
+  adminRolesId: String
+  enabled: Boolean
+}
+
+input UpdateAgentInput {
+  agent_id: String!
+  agent_name: String
+  agent_password: String
+  enabled: Boolean
+}
+
+input UpdateBankAccountInput {
+  account_number: String
+  admin_bank_account_id: String!
+  bank_name: String
+  enabled: Boolean
+  holder_name: String
+  method: String
+}
+
+input UpdateFinanceInput {
+  id: String!
+  is_enabled: Boolean!
+}
+
+input UpdatePlayerInput {
+  enabled: Boolean
+  user_id: String!
+}
+
+input UpdateRoleInput {
+  added_roles_ids: [String!]
+  admin_role_id: String!
+  admin_role_name: String
+  enabled: Boolean
+  remove_roles_ids: [String!]
+}
+
+type UserLoginHistory {
+  ip: String!
+  login_time: DateTime!
+  player_id: String!
+  players: Player!
+}
+
+type WithdrawalEntity {
+  admin_bank_account_id: String!
+  admin_bank_accounts: BankAccountEntity!
+  amount: Float!
+  currency: String!
+  player_id: String!
+  players: Player!
+  process_time: DateTime!
+  processed_by: String!
+  request_time: DateTime!
+  status: TransactionType!
+  transaction_date: String!
+  withdrawal_transaction_id: ID!
+}
