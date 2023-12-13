@@ -15,42 +15,44 @@ async function main() {
 
     const agent = await prisma.agents.create({
         data: {
-            agentName: "testagent",
-            agentPassword: hashedPassword,
-            createdBy: "root",
+            agent_name: "testagent",
+            agent_password: hashedPassword,
+            created_by: "root",
             
         }
     })
 
     
   await prisma.players.create({
-        data: {
+      data: {
+            
             name: "player1",
-            tgID: "tg1",
-            tgFirstName: "player",
-            tgLastName: "1",
-            tgUsername: "player1",
-            tgPhotoUrl: "tgPhotoUrl",
-            userLanguage: "userLanguage",
-            registrationIp: "registrationIp",
-            registrationDate: new Date().toString(),
-            agentID:agent.agentID,
+            tg_id: "tg1",
+            tg_first_name: "player",
+            tg_last_name: "1",
+            tg_user_name: "player1",
+            tg_photo_url: "tgPhotoUrl",
+          user_language: "userLanguage",
+            registration_ip: "registrationIp",
+            registration_date: new Date().toString(),
+          agent_id_r: agent.agent_id
+          
     }})
 
 
     await prisma.players.create({
         data: {
             name: "player2",
-            tgID: "tg2",
-            tgFirstName: "player",
-            tgLastName: "2",
-            tgUsername: "player2",
-            tgPhotoUrl: "tgPhotoUrl",
-            userLanguage: "userLanguage",
-            registrationIp: "registrationIp",
-            registrationDate: new Date().toString(),
-            agentID:agent.agentID,
-    }})
+            tg_id: "tg2",
+            tg_first_name: "player",
+            tg_last_name: "2",
+            tg_user_name: "player2",
+            tg_photo_url: "tgPhotoUrl",
+          user_language: "userLanguage",
+            registration_ip: "registrationIp",
+            registration_date: new Date().toString(),
+            agent_id_r: agent.agent_id
+        }})
 
  
 

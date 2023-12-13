@@ -12,11 +12,11 @@ export class GqlAuthorizationGuard implements CanActivate {
       const actionFunction = context.getHandler().name;
       const actionName = getActionIdentifierUsingFunctionName(actionFunction);
       
-      if (!user.adminRoles.enabled) {
+      if (!user.admin_roles.enabled) {
         return false
       }
-      const permissions = user.adminRoles.admin_accesses.map((item) => {
-        return item.admin_accesses.accessName
+      const permissions = user.admin_roles.admin_accesses.map((item) => {
+        return item.admin_accesses.access_name
       })
 
 
