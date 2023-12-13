@@ -15,5 +15,5 @@ export class admin_rolesUncheckedCreateWithoutAdminsInput {
     enabled?: boolean;
 
     @Field(() => admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput, {nullable:true})
-    admin_accesses?: admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput;
+    role_accesses?: admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput;
 }

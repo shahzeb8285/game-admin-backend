@@ -20,5 +20,5 @@ export class admin_rolesOrderByWithRelationInput {
     admins?: adminsOrderByRelationAggregateInput;
 
     @Field(() => admin_role_accessesOrderByRelationAggregateInput, {nullable:true})
-    admin_accesses?: admin_role_accessesOrderByRelationAggregateInput;
+    role_accesses?: admin_role_accessesOrderByRelationAggregateInput;
 }

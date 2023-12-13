@@ -1,10 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { adminsUncheckedCreateNestedManyWithoutAdmin_rolesInput } from '../admins/admins-unchecked-create-nested-many-without-admin-roles.input';
-import { admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput } from '../admin-role-accesses/admin-role-accesses-unchecked-create-nested-many-without-admin-roles.input';
 
 @InputType()
-export class admin_rolesUncheckedCreateInput {
+export class admin_rolesUncheckedCreateWithoutRole_accessesInput {
 
     @Field(() => String, {nullable:true})
     admin_role_id?: string;
@@ -17,7 +16,4 @@ export class admin_rolesUncheckedCreateInput {
 
     @Field(() => adminsUncheckedCreateNestedManyWithoutAdmin_rolesInput, {nullable:true})
     admins?: adminsUncheckedCreateNestedManyWithoutAdmin_rolesInput;
-
-    @Field(() => admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput, {nullable:true})
-    role_accesses?: admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_rolesInput;
 }

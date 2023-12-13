@@ -4,6 +4,7 @@ import {
   Args,
   Parent,
   ResolveField,
+  Query,
 } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { Auth } from './models/auth.model';
@@ -13,7 +14,10 @@ import { SignupInput } from './dto/signup.input';
 import { RefreshTokenInput } from './dto/refresh-token.input';
 // import { User } from '../users/models/user.model';
 import { UserIp } from '../common/decorators/ip.decorator';
-import {BadGatewayException} from "@nestjs/common"
+import {BadGatewayException, UseGuards} from "@nestjs/common"
+import { Admin } from '../admins/entities/admin.entity';
+import { GqlAuthGuard } from './gql-auth.guard';
+import { UserEntity } from '../common/decorators/user.decorator';
 @Resolver(() => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
@@ -43,8 +47,11 @@ export class AuthResolver {
     return this.auth.refreshToken(token);
   }
 
-  // @ResolveField('admin', () => Admin)
-  async getMe(@Parent() auth: Auth) {
-    return await this.auth.getUserFromToken(auth.access_token);
+  @Query(() => Admin)
+  @UseGuards(GqlAuthGuard)
+  async getMe(@UserEntity() user) {
+    console.log("auth", user.admin_roles.admin_accesses)
+    
+    return user
   }
 }

@@ -30,5 +30,5 @@ export class admin_rolesWhereInput {
     admins?: AdminsListRelationFilter;
 
     @Field(() => Admin_role_accessesListRelationFilter, {nullable:true})
-    admin_accesses?: Admin_role_accessesListRelationFilter;
+    role_accesses?: Admin_role_accessesListRelationFilter;
 }

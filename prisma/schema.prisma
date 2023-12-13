@@ -65,7 +65,7 @@ model admin_roles {
   admin_role_name  String           @unique
   enabled        Boolean          @default(true)
   admins         admins[]
-  admin_accesses admin_role_accesses[]
+  role_accesses admin_role_accesses[]
 }
 
 model admin_accesses {

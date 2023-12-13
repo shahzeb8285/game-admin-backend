@@ -9,5 +9,5 @@ export class Admin_rolesCount {
     admins!: number;
 
     @Field(() => Int, {nullable:false})
-    admin_accesses!: number;
+    role_accesses!: number;
 }

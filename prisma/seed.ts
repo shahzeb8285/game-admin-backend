@@ -15,7 +15,7 @@ async function main() {
   const admin_role = await prisma.admin_roles.create({
     data: {
       admin_role_name: "super_admin",
-      admin_accesses: {
+      role_accesses: {
         create: accesses.map((item) => {
           return {
             admin_accesses: {

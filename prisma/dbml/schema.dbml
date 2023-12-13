@@ -49,7 +49,7 @@ Table admin_roles {
   admin_role_name String [unique, not null]
   enabled Boolean [not null, default: true]
   admins admins [not null]
-  admin_accesses admin_role_accesses [not null]
+  role_accesses admin_role_accesses [not null]
 }
 
 Table admin_accesses {

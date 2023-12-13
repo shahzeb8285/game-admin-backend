@@ -21,7 +21,7 @@ export class admin_roles {
     admins?: Array<admins>;
 
     @Field(() => [admin_role_accesses], {nullable:true})
-    admin_accesses?: Array<admin_role_accesses>;
+    role_accesses?: Array<admin_role_accesses>;
 
     @Field(() => Admin_rolesCount, {nullable:false})
     _count?: Admin_rolesCount;

@@ -17,5 +17,5 @@ export class admin_rolesUncheckedUpdateWithoutAdminsInput {
     enabled?: BoolFieldUpdateOperationsInput;
 
     @Field(() => admin_role_accessesUncheckedUpdateManyWithoutAdmin_rolesNestedInput, {nullable:true})
-    admin_accesses?: admin_role_accessesUncheckedUpdateManyWithoutAdmin_rolesNestedInput;
+    role_accesses?: admin_role_accessesUncheckedUpdateManyWithoutAdmin_rolesNestedInput;
 }

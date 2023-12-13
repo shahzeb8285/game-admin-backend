@@ -18,11 +18,17 @@ type AdminAccesses {
   admin_access_id: ID
 }
 
+type AdminRoleAccesses {
+  admin_access_id: String!
+  admin_accesses: AdminAccesses!
+  admin_role_id: String!
+}
+
 type AdminRoles {
-  admin_accesses: [AdminAccesses!]
   admin_role_id: ID!
   admin_role_name: String!
   enabled: Boolean!
+  role_accesses: [AdminRoleAccesses!]
 }
 
 type Agent {
@@ -176,6 +182,7 @@ type Query {
   bankaccounts: [BankAccountEntity!]!
   deposits: [DepositEntity!]!
   gamerebates: [BankAccountEntity!]!
+  getMe: Admin!
   loginhistory: [UserLoginHistory!]!
   manualadjustments: [ManualAdjustment!]!
   roles: [AdminRoles!]!

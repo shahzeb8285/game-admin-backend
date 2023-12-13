@@ -38,7 +38,7 @@ export class AdminsService {
       include: {
         admin_roles: {
           include: {
-            admin_accesses: true
+            role_accesses: true
           }
         }
       },

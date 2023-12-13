@@ -16,6 +16,20 @@ export class AdminAccesses {
 
    
 }
+@ObjectType()
+export class AdminRoleAccesses {
+
+    @Field(() => String, {nullable:false})
+    admin_role_id!: string;
+
+    @Field(() => String, {nullable:false})
+    admin_access_id!: string;
+
+    @Field(() => AdminAccesses, {nullable:false})
+    admin_accesses?: AdminAccesses;
+}
+
+
 
 
 @ObjectType()
@@ -31,8 +45,8 @@ export class AdminRoles {
     enabled!: boolean;
 
 
-    @Field(() => [AdminAccesses], {nullable:true})
-    admin_accesses?: Array<AdminAccesses>;
+    @Field(() => [AdminRoleAccesses], {nullable:true})
+    role_accesses?: Array<AdminRoleAccesses>;
 
 }
 

@@ -25,7 +25,7 @@ export class RolesResolver {
     const finalRoles = roles.map((role) => {
       return {
         ...role,
-        admin_accesses: role.admin_accesses.map((item) => {
+        admin_accesses: role.role_accesses.map((item) => {
           return item.admin_accesses
         })
       }
@@ -46,7 +46,7 @@ export class RolesResolver {
     const role = await this.rolesService.update(input.added_roles_ids.toString(), input);
     return {
       ...role,
-      admin_accesses: role.admin_accesses.map((item) => {
+      admin_accesses: role.role_accesses.map((item) => {
         return item.admin_accesses
       })
     }

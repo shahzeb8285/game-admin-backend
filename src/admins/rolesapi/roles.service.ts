@@ -22,7 +22,7 @@ export class RoleService {
   async findAll() {
     return this.prisma.admin_roles.findMany({
       include: {
-        admin_accesses: {
+        role_accesses: {
           include: {
             admin_accesses: true
           }
@@ -79,7 +79,7 @@ export class RoleService {
         }
       },
       include: {
-        admin_accesses: {
+        role_accesses: {
           include: {
             admin_accesses: true
           }

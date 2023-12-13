@@ -65,7 +65,7 @@ export class AuthService {
       where: { admin_id }, include: {
         admin_roles: {
           include: {
-            admin_accesses: {
+            role_accesses: {
               include: {
                 admin_accesses:true
               }
@@ -78,7 +78,19 @@ export class AuthService {
 
   getUserFromToken(token: string): Promise<Admin> {
     const admin_id = this.jwtService.decode(token)['userId'];
-    return this.prisma.admins.findUnique({ where: { admin_id } });
+    return this.prisma.admins.findUnique({
+      where: { admin_id }, include: {
+        admin_roles: {
+          include: {
+            role_accesses: {
+              include: {
+                admin_accesses:true
+              }
+            },
+            
+          }
+        }
+    } });
   }
 
   generateTokens(payload: { adminId: string, roleId: string }): Token {
