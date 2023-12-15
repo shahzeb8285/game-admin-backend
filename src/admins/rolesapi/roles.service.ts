@@ -60,9 +60,10 @@ export class RoleService {
 
 
 
-    delete updatePayload.addedRolesIds;
-    delete updatePayload.removeRolesIds;
-    delete updatePayload.adminRoleID;
+  
+  delete updatePayload.added_roles_ids;
+  delete updatePayload.remove_roles_ids;
+  delete updatePayload.admin_role_id;
 
     return this.prisma.admin_roles.update({
       where: {
@@ -71,7 +72,7 @@ export class RoleService {
       data: {
 
         ...updatePayload,
-        admin_accesses: {
+        role_accesses: {
           create: addedRoles.map((item) => {
             return { admin_access_id: item }
           }),

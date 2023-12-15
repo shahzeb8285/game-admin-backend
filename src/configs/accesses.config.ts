@@ -11,7 +11,7 @@ const ACCESS = {
     "EDIT_ADMIN": "updateAdmin",
     "CREATE_ADMIN_ROLE": "createAdminRole",
     "UPDATE_ADMIN_ROLE": "updateAdminRole",
-
+    
     
 
     //====AGENT PERMISSIONS====

@@ -19,7 +19,7 @@ export class RolesResolver {
 
   }
 
-  @Query(() => [AdminRoles], { name: 'roles' })
+  @Query(() => [AdminRoles])
   async getAdminsRoles() {
     const roles = await this.rolesService.findAll();
     const finalRoles = roles.map((role) => {
@@ -34,7 +34,7 @@ export class RolesResolver {
     return finalRoles
   }
 
-  @Query(() => [AdminAccesses], { name: 'accesses' })
+  @Query(() => [AdminAccesses])
   getAccesses() {
     return this.rolesService.findAllAccess();
   }
@@ -43,7 +43,7 @@ export class RolesResolver {
 
   @Mutation(() => AdminRoles)
   async updateAdminRole(@Args('data') input: UpdateRoleInput) {
-    const role = await this.rolesService.update(input.added_roles_ids.toString(), input);
+    const role = await this.rolesService.update(input.admin_role_id, input);
     return {
       ...role,
       admin_accesses: role.role_accesses.map((item) => {

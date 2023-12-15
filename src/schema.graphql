@@ -176,16 +176,16 @@ type Player {
 }
 
 type Query {
-  accesses: [AdminAccesses!]!
   admins: [Admin!]!
   agents: [Agent!]!
   bankaccounts: [BankAccountEntity!]!
   deposits: [DepositEntity!]!
   gamerebates: [BankAccountEntity!]!
+  getAccesses: [AdminAccesses!]!
+  getAdminsRoles: [AdminRoles!]!
   getMe: Admin!
   loginhistory: [UserLoginHistory!]!
   manualadjustments: [ManualAdjustment!]!
-  roles: [AdminRoles!]!
   users: [Player!]!
   withdrawals: [WithdrawalEntity!]!
 }
