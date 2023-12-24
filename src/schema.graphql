@@ -182,9 +182,10 @@ type Query {
   deposits: [DepositEntity!]!
   gamerebates: [BankAccountEntity!]!
   getAccesses: [AdminAccesses!]!
+  getAdminsLoginHistory: [LoginHistory!]!
   getAdminsRoles: [AdminRoles!]!
   getMe: Admin!
-  loginhistory: [UserLoginHistory!]!
+  getUserLoginHistory: [UserLoginHistory!]!
   manualadjustments: [ManualAdjustment!]!
   users: [Player!]!
   withdrawals: [WithdrawalEntity!]!
@@ -205,10 +206,10 @@ enum TransactionType {
 }
 
 input UpdateAdminInput {
-  adminID: String!
-  adminName: String
-  adminPassword: String
-  adminRolesId: String
+  admin_id: String!
+  admin_name: String
+  admin_password: String
+  admin_roles_id: String
   enabled: Boolean
 }
 

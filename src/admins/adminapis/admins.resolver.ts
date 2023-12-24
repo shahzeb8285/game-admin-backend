@@ -26,10 +26,10 @@ export class AdminsResolver {
 
   @Mutation(() => Admin)
   updateAdmin(@Args('data') updateAdminInput: UpdateAdminInput) {
-    return this.adminsService.update(updateAdminInput.adminID, updateAdminInput);
+    return this.adminsService.update(updateAdminInput.admin_id, updateAdminInput);
   }
 
-  @Query(() => [LoginHistory], { name: 'loginhistory' })
+  @Query(() => [LoginHistory])
   getAdminsLoginHistory() {
     return this.adminsService.findAllLoginHistory();
   }

@@ -3,16 +3,16 @@ import { InputType, Field,  } from '@nestjs/graphql';
 @InputType()
 export class UpdateAdminInput  {
   @Field(() => String, {nullable:false})
-  adminID: string;
+  admin_id: string;
 
   @Field(() => String, {nullable:true})
-  adminName?: string;
+  admin_name?: string;
 
   @Field(() => String, {nullable:true})
-  adminPassword?: string;
+  admin_password?: string;
 
   @Field(() => String, {nullable:true})
-  adminRolesId?: String;
+  admin_roles_id?: String;
   
   @Field(() => Boolean, {nullable:true})
   enabled?: Boolean;

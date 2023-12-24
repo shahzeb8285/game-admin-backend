@@ -22,7 +22,7 @@ export class PlayersResolver {
   }
 
 
-  @Query(() => [UserLoginHistory], { name: 'loginhistory' })
+  @Query(() => [UserLoginHistory])
   getUserLoginHistory() {
     return this.playersService.getUserLoginHistory();
   }

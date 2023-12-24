@@ -53,11 +53,11 @@ export class AdminsService {
       ...updateAdminInput
     }
 
-    if (updatePayload.adminPassword) {
-      updatePayload.adminPassword = await this.passwordService.hashPassword(updatePayload.adminPassword);
+    if (updatePayload.admin_password) {
+      updatePayload.admin_password = await this.passwordService.hashPassword(updatePayload.admin_password);
     }
 
-    delete updatePayload.adminID
+    delete updatePayload.admin_id
 
     return this.prisma.admins.update({
       where: {
