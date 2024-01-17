@@ -12,7 +12,7 @@ export class UpdateAdminInput  {
   admin_password?: string;
 
   @Field(() => String, {nullable:true})
-  admin_roles_id?: String;
+  admin_role_id?: String;
   
   @Field(() => Boolean, {nullable:true})
   enabled?: Boolean;

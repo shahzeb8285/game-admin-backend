@@ -209,7 +209,7 @@ input UpdateAdminInput {
   admin_id: String!
   admin_name: String
   admin_password: String
-  admin_roles_id: String
+  admin_role_id: String
   enabled: Boolean
 }
 
