@@ -4,7 +4,6 @@ import { playersCreateWithoutGame_historyInput } from './players-create-without-
 import { Type } from 'class-transformer';
 import { playersCreateOrConnectWithoutGame_historyInput } from './players-create-or-connect-without-game-history.input';
 import { playersUpsertWithoutGame_historyInput } from './players-upsert-without-game-history.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 import { playersUpdateToOneWithWhereWithoutGame_historyInput } from './players-update-to-one-with-where-without-game-history.input';
 
@@ -25,7 +24,7 @@ export class playersUpdateOneRequiredWithoutGame_historyNestedInput {
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
     @Type(() => playersWhereUniqueInput)
-    connect?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: playersWhereUniqueInput;
 
     @Field(() => playersUpdateToOneWithWhereWithoutGame_historyInput, {nullable:true})
     @Type(() => playersUpdateToOneWithWhereWithoutGame_historyInput)

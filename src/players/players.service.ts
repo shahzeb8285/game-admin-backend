@@ -11,8 +11,9 @@ export class PlayersService {
 
 
 
-  findAll() {
+  findAll({skip,take}) {
     return this.prisma.players.findMany({
+      skip,take,
       include: {
         agent: true
       }
@@ -20,8 +21,10 @@ export class PlayersService {
   }
 
 
-  getUserLoginHistory() {
+  getUserLoginHistory({ skip, take }) {
+    
     return this.prisma.player_login_logs.findMany({
+      skip,take,
       include: {
         players: true
       }
@@ -30,8 +33,9 @@ export class PlayersService {
 
 
 
-  getManualAdjustments() {
+  getManualAdjustments({skip,take}) {
     return this.prisma.manual_adjustments.findMany({
+      skip,take,
       include: {
         players: true
       }

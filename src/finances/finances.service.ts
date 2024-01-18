@@ -34,8 +34,9 @@ export class FinancesService {
     })
   }
 
-  getDeposits() {
+  getDeposits({ skip,take,}) {
     return this.prisma.deposit_transactions.findMany({
+      skip,take,
       include: {
         players: true,
         admin_bank_accounts: true
@@ -45,8 +46,9 @@ export class FinancesService {
   }
 
 
-  getBankAccounts() {
+  getBankAccounts({skip,take}) {
     return this.prisma.admin_bank_accounts.findMany({
+      skip,take,
       include: {
         deposit_transactions: true,
         withdrawal_transactions: true
@@ -54,8 +56,9 @@ export class FinancesService {
     })
   }
 
-  getWithdrawals() {
+  getWithdrawals({ skip,take,}) {
     return this.prisma.withdrawal_transactions.findMany({
+      skip,take,
       include: {
         players: true,
         admin_bank_accounts: true

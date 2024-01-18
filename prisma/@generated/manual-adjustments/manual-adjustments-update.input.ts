@@ -4,7 +4,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { playersUpdateOneRequiredWithoutManual_adjustmentsNestedInput } from '../players/players-update-one-required-without-manual-adjustments-nested.input';
-import { adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput } from '../admins/admins-update-one-required-without-manual-adjustments-nested.input';
+import { AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput } from '../admins/admins-update-one-required-without-manual-adjustments-nested.input';
 
 @InputType()
 export class manual_adjustmentsUpdateInput {
@@ -24,6 +24,6 @@ export class manual_adjustmentsUpdateInput {
     @Field(() => playersUpdateOneRequiredWithoutManual_adjustmentsNestedInput, {nullable:true})
     players?: playersUpdateOneRequiredWithoutManual_adjustmentsNestedInput;
 
-    @Field(() => adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput, {nullable:true})
-    admins?: adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput;
+    @Field(() => AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput, {nullable:true})
+    admins?: AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput;
 }

@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { playersWhereInput } from './players-where.input';
 import { Type } from 'class-transformer';
 import { playersOrderByWithRelationInput } from './players-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 import { Int } from '@nestjs/graphql';
 
@@ -18,7 +17,7 @@ export class playersAggregateArgs {
     orderBy?: Array<playersOrderByWithRelationInput>;
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    cursor?: playersWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

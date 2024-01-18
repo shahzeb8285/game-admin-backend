@@ -4,7 +4,7 @@ import { admin_rolesCreateNestedOneWithoutAdminsInput } from '../admin-roles/adm
 import { manual_adjustmentsCreateNestedManyWithoutAdminsInput } from '../manual-adjustments/manual-adjustments-create-nested-many-without-admins.input';
 
 @InputType()
-export class adminsCreateWithoutAdmin_login_logsInput {
+export class AdminsCreateWithoutAdmin_login_logsInput {
 
     @Field(() => String, {nullable:true})
     admin_id?: string;

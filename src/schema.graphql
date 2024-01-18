@@ -176,19 +176,19 @@ type Player {
 }
 
 type Query {
-  admins(skip: Int! = 0, take: Int! = 5000): [Admin!]!
-  agents: [Agent!]!
-  bankaccounts: [BankAccountEntity!]!
-  deposits: [DepositEntity!]!
+  admins(skip: Int! = 0, take: Int! = 10): [Admin!]!
+  agents(skip: Int! = 0, take: Int! = 10): [Agent!]!
+  bankaccounts(skip: Int! = 0, take: Int! = 10): [BankAccountEntity!]!
+  deposits(skip: Int! = 0, take: Int! = 10): [DepositEntity!]!
   gamerebates: [BankAccountEntity!]!
-  getAccesses: [AdminAccesses!]!
-  getAdminsLoginHistory: [LoginHistory!]!
-  getAdminsRoles: [AdminRoles!]!
+  getAccesses(skip: Int! = 0, take: Int! = 10): [AdminAccesses!]!
+  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10): [LoginHistory!]!
+  getAdminsRoles(skip: Int! = 0, take: Int! = 10): [AdminRoles!]!
   getMe: Admin!
-  getUserLoginHistory: [UserLoginHistory!]!
-  manualadjustments: [ManualAdjustment!]!
-  users: [Player!]!
-  withdrawals: [WithdrawalEntity!]!
+  getUserLoginHistory(skip: Int! = 0, take: Int! = 10): [UserLoginHistory!]!
+  manualadjustments(skip: Int! = 0, take: Int! = 10): [ManualAdjustment!]!
+  users(skip: Int! = 0, take: Int! = 10): [Player!]!
+  withdrawals(skip: Int! = 0, take: Int! = 10): [WithdrawalEntity!]!
 }
 
 type Token {

@@ -4,7 +4,6 @@ import { game_rebatesCreateWithoutGame_historyInput } from './game-rebates-creat
 import { Type } from 'class-transformer';
 import { game_rebatesCreateOrConnectWithoutGame_historyInput } from './game-rebates-create-or-connect-without-game-history.input';
 import { game_rebatesCreateManyGame_historyInputEnvelope } from './game-rebates-create-many-game-history-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { game_rebatesWhereUniqueInput } from './game-rebates-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class game_rebatesUncheckedCreateNestedManyWithoutGame_historyInput {
 
     @Field(() => [game_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => game_rebatesWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<game_rebatesWhereUniqueInput, 'game_rebates_id'>>;
+    connect?: Array<game_rebatesWhereUniqueInput>;
 }

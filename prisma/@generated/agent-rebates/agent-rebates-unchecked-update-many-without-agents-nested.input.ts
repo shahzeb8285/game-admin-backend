@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { agent_rebatesCreateOrConnectWithoutAgentsInput } from './agent-rebates-create-or-connect-without-agents.input';
 import { agent_rebatesUpsertWithWhereUniqueWithoutAgentsInput } from './agent-rebates-upsert-with-where-unique-without-agents.input';
 import { agent_rebatesCreateManyAgentsInputEnvelope } from './agent-rebates-create-many-agents-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { agent_rebatesWhereUniqueInput } from './agent-rebates-where-unique.input';
 import { agent_rebatesUpdateWithWhereUniqueWithoutAgentsInput } from './agent-rebates-update-with-where-unique-without-agents.input';
 import { agent_rebatesUpdateManyWithWhereWithoutAgentsInput } from './agent-rebates-update-many-with-where-without-agents.input';
@@ -32,19 +31,19 @@ export class agent_rebatesUncheckedUpdateManyWithoutAgentsNestedInput {
 
     @Field(() => [agent_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => agent_rebatesWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<agent_rebatesWhereUniqueInput, 'agent_rebate_id'>>;
+    set?: Array<agent_rebatesWhereUniqueInput>;
 
     @Field(() => [agent_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => agent_rebatesWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<agent_rebatesWhereUniqueInput, 'agent_rebate_id'>>;
+    disconnect?: Array<agent_rebatesWhereUniqueInput>;
 
     @Field(() => [agent_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => agent_rebatesWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<agent_rebatesWhereUniqueInput, 'agent_rebate_id'>>;
+    delete?: Array<agent_rebatesWhereUniqueInput>;
 
     @Field(() => [agent_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => agent_rebatesWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<agent_rebatesWhereUniqueInput, 'agent_rebate_id'>>;
+    connect?: Array<agent_rebatesWhereUniqueInput>;
 
     @Field(() => [agent_rebatesUpdateWithWhereUniqueWithoutAgentsInput], {nullable:true})
     @Type(() => agent_rebatesUpdateWithWhereUniqueWithoutAgentsInput)

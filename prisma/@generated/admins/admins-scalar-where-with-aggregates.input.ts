@@ -5,16 +5,16 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
 
 @InputType()
-export class adminsScalarWhereWithAggregatesInput {
+export class AdminsScalarWhereWithAggregatesInput {
 
-    @Field(() => [adminsScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<adminsScalarWhereWithAggregatesInput>;
+    @Field(() => [AdminsScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<AdminsScalarWhereWithAggregatesInput>;
 
-    @Field(() => [adminsScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<adminsScalarWhereWithAggregatesInput>;
+    @Field(() => [AdminsScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<AdminsScalarWhereWithAggregatesInput>;
 
-    @Field(() => [adminsScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<adminsScalarWhereWithAggregatesInput>;
+    @Field(() => [AdminsScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<AdminsScalarWhereWithAggregatesInput>;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     admin_id?: StringWithAggregatesFilter;

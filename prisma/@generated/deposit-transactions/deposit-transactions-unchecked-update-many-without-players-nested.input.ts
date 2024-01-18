@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { deposit_transactionsCreateOrConnectWithoutPlayersInput } from './deposit-transactions-create-or-connect-without-players.input';
 import { deposit_transactionsUpsertWithWhereUniqueWithoutPlayersInput } from './deposit-transactions-upsert-with-where-unique-without-players.input';
 import { deposit_transactionsCreateManyPlayersInputEnvelope } from './deposit-transactions-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { deposit_transactionsWhereUniqueInput } from './deposit-transactions-where-unique.input';
 import { deposit_transactionsUpdateWithWhereUniqueWithoutPlayersInput } from './deposit-transactions-update-with-where-unique-without-players.input';
 import { deposit_transactionsUpdateManyWithWhereWithoutPlayersInput } from './deposit-transactions-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class deposit_transactionsUncheckedUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    set?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    disconnect?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    delete?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    connect?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => deposit_transactionsUpdateWithWhereUniqueWithoutPlayersInput)

@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { playersCreateWithoutPlayer_walletsInput } from './players-create-without-player-wallets.input';
 import { Type } from 'class-transformer';
 import { playersCreateOrConnectWithoutPlayer_walletsInput } from './players-create-or-connect-without-player-wallets.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class playersCreateNestedOneWithoutPlayer_walletsInput {
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
     @Type(() => playersWhereUniqueInput)
-    connect?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: playersWhereUniqueInput;
 }

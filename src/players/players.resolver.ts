@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PlayersService } from './players.service';
 import { Player } from './entities/player.entity';
 import { UpdatePlayerInput } from './dto/update-player.input';
@@ -17,27 +17,39 @@ export class PlayersResolver {
   constructor(private readonly playersService: PlayersService) { }
 
   @Query(() => [Player], { name: 'users' })
-  getUsers() {
-    return this.playersService.findAll();
+  getUsers(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.playersService.findAll({skip,take});
   }
 
 
   @Query(() => [UserLoginHistory])
-  getUserLoginHistory() {
-    return this.playersService.getUserLoginHistory();
+  getUserLoginHistory(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.playersService.getUserLoginHistory({skip,take});
   }
 
 
   @Query(() => [ManualAdjustment], { name: 'manualadjustments' })
-  getManualAdjustments() {
-    return this.playersService.getManualAdjustments();
+  getManualAdjustments(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.playersService.getManualAdjustments({skip,take});
   }
 
 
 
   @Query(() => [Player], { name: 'users' })
-  getUsersBonusHistory() {
-    return this.playersService.findAll();
+  getUsersBonusHistory(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.playersService.findAll({skip,take});
   }
 
 

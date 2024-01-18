@@ -6,7 +6,7 @@ import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-oper
 import { admin_login_logsUncheckedUpdateManyWithoutAdminsNestedInput } from '../admin-login-logs/admin-login-logs-unchecked-update-many-without-admins-nested.input';
 
 @InputType()
-export class adminsUncheckedUpdateWithoutManual_adjustmentsInput {
+export class AdminsUncheckedUpdateWithoutManual_adjustmentsInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     admin_id?: StringFieldUpdateOperationsInput;

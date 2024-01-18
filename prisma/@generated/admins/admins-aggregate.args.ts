@@ -1,28 +1,39 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { adminsWhereInput } from './admins-where.input';
+import { AdminsWhereInput } from './admins-where.input';
 import { Type } from 'class-transformer';
-import { adminsOrderByWithRelationInput } from './admins-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
-import { adminsWhereUniqueInput } from './admins-where-unique.input';
+import { AdminsOrderByWithRelationInput } from './admins-order-by-with-relation.input';
+import { AdminsWhereUniqueInput } from './admins-where-unique.input';
 import { Int } from '@nestjs/graphql';
+import { AdminsCountAggregateInput } from './admins-count-aggregate.input';
+import { AdminsMinAggregateInput } from './admins-min-aggregate.input';
+import { AdminsMaxAggregateInput } from './admins-max-aggregate.input';
 
 @ArgsType()
-export class adminsAggregateArgs {
+export class AdminsAggregateArgs {
 
-    @Field(() => adminsWhereInput, {nullable:true})
-    @Type(() => adminsWhereInput)
-    where?: adminsWhereInput;
+    @Field(() => AdminsWhereInput, {nullable:true})
+    @Type(() => AdminsWhereInput)
+    where?: AdminsWhereInput;
 
-    @Field(() => [adminsOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<adminsOrderByWithRelationInput>;
+    @Field(() => [AdminsOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<AdminsOrderByWithRelationInput>;
 
-    @Field(() => adminsWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<adminsWhereUniqueInput, 'admin_id' | 'admin_name'>;
+    @Field(() => AdminsWhereUniqueInput, {nullable:true})
+    cursor?: AdminsWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;
 
     @Field(() => Int, {nullable:true})
     skip?: number;
+
+    @Field(() => AdminsCountAggregateInput, {nullable:true})
+    _count?: AdminsCountAggregateInput;
+
+    @Field(() => AdminsMinAggregateInput, {nullable:true})
+    _min?: AdminsMinAggregateInput;
+
+    @Field(() => AdminsMaxAggregateInput, {nullable:true})
+    _max?: AdminsMaxAggregateInput;
 }

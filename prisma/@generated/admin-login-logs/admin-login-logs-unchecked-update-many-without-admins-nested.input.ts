@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { admin_login_logsCreateOrConnectWithoutAdminsInput } from './admin-login-logs-create-or-connect-without-admins.input';
 import { admin_login_logsUpsertWithWhereUniqueWithoutAdminsInput } from './admin-login-logs-upsert-with-where-unique-without-admins.input';
 import { admin_login_logsCreateManyAdminsInputEnvelope } from './admin-login-logs-create-many-admins-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { admin_login_logsWhereUniqueInput } from './admin-login-logs-where-unique.input';
 import { admin_login_logsUpdateWithWhereUniqueWithoutAdminsInput } from './admin-login-logs-update-with-where-unique-without-admins.input';
 import { admin_login_logsUpdateManyWithWhereWithoutAdminsInput } from './admin-login-logs-update-many-with-where-without-admins.input';
@@ -32,19 +31,19 @@ export class admin_login_logsUncheckedUpdateManyWithoutAdminsNestedInput {
 
     @Field(() => [admin_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => admin_login_logsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<admin_login_logsWhereUniqueInput, 'login_id'>>;
+    set?: Array<admin_login_logsWhereUniqueInput>;
 
     @Field(() => [admin_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => admin_login_logsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<admin_login_logsWhereUniqueInput, 'login_id'>>;
+    disconnect?: Array<admin_login_logsWhereUniqueInput>;
 
     @Field(() => [admin_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => admin_login_logsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<admin_login_logsWhereUniqueInput, 'login_id'>>;
+    delete?: Array<admin_login_logsWhereUniqueInput>;
 
     @Field(() => [admin_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => admin_login_logsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<admin_login_logsWhereUniqueInput, 'login_id'>>;
+    connect?: Array<admin_login_logsWhereUniqueInput>;
 
     @Field(() => [admin_login_logsUpdateWithWhereUniqueWithoutAdminsInput], {nullable:true})
     @Type(() => admin_login_logsUpdateWithWhereUniqueWithoutAdminsInput)

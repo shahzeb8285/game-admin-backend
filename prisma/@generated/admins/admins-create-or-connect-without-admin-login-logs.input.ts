@@ -1,18 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
-import { adminsWhereUniqueInput } from './admins-where-unique.input';
+import { AdminsWhereUniqueInput } from './admins-where-unique.input';
 import { Type } from 'class-transformer';
-import { adminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
+import { AdminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
 
 @InputType()
-export class adminsCreateOrConnectWithoutAdmin_login_logsInput {
+export class AdminsCreateOrConnectWithoutAdmin_login_logsInput {
 
-    @Field(() => adminsWhereUniqueInput, {nullable:false})
-    @Type(() => adminsWhereUniqueInput)
-    where!: Prisma.AtLeast<adminsWhereUniqueInput, 'admin_id' | 'admin_name'>;
+    @Field(() => AdminsWhereUniqueInput, {nullable:false})
+    @Type(() => AdminsWhereUniqueInput)
+    where!: AdminsWhereUniqueInput;
 
-    @Field(() => adminsCreateWithoutAdmin_login_logsInput, {nullable:false})
-    @Type(() => adminsCreateWithoutAdmin_login_logsInput)
-    create!: adminsCreateWithoutAdmin_login_logsInput;
+    @Field(() => AdminsCreateWithoutAdmin_login_logsInput, {nullable:false})
+    @Type(() => AdminsCreateWithoutAdmin_login_logsInput)
+    create!: AdminsCreateWithoutAdmin_login_logsInput;
 }

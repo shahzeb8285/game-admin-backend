@@ -20,8 +20,12 @@ export class RolesResolver {
   }
 
   @Query(() => [AdminRoles])
-  async getAdminsRoles() {
-    const roles = await this.rolesService.findAll();
+  async getAdminsRoles(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+
+  ) {
+    const roles = await this.rolesService.findAll({skip,take});
     const finalRoles = roles.map((role) => {
       return {
         ...role,
@@ -35,8 +39,9 @@ export class RolesResolver {
   }
 
   @Query(() => [AdminAccesses])
-  getAccesses() {
-    return this.rolesService.findAllAccess();
+  getAccesses(@Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number) {
+    return this.rolesService.findAllAccess({skip,take});
   }
 
   

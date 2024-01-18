@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { admins } from '../admins/admins.model';
+import { Admins } from '../admins/admins.model';
 
 @ObjectType()
 export class admin_login_logs {
@@ -18,6 +18,6 @@ export class admin_login_logs {
     @Field(() => Date, {nullable:false})
     login_time!: Date;
 
-    @Field(() => admins, {nullable:false})
-    admins?: admins;
+    @Field(() => Admins, {nullable:false})
+    admins?: Admins;
 }

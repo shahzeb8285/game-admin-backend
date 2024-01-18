@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { playersCreateWithoutManual_adjustmentsInput } from './players-create-without-manual-adjustments.input';
 import { Type } from 'class-transformer';
 import { playersCreateOrConnectWithoutManual_adjustmentsInput } from './players-create-or-connect-without-manual-adjustments.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class playersCreateNestedOneWithoutManual_adjustmentsInput {
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
     @Type(() => playersWhereUniqueInput)
-    connect?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: playersWhereUniqueInput;
 }

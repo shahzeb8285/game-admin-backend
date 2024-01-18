@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { player_login_logsCreateOrConnectWithoutPlayersInput } from './player-login-logs-create-or-connect-without-players.input';
 import { player_login_logsUpsertWithWhereUniqueWithoutPlayersInput } from './player-login-logs-upsert-with-where-unique-without-players.input';
 import { player_login_logsCreateManyPlayersInputEnvelope } from './player-login-logs-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { player_login_logsWhereUniqueInput } from './player-login-logs-where-unique.input';
 import { player_login_logsUpdateWithWhereUniqueWithoutPlayersInput } from './player-login-logs-update-with-where-unique-without-players.input';
 import { player_login_logsUpdateManyWithWhereWithoutPlayersInput } from './player-login-logs-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class player_login_logsUncheckedUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [player_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => player_login_logsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<player_login_logsWhereUniqueInput, 'player_id_r'>>;
+    set?: Array<player_login_logsWhereUniqueInput>;
 
     @Field(() => [player_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => player_login_logsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<player_login_logsWhereUniqueInput, 'player_id_r'>>;
+    disconnect?: Array<player_login_logsWhereUniqueInput>;
 
     @Field(() => [player_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => player_login_logsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<player_login_logsWhereUniqueInput, 'player_id_r'>>;
+    delete?: Array<player_login_logsWhereUniqueInput>;
 
     @Field(() => [player_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => player_login_logsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<player_login_logsWhereUniqueInput, 'player_id_r'>>;
+    connect?: Array<player_login_logsWhereUniqueInput>;
 
     @Field(() => [player_login_logsUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => player_login_logsUpdateWithWhereUniqueWithoutPlayersInput)

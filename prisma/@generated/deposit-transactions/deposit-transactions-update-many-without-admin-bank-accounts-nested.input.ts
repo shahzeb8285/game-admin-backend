@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { deposit_transactionsCreateOrConnectWithoutAdmin_bank_accountsInput } from './deposit-transactions-create-or-connect-without-admin-bank-accounts.input';
 import { deposit_transactionsUpsertWithWhereUniqueWithoutAdmin_bank_accountsInput } from './deposit-transactions-upsert-with-where-unique-without-admin-bank-accounts.input';
 import { deposit_transactionsCreateManyAdmin_bank_accountsInputEnvelope } from './deposit-transactions-create-many-admin-bank-accounts-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { deposit_transactionsWhereUniqueInput } from './deposit-transactions-where-unique.input';
 import { deposit_transactionsUpdateWithWhereUniqueWithoutAdmin_bank_accountsInput } from './deposit-transactions-update-with-where-unique-without-admin-bank-accounts.input';
 import { deposit_transactionsUpdateManyWithWhereWithoutAdmin_bank_accountsInput } from './deposit-transactions-update-many-with-where-without-admin-bank-accounts.input';
@@ -32,19 +31,19 @@ export class deposit_transactionsUpdateManyWithoutAdmin_bank_accountsNestedInput
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    set?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    disconnect?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    delete?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    connect?: Array<deposit_transactionsWhereUniqueInput>;
 
     @Field(() => [deposit_transactionsUpdateWithWhereUniqueWithoutAdmin_bank_accountsInput], {nullable:true})
     @Type(() => deposit_transactionsUpdateWithWhereUniqueWithoutAdmin_bank_accountsInput)

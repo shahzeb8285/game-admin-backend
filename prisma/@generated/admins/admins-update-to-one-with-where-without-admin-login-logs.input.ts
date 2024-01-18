@@ -1,17 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsWhereInput } from './admins-where.input';
+import { AdminsWhereInput } from './admins-where.input';
 import { Type } from 'class-transformer';
-import { adminsUpdateWithoutAdmin_login_logsInput } from './admins-update-without-admin-login-logs.input';
+import { AdminsUpdateWithoutAdmin_login_logsInput } from './admins-update-without-admin-login-logs.input';
 
 @InputType()
-export class adminsUpdateToOneWithWhereWithoutAdmin_login_logsInput {
+export class AdminsUpdateToOneWithWhereWithoutAdmin_login_logsInput {
 
-    @Field(() => adminsWhereInput, {nullable:true})
-    @Type(() => adminsWhereInput)
-    where?: adminsWhereInput;
+    @Field(() => AdminsWhereInput, {nullable:true})
+    @Type(() => AdminsWhereInput)
+    where?: AdminsWhereInput;
 
-    @Field(() => adminsUpdateWithoutAdmin_login_logsInput, {nullable:false})
-    @Type(() => adminsUpdateWithoutAdmin_login_logsInput)
-    data!: adminsUpdateWithoutAdmin_login_logsInput;
+    @Field(() => AdminsUpdateWithoutAdmin_login_logsInput, {nullable:false})
+    @Type(() => AdminsUpdateWithoutAdmin_login_logsInput)
+    data!: AdminsUpdateWithoutAdmin_login_logsInput;
 }

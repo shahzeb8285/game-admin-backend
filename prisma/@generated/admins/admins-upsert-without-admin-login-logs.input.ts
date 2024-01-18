@@ -1,22 +1,22 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsUpdateWithoutAdmin_login_logsInput } from './admins-update-without-admin-login-logs.input';
+import { AdminsUpdateWithoutAdmin_login_logsInput } from './admins-update-without-admin-login-logs.input';
 import { Type } from 'class-transformer';
-import { adminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
-import { adminsWhereInput } from './admins-where.input';
+import { AdminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
+import { AdminsWhereInput } from './admins-where.input';
 
 @InputType()
-export class adminsUpsertWithoutAdmin_login_logsInput {
+export class AdminsUpsertWithoutAdmin_login_logsInput {
 
-    @Field(() => adminsUpdateWithoutAdmin_login_logsInput, {nullable:false})
-    @Type(() => adminsUpdateWithoutAdmin_login_logsInput)
-    update!: adminsUpdateWithoutAdmin_login_logsInput;
+    @Field(() => AdminsUpdateWithoutAdmin_login_logsInput, {nullable:false})
+    @Type(() => AdminsUpdateWithoutAdmin_login_logsInput)
+    update!: AdminsUpdateWithoutAdmin_login_logsInput;
 
-    @Field(() => adminsCreateWithoutAdmin_login_logsInput, {nullable:false})
-    @Type(() => adminsCreateWithoutAdmin_login_logsInput)
-    create!: adminsCreateWithoutAdmin_login_logsInput;
+    @Field(() => AdminsCreateWithoutAdmin_login_logsInput, {nullable:false})
+    @Type(() => AdminsCreateWithoutAdmin_login_logsInput)
+    create!: AdminsCreateWithoutAdmin_login_logsInput;
 
-    @Field(() => adminsWhereInput, {nullable:true})
-    @Type(() => adminsWhereInput)
-    where?: adminsWhereInput;
+    @Field(() => AdminsWhereInput, {nullable:true})
+    @Type(() => AdminsWhereInput)
+    where?: AdminsWhereInput;
 }

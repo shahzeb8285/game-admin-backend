@@ -7,7 +7,7 @@ import { admin_rolesUpdateOneRequiredWithoutAdminsNestedInput } from '../admin-r
 import { manual_adjustmentsUpdateManyWithoutAdminsNestedInput } from '../manual-adjustments/manual-adjustments-update-many-without-admins-nested.input';
 
 @InputType()
-export class adminsUpdateWithoutAdmin_login_logsInput {
+export class AdminsUpdateWithoutAdmin_login_logsInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     admin_id?: StringFieldUpdateOperationsInput;

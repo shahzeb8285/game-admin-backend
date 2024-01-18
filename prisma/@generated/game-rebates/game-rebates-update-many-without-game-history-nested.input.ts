@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { game_rebatesCreateOrConnectWithoutGame_historyInput } from './game-rebates-create-or-connect-without-game-history.input';
 import { game_rebatesUpsertWithWhereUniqueWithoutGame_historyInput } from './game-rebates-upsert-with-where-unique-without-game-history.input';
 import { game_rebatesCreateManyGame_historyInputEnvelope } from './game-rebates-create-many-game-history-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { game_rebatesWhereUniqueInput } from './game-rebates-where-unique.input';
 import { game_rebatesUpdateWithWhereUniqueWithoutGame_historyInput } from './game-rebates-update-with-where-unique-without-game-history.input';
 import { game_rebatesUpdateManyWithWhereWithoutGame_historyInput } from './game-rebates-update-many-with-where-without-game-history.input';
@@ -32,19 +31,19 @@ export class game_rebatesUpdateManyWithoutGame_historyNestedInput {
 
     @Field(() => [game_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => game_rebatesWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<game_rebatesWhereUniqueInput, 'game_rebates_id'>>;
+    set?: Array<game_rebatesWhereUniqueInput>;
 
     @Field(() => [game_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => game_rebatesWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<game_rebatesWhereUniqueInput, 'game_rebates_id'>>;
+    disconnect?: Array<game_rebatesWhereUniqueInput>;
 
     @Field(() => [game_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => game_rebatesWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<game_rebatesWhereUniqueInput, 'game_rebates_id'>>;
+    delete?: Array<game_rebatesWhereUniqueInput>;
 
     @Field(() => [game_rebatesWhereUniqueInput], {nullable:true})
     @Type(() => game_rebatesWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<game_rebatesWhereUniqueInput, 'game_rebates_id'>>;
+    connect?: Array<game_rebatesWhereUniqueInput>;
 
     @Field(() => [game_rebatesUpdateWithWhereUniqueWithoutGame_historyInput], {nullable:true})
     @Type(() => game_rebatesUpdateWithWhereUniqueWithoutGame_historyInput)

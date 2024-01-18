@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { transfer_in_transactionsCreateOrConnectWithoutPlayersInput } from './transfer-in-transactions-create-or-connect-without-players.input';
 import { transfer_in_transactionsUpsertWithWhereUniqueWithoutPlayersInput } from './transfer-in-transactions-upsert-with-where-unique-without-players.input';
 import { transfer_in_transactionsCreateManyPlayersInputEnvelope } from './transfer-in-transactions-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { transfer_in_transactionsWhereUniqueInput } from './transfer-in-transactions-where-unique.input';
 import { transfer_in_transactionsUpdateWithWhereUniqueWithoutPlayersInput } from './transfer-in-transactions-update-with-where-unique-without-players.input';
 import { transfer_in_transactionsUpdateManyWithWhereWithoutPlayersInput } from './transfer-in-transactions-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class transfer_in_transactionsUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [transfer_in_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => transfer_in_transactionsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<transfer_in_transactionsWhereUniqueInput, 'transfer_in_Transaction_id'>>;
+    set?: Array<transfer_in_transactionsWhereUniqueInput>;
 
     @Field(() => [transfer_in_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => transfer_in_transactionsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<transfer_in_transactionsWhereUniqueInput, 'transfer_in_Transaction_id'>>;
+    disconnect?: Array<transfer_in_transactionsWhereUniqueInput>;
 
     @Field(() => [transfer_in_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => transfer_in_transactionsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<transfer_in_transactionsWhereUniqueInput, 'transfer_in_Transaction_id'>>;
+    delete?: Array<transfer_in_transactionsWhereUniqueInput>;
 
     @Field(() => [transfer_in_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => transfer_in_transactionsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<transfer_in_transactionsWhereUniqueInput, 'transfer_in_Transaction_id'>>;
+    connect?: Array<transfer_in_transactionsWhereUniqueInput>;
 
     @Field(() => [transfer_in_transactionsUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => transfer_in_transactionsUpdateWithWhereUniqueWithoutPlayersInput)

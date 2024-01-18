@@ -4,7 +4,7 @@ import { admin_login_logsUncheckedCreateNestedManyWithoutAdminsInput } from '../
 import { manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput } from '../manual-adjustments/manual-adjustments-unchecked-create-nested-many-without-admins.input';
 
 @InputType()
-export class adminsUncheckedCreateWithoutAdmin_rolesInput {
+export class AdminsUncheckedCreateWithoutAdmin_rolesInput {
 
     @Field(() => String, {nullable:true})
     admin_id?: string;

@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput } from '../manual-adjustments/manual-adjustments-unchecked-create-nested-many-without-admins.input';
 
 @InputType()
-export class adminsUncheckedCreateWithoutAdmin_login_logsInput {
+export class AdminsUncheckedCreateWithoutAdmin_login_logsInput {
 
     @Field(() => String, {nullable:true})
     admin_id?: string;

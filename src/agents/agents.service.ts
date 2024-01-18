@@ -49,8 +49,10 @@ export class AgentsService {
     })
   }
 
-  findAll() {
+  findAll({skip,take}) {
     return this.prisma.agents.findMany({
+      skip,
+      take,
       include: {
         parent: true
       }

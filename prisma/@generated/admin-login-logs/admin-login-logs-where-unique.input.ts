@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { admin_login_logsWhereInput } from './admin-login-logs-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { AdminsRelationFilter } from '../prisma/admins-relation-filter.input';
+import { AdminsRelationFilter } from '../admins/admins-relation-filter.input';
 
 @InputType()
 export class admin_login_logsWhereUniqueInput {

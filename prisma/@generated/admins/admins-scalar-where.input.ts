@@ -5,16 +5,16 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 
 @InputType()
-export class adminsScalarWhereInput {
+export class AdminsScalarWhereInput {
 
-    @Field(() => [adminsScalarWhereInput], {nullable:true})
-    AND?: Array<adminsScalarWhereInput>;
+    @Field(() => [AdminsScalarWhereInput], {nullable:true})
+    AND?: Array<AdminsScalarWhereInput>;
 
-    @Field(() => [adminsScalarWhereInput], {nullable:true})
-    OR?: Array<adminsScalarWhereInput>;
+    @Field(() => [AdminsScalarWhereInput], {nullable:true})
+    OR?: Array<AdminsScalarWhereInput>;
 
-    @Field(() => [adminsScalarWhereInput], {nullable:true})
-    NOT?: Array<adminsScalarWhereInput>;
+    @Field(() => [AdminsScalarWhereInput], {nullable:true})
+    NOT?: Array<AdminsScalarWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
     admin_id?: StringFilter;

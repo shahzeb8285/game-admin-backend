@@ -1,23 +1,22 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
-import { adminsWhereUniqueInput } from './admins-where-unique.input';
+import { AdminsWhereUniqueInput } from './admins-where-unique.input';
 import { Type } from 'class-transformer';
-import { adminsUpdateWithoutAdmin_rolesInput } from './admins-update-without-admin-roles.input';
-import { adminsCreateWithoutAdmin_rolesInput } from './admins-create-without-admin-roles.input';
+import { AdminsUpdateWithoutAdmin_rolesInput } from './admins-update-without-admin-roles.input';
+import { AdminsCreateWithoutAdmin_rolesInput } from './admins-create-without-admin-roles.input';
 
 @InputType()
-export class adminsUpsertWithWhereUniqueWithoutAdmin_rolesInput {
+export class AdminsUpsertWithWhereUniqueWithoutAdmin_rolesInput {
 
-    @Field(() => adminsWhereUniqueInput, {nullable:false})
-    @Type(() => adminsWhereUniqueInput)
-    where!: Prisma.AtLeast<adminsWhereUniqueInput, 'admin_id' | 'admin_name'>;
+    @Field(() => AdminsWhereUniqueInput, {nullable:false})
+    @Type(() => AdminsWhereUniqueInput)
+    where!: AdminsWhereUniqueInput;
 
-    @Field(() => adminsUpdateWithoutAdmin_rolesInput, {nullable:false})
-    @Type(() => adminsUpdateWithoutAdmin_rolesInput)
-    update!: adminsUpdateWithoutAdmin_rolesInput;
+    @Field(() => AdminsUpdateWithoutAdmin_rolesInput, {nullable:false})
+    @Type(() => AdminsUpdateWithoutAdmin_rolesInput)
+    update!: AdminsUpdateWithoutAdmin_rolesInput;
 
-    @Field(() => adminsCreateWithoutAdmin_rolesInput, {nullable:false})
-    @Type(() => adminsCreateWithoutAdmin_rolesInput)
-    create!: adminsCreateWithoutAdmin_rolesInput;
+    @Field(() => AdminsCreateWithoutAdmin_rolesInput, {nullable:false})
+    @Type(() => AdminsCreateWithoutAdmin_rolesInput)
+    create!: AdminsCreateWithoutAdmin_rolesInput;
 }

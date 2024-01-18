@@ -36,9 +36,7 @@ export class AdminsService {
   }
 
   findAll({ skip, take }) {
-    
     return this.prisma.admins.findMany({
-
       take,
       skip,
       include: {
@@ -75,8 +73,10 @@ export class AdminsService {
   }
 
 
-  async findAllLoginHistory() {
+  async findAllLoginHistory({ skip, take }) {
     return this.prisma.admin_login_logs.findMany({
+      skip,
+      take,
       include: {
         admins: true
       }

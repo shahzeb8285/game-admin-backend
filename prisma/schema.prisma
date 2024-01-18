@@ -14,38 +14,38 @@ generator dbml {
 
 
 
-generator nestgraphql {
-  provider = "node node_modules/prisma-nestjs-graphql"
-  output                                = "../src/@generated"
-  // noAtomicOperations                    = false
-  // combineScalarFilters                  = false
-  // reExport                              = None
-  // emitSingle                            = false
-  // emitCompiled                          = false
-  // purgeOutput                           = false
-  // requireSingleFieldsInWhereUniqueInput = false
-  // fields_Validator_from                 = "class-validator"
-  // fields_Validator_input                = true
-  // fields_Scalars_from                   = "graphql-scalars"
-  // fields_Scalars_input                  = true
-  // useInputType_WhereInput_ALL           = "WhereInput"
-  // decorate_1_type                       = "Create@(One|Many)UserArgs"
-  // decorate_1_field                      = data
-  // decorate_1_name                       = ValidateNested
-  // decorate_1_from                       = "class-validator"
-  // decorate_1_arguments                  = "[]"
-  // decorate_2_type                       = "Create@(One|Many)UserArgs"
-  // decorate_2_field                      = data
-  // decorate_2_from                       = "class-transformer"
-  // decorate_2_arguments                  = "['() => {propertyType.0}']"
-  // decorate_2_name                       = Type
-  // decorate_2_namedImport                = true
-  // decorate_3_type                       = "ProfileUncheckedCreateNestedOneWithoutUserInput"
-  // decorate_3_field                      = "!(create)"
-  // decorate_3_name                       = "HideField"
-  // decorate_3_from                       = "@nestjs/graphql"
-  // decorate_3_arguments                  = "[]"
-}
+// generator nestgraphql {
+//   provider = "node node_modules/prisma-nestjs-graphql"
+//   output                                = "./@generated"
+//   // noAtomicOperations                    = false
+//   // combineScalarFilters                  = false
+//   // reExport                              = None
+//   // emitSingle                            = false
+//   // emitCompiled                          = false
+//   // purgeOutput                           = false
+//   // requireSingleFieldsInWhereUniqueInput = false
+//   // fields_Validator_from                 = "class-validator"
+//   // fields_Validator_input                = true
+//   // fields_Scalars_from                   = "graphql-scalars"
+//   // fields_Scalars_input                  = true
+//   // useInputType_WhereInput_ALL           = "WhereInput"
+//   // decorate_1_type                       = "Create@(One|Many)UserArgs"
+//   // decorate_1_field                      = data
+//   // decorate_1_name                       = ValidateNested
+//   // decorate_1_from                       = "class-validator"
+//   // decorate_1_arguments                  = "[]"
+//   // decorate_2_type                       = "Create@(One|Many)UserArgs"
+//   // decorate_2_field                      = data
+//   // decorate_2_from                       = "class-transformer"
+//   // decorate_2_arguments                  = "['() => {propertyType.0}']"
+//   // decorate_2_name                       = Type
+//   // decorate_2_namedImport                = true
+//   // decorate_3_type                       = "ProfileUncheckedCreateNestedOneWithoutUserInput"
+//   // decorate_3_field                      = "!(create)"
+//   // decorate_3_name                       = "HideField"
+//   // decorate_3_from                       = "@nestjs/graphql"
+//   // decorate_3_arguments                  = "[]"
+// }
 model players {
   player_id                String                      @id @default(cuid())
   name                    String
@@ -72,9 +72,10 @@ model players {
   withdrawal_transactions  withdrawal_transactions[]
   transfer_in_transactions  transfer_in_transactions[]
   transfer_out_transactions transfer_out_transactions[]
+
 }
 
-model admins {
+model Admins {
   admin_id           String               @id @default(cuid())
   admin_name         String               @unique
   admin_password     String
@@ -86,13 +87,17 @@ model admins {
   enabled           Boolean              @default(true)
   admin_login_logs    admin_login_logs[]
   manual_adjustments manual_adjustments[]
+
+
+  @@map("admins")
+
 }
 
 model admin_roles {
   admin_role_id   String           @id @default(cuid())
   admin_role_name  String           @unique
   enabled        Boolean          @default(true)
-  admins         admins[]
+  admins         Admins[]
   role_accesses admin_role_accesses[]
 }
 
@@ -147,7 +152,7 @@ model player_login_logs {
 
 model admin_login_logs {
   login_id   String   @id @default(cuid())
-  admins    admins   @relation(fields: [admin_id_r], references: [admin_id])
+  admins    Admins   @relation(fields: [admin_id_r], references: [admin_id])
   admin_id_r   String
   ip        String
   login_time DateTime @default(now())
@@ -191,7 +196,7 @@ model manual_adjustments {
   player_id_r         String
   reason             String
   amount             Float
-  admins             admins   @relation(fields: [created_by_r], references: [admin_id])
+  admins             Admins   @relation(fields: [created_by_r], references: [admin_id])
   created_by_r          String
   cdate              DateTime @default(now())
 }

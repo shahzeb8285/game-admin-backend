@@ -5,7 +5,7 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 
 @InputType()
-export class adminsUncheckedUpdateManyWithoutAdmin_rolesInput {
+export class AdminsUncheckedUpdateManyWithoutAdmin_rolesInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     admin_id?: StringFieldUpdateOperationsInput;

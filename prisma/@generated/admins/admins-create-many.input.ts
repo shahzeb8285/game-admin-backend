@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 
 @InputType()
-export class adminsCreateManyInput {
+export class AdminsCreateManyInput {
 
     @Field(() => String, {nullable:true})
     admin_id?: string;

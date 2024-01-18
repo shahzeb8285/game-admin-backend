@@ -4,7 +4,6 @@ import { player_walletsCreateWithoutPlayersInput } from './player-wallets-create
 import { Type } from 'class-transformer';
 import { player_walletsCreateOrConnectWithoutPlayersInput } from './player-wallets-create-or-connect-without-players.input';
 import { player_walletsCreateManyPlayersInputEnvelope } from './player-wallets-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { player_walletsWhereUniqueInput } from './player-wallets-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class player_walletsUncheckedCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [player_walletsWhereUniqueInput], {nullable:true})
     @Type(() => player_walletsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<player_walletsWhereUniqueInput, 'player_wallet_id'>>;
+    connect?: Array<player_walletsWhereUniqueInput>;
 }

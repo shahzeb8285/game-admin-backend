@@ -4,7 +4,6 @@ import { player_login_logsCreateWithoutPlayersInput } from './player-login-logs-
 import { Type } from 'class-transformer';
 import { player_login_logsCreateOrConnectWithoutPlayersInput } from './player-login-logs-create-or-connect-without-players.input';
 import { player_login_logsCreateManyPlayersInputEnvelope } from './player-login-logs-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { player_login_logsWhereUniqueInput } from './player-login-logs-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class player_login_logsCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [player_login_logsWhereUniqueInput], {nullable:true})
     @Type(() => player_login_logsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<player_login_logsWhereUniqueInput, 'player_id_r'>>;
+    connect?: Array<player_login_logsWhereUniqueInput>;
 }

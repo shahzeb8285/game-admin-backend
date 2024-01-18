@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsCreateNestedOneWithoutAdmin_login_logsInput } from '../admins/admins-create-nested-one-without-admin-login-logs.input';
+import { AdminsCreateNestedOneWithoutAdmin_login_logsInput } from '../admins/admins-create-nested-one-without-admin-login-logs.input';
 
 @InputType()
 export class admin_login_logsCreateInput {
@@ -14,6 +14,6 @@ export class admin_login_logsCreateInput {
     @Field(() => Date, {nullable:true})
     login_time?: Date | string;
 
-    @Field(() => adminsCreateNestedOneWithoutAdmin_login_logsInput, {nullable:false})
-    admins!: adminsCreateNestedOneWithoutAdmin_login_logsInput;
+    @Field(() => AdminsCreateNestedOneWithoutAdmin_login_logsInput, {nullable:false})
+    admins!: AdminsCreateNestedOneWithoutAdmin_login_logsInput;
 }

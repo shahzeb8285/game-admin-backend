@@ -19,8 +19,9 @@ export class RoleService {
     })
   }
 
-  async findAll() {
+  async findAll({skip,take}) {
     return this.prisma.admin_roles.findMany({
+      skip,take,
       include: {
         role_accesses: {
           include: {
@@ -93,16 +94,19 @@ export class RoleService {
   }
 
 
-  async findAllLoginHistory() {
+  async findAllLoginHistory({skip,take}) {
     return this.prisma.admin_login_logs.findMany({
+      skip,take,
       include: {
         admins: true
       }
     })
   }
 
-  async findAllAccess() {
-    return this.prisma.admin_accesses.findMany()
+  async findAllAccess({skip,take}) {
+    return this.prisma.admin_accesses.findMany({
+      skip,take
+    })
   }
 
 }

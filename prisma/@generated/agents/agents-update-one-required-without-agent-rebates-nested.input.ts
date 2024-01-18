@@ -4,7 +4,6 @@ import { agentsCreateWithoutAgent_rebatesInput } from './agents-create-without-a
 import { Type } from 'class-transformer';
 import { agentsCreateOrConnectWithoutAgent_rebatesInput } from './agents-create-or-connect-without-agent-rebates.input';
 import { agentsUpsertWithoutAgent_rebatesInput } from './agents-upsert-without-agent-rebates.input';
-import { Prisma } from '@prisma/client';
 import { agentsWhereUniqueInput } from './agents-where-unique.input';
 import { agentsUpdateToOneWithWhereWithoutAgent_rebatesInput } from './agents-update-to-one-with-where-without-agent-rebates.input';
 
@@ -25,7 +24,7 @@ export class agentsUpdateOneRequiredWithoutAgent_rebatesNestedInput {
 
     @Field(() => agentsWhereUniqueInput, {nullable:true})
     @Type(() => agentsWhereUniqueInput)
-    connect?: Prisma.AtLeast<agentsWhereUniqueInput, 'agent_id' | 'agent_name'>;
+    connect?: agentsWhereUniqueInput;
 
     @Field(() => agentsUpdateToOneWithWhereWithoutAgent_rebatesInput, {nullable:true})
     @Type(() => agentsUpdateToOneWithWhereWithoutAgent_rebatesInput)

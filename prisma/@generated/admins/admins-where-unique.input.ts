@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsWhereInput } from './admins-where.input';
+import { AdminsWhereInput } from './admins-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
@@ -9,7 +9,7 @@ import { Admin_login_logsListRelationFilter } from '../prisma/admin-login-logs-l
 import { Manual_adjustmentsListRelationFilter } from '../prisma/manual-adjustments-list-relation-filter.input';
 
 @InputType()
-export class adminsWhereUniqueInput {
+export class AdminsWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     admin_id?: string;
@@ -17,14 +17,14 @@ export class adminsWhereUniqueInput {
     @Field(() => String, {nullable:true})
     admin_name?: string;
 
-    @Field(() => [adminsWhereInput], {nullable:true})
-    AND?: Array<adminsWhereInput>;
+    @Field(() => [AdminsWhereInput], {nullable:true})
+    AND?: Array<AdminsWhereInput>;
 
-    @Field(() => [adminsWhereInput], {nullable:true})
-    OR?: Array<adminsWhereInput>;
+    @Field(() => [AdminsWhereInput], {nullable:true})
+    OR?: Array<AdminsWhereInput>;
 
-    @Field(() => [adminsWhereInput], {nullable:true})
-    NOT?: Array<adminsWhereInput>;
+    @Field(() => [AdminsWhereInput], {nullable:true})
+    NOT?: Array<AdminsWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
     admin_password?: StringFilter;

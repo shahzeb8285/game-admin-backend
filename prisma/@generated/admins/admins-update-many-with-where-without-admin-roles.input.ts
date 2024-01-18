@@ -1,17 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsScalarWhereInput } from './admins-scalar-where.input';
+import { AdminsScalarWhereInput } from './admins-scalar-where.input';
 import { Type } from 'class-transformer';
-import { adminsUpdateManyMutationInput } from './admins-update-many-mutation.input';
+import { AdminsUpdateManyMutationInput } from './admins-update-many-mutation.input';
 
 @InputType()
-export class adminsUpdateManyWithWhereWithoutAdmin_rolesInput {
+export class AdminsUpdateManyWithWhereWithoutAdmin_rolesInput {
 
-    @Field(() => adminsScalarWhereInput, {nullable:false})
-    @Type(() => adminsScalarWhereInput)
-    where!: adminsScalarWhereInput;
+    @Field(() => AdminsScalarWhereInput, {nullable:false})
+    @Type(() => AdminsScalarWhereInput)
+    where!: AdminsScalarWhereInput;
 
-    @Field(() => adminsUpdateManyMutationInput, {nullable:false})
-    @Type(() => adminsUpdateManyMutationInput)
-    data!: adminsUpdateManyMutationInput;
+    @Field(() => AdminsUpdateManyMutationInput, {nullable:false})
+    @Type(() => AdminsUpdateManyMutationInput)
+    data!: AdminsUpdateManyMutationInput;
 }

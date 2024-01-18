@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { admins } from '../admins/admins.model';
+import { Admins } from '../admins/admins.model';
 import { admin_role_accesses } from '../admin-role-accesses/admin-role-accesses.model';
 import { Admin_rolesCount } from '../prisma/admin-roles-count.output';
 
@@ -17,8 +17,8 @@ export class admin_roles {
     @Field(() => Boolean, {nullable:false,defaultValue:true})
     enabled!: boolean;
 
-    @Field(() => [admins], {nullable:true})
-    admins?: Array<admins>;
+    @Field(() => [Admins], {nullable:true})
+    admins?: Array<Admins>;
 
     @Field(() => [admin_role_accesses], {nullable:true})
     role_accesses?: Array<admin_role_accesses>;

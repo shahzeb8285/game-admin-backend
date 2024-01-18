@@ -4,7 +4,6 @@ import { deposit_transactionsCreateWithoutAdmin_bank_accountsInput } from './dep
 import { Type } from 'class-transformer';
 import { deposit_transactionsCreateOrConnectWithoutAdmin_bank_accountsInput } from './deposit-transactions-create-or-connect-without-admin-bank-accounts.input';
 import { deposit_transactionsCreateManyAdmin_bank_accountsInputEnvelope } from './deposit-transactions-create-many-admin-bank-accounts-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { deposit_transactionsWhereUniqueInput } from './deposit-transactions-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class deposit_transactionsUncheckedCreateNestedManyWithoutAdmin_bank_acco
 
     @Field(() => [deposit_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => deposit_transactionsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<deposit_transactionsWhereUniqueInput, 'deposit_transaction_id'>>;
+    connect?: Array<deposit_transactionsWhereUniqueInput>;
 }

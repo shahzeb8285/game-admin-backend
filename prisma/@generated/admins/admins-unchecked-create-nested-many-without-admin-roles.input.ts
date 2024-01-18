@@ -1,28 +1,27 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsCreateWithoutAdmin_rolesInput } from './admins-create-without-admin-roles.input';
+import { AdminsCreateWithoutAdmin_rolesInput } from './admins-create-without-admin-roles.input';
 import { Type } from 'class-transformer';
-import { adminsCreateOrConnectWithoutAdmin_rolesInput } from './admins-create-or-connect-without-admin-roles.input';
-import { adminsCreateManyAdmin_rolesInputEnvelope } from './admins-create-many-admin-roles-input-envelope.input';
-import { Prisma } from '@prisma/client';
-import { adminsWhereUniqueInput } from './admins-where-unique.input';
+import { AdminsCreateOrConnectWithoutAdmin_rolesInput } from './admins-create-or-connect-without-admin-roles.input';
+import { AdminsCreateManyAdmin_rolesInputEnvelope } from './admins-create-many-admin-roles-input-envelope.input';
+import { AdminsWhereUniqueInput } from './admins-where-unique.input';
 
 @InputType()
-export class adminsUncheckedCreateNestedManyWithoutAdmin_rolesInput {
+export class AdminsUncheckedCreateNestedManyWithoutAdmin_rolesInput {
 
-    @Field(() => [adminsCreateWithoutAdmin_rolesInput], {nullable:true})
-    @Type(() => adminsCreateWithoutAdmin_rolesInput)
-    create?: Array<adminsCreateWithoutAdmin_rolesInput>;
+    @Field(() => [AdminsCreateWithoutAdmin_rolesInput], {nullable:true})
+    @Type(() => AdminsCreateWithoutAdmin_rolesInput)
+    create?: Array<AdminsCreateWithoutAdmin_rolesInput>;
 
-    @Field(() => [adminsCreateOrConnectWithoutAdmin_rolesInput], {nullable:true})
-    @Type(() => adminsCreateOrConnectWithoutAdmin_rolesInput)
-    connectOrCreate?: Array<adminsCreateOrConnectWithoutAdmin_rolesInput>;
+    @Field(() => [AdminsCreateOrConnectWithoutAdmin_rolesInput], {nullable:true})
+    @Type(() => AdminsCreateOrConnectWithoutAdmin_rolesInput)
+    connectOrCreate?: Array<AdminsCreateOrConnectWithoutAdmin_rolesInput>;
 
-    @Field(() => adminsCreateManyAdmin_rolesInputEnvelope, {nullable:true})
-    @Type(() => adminsCreateManyAdmin_rolesInputEnvelope)
-    createMany?: adminsCreateManyAdmin_rolesInputEnvelope;
+    @Field(() => AdminsCreateManyAdmin_rolesInputEnvelope, {nullable:true})
+    @Type(() => AdminsCreateManyAdmin_rolesInputEnvelope)
+    createMany?: AdminsCreateManyAdmin_rolesInputEnvelope;
 
-    @Field(() => [adminsWhereUniqueInput], {nullable:true})
-    @Type(() => adminsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<adminsWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    @Field(() => [AdminsWhereUniqueInput], {nullable:true})
+    @Type(() => AdminsWhereUniqueInput)
+    connect?: Array<AdminsWhereUniqueInput>;
 }

@@ -4,7 +4,6 @@ import { manual_adjustmentsCreateWithoutAdminsInput } from './manual-adjustments
 import { Type } from 'class-transformer';
 import { manual_adjustmentsCreateOrConnectWithoutAdminsInput } from './manual-adjustments-create-or-connect-without-admins.input';
 import { manual_adjustmentsCreateManyAdminsInputEnvelope } from './manual-adjustments-create-many-admins-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { manual_adjustmentsWhereUniqueInput } from './manual-adjustments-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput {
 
     @Field(() => [manual_adjustmentsWhereUniqueInput], {nullable:true})
     @Type(() => manual_adjustmentsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<manual_adjustmentsWhereUniqueInput, 'manual_adjustment_id'>>;
+    connect?: Array<manual_adjustmentsWhereUniqueInput>;
 }

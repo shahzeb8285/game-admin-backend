@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AgentsService } from './agents.service';
 import { Agent } from './entities/agent.entity';
 import { CreateAgentInput } from './dto/create-agent.input';
@@ -21,8 +21,9 @@ export class AgentsResolver {
   }
 
   @Query(() => [Agent], { name: 'agents' })
-  getAgents() {
-    return this.agentsService.findAll();
+  getAgents( @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number) {
+    return this.agentsService.findAll({skip,take});
   }
 
   
@@ -30,13 +31,6 @@ export class AgentsResolver {
   updateAgent(@Args('data') updateAgentInput: UpdateAgentInput) {
     return this.agentsService.update(updateAgentInput.agent_id.toString(), updateAgentInput);
   }
-
-
-  // @Query(() => [Agent], { name: 'incomestatement' })
-  // getIncomeStatement() {
-  //   return this.agentsService.getIncomeStatements();
-  // }
-
 
 
 

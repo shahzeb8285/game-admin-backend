@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { agentsCreateOrConnectWithoutParentInput } from './agents-create-or-connect-without-parent.input';
 import { agentsUpsertWithWhereUniqueWithoutParentInput } from './agents-upsert-with-where-unique-without-parent.input';
 import { agentsCreateManyParentInputEnvelope } from './agents-create-many-parent-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { agentsWhereUniqueInput } from './agents-where-unique.input';
 import { agentsUpdateWithWhereUniqueWithoutParentInput } from './agents-update-with-where-unique-without-parent.input';
 import { agentsUpdateManyWithWhereWithoutParentInput } from './agents-update-many-with-where-without-parent.input';
@@ -32,19 +31,19 @@ export class agentsUpdateManyWithoutParentNestedInput {
 
     @Field(() => [agentsWhereUniqueInput], {nullable:true})
     @Type(() => agentsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<agentsWhereUniqueInput, 'agent_id' | 'agent_name'>>;
+    set?: Array<agentsWhereUniqueInput>;
 
     @Field(() => [agentsWhereUniqueInput], {nullable:true})
     @Type(() => agentsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<agentsWhereUniqueInput, 'agent_id' | 'agent_name'>>;
+    disconnect?: Array<agentsWhereUniqueInput>;
 
     @Field(() => [agentsWhereUniqueInput], {nullable:true})
     @Type(() => agentsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<agentsWhereUniqueInput, 'agent_id' | 'agent_name'>>;
+    delete?: Array<agentsWhereUniqueInput>;
 
     @Field(() => [agentsWhereUniqueInput], {nullable:true})
     @Type(() => agentsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<agentsWhereUniqueInput, 'agent_id' | 'agent_name'>>;
+    connect?: Array<agentsWhereUniqueInput>;
 
     @Field(() => [agentsUpdateWithWhereUniqueWithoutParentInput], {nullable:true})
     @Type(() => agentsUpdateWithWhereUniqueWithoutParentInput)

@@ -1,31 +1,43 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { adminsWhereInput } from './admins-where.input';
+import { AdminsWhereInput } from './admins-where.input';
 import { Type } from 'class-transformer';
-import { adminsOrderByWithAggregationInput } from './admins-order-by-with-aggregation.input';
-import { AdminsScalarFieldEnum } from '../prisma/admins-scalar-field.enum';
-import { adminsScalarWhereWithAggregatesInput } from './admins-scalar-where-with-aggregates.input';
+import { AdminsOrderByWithAggregationInput } from './admins-order-by-with-aggregation.input';
+import { AdminsScalarFieldEnum } from './admins-scalar-field.enum';
+import { AdminsScalarWhereWithAggregatesInput } from './admins-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
+import { AdminsCountAggregateInput } from './admins-count-aggregate.input';
+import { AdminsMinAggregateInput } from './admins-min-aggregate.input';
+import { AdminsMaxAggregateInput } from './admins-max-aggregate.input';
 
 @ArgsType()
-export class adminsGroupByArgs {
+export class AdminsGroupByArgs {
 
-    @Field(() => adminsWhereInput, {nullable:true})
-    @Type(() => adminsWhereInput)
-    where?: adminsWhereInput;
+    @Field(() => AdminsWhereInput, {nullable:true})
+    @Type(() => AdminsWhereInput)
+    where?: AdminsWhereInput;
 
-    @Field(() => [adminsOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<adminsOrderByWithAggregationInput>;
+    @Field(() => [AdminsOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<AdminsOrderByWithAggregationInput>;
 
     @Field(() => [AdminsScalarFieldEnum], {nullable:false})
     by!: Array<keyof typeof AdminsScalarFieldEnum>;
 
-    @Field(() => adminsScalarWhereWithAggregatesInput, {nullable:true})
-    having?: adminsScalarWhereWithAggregatesInput;
+    @Field(() => AdminsScalarWhereWithAggregatesInput, {nullable:true})
+    having?: AdminsScalarWhereWithAggregatesInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;
 
     @Field(() => Int, {nullable:true})
     skip?: number;
+
+    @Field(() => AdminsCountAggregateInput, {nullable:true})
+    _count?: AdminsCountAggregateInput;
+
+    @Field(() => AdminsMinAggregateInput, {nullable:true})
+    _min?: AdminsMinAggregateInput;
+
+    @Field(() => AdminsMaxAggregateInput, {nullable:true})
+    _max?: AdminsMaxAggregateInput;
 }

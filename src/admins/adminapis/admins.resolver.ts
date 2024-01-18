@@ -10,8 +10,7 @@ import { GqlAuthorizationGuard } from '../../auth/authorization.guard';
 import { LoginHistory } from '../entities/loginhistory.entity';
 // import { PaginateFunction, paginator } from '../../paginator';
 import { Prisma } from '@prisma/client';
-import { PaginationParamsDto } from '../../paginator.dto';
-import { AdminsWhereInput } from '../../@generated/admins/admins-where.input';
+// import { AdminsWhereInput } from '../../@generated/admins/admins-where.input';
 
 // const paginate: PaginateFunction = paginator({ perPage: 10 });
 
@@ -26,13 +25,11 @@ export class AdminsResolver {
   }
 
   @Query(() => [Admin], { name: 'admins' })
-  getAdmins(@Args({ name: 'take', type: () => Int, defaultValue: 5000 }) take: number,
-    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args('where') where: AdminsWhereInput,
-
+  getAdmins(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
   ) {
 
-    console.log("Sasasasasas",where)
     return this.adminsService.findAll({
       take,
       skip
@@ -45,8 +42,11 @@ export class AdminsResolver {
   }
 
   @Query(() => [LoginHistory])
-  getAdminsLoginHistory() {
-    return this.adminsService.findAllLoginHistory();
+  getAdminsLoginHistory(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.adminsService.findAllLoginHistory({skip,take});
   }
 
 

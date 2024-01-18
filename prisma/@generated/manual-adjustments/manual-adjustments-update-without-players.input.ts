@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput } from '../admins/admins-update-one-required-without-manual-adjustments-nested.input';
+import { AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput } from '../admins/admins-update-one-required-without-manual-adjustments-nested.input';
 
 @InputType()
 export class manual_adjustmentsUpdateWithoutPlayersInput {
@@ -20,6 +20,6 @@ export class manual_adjustmentsUpdateWithoutPlayersInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     cdate?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput, {nullable:true})
-    admins?: adminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput;
+    @Field(() => AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput, {nullable:true})
+    admins?: AdminsUpdateOneRequiredWithoutManual_adjustmentsNestedInput;
 }

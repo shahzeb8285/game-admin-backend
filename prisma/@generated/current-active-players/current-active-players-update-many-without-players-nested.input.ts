@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { current_active_playersCreateOrConnectWithoutPlayersInput } from './current-active-players-create-or-connect-without-players.input';
 import { current_active_playersUpsertWithWhereUniqueWithoutPlayersInput } from './current-active-players-upsert-with-where-unique-without-players.input';
 import { current_active_playersCreateManyPlayersInputEnvelope } from './current-active-players-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { current_active_playersWhereUniqueInput } from './current-active-players-where-unique.input';
 import { current_active_playersUpdateWithWhereUniqueWithoutPlayersInput } from './current-active-players-update-with-where-unique-without-players.input';
 import { current_active_playersUpdateManyWithWhereWithoutPlayersInput } from './current-active-players-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class current_active_playersUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [current_active_playersWhereUniqueInput], {nullable:true})
     @Type(() => current_active_playersWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<current_active_playersWhereUniqueInput, 'player_id_r'>>;
+    set?: Array<current_active_playersWhereUniqueInput>;
 
     @Field(() => [current_active_playersWhereUniqueInput], {nullable:true})
     @Type(() => current_active_playersWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<current_active_playersWhereUniqueInput, 'player_id_r'>>;
+    disconnect?: Array<current_active_playersWhereUniqueInput>;
 
     @Field(() => [current_active_playersWhereUniqueInput], {nullable:true})
     @Type(() => current_active_playersWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<current_active_playersWhereUniqueInput, 'player_id_r'>>;
+    delete?: Array<current_active_playersWhereUniqueInput>;
 
     @Field(() => [current_active_playersWhereUniqueInput], {nullable:true})
     @Type(() => current_active_playersWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<current_active_playersWhereUniqueInput, 'player_id_r'>>;
+    connect?: Array<current_active_playersWhereUniqueInput>;
 
     @Field(() => [current_active_playersUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => current_active_playersUpdateWithWhereUniqueWithoutPlayersInput)

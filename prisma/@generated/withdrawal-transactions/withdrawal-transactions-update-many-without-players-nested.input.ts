@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { withdrawal_transactionsCreateOrConnectWithoutPlayersInput } from './withdrawal-transactions-create-or-connect-without-players.input';
 import { withdrawal_transactionsUpsertWithWhereUniqueWithoutPlayersInput } from './withdrawal-transactions-upsert-with-where-unique-without-players.input';
 import { withdrawal_transactionsCreateManyPlayersInputEnvelope } from './withdrawal-transactions-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { withdrawal_transactionsWhereUniqueInput } from './withdrawal-transactions-where-unique.input';
 import { withdrawal_transactionsUpdateWithWhereUniqueWithoutPlayersInput } from './withdrawal-transactions-update-with-where-unique-without-players.input';
 import { withdrawal_transactionsUpdateManyWithWhereWithoutPlayersInput } from './withdrawal-transactions-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class withdrawal_transactionsUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [withdrawal_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => withdrawal_transactionsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<withdrawal_transactionsWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    set?: Array<withdrawal_transactionsWhereUniqueInput>;
 
     @Field(() => [withdrawal_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => withdrawal_transactionsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<withdrawal_transactionsWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    disconnect?: Array<withdrawal_transactionsWhereUniqueInput>;
 
     @Field(() => [withdrawal_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => withdrawal_transactionsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<withdrawal_transactionsWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    delete?: Array<withdrawal_transactionsWhereUniqueInput>;
 
     @Field(() => [withdrawal_transactionsWhereUniqueInput], {nullable:true})
     @Type(() => withdrawal_transactionsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<withdrawal_transactionsWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    connect?: Array<withdrawal_transactionsWhereUniqueInput>;
 
     @Field(() => [withdrawal_transactionsUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => withdrawal_transactionsUpdateWithWhereUniqueWithoutPlayersInput)

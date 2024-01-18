@@ -4,7 +4,6 @@ import { playersCreateWithoutPlayer_login_logsInput } from './players-create-wit
 import { Type } from 'class-transformer';
 import { playersCreateOrConnectWithoutPlayer_login_logsInput } from './players-create-or-connect-without-player-login-logs.input';
 import { playersUpsertWithoutPlayer_login_logsInput } from './players-upsert-without-player-login-logs.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 import { playersUpdateToOneWithWhereWithoutPlayer_login_logsInput } from './players-update-to-one-with-where-without-player-login-logs.input';
 
@@ -25,7 +24,7 @@ export class playersUpdateOneRequiredWithoutPlayer_login_logsNestedInput {
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
     @Type(() => playersWhereUniqueInput)
-    connect?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: playersWhereUniqueInput;
 
     @Field(() => playersUpdateToOneWithWhereWithoutPlayer_login_logsInput, {nullable:true})
     @Type(() => playersUpdateToOneWithWhereWithoutPlayer_login_logsInput)

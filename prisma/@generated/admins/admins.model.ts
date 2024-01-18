@@ -4,10 +4,10 @@ import { ID } from '@nestjs/graphql';
 import { admin_roles } from '../admin-roles/admin-roles.model';
 import { admin_login_logs } from '../admin-login-logs/admin-login-logs.model';
 import { manual_adjustments } from '../manual-adjustments/manual-adjustments.model';
-import { AdminsCount } from '../prisma/admins-count.output';
+import { AdminsCount } from './admins-count.output';
 
 @ObjectType()
-export class admins {
+export class Admins {
 
     @Field(() => ID, {nullable:false})
     admin_id!: string;

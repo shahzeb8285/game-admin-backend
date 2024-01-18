@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { game_historyCreateWithoutGame_rebatesInput } from './game-history-create-without-game-rebates.input';
 import { Type } from 'class-transformer';
 import { game_historyCreateOrConnectWithoutGame_rebatesInput } from './game-history-create-or-connect-without-game-rebates.input';
-import { Prisma } from '@prisma/client';
 import { game_historyWhereUniqueInput } from './game-history-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class game_historyCreateNestedOneWithoutGame_rebatesInput {
 
     @Field(() => game_historyWhereUniqueInput, {nullable:true})
     @Type(() => game_historyWhereUniqueInput)
-    connect?: Prisma.AtLeast<game_historyWhereUniqueInput, 'game_history_id'>;
+    connect?: game_historyWhereUniqueInput;
 }

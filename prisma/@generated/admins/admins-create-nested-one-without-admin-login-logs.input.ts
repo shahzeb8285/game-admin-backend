@@ -1,23 +1,22 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { adminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
+import { AdminsCreateWithoutAdmin_login_logsInput } from './admins-create-without-admin-login-logs.input';
 import { Type } from 'class-transformer';
-import { adminsCreateOrConnectWithoutAdmin_login_logsInput } from './admins-create-or-connect-without-admin-login-logs.input';
-import { Prisma } from '@prisma/client';
-import { adminsWhereUniqueInput } from './admins-where-unique.input';
+import { AdminsCreateOrConnectWithoutAdmin_login_logsInput } from './admins-create-or-connect-without-admin-login-logs.input';
+import { AdminsWhereUniqueInput } from './admins-where-unique.input';
 
 @InputType()
-export class adminsCreateNestedOneWithoutAdmin_login_logsInput {
+export class AdminsCreateNestedOneWithoutAdmin_login_logsInput {
 
-    @Field(() => adminsCreateWithoutAdmin_login_logsInput, {nullable:true})
-    @Type(() => adminsCreateWithoutAdmin_login_logsInput)
-    create?: adminsCreateWithoutAdmin_login_logsInput;
+    @Field(() => AdminsCreateWithoutAdmin_login_logsInput, {nullable:true})
+    @Type(() => AdminsCreateWithoutAdmin_login_logsInput)
+    create?: AdminsCreateWithoutAdmin_login_logsInput;
 
-    @Field(() => adminsCreateOrConnectWithoutAdmin_login_logsInput, {nullable:true})
-    @Type(() => adminsCreateOrConnectWithoutAdmin_login_logsInput)
-    connectOrCreate?: adminsCreateOrConnectWithoutAdmin_login_logsInput;
+    @Field(() => AdminsCreateOrConnectWithoutAdmin_login_logsInput, {nullable:true})
+    @Type(() => AdminsCreateOrConnectWithoutAdmin_login_logsInput)
+    connectOrCreate?: AdminsCreateOrConnectWithoutAdmin_login_logsInput;
 
-    @Field(() => adminsWhereUniqueInput, {nullable:true})
-    @Type(() => adminsWhereUniqueInput)
-    connect?: Prisma.AtLeast<adminsWhereUniqueInput, 'admin_id' | 'admin_name'>;
+    @Field(() => AdminsWhereUniqueInput, {nullable:true})
+    @Type(() => AdminsWhereUniqueInput)
+    connect?: AdminsWhereUniqueInput;
 }

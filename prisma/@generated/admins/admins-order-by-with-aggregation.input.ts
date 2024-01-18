@@ -1,12 +1,12 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { adminsCountOrderByAggregateInput } from './admins-count-order-by-aggregate.input';
-import { adminsMaxOrderByAggregateInput } from './admins-max-order-by-aggregate.input';
-import { adminsMinOrderByAggregateInput } from './admins-min-order-by-aggregate.input';
+import { AdminsCountOrderByAggregateInput } from './admins-count-order-by-aggregate.input';
+import { AdminsMaxOrderByAggregateInput } from './admins-max-order-by-aggregate.input';
+import { AdminsMinOrderByAggregateInput } from './admins-min-order-by-aggregate.input';
 
 @InputType()
-export class adminsOrderByWithAggregationInput {
+export class AdminsOrderByWithAggregationInput {
 
     @Field(() => SortOrder, {nullable:true})
     admin_id?: keyof typeof SortOrder;
@@ -32,12 +32,12 @@ export class adminsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     enabled?: keyof typeof SortOrder;
 
-    @Field(() => adminsCountOrderByAggregateInput, {nullable:true})
-    _count?: adminsCountOrderByAggregateInput;
+    @Field(() => AdminsCountOrderByAggregateInput, {nullable:true})
+    _count?: AdminsCountOrderByAggregateInput;
 
-    @Field(() => adminsMaxOrderByAggregateInput, {nullable:true})
-    _max?: adminsMaxOrderByAggregateInput;
+    @Field(() => AdminsMaxOrderByAggregateInput, {nullable:true})
+    _max?: AdminsMaxOrderByAggregateInput;
 
-    @Field(() => adminsMinOrderByAggregateInput, {nullable:true})
-    _min?: adminsMinOrderByAggregateInput;
+    @Field(() => AdminsMinOrderByAggregateInput, {nullable:true})
+    _min?: AdminsMinOrderByAggregateInput;
 }

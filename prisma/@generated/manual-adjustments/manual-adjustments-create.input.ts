@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { playersCreateNestedOneWithoutManual_adjustmentsInput } from '../players/players-create-nested-one-without-manual-adjustments.input';
-import { adminsCreateNestedOneWithoutManual_adjustmentsInput } from '../admins/admins-create-nested-one-without-manual-adjustments.input';
+import { AdminsCreateNestedOneWithoutManual_adjustmentsInput } from '../admins/admins-create-nested-one-without-manual-adjustments.input';
 
 @InputType()
 export class manual_adjustmentsCreateInput {
@@ -22,6 +22,6 @@ export class manual_adjustmentsCreateInput {
     @Field(() => playersCreateNestedOneWithoutManual_adjustmentsInput, {nullable:false})
     players!: playersCreateNestedOneWithoutManual_adjustmentsInput;
 
-    @Field(() => adminsCreateNestedOneWithoutManual_adjustmentsInput, {nullable:false})
-    admins!: adminsCreateNestedOneWithoutManual_adjustmentsInput;
+    @Field(() => AdminsCreateNestedOneWithoutManual_adjustmentsInput, {nullable:false})
+    admins!: AdminsCreateNestedOneWithoutManual_adjustmentsInput;
 }

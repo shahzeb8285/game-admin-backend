@@ -4,7 +4,6 @@ import { playersCreateWithoutManual_adjustmentsInput } from './players-create-wi
 import { Type } from 'class-transformer';
 import { playersCreateOrConnectWithoutManual_adjustmentsInput } from './players-create-or-connect-without-manual-adjustments.input';
 import { playersUpsertWithoutManual_adjustmentsInput } from './players-upsert-without-manual-adjustments.input';
-import { Prisma } from '@prisma/client';
 import { playersWhereUniqueInput } from './players-where-unique.input';
 import { playersUpdateToOneWithWhereWithoutManual_adjustmentsInput } from './players-update-to-one-with-where-without-manual-adjustments.input';
 
@@ -25,7 +24,7 @@ export class playersUpdateOneRequiredWithoutManual_adjustmentsNestedInput {
 
     @Field(() => playersWhereUniqueInput, {nullable:true})
     @Type(() => playersWhereUniqueInput)
-    connect?: Prisma.AtLeast<playersWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: playersWhereUniqueInput;
 
     @Field(() => playersUpdateToOneWithWhereWithoutManual_adjustmentsInput, {nullable:true})
     @Type(() => playersUpdateToOneWithWhereWithoutManual_adjustmentsInput)

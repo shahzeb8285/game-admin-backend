@@ -7,7 +7,7 @@ import { admin_login_logsUncheckedUpdateManyWithoutAdminsNestedInput } from '../
 import { manual_adjustmentsUncheckedUpdateManyWithoutAdminsNestedInput } from '../manual-adjustments/manual-adjustments-unchecked-update-many-without-admins-nested.input';
 
 @InputType()
-export class adminsUncheckedUpdateWithoutAdmin_rolesInput {
+export class AdminsUncheckedUpdateWithoutAdmin_rolesInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     admin_id?: StringFieldUpdateOperationsInput;

@@ -16,19 +16,26 @@ export class FinancesResolver {
 
 
   @Query(() => [DepositEntity], { name: 'deposits' })
-  getDeposits() {
-    return this.financesService.getDeposits();
+  getDeposits(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.financesService.getDeposits({skip,take});
   }
 
   @Query(() => [WithdrawalEntity], { name: 'withdrawals' })
-  getWithdrawals() {
-    return this.financesService.getWithdrawals();
+  getWithdrawals(
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
+  ) {
+    return this.financesService.getWithdrawals({skip,take});
   }
 
 
   @Query(() => [BankAccountEntity], { name: 'bankaccounts' })
-  getBankAccounts() {
-    return this.financesService.getBankAccounts();
+  getBankAccounts( @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number) {
+    return this.financesService.getBankAccounts({skip,take});
   }
 
   

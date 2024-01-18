@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { manual_adjustmentsCreateOrConnectWithoutPlayersInput } from './manual-adjustments-create-or-connect-without-players.input';
 import { manual_adjustmentsUpsertWithWhereUniqueWithoutPlayersInput } from './manual-adjustments-upsert-with-where-unique-without-players.input';
 import { manual_adjustmentsCreateManyPlayersInputEnvelope } from './manual-adjustments-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { manual_adjustmentsWhereUniqueInput } from './manual-adjustments-where-unique.input';
 import { manual_adjustmentsUpdateWithWhereUniqueWithoutPlayersInput } from './manual-adjustments-update-with-where-unique-without-players.input';
 import { manual_adjustmentsUpdateManyWithWhereWithoutPlayersInput } from './manual-adjustments-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class manual_adjustmentsUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [manual_adjustmentsWhereUniqueInput], {nullable:true})
     @Type(() => manual_adjustmentsWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<manual_adjustmentsWhereUniqueInput, 'manual_adjustment_id'>>;
+    set?: Array<manual_adjustmentsWhereUniqueInput>;
 
     @Field(() => [manual_adjustmentsWhereUniqueInput], {nullable:true})
     @Type(() => manual_adjustmentsWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<manual_adjustmentsWhereUniqueInput, 'manual_adjustment_id'>>;
+    disconnect?: Array<manual_adjustmentsWhereUniqueInput>;
 
     @Field(() => [manual_adjustmentsWhereUniqueInput], {nullable:true})
     @Type(() => manual_adjustmentsWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<manual_adjustmentsWhereUniqueInput, 'manual_adjustment_id'>>;
+    delete?: Array<manual_adjustmentsWhereUniqueInput>;
 
     @Field(() => [manual_adjustmentsWhereUniqueInput], {nullable:true})
     @Type(() => manual_adjustmentsWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<manual_adjustmentsWhereUniqueInput, 'manual_adjustment_id'>>;
+    connect?: Array<manual_adjustmentsWhereUniqueInput>;
 
     @Field(() => [manual_adjustmentsUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => manual_adjustmentsUpdateWithWhereUniqueWithoutPlayersInput)

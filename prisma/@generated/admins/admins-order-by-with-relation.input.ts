@@ -6,7 +6,7 @@ import { admin_login_logsOrderByRelationAggregateInput } from '../admin-login-lo
 import { manual_adjustmentsOrderByRelationAggregateInput } from '../manual-adjustments/manual-adjustments-order-by-relation-aggregate.input';
 
 @InputType()
-export class adminsOrderByWithRelationInput {
+export class AdminsOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     admin_id?: keyof typeof SortOrder;

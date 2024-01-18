@@ -3,7 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { players } from '../players/players.model';
-import { admins } from '../admins/admins.model';
+import { Admins } from '../admins/admins.model';
 
 @ObjectType()
 export class manual_adjustments {
@@ -29,6 +29,6 @@ export class manual_adjustments {
     @Field(() => players, {nullable:false})
     players?: players;
 
-    @Field(() => admins, {nullable:false})
-    admins?: admins;
+    @Field(() => Admins, {nullable:false})
+    admins?: Admins;
 }

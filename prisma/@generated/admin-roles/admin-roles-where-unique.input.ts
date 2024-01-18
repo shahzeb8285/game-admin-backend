@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { admin_rolesWhereInput } from './admin-roles-where.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
-import { AdminsListRelationFilter } from '../prisma/admins-list-relation-filter.input';
+import { AdminsListRelationFilter } from '../admins/admins-list-relation-filter.input';
 import { Admin_role_accessesListRelationFilter } from '../prisma/admin-role-accesses-list-relation-filter.input';
 
 @InputType()
