@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AdminsService } from './admins.service';
 import { Admin } from '../entities/admin.entity';
 import { CreateAdminInput } from '../dto/create-admin.input';
@@ -8,6 +8,12 @@ import { GqlAuthGuard } from '../../auth/gql-auth.guard';
 import { UserEntity } from '../../common/decorators/user.decorator';
 import { GqlAuthorizationGuard } from '../../auth/authorization.guard';
 import { LoginHistory } from '../entities/loginhistory.entity';
+// import { PaginateFunction, paginator } from '../../paginator';
+import { Prisma } from '@prisma/client';
+import { PaginationParamsDto } from '../../paginator.dto';
+import { AdminsWhereInput } from '../../@generated/admins/admins-where.input';
+
+// const paginate: PaginateFunction = paginator({ perPage: 10 });
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -16,12 +22,21 @@ export class AdminsResolver {
 
   @Mutation(() => Admin)
   createAdmin(@UserEntity() user: Admin, @Args('data') createAdminInput: CreateAdminInput) {
-    return this.adminsService.create(createAdminInput,user.admin_name);
+    return this.adminsService.create(createAdminInput, user.admin_name);
   }
 
   @Query(() => [Admin], { name: 'admins' })
-  getAdmins() {
-    return this.adminsService.findAll();
+  getAdmins(@Args({ name: 'take', type: () => Int, defaultValue: 5000 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args('where') where: AdminsWhereInput,
+
+  ) {
+
+    console.log("Sasasasasas",where)
+    return this.adminsService.findAll({
+      take,
+      skip
+    });
   }
 
   @Mutation(() => Admin)
@@ -34,6 +49,6 @@ export class AdminsResolver {
     return this.adminsService.findAllLoginHistory();
   }
 
-  
+
 
 }

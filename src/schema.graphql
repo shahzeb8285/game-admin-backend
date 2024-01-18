@@ -176,7 +176,7 @@ type Player {
 }
 
 type Query {
-  admins: [Admin!]!
+  admins(skip: Int! = 0, take: Int! = 5000): [Admin!]!
   agents: [Agent!]!
   bankaccounts: [BankAccountEntity!]!
   deposits: [DepositEntity!]!

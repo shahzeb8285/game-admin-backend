@@ -3,9 +3,11 @@ import { CreateAdminInput } from '../dto/create-admin.input';
 import { UpdateAdminInput } from '../dto/update-admin.input';
 import { PrismaService } from 'nestjs-prisma';
 import { PasswordService } from '../../auth/password.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class AdminsService {
+ 
   constructor(
     private readonly prisma: PrismaService,
     private readonly passwordService: PasswordService
@@ -33,8 +35,12 @@ export class AdminsService {
     })
   }
 
-  async findAll() {
+  findAll({ skip, take }) {
+    
     return this.prisma.admins.findMany({
+
+      take,
+      skip,
       include: {
         admin_roles: {
           include: {
@@ -43,8 +49,8 @@ export class AdminsService {
         }
       },
     });
-
   }
+  
 
 
   async update(admin_id: string, updateAdminInput: UpdateAdminInput) {
