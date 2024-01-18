@@ -52,8 +52,9 @@ export class PlayersResolver {
 
   @Query(() => [Player])
   getUsersBonusHistory(
-    @Args({ name: 'where', defaultValue: {} }) where: any,
-    //no generated type for this
+    @Args({ name: 'where', defaultValue: {} })
+    where: ManualAdjustmentWhereInput,
+    //todo no generated type for this
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {

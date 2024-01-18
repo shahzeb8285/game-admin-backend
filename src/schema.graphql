@@ -789,7 +789,7 @@ type Query {
   getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: AdminRoleWhereInput! = {}): [AdminRoles!]!
   getMe: Admin!
   getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: PlayerLoginLogWhereInput! = {}): [UserLoginHistory!]!
-  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10): [Player!]!
+  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: ManualAdjustmentWhereInput! = {}): [Player!]!
   manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: ManualAdjustmentWhereInput! = {}): [ManualAdjustment!]!
   players(skip: Int! = 0, take: Int! = 10, where: PlayerWhereInput! = {}): [Player!]!
