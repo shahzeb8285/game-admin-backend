@@ -1,5 +1,5 @@
 import { PrismaService } from 'nestjs-prisma';
-import { Prisma, Admins as Admin} from '@prisma/client';
+import { Prisma,  Admin} from '@prisma/client';
 import {
   Injectable,
   NotFoundException,
@@ -25,7 +25,7 @@ export class AuthService {
 
 
   async login(admin_name: string, password: string, ip:string): Promise<Token> {
-    const admin = await this.prisma.admins.findUnique({
+    const admin = await this.prisma.admin.findUnique({
       where: { admin_name },
 
     });
@@ -43,7 +43,7 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
-    await this.prisma.admin_login_logs.create({
+    await this.prisma.adminLoginLog.create({
       data: {
         ip,
         admins: {
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   validateUser(admin_id: string): Promise<Admin> {
-    return this.prisma.admins.findUnique({
+    return this.prisma.admin.findUnique({
       where: { admin_id }, include: {
         admin_roles: {
           include: {
@@ -78,7 +78,7 @@ export class AuthService {
 
   getUserFromToken(token: string): Promise<Admin> {
     const admin_id = this.jwtService.decode(token)['userId'];
-    return this.prisma.admins.findUnique({
+    return this.prisma.admin.findUnique({
       where: { admin_id }, include: {
         admin_roles: {
           include: {

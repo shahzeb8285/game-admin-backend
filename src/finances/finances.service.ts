@@ -11,7 +11,7 @@ export class FinancesService {
   ) { }
 
   createBankAccount(data: CreateBankAccountInput) {
-    return this.prisma.admin_bank_accounts.create({
+    return this.prisma.adminBankAccount.create({
       data: {
         ...data
       }
@@ -24,7 +24,7 @@ export class FinancesService {
       ...data,
     }
     delete payload.adminBankAccountID
-    return this.prisma.admin_bank_accounts.update({
+    return this.prisma.adminBankAccount.update({
       where: {
         admin_bank_account_id: data.admin_bank_account_id,
       },
@@ -35,7 +35,7 @@ export class FinancesService {
   }
 
   getDeposits({ skip,take,}) {
-    return this.prisma.deposit_transactions.findMany({
+    return this.prisma.depositTransaction.findMany({
       skip,take,
       include: {
         players: true,
@@ -47,7 +47,7 @@ export class FinancesService {
 
 
   getBankAccounts({skip,take}) {
-    return this.prisma.admin_bank_accounts.findMany({
+    return this.prisma.adminBankAccount.findMany({
       skip,take,
       include: {
         deposit_transactions: true,
@@ -57,7 +57,7 @@ export class FinancesService {
   }
 
   getWithdrawals({ skip,take,}) {
-    return this.prisma.withdrawal_transactions.findMany({
+    return this.prisma.withdrawalTransaction.findMany({
       skip,take,
       include: {
         players: true,
@@ -70,7 +70,7 @@ export class FinancesService {
 
 
   updateWithdrawal(data: UpdateFinanceInput) {
-    return this.prisma.withdrawal_transactions.update({
+    return this.prisma.withdrawalTransaction.update({
       where: {
         withdrawal_transaction_id: data.id
       },
@@ -86,7 +86,7 @@ export class FinancesService {
 
 
   updateDeposit(data: UpdateFinanceInput) {
-    return this.prisma.deposit_transactions.update({
+    return this.prisma.depositTransaction.update({
       where: {
         deposit_transaction_id: data.id
       },

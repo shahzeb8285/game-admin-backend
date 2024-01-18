@@ -12,7 +12,7 @@ export class PlayersService {
 
 
   findAll({skip,take}) {
-    return this.prisma.players.findMany({
+    return this.prisma.player.findMany({
       skip,take,
       include: {
         agent: true
@@ -23,7 +23,7 @@ export class PlayersService {
 
   getUserLoginHistory({ skip, take }) {
     
-    return this.prisma.player_login_logs.findMany({
+    return this.prisma.playerLoginLog.findMany({
       skip,take,
       include: {
         players: true
@@ -34,7 +34,7 @@ export class PlayersService {
 
 
   getManualAdjustments({skip,take}) {
-    return this.prisma.manual_adjustments.findMany({
+    return this.prisma.manualAdjustment.findMany({
       skip,take,
       include: {
         players: true
@@ -44,7 +44,7 @@ export class PlayersService {
 
 
   changePlayerStatus(data: UpdatePlayerInput) {
-    return this.prisma.players.update({
+    return this.prisma.player.update({
       where: {
         player_id: data.user_id
       },
@@ -67,7 +67,7 @@ export class PlayersService {
 
     delete payload.playerID;
 
-    return this.prisma.manual_adjustments.create({
+    return this.prisma.manualAdjustment.create({
       data: {
         ...payload,
         admins: {

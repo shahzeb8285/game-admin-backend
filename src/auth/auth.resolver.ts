@@ -15,9 +15,11 @@ import { RefreshTokenInput } from './dto/refresh-token.input';
 // import { User } from '../users/models/user.model';
 import { UserIp } from '../common/decorators/ip.decorator';
 import {BadGatewayException, UseGuards} from "@nestjs/common"
-import { Admin } from '../admins/entities/admin.entity';
+// import { Admin } from '../admins/entities/admin.entity';
 import { GqlAuthGuard } from './gql-auth.guard';
 import { UserEntity } from '../common/decorators/user.decorator';
+import { Admin } from '../@generated/admin/admin.model';
+// import { Admin } from '../@generated';
 @Resolver(() => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}

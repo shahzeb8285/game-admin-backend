@@ -1,19 +1,21 @@
 import { ObjectType, Field, Int, Float, ID } from '@nestjs/graphql';
-import { Player } from '../../players/entities/player.entity';
+// import { Player } from '../../players/entities/player.entity';
 import { BankAccountEntity } from './bankaccount.entity';
 
 
 
 import { registerEnumType } from '@nestjs/graphql';
+import { Player } from '../../@generated/player/player.model';
+import { TransactionType } from '../../@generated/prisma/transaction-type.enum';
 
-export enum TransactionType {
-    PENDING = "PENDING",
-    REJECTED = "REJECTED",
-    SUCCESS = "SUCCESS"
-}
+// export enum TransactionType {
+//     PENDING = "PENDING",
+//     REJECTED = "REJECTED",
+//     SUCCESS = "SUCCESS"
+// }
 
 
-registerEnumType(TransactionType, { name: 'TransactionType', description: undefined })
+// registerEnumType(TransactionType, { name: 'TransactionType', description: undefined })
 
 
 @ObjectType()

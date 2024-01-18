@@ -12,304 +12,343 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output   = "../src/@generated"
+omitModelsCount = true
+  noAtomicOperations                    = true
+  // combineScalarFilters                  = false
+  // reExport                              = None
+  // emitSingle                            = true
+  // emitCompiled = true
+  // purgeOutput                           = false
+  // requireSingleFieldsInWhereUniqueInput = false
+  // fields_Validator_from                 = "class-validator"
+  // fields_Validator_input                = true
+  // fields_Scalars_from                   = "graphql-scalars"
+  // fields_Scalars_input                  = true
+  // useInputType_WhereInput_ALL           = "WhereInput"
+  // decorate_1_type                       = "Create@(One|Many)UserArgs"
+  // decorate_1_field                      = data
+  // decorate_1_name                       = ValidateNested
+  // decorate_1_from                       = "class-validator"
+  // decorate_1_arguments                  = "[]"
+  // decorate_2_type                       = "Create@(One|Many)UserArgs"
+  // decorate_2_field                      = data
+  // decorate_2_from                       = "class-transformer"
+  // decorate_2_arguments                  = "['() => {propertyType.0}']"
+  // decorate_2_name                       = Type
+  // decorate_2_namedImport                = true
+  // decorate_3_type                       = "ProfileUncheckedCreateNestedOneWithoutUserInput"
+  // decorate_3_field                      = "!(create)"
+  // decorate_3_name                       = "HideField"
+  // decorate_3_from                       = "@nestjs/graphql"
+  // decorate_3_arguments                  = "[]"
+}
 
-
-// generator nestgraphql {
-//   provider = "node node_modules/prisma-nestjs-graphql"
-//   output                                = "./@generated"
-//   // noAtomicOperations                    = false
-//   // combineScalarFilters                  = false
-//   // reExport                              = None
-//   // emitSingle                            = false
-//   // emitCompiled                          = false
-//   // purgeOutput                           = false
-//   // requireSingleFieldsInWhereUniqueInput = false
-//   // fields_Validator_from                 = "class-validator"
-//   // fields_Validator_input                = true
-//   // fields_Scalars_from                   = "graphql-scalars"
-//   // fields_Scalars_input                  = true
-//   // useInputType_WhereInput_ALL           = "WhereInput"
-//   // decorate_1_type                       = "Create@(One|Many)UserArgs"
-//   // decorate_1_field                      = data
-//   // decorate_1_name                       = ValidateNested
-//   // decorate_1_from                       = "class-validator"
-//   // decorate_1_arguments                  = "[]"
-//   // decorate_2_type                       = "Create@(One|Many)UserArgs"
-//   // decorate_2_field                      = data
-//   // decorate_2_from                       = "class-transformer"
-//   // decorate_2_arguments                  = "['() => {propertyType.0}']"
-//   // decorate_2_name                       = Type
-//   // decorate_2_namedImport                = true
-//   // decorate_3_type                       = "ProfileUncheckedCreateNestedOneWithoutUserInput"
-//   // decorate_3_field                      = "!(create)"
-//   // decorate_3_name                       = "HideField"
-//   // decorate_3_from                       = "@nestjs/graphql"
-//   // decorate_3_arguments                  = "[]"
-// }
-model players {
-  player_id                String                      @id @default(cuid())
-  name                    String
-  tg_id                    String                      @unique
+model Player {
+  player_id                 String                   @id @default(cuid())
+  name                      String
+  tg_id                     String                   @unique
   tg_first_name             String
   tg_last_name              String
-  tg_user_name              String                      @unique
+  tg_user_name              String                   @unique
   tg_photo_url              String
-  user_language            String
-  registration_ip          String
-  agent                   agents                      @relation(fields: [agent_id_r], references: [agent_id])
-  agent_id_r                 String
-  cdate                   DateTime                    @default(now())
-  udate                   DateTime                    @updatedAt
-  enabled                 Boolean                     @default(true)
-  registration_date        String
-  player_login_logs         player_login_logs[]
-  current_active_players    current_active_players[]
-  game_history             game_history[]
-  manual_adjustments       manual_adjustments[]
-  player_wallets           player_wallets[]
-  wallet_requests          wallet_requests[]
-  deposit_transactions     deposit_transactions[]
-  withdrawal_transactions  withdrawal_transactions[]
-  transfer_in_transactions  transfer_in_transactions[]
-  transfer_out_transactions transfer_out_transactions[]
+  user_language             String
+  registration_ip           String
+  agent                     Agent                    @relation(fields: [agent_id_r], references: [agent_id])
+  agent_id_r                String
+  cdate                     DateTime                 @default(now())
+  udate                     DateTime                 @updatedAt
+  enabled                   Boolean                  @default(true)
+  registration_date         String
+  player_login_logs         PlayerLoginLog[]
+  current_active_players    CurrentActivePlayers[]
+  game_history              GameHistory[]
+  manual_adjustments        ManualAdjustment[]
+  player_wallets            PlayerWallet[]
+  wallet_requests           WalletRequest[]
+  deposit_transactions      DepositTransaction[]
+  withdrawal_transactions   WithdrawalTransaction[]
+  transfer_in_transactions  TransferInTransaction[]
+  transfer_out_transactions TransferOutTransaction[]
 
+  @@map("players")
 }
 
-model Admins {
-  admin_id           String               @id @default(cuid())
-  admin_name         String               @unique
-  admin_password     String
-  admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id       String
-  created_by         String
-  cdate             DateTime             @default(now())
-  udate             DateTime             @updatedAt
-  enabled           Boolean              @default(true)
-  admin_login_logs    admin_login_logs[]
-  manual_adjustments manual_adjustments[]
+model Admin {
+  admin_id           String             @id @default(cuid())
+  admin_name         String             @unique
 
+     /// @HideField()
+
+  admin_password     String
+  admin_roles        AdminRole          @relation(fields: [admin_role_id], references: [admin_role_id])
+  admin_role_id      String
+  created_by         String
+  cdate              DateTime           @default(now())
+  udate              DateTime           @updatedAt
+  enabled            Boolean            @default(true)
+  admin_login_logs   AdminLoginLog[]
+  manual_adjustments ManualAdjustment[]
 
   @@map("admins")
-
 }
 
-model admin_roles {
-  admin_role_id   String           @id @default(cuid())
-  admin_role_name  String           @unique
-  enabled        Boolean          @default(true)
-  admins         Admins[]
-  role_accesses admin_role_accesses[]
+model AdminRole {
+  admin_role_id   String              @id @default(cuid())
+  admin_role_name String              @unique
+  enabled         Boolean             @default(true)
+  admins          Admin[]
+  role_accesses   AdminRoleAccesses[]
+
+  @@map("admin_roles")
 }
 
-model admin_accesses {
-  admin_access_id        String       @id @default(cuid())
-  access_name             String       @unique
-  role_accesses admin_role_accesses[]
+model AdminAccesses {
+  admin_access_id String              @id @default(cuid())
+  access_name     String              @unique
+  role_accesses   AdminRoleAccesses[]
 
+  @@map("admin_accesses")
 }
 
-model admin_role_accesses {
-  admin_roles    admin_roles    @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id   String        
-  admin_accesses admin_accesses @relation(fields: [admin_access_id], references: [admin_access_id])
+model AdminRoleAccesses {
+  admin_roles     AdminRole     @relation(fields: [admin_role_id], references: [admin_role_id])
+  admin_role_id   String
+  admin_accesses  AdminAccesses @relation(fields: [admin_access_id], references: [admin_access_id])
   admin_access_id String
+
   @@id([admin_role_id, admin_access_id])
+  @@map("admin_role_accesses")
 }
 
-model agents {
-  agent_id        String @id @default(cuid())
-  agent_name     String @unique
-  agent_password String
-  created_by    String
-  cdate        DateTime        @default(now())
-  udate        DateTime        @updatedAt
-  enabled      Boolean         @default(true)
-  players      players[]
-  agent_rebates agent_rebates[]
-  parent        agents?  @relation("children", fields: [parent_agent_id], references: [agent_id])
-  parent_agent_id String?  @map("agent_id_m")
-  children      agents[] @relation("children")
+model Agent {
+  agent_id        String        @id @default(cuid())
+  agent_name      String        @unique
+  agent_password  String
+  created_by      String
+  cdate           DateTime      @default(now())
+  udate           DateTime      @updatedAt
+  enabled         Boolean       @default(true)
+  players         Player[]
+  agent_rebates   AgentRebate[]
+  parent          Agent?        @relation("children", fields: [parent_agent_id], references: [agent_id])
+  parent_agent_id String?       @map("agent_id_m")
+  children        Agent[]       @relation("children")
+
+  @@map("agents")
 }
 
-model agent_rebates {
+model AgentRebate {
   agent_rebate_id String   @id @default(cuid())
-  agents        agents   @relation(fields: [agent_id_r], references: [agent_id])
-  agent_id_r       String
-  game_id        String
-  rebate        Float
-  created_by     String
-  from_date      DateTime
-  thru_date      DateTime
-  is_active      Boolean
+  agents          Agent    @relation(fields: [agent_id_r], references: [agent_id])
+  agent_id_r      String
+  game_id         String
+  rebate          Float
+  created_by      String
+  from_date       DateTime
+  thru_date       DateTime
+  is_active       Boolean
+
+  @@map("agent_rebates")
 }
 
-model player_login_logs {
-  players   players  @relation(fields: [player_id_r], references: [player_id])
-  player_id_r  String   @id
-  ip        String
-  login_time DateTime
+model PlayerLoginLog {
+  players     Player   @relation(fields: [player_id_r], references: [player_id])
+  player_id_r String   @id
+  ip          String
+  login_time  DateTime
+
+  @@map("player_login_logs")
 }
 
-model admin_login_logs {
+model AdminLoginLog {
   login_id   String   @id @default(cuid())
-  admins    Admins   @relation(fields: [admin_id_r], references: [admin_id])
-  admin_id_r   String
-  ip        String
+  admins     Admin    @relation(fields: [admin_id_r], references: [admin_id])
+  admin_id_r String
+  ip         String
   login_time DateTime @default(now())
+
+  @@map("admin_login_logs")
 }
 
-model current_active_players {
-  players        players  @relation(fields: [player_id_r], references: [player_id])
+model CurrentActivePlayers {
+  players          Player   @relation(fields: [player_id_r], references: [player_id])
   player_id_r      String   @id
   last_active_time DateTime
+
+  @@map("current_active_players")
 }
 
-model game_history {
-  game_history_id   String         @id @default(cuid())
+model GameHistory {
+  game_history_id  String       @id @default(cuid())
   game_id          String
-  players         players        @relation(fields: [player_id_r], references: [player_id])
-  player_id_r        String
+  players          Player       @relation(fields: [player_id_r], references: [player_id])
+  player_id_r      String
   i_gamedesc       String
   bet_amount       Float
   win_amount       Float
   transaction_date String
-  cdate           DateTime       @default(now())
-  game_rebates     game_rebates[]
+  cdate            DateTime     @default(now())
+  game_rebates     GameRebate[]
+
+  @@map("game_history")
 }
 
-model game_rebates {
-  game_rebates_id     String       @id @default(cuid())
-  game_history        game_history @relation(fields: [game_history_id], references: [game_history_id])
-  game_history_id     String
-  merchant_id         String
-  game_id             String
-  category           String
+model GameRebate {
+  game_rebates_id      String      @id @default(cuid())
+  game_history         GameHistory @relation(fields: [game_history_id], references: [game_history_id])
+  game_history_id      String
+  merchant_id          String
+  game_id              String
+  category             String
   effective_bet_amount Float
-  rebate_amount       Float
-  status             String
-  cdate              DateTime     @default(now())
+  rebate_amount        Float
+  status               String
+  cdate                DateTime    @default(now())
+
+  @@map("game_rebates")
 }
 
-model manual_adjustments {
+model ManualAdjustment {
   manual_adjustment_id String   @id @default(cuid())
-  players            players  @relation(fields: [player_id_r], references: [player_id])
-  player_id_r         String
-  reason             String
-  amount             Float
-  admins             Admins   @relation(fields: [created_by_r], references: [admin_id])
-  created_by_r          String
-  cdate              DateTime @default(now())
+  players              Player   @relation(fields: [player_id_r], references: [player_id])
+  player_id_r          String
+  reason               String
+  amount               Float
+  admins               Admin    @relation(fields: [created_by_r], references: [admin_id])
+  created_by_r         String
+  cdate                DateTime @default(now())
+
+  @@map("manual_adjustments")
 }
 
-model all_ow_requests {
+model AllOwRequest {
   allow_request_id String   @id @default(cuid())
-  request        String
-  cdate          DateTime @default(now())
+  request          String
+  cdate            DateTime @default(now())
+
+  @@map("all_ow_requests")
 }
 
-model player_wallets {
+model PlayerWallet {
   player_wallet_id String   @id @default(cuid())
-  players        players  @relation(fields: [player_id_r], references: [player_id])
-  player_id_r       String
-  currency       String
-  amount         Float
-  frozen_amount   Float
-  cdate          DateTime @default(now())
-  udate          DateTime @updatedAt
+  players          Player   @relation(fields: [player_id_r], references: [player_id])
+  player_id_r      String
+  currency         String
+  amount           Float
+  frozen_amount    Float
+  cdate            DateTime @default(now())
+  udate            DateTime @updatedAt
+
+  @@map("player_wallets")
 }
 
-model wallet_requests {
-  wallet_request_id    String  @id @default(cuid())
-  t_id               String
-  type               String
-  players            players @relation(fields: [player_id_r], references: [player_id])
-  player_id_r         String
-  currency           String
-  amount             String
-  i_game_id            String
-  i_extparam          String
-  i_rollback          String
-  i_gamedesc          String
-  i_action_id          String
+model WalletRequest {
+  wallet_request_id     String  @id @default(cuid())
+  t_id                  String
+  type                  String
+  players               Player  @relation(fields: [player_id_r], references: [player_id])
+  player_id_r           String
+  currency              String
+  amount                String
+  i_game_id             String
+  i_extparam            String
+  i_rollback            String
+  i_gamedesc            String
+  i_action_id           String
   i_reference_action_id String
-  round_start         Boolean
-  round_ended         Boolean
-  game_extra          String
-  subtype            String
-  jackpot_win         Int
-  hmac               String
-  response           String
+  round_start           Boolean
+  round_ended           Boolean
+  game_extra            String
+  subtype               String
+  jackpot_win           Int
+  hmac                  String
+  response              String
+
+  @@map("wallet_requests")
 }
 
-model admin_bank_accounts {
-  admin_bank_account_id     String                    @id @default(cuid())
+model AdminBankAccount {
+  admin_bank_account_id   String                  @id @default(cuid())
   bank_name               String
   account_number          String
   holder_name             String
-  enabled                Boolean                   @default(false)
-  method                 String
-  deposit_transactions    deposit_transactions[]
-  withdrawal_transactions withdrawal_transactions[]
+  enabled                 Boolean                 @default(false)
+  method                  String
+  deposit_transactions    DepositTransaction[]
+  withdrawal_transactions WithdrawalTransaction[]
+
+  @@map("admin_bank_accounts")
 }
 
-model deposit_transactions {
-  deposit_transaction_id String              @id @default(cuid())
-  players              players             @relation(fields: [player_id_r], references: [player_id])
-  player_id_r            String
-  amount               Float
-  currency             String
-  request_time          DateTime
-  process_time          DateTime
-  processed_by          String
-  transaction_date      String
-  status               TransactionType     @default(PENDING)
-  admin_bank_accounts    admin_bank_accounts @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
-  admin_bank_account_id_r   String
-}
-
-model withdrawal_transactions {
-  withdrawal_transaction_id String              @id @default(cuid())
-  players                 players             @relation(fields: [player_id_r], references: [player_id])
-  player_id_r                String
+model DepositTransaction {
+  deposit_transaction_id  String           @id @default(cuid())
+  players                 Player           @relation(fields: [player_id_r], references: [player_id])
+  player_id_r             String
   amount                  Float
   currency                String
-  request_time             DateTime
-  process_time             DateTime
-  processed_by             String
-  transaction_date         String
-  status                  TransactionType     @default(PENDING)
-  admin_bank_accounts       admin_bank_accounts @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
-  admin_bank_account_id_r      String
+  request_time            DateTime
+  process_time            DateTime
+  processed_by            String
+  transaction_date        String
+  status                  TransactionType  @default(PENDING)
+  admin_bank_accounts     AdminBankAccount @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
+  admin_bank_account_id_r String
+
+  @@map("deposit_transactions")
 }
 
-model transfer_in_transactions {
-  transfer_in_Transaction_id String          @id @default(cuid())
-  players                 players         @relation(fields: [player_id_r], references: [player_id])
-  player_id_r                String
-  amount                  Float
-  currency                String
-  request_time             DateTime
-  process_time             DateTime
-  processed_by             String
-  transaction_date         String
-  status                  TransactionType @default(PENDING)
-  counterpart_platform     String
-  counterpart_username     String
-}
-
-model transfer_out_transactions {
-  transfer_out_transaction_id String          @id @default(cuid())
-  players                  players         @relation(fields: [player_id_r], references: [player_id])
-  player_id_r                 String
-  amount                   Float
-  currency                 String
+model WithdrawalTransaction {
+  withdrawal_transaction_id String           @id @default(cuid())
+  players                   Player           @relation(fields: [player_id_r], references: [player_id])
+  player_id_r               String
+  amount                    Float
+  currency                  String
   request_time              DateTime
   process_time              DateTime
   processed_by              String
   transaction_date          String
-  status                   TransactionType @default(PENDING)
-  counterpart_platform      String
-  counterpart_username      String
+  status                    TransactionType  @default(PENDING)
+  admin_bank_accounts       AdminBankAccount @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
+  admin_bank_account_id_r   String
+
+  @@map("withdrawal_transactions")
+}
+
+model TransferInTransaction {
+  transfer_in_Transaction_id String          @id @default(cuid())
+  players                    Player          @relation(fields: [player_id_r], references: [player_id])
+  player_id_r                String
+  amount                     Float
+  currency                   String
+  request_time               DateTime
+  process_time               DateTime
+  processed_by               String
+  transaction_date           String
+  status                     TransactionType @default(PENDING)
+  counterpart_platform       String
+  counterpart_username       String
+
+  @@map("transfer_in_transactions")
+}
+
+model TransferOutTransaction {
+  transfer_out_transaction_id String          @id @default(cuid())
+  players                     Player          @relation(fields: [player_id_r], references: [player_id])
+  player_id_r                 String
+  amount                      Float
+  currency                    String
+  request_time                DateTime
+  process_time                DateTime
+  processed_by                String
+  transaction_date            String
+  status                      TransactionType @default(PENDING)
+  counterpart_platform        String
+  counterpart_username        String
+
+  @@map("transfer_out_transactions")
 }
 
 enum TransactionType {

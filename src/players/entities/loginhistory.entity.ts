@@ -1,5 +1,7 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
-import { Player } from './player.entity';
+// import { Player } from '@prisma/client';
+import { Player } from '../../@generated/player/player.model';
+// import { Player } from './player.entity';
 
 
 

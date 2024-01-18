@@ -11,7 +11,7 @@ export class RoleService {
 
   async create(createAdminInput: CreateRoleInput) {
 
-    return this.prisma.admin_roles.create({
+    return this.prisma.adminRole.create({
 
       data: {
         ...createAdminInput,
@@ -20,7 +20,7 @@ export class RoleService {
   }
 
   async findAll({skip,take}) {
-    return this.prisma.admin_roles.findMany({
+    return this.prisma.adminRole.findMany({
       skip,take,
       include: {
         role_accesses: {
@@ -45,7 +45,7 @@ export class RoleService {
 
 
     if (input.remove_roles_ids) {
-      await this.prisma.admin_role_accesses.deleteMany(
+      await this.prisma.adminRoleAccesses.deleteMany(
         {
           where: {
             admin_role_id,
@@ -66,7 +66,7 @@ export class RoleService {
   delete updatePayload.remove_roles_ids;
   delete updatePayload.admin_role_id;
 
-    return this.prisma.admin_roles.update({
+    return this.prisma.adminRole.update({
       where: {
         admin_role_id
       },
@@ -95,7 +95,7 @@ export class RoleService {
 
 
   async findAllLoginHistory({skip,take}) {
-    return this.prisma.admin_login_logs.findMany({
+    return this.prisma.adminLoginLog.findMany({
       skip,take,
       include: {
         admins: true
@@ -104,7 +104,7 @@ export class RoleService {
   }
 
   async findAllAccess({skip,take}) {
-    return this.prisma.admin_accesses.findMany({
+    return this.prisma.adminAccesses.findMany({
       skip,take
     })
   }

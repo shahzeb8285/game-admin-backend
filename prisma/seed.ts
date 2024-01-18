@@ -12,7 +12,7 @@ async function main() {
 
 
 
-  const admin_role = await prisma.admin_roles.create({
+  const admin_role = await prisma.adminRole.create({
     data: {
       admin_role_name: "super_admin",
       role_accesses: {
@@ -31,7 +31,7 @@ async function main() {
 
   const agentHashedPassword = await hash("Agent@123", 10);
   // create root agent
-  await prisma.agents.create({
+  await prisma.agent.create({
     data: {
       agent_name: "root",
       agent_password: agentHashedPassword,
@@ -43,7 +43,7 @@ async function main() {
 
   const hashedPassword = await hash("Admin@123", 10);
 
-  await prisma.admins.create({
+  await prisma.admin.create({
     data: {
       admin_name: "testadmin",
       admin_password: hashedPassword,

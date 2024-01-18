@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
-import { Admin } from './admin.entity';
+import { Admin } from '../../@generated/admin/admin.model';
+// import { Admin } from './admin.entity';
 
 
 

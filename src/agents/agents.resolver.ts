@@ -1,13 +1,15 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AgentsService } from './agents.service';
-import { Agent } from './entities/agent.entity';
+// import { Agent } from './entities/agent.entity';
 import { CreateAgentInput } from './dto/create-agent.input';
 import { UpdateAgentInput } from './dto/update-agent.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
 import { UserEntity } from '../common/decorators/user.decorator';
-import { Admin } from '../admins/entities/admin.entity';
+import { Admin } from '../@generated/admin/admin.model';
+import { Agent } from '../@generated/agent/agent.model';
+// import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)

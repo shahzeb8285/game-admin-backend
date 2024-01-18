@@ -1,4 +1,6 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { AdminAccesses } from '../../@generated/admin-accesses/admin-accesses.model';
+import { AdminRoleAccesses } from '../../@generated/admin-role-accesses/admin-role-accesses.model';
 
 
 
@@ -6,7 +8,7 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 
 
 @ObjectType()
-export class AdminAccesses {
+export class AdminAccesses1 {
 
     @Field(() => ID, {nullable:true})
     admin_access_id?: string;
@@ -17,7 +19,7 @@ export class AdminAccesses {
    
 }
 @ObjectType()
-export class AdminRoleAccesses {
+export class AdminRoleAccesses1 {
 
     @Field(() => String, {nullable:false})
     admin_role_id!: string;
@@ -52,7 +54,7 @@ export class AdminRoles {
 
 
 @ObjectType()
-export class Admin {
+export class AdminModal {
 
     @Field(() => ID, {nullable:false})
     admin_id!: string;

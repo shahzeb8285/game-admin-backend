@@ -1,8 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Agent } from '../../agents/entities/agent.entity';
+import { Agent } from '../../@generated/agent/agent.model';
+// import { Agent } from '../../agents/entities/agent.entity';
 
 @ObjectType()
-export class Player {
+export class Player1 {
 
   @Field(() => String, {nullable:false})
   player_id!: string;

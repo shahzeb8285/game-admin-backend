@@ -13,7 +13,7 @@ export class AgentsService {
 
 
   async getRootParentId() {
-    const agent = await this.prisma.agents.findFirst({
+    const agent = await this.prisma.agent.findFirst({
       where: {
         agent_name: "root"
       }, select: {
@@ -36,7 +36,7 @@ export class AgentsService {
       parentAgentID = await this.getRootParentId()
     }
 
-    return this.prisma.agents.create({
+    return this.prisma.agent.create({
       data: {
         ...payload,
         parent: {
@@ -50,7 +50,7 @@ export class AgentsService {
   }
 
   findAll({skip,take}) {
-    return this.prisma.agents.findMany({
+    return this.prisma.agent.findMany({
       skip,
       take,
       include: {
@@ -70,7 +70,7 @@ export class AgentsService {
       payload.agentPassword = await this.passwordService.hashPassword(updateAgentInput.agent_password)
     }
 
-    return this.prisma.agents.update({
+    return this.prisma.agent.update({
       where: {
         agent_id
       },

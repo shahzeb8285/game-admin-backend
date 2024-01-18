@@ -33,7 +33,7 @@ Table players {
 Table admins {
   admin_id String [pk]
   admin_name String [unique, not null]
-  admin_password String [not null]
+  admin_password String [not null, note: '@HideField()']
   admin_roles admin_roles [not null]
   admin_role_id String [not null]
   created_by String [not null]

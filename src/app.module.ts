@@ -14,6 +14,7 @@ import { AdminsModule } from './admins/admins.module';
 import { AgentsModule } from './agents/agents.module';
 import { PlayersModule } from './players/players.module';
 import { FinancesModule } from './finances/finances.module';
+import { CountsModule } from './counts/counts.module';
 
 @Module({
   imports: [
@@ -45,6 +46,8 @@ import { FinancesModule } from './finances/finances.module';
     PlayersModule,
 
     FinancesModule,
+
+    CountsModule,
     // UsersModule,
     // PostsModule,
   ],

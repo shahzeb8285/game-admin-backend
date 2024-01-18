@@ -1,6 +1,8 @@
 import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
-import { Player } from './player.entity';
-import { Admin } from '../../admins/entities/admin.entity';
+// import { Player } from './player.entity';
+import { Admin } from '../../@generated/admin/admin.model';
+import { Player } from '../../@generated/player/player.model';
+// import { Admin } from '../../admins/entities/admin.entity';
 
 
 
@@ -8,7 +10,7 @@ import { Admin } from '../../admins/entities/admin.entity';
 
 
 @ObjectType()
-export class ManualAdjustment {
+export class ManualAdjustment1 {
 
   
     @Field(() => ID, {nullable:false})

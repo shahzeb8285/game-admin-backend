@@ -18,7 +18,7 @@ export class AdminsService {
     const payload = { ...createAdminInput };
     const adminRolesId = payload.admin_roles_id
     delete payload.admin_roles_id
-    return this.prisma.admins.create({
+    return this.prisma.admin.create({
 
       data: {
         ...payload,
@@ -35,10 +35,12 @@ export class AdminsService {
     })
   }
 
-  findAll({ skip, take }) {
-    return this.prisma.admins.findMany({
+  findAll({ skip, take ,where}) {
+    return this.prisma.admin.findMany({
       take,
       skip,
+      where,
+      
       include: {
         admin_roles: {
           include: {
@@ -49,6 +51,10 @@ export class AdminsService {
     });
   }
   
+
+  getAdminCounts() {
+    return this.prisma.admin.count()
+  }
 
 
   async update(admin_id: string, updateAdminInput: UpdateAdminInput) {
@@ -63,7 +69,7 @@ export class AdminsService {
 
     delete updatePayload.admin_id
 
-    return this.prisma.admins.update({
+    return this.prisma.admin.update({
       where: {
         admin_id,
       },
@@ -74,7 +80,7 @@ export class AdminsService {
 
 
   async findAllLoginHistory({ skip, take }) {
-    return this.prisma.admin_login_logs.findMany({
+    return this.prisma.adminLoginLog.findMany({
       skip,
       take,
       include: {
