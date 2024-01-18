@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { AgentRebateCreateOrConnectWithoutAgentsInput } from './agent-rebate-create-or-connect-without-agents.input';
 import { AgentRebateUpsertWithWhereUniqueWithoutAgentsInput } from './agent-rebate-upsert-with-where-unique-without-agents.input';
 import { AgentRebateCreateManyAgentsInputEnvelope } from './agent-rebate-create-many-agents-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { AgentRebateWhereUniqueInput } from './agent-rebate-where-unique.input';
 import { AgentRebateUpdateWithWhereUniqueWithoutAgentsInput } from './agent-rebate-update-with-where-unique-without-agents.input';
 import { AgentRebateUpdateManyWithWhereWithoutAgentsInput } from './agent-rebate-update-many-with-where-without-agents.input';
@@ -31,19 +32,19 @@ export class AgentRebateUpdateManyWithoutAgentsNestedInput {
 
     @Field(() => [AgentRebateWhereUniqueInput], {nullable:true})
     @Type(() => AgentRebateWhereUniqueInput)
-    set?: Array<AgentRebateWhereUniqueInput>;
+    set?: Array<Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>>;
 
     @Field(() => [AgentRebateWhereUniqueInput], {nullable:true})
     @Type(() => AgentRebateWhereUniqueInput)
-    disconnect?: Array<AgentRebateWhereUniqueInput>;
+    disconnect?: Array<Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>>;
 
     @Field(() => [AgentRebateWhereUniqueInput], {nullable:true})
     @Type(() => AgentRebateWhereUniqueInput)
-    delete?: Array<AgentRebateWhereUniqueInput>;
+    delete?: Array<Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>>;
 
     @Field(() => [AgentRebateWhereUniqueInput], {nullable:true})
     @Type(() => AgentRebateWhereUniqueInput)
-    connect?: Array<AgentRebateWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>>;
 
     @Field(() => [AgentRebateUpdateWithWhereUniqueWithoutAgentsInput], {nullable:true})
     @Type(() => AgentRebateUpdateWithWhereUniqueWithoutAgentsInput)

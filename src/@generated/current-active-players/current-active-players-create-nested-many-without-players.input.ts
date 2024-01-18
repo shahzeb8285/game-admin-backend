@@ -4,6 +4,7 @@ import { CurrentActivePlayersCreateWithoutPlayersInput } from './current-active-
 import { Type } from 'class-transformer';
 import { CurrentActivePlayersCreateOrConnectWithoutPlayersInput } from './current-active-players-create-or-connect-without-players.input';
 import { CurrentActivePlayersCreateManyPlayersInputEnvelope } from './current-active-players-create-many-players-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { CurrentActivePlayersWhereUniqueInput } from './current-active-players-where-unique.input';
 
 @InputType()
@@ -23,5 +24,5 @@ export class CurrentActivePlayersCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [CurrentActivePlayersWhereUniqueInput], {nullable:true})
     @Type(() => CurrentActivePlayersWhereUniqueInput)
-    connect?: Array<CurrentActivePlayersWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<CurrentActivePlayersWhereUniqueInput, 'player_id_r'>>;
 }

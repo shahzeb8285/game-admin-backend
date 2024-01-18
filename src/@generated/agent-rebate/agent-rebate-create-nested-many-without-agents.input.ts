@@ -4,6 +4,7 @@ import { AgentRebateCreateWithoutAgentsInput } from './agent-rebate-create-witho
 import { Type } from 'class-transformer';
 import { AgentRebateCreateOrConnectWithoutAgentsInput } from './agent-rebate-create-or-connect-without-agents.input';
 import { AgentRebateCreateManyAgentsInputEnvelope } from './agent-rebate-create-many-agents-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { AgentRebateWhereUniqueInput } from './agent-rebate-where-unique.input';
 
 @InputType()
@@ -23,5 +24,5 @@ export class AgentRebateCreateNestedManyWithoutAgentsInput {
 
     @Field(() => [AgentRebateWhereUniqueInput], {nullable:true})
     @Type(() => AgentRebateWhereUniqueInput)
-    connect?: Array<AgentRebateWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>>;
 }

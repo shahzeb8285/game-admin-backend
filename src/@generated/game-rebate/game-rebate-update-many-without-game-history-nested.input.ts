@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { GameRebateCreateOrConnectWithoutGame_historyInput } from './game-rebate-create-or-connect-without-game-history.input';
 import { GameRebateUpsertWithWhereUniqueWithoutGame_historyInput } from './game-rebate-upsert-with-where-unique-without-game-history.input';
 import { GameRebateCreateManyGame_historyInputEnvelope } from './game-rebate-create-many-game-history-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { GameRebateWhereUniqueInput } from './game-rebate-where-unique.input';
 import { GameRebateUpdateWithWhereUniqueWithoutGame_historyInput } from './game-rebate-update-with-where-unique-without-game-history.input';
 import { GameRebateUpdateManyWithWhereWithoutGame_historyInput } from './game-rebate-update-many-with-where-without-game-history.input';
@@ -31,19 +32,19 @@ export class GameRebateUpdateManyWithoutGame_historyNestedInput {
 
     @Field(() => [GameRebateWhereUniqueInput], {nullable:true})
     @Type(() => GameRebateWhereUniqueInput)
-    set?: Array<GameRebateWhereUniqueInput>;
+    set?: Array<Prisma.AtLeast<GameRebateWhereUniqueInput, 'game_rebates_id'>>;
 
     @Field(() => [GameRebateWhereUniqueInput], {nullable:true})
     @Type(() => GameRebateWhereUniqueInput)
-    disconnect?: Array<GameRebateWhereUniqueInput>;
+    disconnect?: Array<Prisma.AtLeast<GameRebateWhereUniqueInput, 'game_rebates_id'>>;
 
     @Field(() => [GameRebateWhereUniqueInput], {nullable:true})
     @Type(() => GameRebateWhereUniqueInput)
-    delete?: Array<GameRebateWhereUniqueInput>;
+    delete?: Array<Prisma.AtLeast<GameRebateWhereUniqueInput, 'game_rebates_id'>>;
 
     @Field(() => [GameRebateWhereUniqueInput], {nullable:true})
     @Type(() => GameRebateWhereUniqueInput)
-    connect?: Array<GameRebateWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<GameRebateWhereUniqueInput, 'game_rebates_id'>>;
 
     @Field(() => [GameRebateUpdateWithWhereUniqueWithoutGame_historyInput], {nullable:true})
     @Type(() => GameRebateUpdateWithWhereUniqueWithoutGame_historyInput)

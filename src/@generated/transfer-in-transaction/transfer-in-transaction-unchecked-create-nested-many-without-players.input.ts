@@ -4,6 +4,7 @@ import { TransferInTransactionCreateWithoutPlayersInput } from './transfer-in-tr
 import { Type } from 'class-transformer';
 import { TransferInTransactionCreateOrConnectWithoutPlayersInput } from './transfer-in-transaction-create-or-connect-without-players.input';
 import { TransferInTransactionCreateManyPlayersInputEnvelope } from './transfer-in-transaction-create-many-players-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { TransferInTransactionWhereUniqueInput } from './transfer-in-transaction-where-unique.input';
 
 @InputType()
@@ -23,5 +24,5 @@ export class TransferInTransactionUncheckedCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [TransferInTransactionWhereUniqueInput], {nullable:true})
     @Type(() => TransferInTransactionWhereUniqueInput)
-    connect?: Array<TransferInTransactionWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<TransferInTransactionWhereUniqueInput, 'transfer_in_Transaction_id'>>;
 }

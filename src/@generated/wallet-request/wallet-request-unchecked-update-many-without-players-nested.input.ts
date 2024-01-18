@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { WalletRequestCreateOrConnectWithoutPlayersInput } from './wallet-request-create-or-connect-without-players.input';
 import { WalletRequestUpsertWithWhereUniqueWithoutPlayersInput } from './wallet-request-upsert-with-where-unique-without-players.input';
 import { WalletRequestCreateManyPlayersInputEnvelope } from './wallet-request-create-many-players-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { WalletRequestWhereUniqueInput } from './wallet-request-where-unique.input';
 import { WalletRequestUpdateWithWhereUniqueWithoutPlayersInput } from './wallet-request-update-with-where-unique-without-players.input';
 import { WalletRequestUpdateManyWithWhereWithoutPlayersInput } from './wallet-request-update-many-with-where-without-players.input';
@@ -31,19 +32,19 @@ export class WalletRequestUncheckedUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [WalletRequestWhereUniqueInput], {nullable:true})
     @Type(() => WalletRequestWhereUniqueInput)
-    set?: Array<WalletRequestWhereUniqueInput>;
+    set?: Array<Prisma.AtLeast<WalletRequestWhereUniqueInput, 'wallet_request_id'>>;
 
     @Field(() => [WalletRequestWhereUniqueInput], {nullable:true})
     @Type(() => WalletRequestWhereUniqueInput)
-    disconnect?: Array<WalletRequestWhereUniqueInput>;
+    disconnect?: Array<Prisma.AtLeast<WalletRequestWhereUniqueInput, 'wallet_request_id'>>;
 
     @Field(() => [WalletRequestWhereUniqueInput], {nullable:true})
     @Type(() => WalletRequestWhereUniqueInput)
-    delete?: Array<WalletRequestWhereUniqueInput>;
+    delete?: Array<Prisma.AtLeast<WalletRequestWhereUniqueInput, 'wallet_request_id'>>;
 
     @Field(() => [WalletRequestWhereUniqueInput], {nullable:true})
     @Type(() => WalletRequestWhereUniqueInput)
-    connect?: Array<WalletRequestWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<WalletRequestWhereUniqueInput, 'wallet_request_id'>>;
 
     @Field(() => [WalletRequestUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => WalletRequestUpdateWithWhereUniqueWithoutPlayersInput)

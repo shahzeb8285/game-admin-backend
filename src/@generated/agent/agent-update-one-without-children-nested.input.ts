@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { AgentCreateOrConnectWithoutChildrenInput } from './agent-create-or-connect-without-children.input';
 import { AgentUpsertWithoutChildrenInput } from './agent-upsert-without-children.input';
 import { AgentWhereInput } from './agent-where.input';
+import { Prisma } from '@prisma/client';
 import { AgentWhereUniqueInput } from './agent-where-unique.input';
 import { AgentUpdateToOneWithWhereWithoutChildrenInput } from './agent-update-to-one-with-where-without-children.input';
 
@@ -33,7 +34,7 @@ export class AgentUpdateOneWithoutChildrenNestedInput {
 
     @Field(() => AgentWhereUniqueInput, {nullable:true})
     @Type(() => AgentWhereUniqueInput)
-    connect?: AgentWhereUniqueInput;
+    connect?: Prisma.AtLeast<AgentWhereUniqueInput, 'agent_id' | 'agent_name'>;
 
     @Field(() => AgentUpdateToOneWithWhereWithoutChildrenInput, {nullable:true})
     @Type(() => AgentUpdateToOneWithWhereWithoutChildrenInput)

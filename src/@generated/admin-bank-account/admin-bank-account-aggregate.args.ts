@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { AdminBankAccountWhereInput } from './admin-bank-account-where.input';
 import { Type } from 'class-transformer';
 import { AdminBankAccountOrderByWithRelationInput } from './admin-bank-account-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { AdminBankAccountWhereUniqueInput } from './admin-bank-account-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AdminBankAccountCountAggregateInput } from './admin-bank-account-count-aggregate.input';
@@ -20,7 +21,7 @@ export class AdminBankAccountAggregateArgs {
     orderBy?: Array<AdminBankAccountOrderByWithRelationInput>;
 
     @Field(() => AdminBankAccountWhereUniqueInput, {nullable:true})
-    cursor?: AdminBankAccountWhereUniqueInput;
+    cursor?: Prisma.AtLeast<AdminBankAccountWhereUniqueInput, 'admin_bank_account_id'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

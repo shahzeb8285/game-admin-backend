@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { AllOwRequestWhereInput } from './all-ow-request-where.input';
 import { Type } from 'class-transformer';
 import { AllOwRequestOrderByWithRelationInput } from './all-ow-request-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { AllOwRequestWhereUniqueInput } from './all-ow-request-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AllOwRequestCountAggregateInput } from './all-ow-request-count-aggregate.input';
@@ -20,7 +21,7 @@ export class AllOwRequestAggregateArgs {
     orderBy?: Array<AllOwRequestOrderByWithRelationInput>;
 
     @Field(() => AllOwRequestWhereUniqueInput, {nullable:true})
-    cursor?: AllOwRequestWhereUniqueInput;
+    cursor?: Prisma.AtLeast<AllOwRequestWhereUniqueInput, 'allow_request_id'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

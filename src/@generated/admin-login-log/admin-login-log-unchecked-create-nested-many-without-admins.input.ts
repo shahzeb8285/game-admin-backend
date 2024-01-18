@@ -4,6 +4,7 @@ import { AdminLoginLogCreateWithoutAdminsInput } from './admin-login-log-create-
 import { Type } from 'class-transformer';
 import { AdminLoginLogCreateOrConnectWithoutAdminsInput } from './admin-login-log-create-or-connect-without-admins.input';
 import { AdminLoginLogCreateManyAdminsInputEnvelope } from './admin-login-log-create-many-admins-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { AdminLoginLogWhereUniqueInput } from './admin-login-log-where-unique.input';
 
 @InputType()
@@ -23,5 +24,5 @@ export class AdminLoginLogUncheckedCreateNestedManyWithoutAdminsInput {
 
     @Field(() => [AdminLoginLogWhereUniqueInput], {nullable:true})
     @Type(() => AdminLoginLogWhereUniqueInput)
-    connect?: Array<AdminLoginLogWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>>;
 }

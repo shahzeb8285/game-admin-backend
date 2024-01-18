@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { DepositTransactionWhereInput } from './deposit-transaction-where.input';
 import { Type } from 'class-transformer';
 import { DepositTransactionOrderByWithRelationInput } from './deposit-transaction-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { DepositTransactionWhereUniqueInput } from './deposit-transaction-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { DepositTransactionCountAggregateInput } from './deposit-transaction-count-aggregate.input';
@@ -22,7 +23,7 @@ export class DepositTransactionAggregateArgs {
     orderBy?: Array<DepositTransactionOrderByWithRelationInput>;
 
     @Field(() => DepositTransactionWhereUniqueInput, {nullable:true})
-    cursor?: DepositTransactionWhereUniqueInput;
+    cursor?: Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

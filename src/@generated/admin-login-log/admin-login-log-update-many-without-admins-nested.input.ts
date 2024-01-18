@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { AdminLoginLogCreateOrConnectWithoutAdminsInput } from './admin-login-log-create-or-connect-without-admins.input';
 import { AdminLoginLogUpsertWithWhereUniqueWithoutAdminsInput } from './admin-login-log-upsert-with-where-unique-without-admins.input';
 import { AdminLoginLogCreateManyAdminsInputEnvelope } from './admin-login-log-create-many-admins-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { AdminLoginLogWhereUniqueInput } from './admin-login-log-where-unique.input';
 import { AdminLoginLogUpdateWithWhereUniqueWithoutAdminsInput } from './admin-login-log-update-with-where-unique-without-admins.input';
 import { AdminLoginLogUpdateManyWithWhereWithoutAdminsInput } from './admin-login-log-update-many-with-where-without-admins.input';
@@ -31,19 +32,19 @@ export class AdminLoginLogUpdateManyWithoutAdminsNestedInput {
 
     @Field(() => [AdminLoginLogWhereUniqueInput], {nullable:true})
     @Type(() => AdminLoginLogWhereUniqueInput)
-    set?: Array<AdminLoginLogWhereUniqueInput>;
+    set?: Array<Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>>;
 
     @Field(() => [AdminLoginLogWhereUniqueInput], {nullable:true})
     @Type(() => AdminLoginLogWhereUniqueInput)
-    disconnect?: Array<AdminLoginLogWhereUniqueInput>;
+    disconnect?: Array<Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>>;
 
     @Field(() => [AdminLoginLogWhereUniqueInput], {nullable:true})
     @Type(() => AdminLoginLogWhereUniqueInput)
-    delete?: Array<AdminLoginLogWhereUniqueInput>;
+    delete?: Array<Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>>;
 
     @Field(() => [AdminLoginLogWhereUniqueInput], {nullable:true})
     @Type(() => AdminLoginLogWhereUniqueInput)
-    connect?: Array<AdminLoginLogWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>>;
 
     @Field(() => [AdminLoginLogUpdateWithWhereUniqueWithoutAdminsInput], {nullable:true})
     @Type(() => AdminLoginLogUpdateWithWhereUniqueWithoutAdminsInput)

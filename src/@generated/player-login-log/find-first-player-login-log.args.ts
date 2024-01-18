@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { PlayerLoginLogWhereInput } from './player-login-log-where.input';
 import { Type } from 'class-transformer';
 import { PlayerLoginLogOrderByWithRelationInput } from './player-login-log-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { PlayerLoginLogWhereUniqueInput } from './player-login-log-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { PlayerLoginLogScalarFieldEnum } from './player-login-log-scalar-field.enum';
@@ -18,7 +19,7 @@ export class FindFirstPlayerLoginLogArgs {
     orderBy?: Array<PlayerLoginLogOrderByWithRelationInput>;
 
     @Field(() => PlayerLoginLogWhereUniqueInput, {nullable:true})
-    cursor?: PlayerLoginLogWhereUniqueInput;
+    cursor?: Prisma.AtLeast<PlayerLoginLogWhereUniqueInput, 'player_id_r'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

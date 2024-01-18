@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { AgentCreateWithoutChildrenInput } from './agent-create-without-children.input';
 import { Type } from 'class-transformer';
 import { AgentCreateOrConnectWithoutChildrenInput } from './agent-create-or-connect-without-children.input';
+import { Prisma } from '@prisma/client';
 import { AgentWhereUniqueInput } from './agent-where-unique.input';
 
 @InputType()
@@ -18,5 +19,5 @@ export class AgentCreateNestedOneWithoutChildrenInput {
 
     @Field(() => AgentWhereUniqueInput, {nullable:true})
     @Type(() => AgentWhereUniqueInput)
-    connect?: AgentWhereUniqueInput;
+    connect?: Prisma.AtLeast<AgentWhereUniqueInput, 'agent_id' | 'agent_name'>;
 }

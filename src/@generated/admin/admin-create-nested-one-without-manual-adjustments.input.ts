@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { AdminCreateWithoutManual_adjustmentsInput } from './admin-create-without-manual-adjustments.input';
 import { Type } from 'class-transformer';
 import { AdminCreateOrConnectWithoutManual_adjustmentsInput } from './admin-create-or-connect-without-manual-adjustments.input';
+import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 
 @InputType()
@@ -18,5 +19,5 @@ export class AdminCreateNestedOneWithoutManual_adjustmentsInput {
 
     @Field(() => AdminWhereUniqueInput, {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    connect?: AdminWhereUniqueInput;
+    connect?: Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>;
 }

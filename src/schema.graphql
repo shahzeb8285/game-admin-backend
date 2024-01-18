@@ -3,7 +3,6 @@
 # ------------------------------------------------------
 
 type Admin {
-  _count: AdminCount!
   admin_id: ID!
   admin_login_logs: [AdminLoginLog!]
   admin_name: String!
@@ -17,14 +16,9 @@ type Admin {
 }
 
 type AdminAccesses {
-  _count: AdminAccessesCount!
   access_name: String!
   admin_access_id: ID!
   role_accesses: [AdminRoleAccesses!]
-}
-
-type AdminAccessesCount {
-  role_accesses: Int!
 }
 
 input AdminAccessesRelationFilter {
@@ -42,7 +36,6 @@ input AdminAccessesWhereInput {
 }
 
 type AdminBankAccount {
-  _count: AdminBankAccountCount!
   account_number: String!
   admin_bank_account_id: ID!
   bank_name: String!
@@ -51,11 +44,6 @@ type AdminBankAccount {
   holder_name: String!
   method: String!
   withdrawal_transactions: [WithdrawalTransaction!]
-}
-
-type AdminBankAccountCount {
-  deposit_transactions: Int!
-  withdrawal_transactions: Int!
 }
 
 input AdminBankAccountRelationFilter {
@@ -75,11 +63,6 @@ input AdminBankAccountWhereInput {
   holder_name: StringFilter
   method: StringFilter
   withdrawal_transactions: WithdrawalTransactionListRelationFilter
-}
-
-type AdminCount {
-  admin_login_logs: Int!
-  manual_adjustments: Int!
 }
 
 input AdminListRelationFilter {
@@ -119,7 +102,6 @@ input AdminRelationFilter {
 }
 
 type AdminRole {
-  _count: AdminRoleCount!
   admin_role_id: ID!
   admin_role_name: String!
   admins: [Admin!]
@@ -148,11 +130,6 @@ input AdminRoleAccessesWhereInput {
   admin_accesses: AdminAccessesRelationFilter
   admin_role_id: StringFilter
   admin_roles: AdminRoleRelationFilter
-}
-
-type AdminRoleCount {
-  admins: Int!
-  role_accesses: Int!
 }
 
 input AdminRoleRelationFilter {
@@ -196,7 +173,6 @@ input AdminWhereInput {
 }
 
 type Agent {
-  _count: AgentCount!
   agent_id: ID!
   agent_name: String!
   agent_password: String!
@@ -209,12 +185,6 @@ type Agent {
   parent_agent_id: String
   players: [Player!]
   udate: DateTime!
-}
-
-type AgentCount {
-  agent_rebates: Int!
-  children: Int!
-  players: Int!
 }
 
 input AgentListRelationFilter {
@@ -454,7 +424,6 @@ input FloatFilter {
 }
 
 type GameHistory {
-  _count: GameHistoryCount!
   bet_amount: Float!
   cdate: DateTime!
   game_history_id: ID!
@@ -465,10 +434,6 @@ type GameHistory {
   players: Player!
   transaction_date: String!
   win_amount: Float!
-}
-
-type GameHistoryCount {
-  game_rebates: Int!
 }
 
 input GameHistoryListRelationFilter {
@@ -684,7 +649,6 @@ input NestedStringNullableFilter {
 }
 
 type Player {
-  _count: PlayerCount!
   agent: Agent!
   agent_id_r: String!
   cdate: DateTime!
@@ -710,19 +674,6 @@ type Player {
   user_language: String!
   wallet_requests: [WalletRequest!]
   withdrawal_transactions: [WithdrawalTransaction!]
-}
-
-type PlayerCount {
-  current_active_players: Int!
-  deposit_transactions: Int!
-  game_history: Int!
-  manual_adjustments: Int!
-  player_login_logs: Int!
-  player_wallets: Int!
-  transfer_in_transactions: Int!
-  transfer_out_transactions: Int!
-  wallet_requests: Int!
-  withdrawal_transactions: Int!
 }
 
 input PlayerListRelationFilter {
@@ -823,19 +774,28 @@ input PlayerWhereInput {
 
 type Query {
   adminCount: CountDto!
+  adminLoginCount: CountDto!
+  adminRolesCount: CountDto!
   admins(skip: Int! = 0, take: Int! = 10, where: AdminWhereInput! = {}): [Admin!]!
   agents(skip: Int! = 0, take: Int! = 10): [Agent!]!
+  agentsCount: CountDto!
+  bankAccountCount: CountDto!
   bankaccounts(skip: Int! = 0, take: Int! = 10): [BankAccountEntity!]!
   deposits(skip: Int! = 0, take: Int! = 10): [DepositEntity!]!
+  depositsCount: CountDto!
   gamerebates: [BankAccountEntity!]!
   getAccesses(skip: Int! = 0, take: Int! = 10): [AdminAccesses!]!
   getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10): [LoginHistory!]!
-  getAdminsRoles(skip: Int! = 0, take: Int! = 10): [AdminRoles!]!
+  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: AdminRoleWhereInput! = {}): [AdminRoles!]!
   getMe: Admin!
   getUserLoginHistory(skip: Int! = 0, take: Int! = 10): [UserLoginHistory!]!
   getUsersBonusHistory(skip: Int! = 0, take: Int! = 10): [Player!]!
+  manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10): [ManualAdjustment!]!
   players(skip: Int! = 0, take: Int! = 10): [Player!]!
+  usersCount: CountDto!
+  usersLoginCount: CountDto!
+  withdrawalCount: CountDto!
   withdrawals(skip: Int! = 0, take: Int! = 10): [WithdrawalEntity!]!
 }
 

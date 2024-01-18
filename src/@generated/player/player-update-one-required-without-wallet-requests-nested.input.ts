@@ -4,6 +4,7 @@ import { PlayerCreateWithoutWallet_requestsInput } from './player-create-without
 import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutWallet_requestsInput } from './player-create-or-connect-without-wallet-requests.input';
 import { PlayerUpsertWithoutWallet_requestsInput } from './player-upsert-without-wallet-requests.input';
+import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { PlayerUpdateToOneWithWhereWithoutWallet_requestsInput } from './player-update-to-one-with-where-without-wallet-requests.input';
 
@@ -24,7 +25,7 @@ export class PlayerUpdateOneRequiredWithoutWallet_requestsNestedInput {
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: PlayerWhereUniqueInput;
+    connect?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
 
     @Field(() => PlayerUpdateToOneWithWhereWithoutWallet_requestsInput, {nullable:true})
     @Type(() => PlayerUpdateToOneWithWhereWithoutWallet_requestsInput)

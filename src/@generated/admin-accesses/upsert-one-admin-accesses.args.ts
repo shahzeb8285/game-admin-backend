@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
 import { AdminAccessesWhereUniqueInput } from './admin-accesses-where-unique.input';
 import { Type } from 'class-transformer';
 import { AdminAccessesCreateInput } from './admin-accesses-create.input';
@@ -10,7 +11,7 @@ export class UpsertOneAdminAccessesArgs {
 
     @Field(() => AdminAccessesWhereUniqueInput, {nullable:false})
     @Type(() => AdminAccessesWhereUniqueInput)
-    where!: AdminAccessesWhereUniqueInput;
+    where!: Prisma.AtLeast<AdminAccessesWhereUniqueInput, 'admin_access_id' | 'access_name'>;
 
     @Field(() => AdminAccessesCreateInput, {nullable:false})
     @Type(() => AdminAccessesCreateInput)

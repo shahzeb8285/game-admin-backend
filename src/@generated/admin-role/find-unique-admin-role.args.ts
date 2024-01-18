@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
 import { AdminRoleWhereUniqueInput } from './admin-role-where-unique.input';
 import { Type } from 'class-transformer';
 
@@ -8,5 +9,5 @@ export class FindUniqueAdminRoleArgs {
 
     @Field(() => AdminRoleWhereUniqueInput, {nullable:false})
     @Type(() => AdminRoleWhereUniqueInput)
-    where!: AdminRoleWhereUniqueInput;
+    where!: Prisma.AtLeast<AdminRoleWhereUniqueInput, 'admin_role_id' | 'admin_role_name'>;
 }

@@ -4,6 +4,7 @@ import { AdminBankAccountCreateWithoutDeposit_transactionsInput } from './admin-
 import { Type } from 'class-transformer';
 import { AdminBankAccountCreateOrConnectWithoutDeposit_transactionsInput } from './admin-bank-account-create-or-connect-without-deposit-transactions.input';
 import { AdminBankAccountUpsertWithoutDeposit_transactionsInput } from './admin-bank-account-upsert-without-deposit-transactions.input';
+import { Prisma } from '@prisma/client';
 import { AdminBankAccountWhereUniqueInput } from './admin-bank-account-where-unique.input';
 import { AdminBankAccountUpdateToOneWithWhereWithoutDeposit_transactionsInput } from './admin-bank-account-update-to-one-with-where-without-deposit-transactions.input';
 
@@ -24,7 +25,7 @@ export class AdminBankAccountUpdateOneRequiredWithoutDeposit_transactionsNestedI
 
     @Field(() => AdminBankAccountWhereUniqueInput, {nullable:true})
     @Type(() => AdminBankAccountWhereUniqueInput)
-    connect?: AdminBankAccountWhereUniqueInput;
+    connect?: Prisma.AtLeast<AdminBankAccountWhereUniqueInput, 'admin_bank_account_id'>;
 
     @Field(() => AdminBankAccountUpdateToOneWithWhereWithoutDeposit_transactionsInput, {nullable:true})
     @Type(() => AdminBankAccountUpdateToOneWithWhereWithoutDeposit_transactionsInput)

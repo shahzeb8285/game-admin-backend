@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { Type } from 'class-transformer';
 import { PlayerCreateWithoutAgentInput } from './player-create-without-agent.input';
@@ -9,7 +10,7 @@ export class PlayerCreateOrConnectWithoutAgentInput {
 
     @Field(() => PlayerWhereUniqueInput, {nullable:false})
     @Type(() => PlayerWhereUniqueInput)
-    where!: PlayerWhereUniqueInput;
+    where!: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
 
     @Field(() => PlayerCreateWithoutAgentInput, {nullable:false})
     @Type(() => PlayerCreateWithoutAgentInput)

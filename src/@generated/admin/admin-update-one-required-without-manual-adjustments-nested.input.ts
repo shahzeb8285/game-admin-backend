@@ -4,6 +4,7 @@ import { AdminCreateWithoutManual_adjustmentsInput } from './admin-create-withou
 import { Type } from 'class-transformer';
 import { AdminCreateOrConnectWithoutManual_adjustmentsInput } from './admin-create-or-connect-without-manual-adjustments.input';
 import { AdminUpsertWithoutManual_adjustmentsInput } from './admin-upsert-without-manual-adjustments.input';
+import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 import { AdminUpdateToOneWithWhereWithoutManual_adjustmentsInput } from './admin-update-to-one-with-where-without-manual-adjustments.input';
 
@@ -24,7 +25,7 @@ export class AdminUpdateOneRequiredWithoutManual_adjustmentsNestedInput {
 
     @Field(() => AdminWhereUniqueInput, {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    connect?: AdminWhereUniqueInput;
+    connect?: Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>;
 
     @Field(() => AdminUpdateToOneWithWhereWithoutManual_adjustmentsInput, {nullable:true})
     @Type(() => AdminUpdateToOneWithWhereWithoutManual_adjustmentsInput)

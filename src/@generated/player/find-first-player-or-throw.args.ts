@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { PlayerWhereInput } from './player-where.input';
 import { Type } from 'class-transformer';
 import { PlayerOrderByWithRelationInput } from './player-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { PlayerScalarFieldEnum } from './player-scalar-field.enum';
@@ -18,7 +19,7 @@ export class FindFirstPlayerOrThrowArgs {
     orderBy?: Array<PlayerOrderByWithRelationInput>;
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
-    cursor?: PlayerWhereUniqueInput;
+    cursor?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

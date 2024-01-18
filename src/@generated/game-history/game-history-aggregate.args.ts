@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { GameHistoryWhereInput } from './game-history-where.input';
 import { Type } from 'class-transformer';
 import { GameHistoryOrderByWithRelationInput } from './game-history-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { GameHistoryWhereUniqueInput } from './game-history-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { GameHistoryCountAggregateInput } from './game-history-count-aggregate.input';
@@ -22,7 +23,7 @@ export class GameHistoryAggregateArgs {
     orderBy?: Array<GameHistoryOrderByWithRelationInput>;
 
     @Field(() => GameHistoryWhereUniqueInput, {nullable:true})
-    cursor?: GameHistoryWhereUniqueInput;
+    cursor?: Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

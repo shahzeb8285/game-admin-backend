@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { PlayerWalletWhereInput } from './player-wallet-where.input';
 import { Type } from 'class-transformer';
 import { PlayerWalletOrderByWithRelationInput } from './player-wallet-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { PlayerWalletWhereUniqueInput } from './player-wallet-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { PlayerWalletCountAggregateInput } from './player-wallet-count-aggregate.input';
@@ -22,7 +23,7 @@ export class PlayerWalletAggregateArgs {
     orderBy?: Array<PlayerWalletOrderByWithRelationInput>;
 
     @Field(() => PlayerWalletWhereUniqueInput, {nullable:true})
-    cursor?: PlayerWalletWhereUniqueInput;
+    cursor?: Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

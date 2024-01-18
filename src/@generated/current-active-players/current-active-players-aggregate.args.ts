@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { CurrentActivePlayersWhereInput } from './current-active-players-where.input';
 import { Type } from 'class-transformer';
 import { CurrentActivePlayersOrderByWithRelationInput } from './current-active-players-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { CurrentActivePlayersWhereUniqueInput } from './current-active-players-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { CurrentActivePlayersCountAggregateInput } from './current-active-players-count-aggregate.input';
@@ -20,7 +21,7 @@ export class CurrentActivePlayersAggregateArgs {
     orderBy?: Array<CurrentActivePlayersOrderByWithRelationInput>;
 
     @Field(() => CurrentActivePlayersWhereUniqueInput, {nullable:true})
-    cursor?: CurrentActivePlayersWhereUniqueInput;
+    cursor?: Prisma.AtLeast<CurrentActivePlayersWhereUniqueInput, 'player_id_r'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

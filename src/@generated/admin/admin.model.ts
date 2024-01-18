@@ -5,7 +5,6 @@ import { HideField } from '@nestjs/graphql';
 import { AdminRole } from '../admin-role/admin-role.model';
 import { AdminLoginLog } from '../admin-login-log/admin-login-log.model';
 import { ManualAdjustment } from '../manual-adjustment/manual-adjustment.model';
-import { AdminCount } from './admin-count.output';
 
 @ObjectType()
 export class Admin {
@@ -42,7 +41,4 @@ export class Admin {
 
     @Field(() => [ManualAdjustment], {nullable:true})
     manual_adjustments?: Array<ManualAdjustment>;
-
-    @Field(() => AdminCount, {nullable:false})
-    _count?: AdminCount;
 }

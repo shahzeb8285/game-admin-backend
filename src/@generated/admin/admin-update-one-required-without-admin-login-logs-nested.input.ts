@@ -4,6 +4,7 @@ import { AdminCreateWithoutAdmin_login_logsInput } from './admin-create-without-
 import { Type } from 'class-transformer';
 import { AdminCreateOrConnectWithoutAdmin_login_logsInput } from './admin-create-or-connect-without-admin-login-logs.input';
 import { AdminUpsertWithoutAdmin_login_logsInput } from './admin-upsert-without-admin-login-logs.input';
+import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 import { AdminUpdateToOneWithWhereWithoutAdmin_login_logsInput } from './admin-update-to-one-with-where-without-admin-login-logs.input';
 
@@ -24,7 +25,7 @@ export class AdminUpdateOneRequiredWithoutAdmin_login_logsNestedInput {
 
     @Field(() => AdminWhereUniqueInput, {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    connect?: AdminWhereUniqueInput;
+    connect?: Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>;
 
     @Field(() => AdminUpdateToOneWithWhereWithoutAdmin_login_logsInput, {nullable:true})
     @Type(() => AdminUpdateToOneWithWhereWithoutAdmin_login_logsInput)

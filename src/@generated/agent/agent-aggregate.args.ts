@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { AgentWhereInput } from './agent-where.input';
 import { Type } from 'class-transformer';
 import { AgentOrderByWithRelationInput } from './agent-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { AgentWhereUniqueInput } from './agent-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AgentCountAggregateInput } from './agent-count-aggregate.input';
@@ -20,7 +21,7 @@ export class AgentAggregateArgs {
     orderBy?: Array<AgentOrderByWithRelationInput>;
 
     @Field(() => AgentWhereUniqueInput, {nullable:true})
-    cursor?: AgentWhereUniqueInput;
+    cursor?: Prisma.AtLeast<AgentWhereUniqueInput, 'agent_id' | 'agent_name'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

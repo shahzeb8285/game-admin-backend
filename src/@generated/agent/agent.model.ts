@@ -3,7 +3,6 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Player } from '../player/player.model';
 import { AgentRebate } from '../agent-rebate/agent-rebate.model';
-import { AgentCount } from './agent-count.output';
 
 @ObjectType()
 export class Agent {
@@ -43,7 +42,4 @@ export class Agent {
 
     @Field(() => [Agent], {nullable:true})
     children?: Array<Agent>;
-
-    @Field(() => AgentCount, {nullable:false})
-    _count?: AgentCount;
 }
