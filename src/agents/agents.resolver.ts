@@ -9,6 +9,7 @@ import { GqlAuthGuard } from '../auth/gql-auth.guard';
 import { UserEntity } from '../common/decorators/user.decorator';
 import { Admin } from '../@generated/admin/admin.model';
 import { Agent } from '../@generated/agent/agent.model';
+import { AgentWhereInput } from '../@generated/agent/agent-where.input';
 // import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)
@@ -16,24 +17,28 @@ import { Agent } from '../@generated/agent/agent.model';
 export class AgentsResolver {
   constructor(private readonly agentsService: AgentsService) {}
 
-
   @Mutation(() => Agent)
-  createAgent(@UserEntity() user: Admin,@Args('data') createAgentInput: CreateAgentInput) {
-    return this.agentsService.create(user.admin_id,createAgentInput);
+  createAgent(
+    @UserEntity() user: Admin,
+    @Args('data') createAgentInput: CreateAgentInput,
+  ) {
+    return this.agentsService.create(user.admin_id, createAgentInput);
   }
 
   @Query(() => [Agent], { name: 'agents' })
-  getAgents( @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
-  @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number) {
-    return this.agentsService.findAll({skip,take});
+  getAgents(
+    @Args({ name: 'where', defaultValue: {} }) where: AgentWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+  ) {
+    return this.agentsService.findAll({ skip, take, where });
   }
 
-  
   @Mutation(() => Agent)
   updateAgent(@Args('data') updateAgentInput: UpdateAgentInput) {
-    return this.agentsService.update(updateAgentInput.agent_id.toString(), updateAgentInput);
+    return this.agentsService.update(
+      updateAgentInput.agent_id.toString(),
+      updateAgentInput,
+    );
   }
-
-
-
 }

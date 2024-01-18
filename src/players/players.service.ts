@@ -5,65 +5,59 @@ import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 
 @Injectable()
 export class PlayersService {
-  constructor(
-    private readonly prisma: PrismaService,
-  ) { }
+  constructor(private readonly prisma: PrismaService) {}
 
-
-
-  findAll({skip,take}) {
+  findAll({ skip, take, where }) {
     return this.prisma.player.findMany({
-      skip,take,
+      skip,
+      take,
+      where,
       include: {
-        agent: true
-      }
-    })
+        agent: true,
+      },
+    });
   }
 
-
-  getUserLoginHistory({ skip, take }) {
-    
+  getUserLoginHistory({ skip, take, where }) {
     return this.prisma.playerLoginLog.findMany({
-      skip,take,
+      skip,
+      take,
+      where,
       include: {
-        players: true
-      }
-    })
+        players: true,
+      },
+    });
   }
 
-
-
-  getManualAdjustments({skip,take}) {
+  getManualAdjustments({ skip, take, where }) {
     return this.prisma.manualAdjustment.findMany({
-      skip,take,
+      skip,
+      take,
+      where,
       include: {
-        players: true
-      }
-    })
+        players: true,
+      },
+    });
   }
-
 
   changePlayerStatus(data: UpdatePlayerInput) {
     return this.prisma.player.update({
       where: {
-        player_id: data.user_id
+        player_id: data.user_id,
       },
       data: {
-        enabled: data.enabled
-
+        enabled: data.enabled,
       },
       include: {
-        agent: true
-      }
-    })
+        agent: true,
+      },
+    });
   }
-
-
 
   createManualAdjustment(createdBy: string, data: CreateManualAdjustment) {
     const payload: any = {
       ...data,
-    }
+    };
 
     delete payload.playerID;
 
@@ -72,16 +66,15 @@ export class PlayersService {
         ...payload,
         admins: {
           connect: {
-            adminID: createdBy
-          }
+            adminID: createdBy,
+          },
         },
         players: {
           connect: {
-            playerID: data.player_id
-          }
-        }
-      }
-    })
+            playerID: data.player_id,
+          },
+        },
+      },
+    });
   }
-
 }

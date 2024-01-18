@@ -777,26 +777,26 @@ type Query {
   adminLoginCount: CountDto!
   adminRolesCount: CountDto!
   admins(skip: Int! = 0, take: Int! = 10, where: AdminWhereInput! = {}): [Admin!]!
-  agents(skip: Int! = 0, take: Int! = 10): [Agent!]!
+  agents(skip: Int! = 0, take: Int! = 10, where: AgentWhereInput! = {}): [Agent!]!
   agentsCount: CountDto!
   bankAccountCount: CountDto!
-  bankaccounts(skip: Int! = 0, take: Int! = 10): [BankAccountEntity!]!
-  deposits(skip: Int! = 0, take: Int! = 10): [DepositEntity!]!
+  bankaccounts(skip: Int! = 0, take: Int! = 10, where: AdminBankAccountWhereInput! = {}): [BankAccountEntity!]!
+  deposits(skip: Int! = 0, take: Int! = 10, where: DepositTransactionWhereInput! = {}): [DepositEntity!]!
   depositsCount: CountDto!
   gamerebates: [BankAccountEntity!]!
-  getAccesses(skip: Int! = 0, take: Int! = 10): [AdminAccesses!]!
-  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10): [LoginHistory!]!
+  getAccesses(skip: Int! = 0, take: Int! = 10, where: AdminAccessesWhereInput! = {}): [AdminAccesses!]!
+  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: AdminLoginLogWhereInput! = {}): [LoginHistory!]!
   getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: AdminRoleWhereInput! = {}): [AdminRoles!]!
   getMe: Admin!
-  getUserLoginHistory(skip: Int! = 0, take: Int! = 10): [UserLoginHistory!]!
+  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: PlayerLoginLogWhereInput! = {}): [UserLoginHistory!]!
   getUsersBonusHistory(skip: Int! = 0, take: Int! = 10): [Player!]!
   manualAdjustmentCount: CountDto!
-  manualadjustments(skip: Int! = 0, take: Int! = 10): [ManualAdjustment!]!
-  players(skip: Int! = 0, take: Int! = 10): [Player!]!
+  manualadjustments(skip: Int! = 0, take: Int! = 10, where: ManualAdjustmentWhereInput! = {}): [ManualAdjustment!]!
+  players(skip: Int! = 0, take: Int! = 10, where: PlayerWhereInput! = {}): [Player!]!
   usersCount: CountDto!
   usersLoginCount: CountDto!
   withdrawalCount: CountDto!
-  withdrawals(skip: Int! = 0, take: Int! = 10): [WithdrawalEntity!]!
+  withdrawals(skip: Int! = 0, take: Int! = 10, where: WithdrawalTransactionWhereInput! = {}): [WithdrawalEntity!]!
 }
 
 enum QueryMode {

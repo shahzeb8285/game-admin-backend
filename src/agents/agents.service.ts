@@ -8,32 +8,34 @@ import { PasswordService } from '../auth/password.service';
 export class AgentsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly passwordService: PasswordService
-  ) { }
-
+    private readonly passwordService: PasswordService,
+  ) {}
 
   async getRootParentId() {
     const agent = await this.prisma.agent.findFirst({
       where: {
-        agent_name: "root"
-      }, select: {
-        agent_id: true
-      }
-    })
+        agent_name: 'root',
+      },
+      select: {
+        agent_id: true,
+      },
+    });
 
     return agent.agent_id;
   }
   async create(created_by: string, createAgentInput: CreateAgentInput) {
     const payload = {
       agent_name: createAgentInput.agent_name,
-      agent_password: await this.passwordService.hashPassword(createAgentInput.agent_password),
-      created_by
-    }
+      agent_password: await this.passwordService.hashPassword(
+        createAgentInput.agent_password,
+      ),
+      created_by,
+    };
 
-
-    let parentAgentID = createAgentInput.parent_agent_id && createAgentInput.parent_agent_id
+    let parentAgentID =
+      createAgentInput.parent_agent_id && createAgentInput.parent_agent_id;
     if (!parentAgentID) {
-      parentAgentID = await this.getRootParentId()
+      parentAgentID = await this.getRootParentId();
     }
 
     return this.prisma.agent.create({
@@ -41,47 +43,44 @@ export class AgentsService {
         ...payload,
         parent: {
           connect: {
-            agent_id: parentAgentID
-          }
-        }
+            agent_id: parentAgentID,
+          },
+        },
       },
-
-    })
+    });
   }
 
-  findAll({skip,take}) {
+  findAll({ skip, take, where }) {
     return this.prisma.agent.findMany({
       skip,
       take,
+      where,
       include: {
-        parent: true
-      }
-    })
+        parent: true,
+      },
+    });
   }
-
 
   async update(agent_id: string, updateAgentInput: UpdateAgentInput) {
     const payload: any = {
-      ...updateAgentInput
-
-    }
+      ...updateAgentInput,
+    };
     delete payload.agentID;
     if (updateAgentInput.agent_password) {
-      payload.agentPassword = await this.passwordService.hashPassword(updateAgentInput.agent_password)
+      payload.agentPassword = await this.passwordService.hashPassword(
+        updateAgentInput.agent_password,
+      );
     }
 
     return this.prisma.agent.update({
       where: {
-        agent_id
+        agent_id,
       },
-      data: { ...payload }
-    })
+      data: { ...payload },
+    });
   }
 
-
-
   // getIncomeStatements() {
-    
-  // }
 
+  // }
 }

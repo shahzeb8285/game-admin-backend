@@ -5,109 +5,91 @@ import { UpdateRoleInput } from '../dto/update-role.input';
 
 @Injectable()
 export class RoleService {
-  constructor(
-    private readonly prisma: PrismaService,
-  ) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createAdminInput: CreateRoleInput) {
-
     return this.prisma.adminRole.create({
-
       data: {
         ...createAdminInput,
-      }
-    })
+      },
+    });
   }
 
-  async findAll({skip,take,where}) {
+  async findAll({ skip, take, where }) {
     return this.prisma.adminRole.findMany({
-      skip, take,
+      skip,
+      take,
       where,
       include: {
         role_accesses: {
           include: {
-            admin_accesses: true
-          }
+            admin_accesses: true,
+          },
         },
-
-      }
+      },
     });
-
   }
 
-
   async update(admin_role_id: string, input: UpdateRoleInput) {
-
-
     const updatePayload: any = {
-      ...input
-    }
-    const addedRoles = input.added_roles_ids ? input.added_roles_ids : []
-
+      ...input,
+    };
+    const addedRoles = input.added_roles_ids ? input.added_roles_ids : [];
 
     if (input.remove_roles_ids) {
-      await this.prisma.adminRoleAccesses.deleteMany(
-        {
-          where: {
-            admin_role_id,
-            AND: {
-              OR: input.remove_roles_ids.map((item) => {
-                return { admin_access_id: item }
-              })
-            }
+      await this.prisma.adminRoleAccesses.deleteMany({
+        where: {
+          admin_role_id,
+          AND: {
+            OR: input.remove_roles_ids.map((item) => {
+              return { admin_access_id: item };
+            }),
           },
-        }
-      )
+        },
+      });
     }
 
-
-
-  
-  delete updatePayload.added_roles_ids;
-  delete updatePayload.remove_roles_ids;
-  delete updatePayload.admin_role_id;
+    delete updatePayload.added_roles_ids;
+    delete updatePayload.remove_roles_ids;
+    delete updatePayload.admin_role_id;
 
     return this.prisma.adminRole.update({
       where: {
-        admin_role_id
+        admin_role_id,
       },
       data: {
-
         ...updatePayload,
         role_accesses: {
           create: addedRoles.map((item) => {
-            return { admin_access_id: item }
+            return { admin_access_id: item };
           }),
-          
-        }
+        },
       },
       include: {
         role_accesses: {
           include: {
-            admin_accesses: true
-          }
+            admin_accesses: true,
+          },
         },
-
-      }
-
-
-    })
+      },
+    });
   }
 
-
-  async findAllLoginHistory({skip,take}) {
+  async findAllLoginHistory({ skip, take }) {
     return this.prisma.adminLoginLog.findMany({
-      skip,take,
+      skip,
+      take,
       include: {
-        admins: true
-      }
-    })
+        admins: true,
+      },
+    });
   }
 
-  async findAllAccess({skip,take}) {
+  async findAllAccess({ skip, take, where }) {
     return this.prisma.adminAccesses.findMany({
-      skip,take
-    })
+      skip,
+      take,
+      where,
+    });
   }
-
 }
