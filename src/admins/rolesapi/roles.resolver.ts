@@ -9,6 +9,7 @@ import { CreateRoleInput } from '../dto/create-role.input';
 import { UpdateRoleInput } from '../dto/update-role.input';
 import { Admin } from '../../@generated/admin/admin.model';
 import { AdminAccesses } from '../../@generated/admin-accesses/admin-accesses.model';
+import { AdminRoleWhereInput } from '../../@generated/admin-role/admin-role-where.input';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -23,11 +24,13 @@ export class RolesResolver {
 
   @Query(() => [AdminRoles])
   async getAdminsRoles(
+    @Args({name:'where', defaultValue: {}} ) where: AdminRoleWhereInput,
+
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number
 
   ) {
-    const roles = await this.rolesService.findAll({skip,take});
+    const roles = await this.rolesService.findAll({skip,take,where});
     const finalRoles = roles.map((role) => {
       return {
         ...role,

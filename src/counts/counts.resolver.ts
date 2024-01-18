@@ -22,4 +22,12 @@ export class CountsResolver {
     }
   }
 
+
+  @Query(() => CountDto)
+  async userCount() {
+    const counts = await this.prismaService.player.count()
+    return {
+      counts
+    }
+  }
 }

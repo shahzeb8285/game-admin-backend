@@ -19,9 +19,10 @@ export class RoleService {
     })
   }
 
-  async findAll({skip,take}) {
+  async findAll({skip,take,where}) {
     return this.prisma.adminRole.findMany({
-      skip,take,
+      skip, take,
+      where,
       include: {
         role_accesses: {
           include: {
