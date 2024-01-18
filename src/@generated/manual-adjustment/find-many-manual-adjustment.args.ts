@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { ManualAdjustmentWhereInput } from './manual-adjustment-where.input';
 import { Type } from 'class-transformer';
 import { ManualAdjustmentOrderByWithRelationInput } from './manual-adjustment-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { ManualAdjustmentWhereUniqueInput } from './manual-adjustment-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { ManualAdjustmentScalarFieldEnum } from './manual-adjustment-scalar-field.enum';
@@ -19,7 +18,7 @@ export class FindManyManualAdjustmentArgs {
     orderBy?: Array<ManualAdjustmentOrderByWithRelationInput>;
 
     @Field(() => ManualAdjustmentWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<ManualAdjustmentWhereUniqueInput, 'manual_adjustment_id'>;
+    cursor?: ManualAdjustmentWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

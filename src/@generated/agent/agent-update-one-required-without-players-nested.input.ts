@@ -4,7 +4,6 @@ import { AgentCreateWithoutPlayersInput } from './agent-create-without-players.i
 import { Type } from 'class-transformer';
 import { AgentCreateOrConnectWithoutPlayersInput } from './agent-create-or-connect-without-players.input';
 import { AgentUpsertWithoutPlayersInput } from './agent-upsert-without-players.input';
-import { Prisma } from '@prisma/client';
 import { AgentWhereUniqueInput } from './agent-where-unique.input';
 import { AgentUpdateToOneWithWhereWithoutPlayersInput } from './agent-update-to-one-with-where-without-players.input';
 
@@ -25,7 +24,7 @@ export class AgentUpdateOneRequiredWithoutPlayersNestedInput {
 
     @Field(() => AgentWhereUniqueInput, {nullable:true})
     @Type(() => AgentWhereUniqueInput)
-    connect?: Prisma.AtLeast<AgentWhereUniqueInput, 'agent_id' | 'agent_name'>;
+    connect?: AgentWhereUniqueInput;
 
     @Field(() => AgentUpdateToOneWithWhereWithoutPlayersInput, {nullable:true})
     @Type(() => AgentUpdateToOneWithWhereWithoutPlayersInput)

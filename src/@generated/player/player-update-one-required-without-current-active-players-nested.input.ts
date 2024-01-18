@@ -4,7 +4,6 @@ import { PlayerCreateWithoutCurrent_active_playersInput } from './player-create-
 import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutCurrent_active_playersInput } from './player-create-or-connect-without-current-active-players.input';
 import { PlayerUpsertWithoutCurrent_active_playersInput } from './player-upsert-without-current-active-players.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { PlayerUpdateToOneWithWhereWithoutCurrent_active_playersInput } from './player-update-to-one-with-where-without-current-active-players.input';
 
@@ -25,7 +24,7 @@ export class PlayerUpdateOneRequiredWithoutCurrent_active_playersNestedInput {
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: PlayerWhereUniqueInput;
 
     @Field(() => PlayerUpdateToOneWithWhereWithoutCurrent_active_playersInput, {nullable:true})
     @Type(() => PlayerUpdateToOneWithWhereWithoutCurrent_active_playersInput)

@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { AdminLoginLogWhereInput } from './admin-login-log-where.input';
 import { Type } from 'class-transformer';
 import { AdminLoginLogOrderByWithRelationInput } from './admin-login-log-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { AdminLoginLogWhereUniqueInput } from './admin-login-log-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AdminLoginLogScalarFieldEnum } from './admin-login-log-scalar-field.enum';
@@ -19,7 +18,7 @@ export class FindFirstAdminLoginLogOrThrowArgs {
     orderBy?: Array<AdminLoginLogOrderByWithRelationInput>;
 
     @Field(() => AdminLoginLogWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<AdminLoginLogWhereUniqueInput, 'login_id'>;
+    cursor?: AdminLoginLogWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

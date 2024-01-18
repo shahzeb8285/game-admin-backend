@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { AdminWhereInput } from './admin-where.input';
 import { Type } from 'class-transformer';
 import { AdminOrderByWithRelationInput } from './admin-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AdminCountAggregateInput } from './admin-count-aggregate.input';
@@ -21,7 +20,7 @@ export class AdminAggregateArgs {
     orderBy?: Array<AdminOrderByWithRelationInput>;
 
     @Field(() => AdminWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>;
+    cursor?: AdminWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

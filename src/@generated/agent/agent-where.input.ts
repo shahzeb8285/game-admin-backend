@@ -6,7 +6,7 @@ import { BoolFilter } from '../prisma/bool-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { PlayerListRelationFilter } from '../player/player-list-relation-filter.input';
 import { AgentRebateListRelationFilter } from '../agent-rebate/agent-rebate-list-relation-filter.input';
-import { AgentNullableRelationFilter } from './agent-nullable-relation-filter.input';
+import { AgentNullableRelationFilter } from '../prisma/agent-nullable-relation-filter.input';
 import { AgentListRelationFilter } from './agent-list-relation-filter.input';
 
 @InputType()

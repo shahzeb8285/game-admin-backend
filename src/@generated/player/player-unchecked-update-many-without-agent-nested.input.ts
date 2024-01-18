@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutAgentInput } from './player-create-or-connect-without-agent.input';
 import { PlayerUpsertWithWhereUniqueWithoutAgentInput } from './player-upsert-with-where-unique-without-agent.input';
 import { PlayerCreateManyAgentInputEnvelope } from './player-create-many-agent-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { PlayerUpdateWithWhereUniqueWithoutAgentInput } from './player-update-with-where-unique-without-agent.input';
 import { PlayerUpdateManyWithWhereWithoutAgentInput } from './player-update-many-with-where-without-agent.input';
@@ -32,19 +31,19 @@ export class PlayerUncheckedUpdateManyWithoutAgentNestedInput {
 
     @Field(() => [PlayerWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>>;
+    set?: Array<PlayerWhereUniqueInput>;
 
     @Field(() => [PlayerWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>>;
+    disconnect?: Array<PlayerWhereUniqueInput>;
 
     @Field(() => [PlayerWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>>;
+    delete?: Array<PlayerWhereUniqueInput>;
 
     @Field(() => [PlayerWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>>;
+    connect?: Array<PlayerWhereUniqueInput>;
 
     @Field(() => [PlayerUpdateWithWhereUniqueWithoutAgentInput], {nullable:true})
     @Type(() => PlayerUpdateWithWhereUniqueWithoutAgentInput)

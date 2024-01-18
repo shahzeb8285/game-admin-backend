@@ -4,7 +4,6 @@ import { TransferOutTransactionCreateWithoutPlayersInput } from './transfer-out-
 import { Type } from 'class-transformer';
 import { TransferOutTransactionCreateOrConnectWithoutPlayersInput } from './transfer-out-transaction-create-or-connect-without-players.input';
 import { TransferOutTransactionCreateManyPlayersInputEnvelope } from './transfer-out-transaction-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { TransferOutTransactionWhereUniqueInput } from './transfer-out-transaction-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class TransferOutTransactionCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [TransferOutTransactionWhereUniqueInput], {nullable:true})
     @Type(() => TransferOutTransactionWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<TransferOutTransactionWhereUniqueInput, 'transfer_out_transaction_id'>>;
+    connect?: Array<TransferOutTransactionWhereUniqueInput>;
 }

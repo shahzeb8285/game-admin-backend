@@ -4,7 +4,6 @@ import { GameHistoryCreateWithoutPlayersInput } from './game-history-create-with
 import { Type } from 'class-transformer';
 import { GameHistoryCreateOrConnectWithoutPlayersInput } from './game-history-create-or-connect-without-players.input';
 import { GameHistoryCreateManyPlayersInputEnvelope } from './game-history-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { GameHistoryWhereUniqueInput } from './game-history-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class GameHistoryCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [GameHistoryWhereUniqueInput], {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>>;
+    connect?: Array<GameHistoryWhereUniqueInput>;
 }

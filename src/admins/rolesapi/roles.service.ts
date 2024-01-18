@@ -30,27 +30,42 @@ export class RoleService {
     });
   }
 
+  async getAccessIdsByName(names: string[]) {
+    const ids = await this.prisma.adminAccesses.findMany({
+      where: {
+        access_name: {
+          in:names
+        }
+      },
+      select: {
+        admin_access_id:true
+      }
+
+    })
+
+    return ids
+  }
   async update(admin_role_id: string, input: UpdateRoleInput) {
     const updatePayload: any = {
       ...input,
     };
-    const addedRoles = input.added_roles_ids ? input.added_roles_ids : [];
+    const addedAccessNames = input.added_access_names ? input.added_access_names : [];
+    const addedAccessIds = addedAccessNames? await  this.getAccessIdsByName(addedAccessNames):[]
+    if (input.remove_access_names && input.remove_access_names.length>0) {
+      const removedAccessids = await this.getAccessIdsByName(input.remove_access_names)
 
-    if (input.remove_roles_ids) {
       await this.prisma.adminRoleAccesses.deleteMany({
         where: {
           admin_role_id,
           AND: {
-            OR: input.remove_roles_ids.map((item) => {
-              return { admin_access_id: item };
-            }),
+            OR: removedAccessids
           },
         },
       });
     }
 
-    delete updatePayload.added_roles_ids;
-    delete updatePayload.remove_roles_ids;
+    delete updatePayload.added_access_names;
+    delete updatePayload.remove_access_names;
     delete updatePayload.admin_role_id;
 
     return this.prisma.adminRole.update({
@@ -60,9 +75,10 @@ export class RoleService {
       data: {
         ...updatePayload,
         role_accesses: {
-          create: addedRoles.map((item) => {
-            return { admin_access_id: item };
-          }),
+          createMany: {
+            data:addedAccessIds
+          }
+
         },
       },
       include: {

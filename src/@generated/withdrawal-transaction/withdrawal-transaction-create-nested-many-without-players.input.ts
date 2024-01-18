@@ -4,7 +4,6 @@ import { WithdrawalTransactionCreateWithoutPlayersInput } from './withdrawal-tra
 import { Type } from 'class-transformer';
 import { WithdrawalTransactionCreateOrConnectWithoutPlayersInput } from './withdrawal-transaction-create-or-connect-without-players.input';
 import { WithdrawalTransactionCreateManyPlayersInputEnvelope } from './withdrawal-transaction-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { WithdrawalTransactionWhereUniqueInput } from './withdrawal-transaction-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class WithdrawalTransactionCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [WithdrawalTransactionWhereUniqueInput], {nullable:true})
     @Type(() => WithdrawalTransactionWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<WithdrawalTransactionWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    connect?: Array<WithdrawalTransactionWhereUniqueInput>;
 }

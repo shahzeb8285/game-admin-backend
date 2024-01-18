@@ -4,7 +4,6 @@ import { AdminRoleCreateWithoutAdminsInput } from './admin-role-create-without-a
 import { Type } from 'class-transformer';
 import { AdminRoleCreateOrConnectWithoutAdminsInput } from './admin-role-create-or-connect-without-admins.input';
 import { AdminRoleUpsertWithoutAdminsInput } from './admin-role-upsert-without-admins.input';
-import { Prisma } from '@prisma/client';
 import { AdminRoleWhereUniqueInput } from './admin-role-where-unique.input';
 import { AdminRoleUpdateToOneWithWhereWithoutAdminsInput } from './admin-role-update-to-one-with-where-without-admins.input';
 
@@ -25,7 +24,7 @@ export class AdminRoleUpdateOneRequiredWithoutAdminsNestedInput {
 
     @Field(() => AdminRoleWhereUniqueInput, {nullable:true})
     @Type(() => AdminRoleWhereUniqueInput)
-    connect?: Prisma.AtLeast<AdminRoleWhereUniqueInput, 'admin_role_id' | 'admin_role_name'>;
+    connect?: AdminRoleWhereUniqueInput;
 
     @Field(() => AdminRoleUpdateToOneWithWhereWithoutAdminsInput, {nullable:true})
     @Type(() => AdminRoleUpdateToOneWithWhereWithoutAdminsInput)

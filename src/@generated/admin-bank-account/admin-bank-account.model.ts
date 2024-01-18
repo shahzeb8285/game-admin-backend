@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { DepositTransaction } from '../deposit-transaction/deposit-transaction.model';
 import { WithdrawalTransaction } from '../withdrawal-transaction/withdrawal-transaction.model';
+import { AdminBankAccountCount } from './admin-bank-account-count.output';
 
 @ObjectType()
 export class AdminBankAccount {
@@ -30,4 +31,7 @@ export class AdminBankAccount {
 
     @Field(() => [WithdrawalTransaction], {nullable:true})
     withdrawal_transactions?: Array<WithdrawalTransaction>;
+
+    @Field(() => AdminBankAccountCount, {nullable:false})
+    _count?: AdminBankAccountCount;
 }

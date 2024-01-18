@@ -12,3 +12,28 @@ ui
 
 
 3. implement counts in fetch all 
+
+
+
+
+ui
+
+in agent list the divider should be visible on expand 
+
+change the label agent to the parent agent 
+on upper header show transfer in and transfer out 
+
+map it to the no of pending txns 
+if pending> 0 make it red otherwise no color changes
+
+1. Admin Logs are not properly integrated
+
+
+
+2. Data should be in desc by date
+
+3. check pagination on all pages
+
+4. toast in api fail case 
+
+

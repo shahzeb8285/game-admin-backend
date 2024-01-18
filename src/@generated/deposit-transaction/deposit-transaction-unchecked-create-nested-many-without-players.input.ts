@@ -4,7 +4,6 @@ import { DepositTransactionCreateWithoutPlayersInput } from './deposit-transacti
 import { Type } from 'class-transformer';
 import { DepositTransactionCreateOrConnectWithoutPlayersInput } from './deposit-transaction-create-or-connect-without-players.input';
 import { DepositTransactionCreateManyPlayersInputEnvelope } from './deposit-transaction-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { DepositTransactionWhereUniqueInput } from './deposit-transaction-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class DepositTransactionUncheckedCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [DepositTransactionWhereUniqueInput], {nullable:true})
     @Type(() => DepositTransactionWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>>;
+    connect?: Array<DepositTransactionWhereUniqueInput>;
 }

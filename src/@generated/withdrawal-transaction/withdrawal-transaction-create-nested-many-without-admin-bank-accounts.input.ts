@@ -4,7 +4,6 @@ import { WithdrawalTransactionCreateWithoutAdmin_bank_accountsInput } from './wi
 import { Type } from 'class-transformer';
 import { WithdrawalTransactionCreateOrConnectWithoutAdmin_bank_accountsInput } from './withdrawal-transaction-create-or-connect-without-admin-bank-accounts.input';
 import { WithdrawalTransactionCreateManyAdmin_bank_accountsInputEnvelope } from './withdrawal-transaction-create-many-admin-bank-accounts-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { WithdrawalTransactionWhereUniqueInput } from './withdrawal-transaction-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class WithdrawalTransactionCreateNestedManyWithoutAdmin_bank_accountsInpu
 
     @Field(() => [WithdrawalTransactionWhereUniqueInput], {nullable:true})
     @Type(() => WithdrawalTransactionWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<WithdrawalTransactionWhereUniqueInput, 'withdrawal_transaction_id'>>;
+    connect?: Array<WithdrawalTransactionWhereUniqueInput>;
 }

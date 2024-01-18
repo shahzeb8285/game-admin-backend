@@ -4,7 +4,6 @@ import { PlayerCreateWithoutTransfer_out_transactionsInput } from './player-crea
 import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutTransfer_out_transactionsInput } from './player-create-or-connect-without-transfer-out-transactions.input';
 import { PlayerUpsertWithoutTransfer_out_transactionsInput } from './player-upsert-without-transfer-out-transactions.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { PlayerUpdateToOneWithWhereWithoutTransfer_out_transactionsInput } from './player-update-to-one-with-where-without-transfer-out-transactions.input';
 
@@ -25,7 +24,7 @@ export class PlayerUpdateOneRequiredWithoutTransfer_out_transactionsNestedInput 
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: PlayerWhereUniqueInput;
 
     @Field(() => PlayerUpdateToOneWithWhereWithoutTransfer_out_transactionsInput, {nullable:true})
     @Type(() => PlayerUpdateToOneWithWhereWithoutTransfer_out_transactionsInput)

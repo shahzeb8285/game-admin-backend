@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { AdminCreateOrConnectWithoutAdmin_rolesInput } from './admin-create-or-connect-without-admin-roles.input';
 import { AdminUpsertWithWhereUniqueWithoutAdmin_rolesInput } from './admin-upsert-with-where-unique-without-admin-roles.input';
 import { AdminCreateManyAdmin_rolesInputEnvelope } from './admin-create-many-admin-roles-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 import { AdminUpdateWithWhereUniqueWithoutAdmin_rolesInput } from './admin-update-with-where-unique-without-admin-roles.input';
 import { AdminUpdateManyWithWhereWithoutAdmin_rolesInput } from './admin-update-many-with-where-without-admin-roles.input';
@@ -32,19 +31,19 @@ export class AdminUpdateManyWithoutAdmin_rolesNestedInput {
 
     @Field(() => [AdminWhereUniqueInput], {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    set?: Array<AdminWhereUniqueInput>;
 
     @Field(() => [AdminWhereUniqueInput], {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    disconnect?: Array<AdminWhereUniqueInput>;
 
     @Field(() => [AdminWhereUniqueInput], {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    delete?: Array<AdminWhereUniqueInput>;
 
     @Field(() => [AdminWhereUniqueInput], {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    connect?: Array<AdminWhereUniqueInput>;
 
     @Field(() => [AdminUpdateWithWhereUniqueWithoutAdmin_rolesInput], {nullable:true})
     @Type(() => AdminUpdateWithWhereUniqueWithoutAdmin_rolesInput)

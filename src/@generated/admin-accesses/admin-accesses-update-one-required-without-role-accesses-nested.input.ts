@@ -4,7 +4,6 @@ import { AdminAccessesCreateWithoutRole_accessesInput } from './admin-accesses-c
 import { Type } from 'class-transformer';
 import { AdminAccessesCreateOrConnectWithoutRole_accessesInput } from './admin-accesses-create-or-connect-without-role-accesses.input';
 import { AdminAccessesUpsertWithoutRole_accessesInput } from './admin-accesses-upsert-without-role-accesses.input';
-import { Prisma } from '@prisma/client';
 import { AdminAccessesWhereUniqueInput } from './admin-accesses-where-unique.input';
 import { AdminAccessesUpdateToOneWithWhereWithoutRole_accessesInput } from './admin-accesses-update-to-one-with-where-without-role-accesses.input';
 
@@ -25,7 +24,7 @@ export class AdminAccessesUpdateOneRequiredWithoutRole_accessesNestedInput {
 
     @Field(() => AdminAccessesWhereUniqueInput, {nullable:true})
     @Type(() => AdminAccessesWhereUniqueInput)
-    connect?: Prisma.AtLeast<AdminAccessesWhereUniqueInput, 'admin_access_id' | 'access_name'>;
+    connect?: AdminAccessesWhereUniqueInput;
 
     @Field(() => AdminAccessesUpdateToOneWithWhereWithoutRole_accessesInput, {nullable:true})
     @Type(() => AdminAccessesUpdateToOneWithWhereWithoutRole_accessesInput)

@@ -4,7 +4,6 @@ import { AdminCreateWithoutAdmin_rolesInput } from './admin-create-without-admin
 import { Type } from 'class-transformer';
 import { AdminCreateOrConnectWithoutAdmin_rolesInput } from './admin-create-or-connect-without-admin-roles.input';
 import { AdminCreateManyAdmin_rolesInputEnvelope } from './admin-create-many-admin-roles-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { AdminWhereUniqueInput } from './admin-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class AdminUncheckedCreateNestedManyWithoutAdmin_rolesInput {
 
     @Field(() => [AdminWhereUniqueInput], {nullable:true})
     @Type(() => AdminWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<AdminWhereUniqueInput, 'admin_id' | 'admin_name'>>;
+    connect?: Array<AdminWhereUniqueInput>;
 }

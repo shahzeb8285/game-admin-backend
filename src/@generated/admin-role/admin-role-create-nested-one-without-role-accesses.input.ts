@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { AdminRoleCreateWithoutRole_accessesInput } from './admin-role-create-without-role-accesses.input';
 import { Type } from 'class-transformer';
 import { AdminRoleCreateOrConnectWithoutRole_accessesInput } from './admin-role-create-or-connect-without-role-accesses.input';
-import { Prisma } from '@prisma/client';
 import { AdminRoleWhereUniqueInput } from './admin-role-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class AdminRoleCreateNestedOneWithoutRole_accessesInput {
 
     @Field(() => AdminRoleWhereUniqueInput, {nullable:true})
     @Type(() => AdminRoleWhereUniqueInput)
-    connect?: Prisma.AtLeast<AdminRoleWhereUniqueInput, 'admin_role_id' | 'admin_role_name'>;
+    connect?: AdminRoleWhereUniqueInput;
 }

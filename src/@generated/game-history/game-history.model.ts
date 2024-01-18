@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { Player } from '../player/player.model';
 import { GameRebate } from '../game-rebate/game-rebate.model';
+import { GameHistoryCount } from './game-history-count.output';
 
 @ObjectType()
 export class GameHistory {
@@ -37,4 +38,7 @@ export class GameHistory {
 
     @Field(() => [GameRebate], {nullable:true})
     game_rebates?: Array<GameRebate>;
+
+    @Field(() => GameHistoryCount, {nullable:false})
+    _count?: GameHistoryCount;
 }

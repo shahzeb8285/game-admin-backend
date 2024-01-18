@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { PlayerWalletWhereInput } from './player-wallet-where.input';
 import { Type } from 'class-transformer';
 import { PlayerWalletOrderByWithRelationInput } from './player-wallet-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWalletWhereUniqueInput } from './player-wallet-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { PlayerWalletScalarFieldEnum } from './player-wallet-scalar-field.enum';
@@ -19,7 +18,7 @@ export class FindFirstPlayerWalletOrThrowArgs {
     orderBy?: Array<PlayerWalletOrderByWithRelationInput>;
 
     @Field(() => PlayerWalletWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>;
+    cursor?: PlayerWalletWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

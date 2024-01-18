@@ -4,7 +4,6 @@ import { ManualAdjustmentCreateWithoutPlayersInput } from './manual-adjustment-c
 import { Type } from 'class-transformer';
 import { ManualAdjustmentCreateOrConnectWithoutPlayersInput } from './manual-adjustment-create-or-connect-without-players.input';
 import { ManualAdjustmentCreateManyPlayersInputEnvelope } from './manual-adjustment-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { ManualAdjustmentWhereUniqueInput } from './manual-adjustment-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class ManualAdjustmentUncheckedCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [ManualAdjustmentWhereUniqueInput], {nullable:true})
     @Type(() => ManualAdjustmentWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<ManualAdjustmentWhereUniqueInput, 'manual_adjustment_id'>>;
+    connect?: Array<ManualAdjustmentWhereUniqueInput>;
 }

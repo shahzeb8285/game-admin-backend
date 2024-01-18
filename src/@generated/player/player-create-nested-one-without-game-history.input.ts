@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { PlayerCreateWithoutGame_historyInput } from './player-create-without-game-history.input';
 import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutGame_historyInput } from './player-create-or-connect-without-game-history.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class PlayerCreateNestedOneWithoutGame_historyInput {
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: PlayerWhereUniqueInput;
 }

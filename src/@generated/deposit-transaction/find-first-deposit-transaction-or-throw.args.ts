@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { DepositTransactionWhereInput } from './deposit-transaction-where.input';
 import { Type } from 'class-transformer';
 import { DepositTransactionOrderByWithRelationInput } from './deposit-transaction-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { DepositTransactionWhereUniqueInput } from './deposit-transaction-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { DepositTransactionScalarFieldEnum } from './deposit-transaction-scalar-field.enum';
@@ -19,7 +18,7 @@ export class FindFirstDepositTransactionOrThrowArgs {
     orderBy?: Array<DepositTransactionOrderByWithRelationInput>;
 
     @Field(() => DepositTransactionWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>;
+    cursor?: DepositTransactionWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

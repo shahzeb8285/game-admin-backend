@@ -4,7 +4,6 @@ import { GameHistoryCreateWithoutGame_rebatesInput } from './game-history-create
 import { Type } from 'class-transformer';
 import { GameHistoryCreateOrConnectWithoutGame_rebatesInput } from './game-history-create-or-connect-without-game-rebates.input';
 import { GameHistoryUpsertWithoutGame_rebatesInput } from './game-history-upsert-without-game-rebates.input';
-import { Prisma } from '@prisma/client';
 import { GameHistoryWhereUniqueInput } from './game-history-where-unique.input';
 import { GameHistoryUpdateToOneWithWhereWithoutGame_rebatesInput } from './game-history-update-to-one-with-where-without-game-rebates.input';
 
@@ -25,7 +24,7 @@ export class GameHistoryUpdateOneRequiredWithoutGame_rebatesNestedInput {
 
     @Field(() => GameHistoryWhereUniqueInput, {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    connect?: Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>;
+    connect?: GameHistoryWhereUniqueInput;
 
     @Field(() => GameHistoryUpdateToOneWithWhereWithoutGame_rebatesInput, {nullable:true})
     @Type(() => GameHistoryUpdateToOneWithWhereWithoutGame_rebatesInput)

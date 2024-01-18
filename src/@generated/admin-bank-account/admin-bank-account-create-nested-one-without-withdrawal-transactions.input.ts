@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { AdminBankAccountCreateWithoutWithdrawal_transactionsInput } from './admin-bank-account-create-without-withdrawal-transactions.input';
 import { Type } from 'class-transformer';
 import { AdminBankAccountCreateOrConnectWithoutWithdrawal_transactionsInput } from './admin-bank-account-create-or-connect-without-withdrawal-transactions.input';
-import { Prisma } from '@prisma/client';
 import { AdminBankAccountWhereUniqueInput } from './admin-bank-account-where-unique.input';
 
 @InputType()
@@ -19,5 +18,5 @@ export class AdminBankAccountCreateNestedOneWithoutWithdrawal_transactionsInput 
 
     @Field(() => AdminBankAccountWhereUniqueInput, {nullable:true})
     @Type(() => AdminBankAccountWhereUniqueInput)
-    connect?: Prisma.AtLeast<AdminBankAccountWhereUniqueInput, 'admin_bank_account_id'>;
+    connect?: AdminBankAccountWhereUniqueInput;
 }

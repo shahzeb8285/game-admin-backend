@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { DepositTransactionCreateOrConnectWithoutPlayersInput } from './deposit-transaction-create-or-connect-without-players.input';
 import { DepositTransactionUpsertWithWhereUniqueWithoutPlayersInput } from './deposit-transaction-upsert-with-where-unique-without-players.input';
 import { DepositTransactionCreateManyPlayersInputEnvelope } from './deposit-transaction-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { DepositTransactionWhereUniqueInput } from './deposit-transaction-where-unique.input';
 import { DepositTransactionUpdateWithWhereUniqueWithoutPlayersInput } from './deposit-transaction-update-with-where-unique-without-players.input';
 import { DepositTransactionUpdateManyWithWhereWithoutPlayersInput } from './deposit-transaction-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class DepositTransactionUncheckedUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [DepositTransactionWhereUniqueInput], {nullable:true})
     @Type(() => DepositTransactionWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>>;
+    set?: Array<DepositTransactionWhereUniqueInput>;
 
     @Field(() => [DepositTransactionWhereUniqueInput], {nullable:true})
     @Type(() => DepositTransactionWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>>;
+    disconnect?: Array<DepositTransactionWhereUniqueInput>;
 
     @Field(() => [DepositTransactionWhereUniqueInput], {nullable:true})
     @Type(() => DepositTransactionWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>>;
+    delete?: Array<DepositTransactionWhereUniqueInput>;
 
     @Field(() => [DepositTransactionWhereUniqueInput], {nullable:true})
     @Type(() => DepositTransactionWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<DepositTransactionWhereUniqueInput, 'deposit_transaction_id'>>;
+    connect?: Array<DepositTransactionWhereUniqueInput>;
 
     @Field(() => [DepositTransactionUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => DepositTransactionUpdateWithWhereUniqueWithoutPlayersInput)

@@ -4,7 +4,6 @@ import { WalletRequestCreateWithoutPlayersInput } from './wallet-request-create-
 import { Type } from 'class-transformer';
 import { WalletRequestCreateOrConnectWithoutPlayersInput } from './wallet-request-create-or-connect-without-players.input';
 import { WalletRequestCreateManyPlayersInputEnvelope } from './wallet-request-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { WalletRequestWhereUniqueInput } from './wallet-request-where-unique.input';
 
 @InputType()
@@ -24,5 +23,5 @@ export class WalletRequestCreateNestedManyWithoutPlayersInput {
 
     @Field(() => [WalletRequestWhereUniqueInput], {nullable:true})
     @Type(() => WalletRequestWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<WalletRequestWhereUniqueInput, 'wallet_request_id'>>;
+    connect?: Array<WalletRequestWhereUniqueInput>;
 }

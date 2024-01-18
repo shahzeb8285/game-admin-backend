@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { GameHistoryCreateOrConnectWithoutPlayersInput } from './game-history-create-or-connect-without-players.input';
 import { GameHistoryUpsertWithWhereUniqueWithoutPlayersInput } from './game-history-upsert-with-where-unique-without-players.input';
 import { GameHistoryCreateManyPlayersInputEnvelope } from './game-history-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { GameHistoryWhereUniqueInput } from './game-history-where-unique.input';
 import { GameHistoryUpdateWithWhereUniqueWithoutPlayersInput } from './game-history-update-with-where-unique-without-players.input';
 import { GameHistoryUpdateManyWithWhereWithoutPlayersInput } from './game-history-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class GameHistoryUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [GameHistoryWhereUniqueInput], {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>>;
+    set?: Array<GameHistoryWhereUniqueInput>;
 
     @Field(() => [GameHistoryWhereUniqueInput], {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>>;
+    disconnect?: Array<GameHistoryWhereUniqueInput>;
 
     @Field(() => [GameHistoryWhereUniqueInput], {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>>;
+    delete?: Array<GameHistoryWhereUniqueInput>;
 
     @Field(() => [GameHistoryWhereUniqueInput], {nullable:true})
     @Type(() => GameHistoryWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<GameHistoryWhereUniqueInput, 'game_history_id'>>;
+    connect?: Array<GameHistoryWhereUniqueInput>;
 
     @Field(() => [GameHistoryUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => GameHistoryUpdateWithWhereUniqueWithoutPlayersInput)

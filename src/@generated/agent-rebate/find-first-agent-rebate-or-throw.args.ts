@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { AgentRebateWhereInput } from './agent-rebate-where.input';
 import { Type } from 'class-transformer';
 import { AgentRebateOrderByWithRelationInput } from './agent-rebate-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { AgentRebateWhereUniqueInput } from './agent-rebate-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { AgentRebateScalarFieldEnum } from './agent-rebate-scalar-field.enum';
@@ -19,7 +18,7 @@ export class FindFirstAgentRebateOrThrowArgs {
     orderBy?: Array<AgentRebateOrderByWithRelationInput>;
 
     @Field(() => AgentRebateWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<AgentRebateWhereUniqueInput, 'agent_rebate_id'>;
+    cursor?: AgentRebateWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;

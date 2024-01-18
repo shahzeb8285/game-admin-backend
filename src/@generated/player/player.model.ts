@@ -12,6 +12,7 @@ import { DepositTransaction } from '../deposit-transaction/deposit-transaction.m
 import { WithdrawalTransaction } from '../withdrawal-transaction/withdrawal-transaction.model';
 import { TransferInTransaction } from '../transfer-in-transaction/transfer-in-transaction.model';
 import { TransferOutTransaction } from '../transfer-out-transaction/transfer-out-transaction.model';
+import { PlayerCount } from './player-count.output';
 
 @ObjectType()
 export class Player {
@@ -90,4 +91,7 @@ export class Player {
 
     @Field(() => [TransferOutTransaction], {nullable:true})
     transfer_out_transactions?: Array<TransferOutTransaction>;
+
+    @Field(() => PlayerCount, {nullable:false})
+    _count?: PlayerCount;
 }

@@ -14,11 +14,11 @@ export class UpdateRoleInput   {
     admin_role_name: string;
 
     @Field(() => [String], {nullable:true})
-    added_roles_ids: string[]
+    added_access_names: string[]
     
 
     @Field(() => [String], {nullable:true})
-    remove_roles_ids:string[]
+    remove_access_names:string[]
     
 
     @Field(() => Boolean, {nullable:true})

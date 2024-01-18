@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { PlayerWalletCreateOrConnectWithoutPlayersInput } from './player-wallet-create-or-connect-without-players.input';
 import { PlayerWalletUpsertWithWhereUniqueWithoutPlayersInput } from './player-wallet-upsert-with-where-unique-without-players.input';
 import { PlayerWalletCreateManyPlayersInputEnvelope } from './player-wallet-create-many-players-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWalletWhereUniqueInput } from './player-wallet-where-unique.input';
 import { PlayerWalletUpdateWithWhereUniqueWithoutPlayersInput } from './player-wallet-update-with-where-unique-without-players.input';
 import { PlayerWalletUpdateManyWithWhereWithoutPlayersInput } from './player-wallet-update-many-with-where-without-players.input';
@@ -32,19 +31,19 @@ export class PlayerWalletUpdateManyWithoutPlayersNestedInput {
 
     @Field(() => [PlayerWalletWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWalletWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>>;
+    set?: Array<PlayerWalletWhereUniqueInput>;
 
     @Field(() => [PlayerWalletWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWalletWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>>;
+    disconnect?: Array<PlayerWalletWhereUniqueInput>;
 
     @Field(() => [PlayerWalletWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWalletWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>>;
+    delete?: Array<PlayerWalletWhereUniqueInput>;
 
     @Field(() => [PlayerWalletWhereUniqueInput], {nullable:true})
     @Type(() => PlayerWalletWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<PlayerWalletWhereUniqueInput, 'player_wallet_id'>>;
+    connect?: Array<PlayerWalletWhereUniqueInput>;
 
     @Field(() => [PlayerWalletUpdateWithWhereUniqueWithoutPlayersInput], {nullable:true})
     @Type(() => PlayerWalletUpdateWithWhereUniqueWithoutPlayersInput)

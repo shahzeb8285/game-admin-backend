@@ -5,7 +5,6 @@ import { Type } from 'class-transformer';
 import { AdminRoleAccessesCreateOrConnectWithoutAdmin_rolesInput } from './admin-role-accesses-create-or-connect-without-admin-roles.input';
 import { AdminRoleAccessesUpsertWithWhereUniqueWithoutAdmin_rolesInput } from './admin-role-accesses-upsert-with-where-unique-without-admin-roles.input';
 import { AdminRoleAccessesCreateManyAdmin_rolesInputEnvelope } from './admin-role-accesses-create-many-admin-roles-input-envelope.input';
-import { Prisma } from '@prisma/client';
 import { AdminRoleAccessesWhereUniqueInput } from './admin-role-accesses-where-unique.input';
 import { AdminRoleAccessesUpdateWithWhereUniqueWithoutAdmin_rolesInput } from './admin-role-accesses-update-with-where-unique-without-admin-roles.input';
 import { AdminRoleAccessesUpdateManyWithWhereWithoutAdmin_rolesInput } from './admin-role-accesses-update-many-with-where-without-admin-roles.input';
@@ -32,19 +31,19 @@ export class AdminRoleAccessesUpdateManyWithoutAdmin_rolesNestedInput {
 
     @Field(() => [AdminRoleAccessesWhereUniqueInput], {nullable:true})
     @Type(() => AdminRoleAccessesWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<AdminRoleAccessesWhereUniqueInput, 'admin_role_id_admin_access_id'>>;
+    set?: Array<AdminRoleAccessesWhereUniqueInput>;
 
     @Field(() => [AdminRoleAccessesWhereUniqueInput], {nullable:true})
     @Type(() => AdminRoleAccessesWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<AdminRoleAccessesWhereUniqueInput, 'admin_role_id_admin_access_id'>>;
+    disconnect?: Array<AdminRoleAccessesWhereUniqueInput>;
 
     @Field(() => [AdminRoleAccessesWhereUniqueInput], {nullable:true})
     @Type(() => AdminRoleAccessesWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<AdminRoleAccessesWhereUniqueInput, 'admin_role_id_admin_access_id'>>;
+    delete?: Array<AdminRoleAccessesWhereUniqueInput>;
 
     @Field(() => [AdminRoleAccessesWhereUniqueInput], {nullable:true})
     @Type(() => AdminRoleAccessesWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<AdminRoleAccessesWhereUniqueInput, 'admin_role_id_admin_access_id'>>;
+    connect?: Array<AdminRoleAccessesWhereUniqueInput>;
 
     @Field(() => [AdminRoleAccessesUpdateWithWhereUniqueWithoutAdmin_rolesInput], {nullable:true})
     @Type(() => AdminRoleAccessesUpdateWithWhereUniqueWithoutAdmin_rolesInput)

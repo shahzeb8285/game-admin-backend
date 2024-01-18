@@ -4,7 +4,6 @@ import { PlayerCreateWithoutDeposit_transactionsInput } from './player-create-wi
 import { Type } from 'class-transformer';
 import { PlayerCreateOrConnectWithoutDeposit_transactionsInput } from './player-create-or-connect-without-deposit-transactions.input';
 import { PlayerUpsertWithoutDeposit_transactionsInput } from './player-upsert-without-deposit-transactions.input';
-import { Prisma } from '@prisma/client';
 import { PlayerWhereUniqueInput } from './player-where-unique.input';
 import { PlayerUpdateToOneWithWhereWithoutDeposit_transactionsInput } from './player-update-to-one-with-where-without-deposit-transactions.input';
 
@@ -25,7 +24,7 @@ export class PlayerUpdateOneRequiredWithoutDeposit_transactionsNestedInput {
 
     @Field(() => PlayerWhereUniqueInput, {nullable:true})
     @Type(() => PlayerWhereUniqueInput)
-    connect?: Prisma.AtLeast<PlayerWhereUniqueInput, 'player_id' | 'tg_id' | 'tg_user_name'>;
+    connect?: PlayerWhereUniqueInput;
 
     @Field(() => PlayerUpdateToOneWithWhereWithoutDeposit_transactionsInput, {nullable:true})
     @Type(() => PlayerUpdateToOneWithWhereWithoutDeposit_transactionsInput)

@@ -3,7 +3,6 @@ import { ArgsType } from '@nestjs/graphql';
 import { GameRebateWhereInput } from './game-rebate-where.input';
 import { Type } from 'class-transformer';
 import { GameRebateOrderByWithRelationInput } from './game-rebate-order-by-with-relation.input';
-import { Prisma } from '@prisma/client';
 import { GameRebateWhereUniqueInput } from './game-rebate-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { GameRebateCountAggregateInput } from './game-rebate-count-aggregate.input';
@@ -23,7 +22,7 @@ export class GameRebateAggregateArgs {
     orderBy?: Array<GameRebateOrderByWithRelationInput>;
 
     @Field(() => GameRebateWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<GameRebateWhereUniqueInput, 'game_rebates_id'>;
+    cursor?: GameRebateWhereUniqueInput;
 
     @Field(() => Int, {nullable:true})
     take?: number;
