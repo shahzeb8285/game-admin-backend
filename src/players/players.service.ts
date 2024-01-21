@@ -12,6 +12,9 @@ export class PlayersService {
       skip,
       take,
       where,
+      orderBy: {
+        cdate:"desc",
+      },
       include: {
         agent: true,
       },
@@ -23,6 +26,9 @@ export class PlayersService {
       skip,
       take,
       where,
+      orderBy: {
+        login_time:"desc",
+      },
       include: {
         players: true,
       },
@@ -33,7 +39,11 @@ export class PlayersService {
     return this.prisma.manualAdjustment.findMany({
       skip,
       take,
+      
       where,
+      orderBy: {
+        cdate:"desc",
+      },
       include: {
         players: true,
       },

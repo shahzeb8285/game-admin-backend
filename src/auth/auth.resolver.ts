@@ -27,11 +27,13 @@ export class AuthResolver {
   
   @Mutation(() => Auth)
   async login(@Args('data') { admin_name, password }: LoginInput,@UserIp() ipAddress: string) {
+    
+    console.log("asasasasasa",ipAddress)
+
     if (!ipAddress) {
       throw new BadGatewayException("IP not found")
     }
 
-     
     const { access_token, refresh_token } = await this.auth.login(
       admin_name.toLowerCase(),
       password,
@@ -52,8 +54,6 @@ export class AuthResolver {
   @Query(() => Admin)
   @UseGuards(GqlAuthGuard)
   async getMe(@UserEntity() user) {
-    console.log("auth", user.admin_roles.admin_accesses)
-    
     return user
   }
 }

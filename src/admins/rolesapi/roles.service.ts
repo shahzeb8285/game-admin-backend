@@ -18,6 +18,9 @@ export class RoleService {
   async findAll({ skip, take, where }) {
     return this.prisma.adminRole.findMany({
       skip,
+      orderBy: {
+        admin_role_name:"desc",
+      },
       take,
       where,
       include: {
@@ -95,6 +98,9 @@ export class RoleService {
     return this.prisma.adminLoginLog.findMany({
       skip,
       take,
+      orderBy: {
+        login_time:"desc",
+      },
       include: {
         admins: true,
       },

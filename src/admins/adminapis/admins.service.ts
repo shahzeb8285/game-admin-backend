@@ -39,7 +39,9 @@ export class AdminsService {
       take,
       skip,
       where,
-
+      orderBy: {
+        cdate:"desc",
+      },
       include: {
         admin_roles: {
           include: {
@@ -78,6 +80,9 @@ export class AdminsService {
   async findAllLoginHistory({ skip, take, where }) {
     return this.prisma.adminLoginLog.findMany({
       skip,
+      orderBy: {
+        login_time:"desc",
+      },
       take,
       where,
       include: {

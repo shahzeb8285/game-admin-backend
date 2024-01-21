@@ -36,6 +36,9 @@ export class FinancesService {
   getDeposits({ skip, take, where }) {
     return this.prisma.depositTransaction.findMany({
       skip,
+      orderBy: {
+        transaction_date:"desc",
+      },
       take,
       where,
       include: {
@@ -50,6 +53,9 @@ export class FinancesService {
       skip,
       take,
       where,
+      orderBy: {
+        holder_name:"desc",
+      },
       include: {
         deposit_transactions: true,
         withdrawal_transactions: true,
@@ -62,6 +68,9 @@ export class FinancesService {
       skip,
       take,
       where,
+      orderBy: {
+        transaction_date:"desc",
+      },
       include: {
         players: true,
         admin_bank_accounts: true,

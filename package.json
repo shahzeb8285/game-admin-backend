@@ -58,11 +58,12 @@
     "graphql-scalars": "1.22.2",
     "graphql-subscriptions": "2.0.0",
     "nestjs-prisma": "0.22.0-dev.0",
+    "nestjs-real-ip": "^3.0.1",
     "passport": "0.6.0",
     "passport-jwt": "4.0.1",
     "prisma-nestjs-graphql": "^17.1.0",
-
     "reflect-metadata": "0.1.13",
+    "request-ip": "^3.3.0",
     "rxjs": "7.8.1"
   },
   "devDependencies": {
