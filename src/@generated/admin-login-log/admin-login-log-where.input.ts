@@ -17,10 +17,10 @@ export class AdminLoginLogWhereInput {
     NOT?: Array<AdminLoginLogWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
-    login_id?: StringFilter;
+    admin_login_log_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    admin_id_r?: StringFilter;
+    admin_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     ip?: StringFilter;

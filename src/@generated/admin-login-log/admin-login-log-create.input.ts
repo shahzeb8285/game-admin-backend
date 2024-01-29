@@ -6,7 +6,7 @@ import { AdminCreateNestedOneWithoutAdmin_login_logsInput } from '../admin/admin
 export class AdminLoginLogCreateInput {
 
     @Field(() => String, {nullable:true})
-    login_id?: string;
+    admin_login_log_id?: string;
 
     @Field(() => String, {nullable:false})
     ip!: string;

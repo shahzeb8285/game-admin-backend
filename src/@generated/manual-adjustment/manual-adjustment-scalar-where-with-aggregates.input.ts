@@ -20,7 +20,7 @@ export class ManualAdjustmentScalarWhereWithAggregatesInput {
     manual_adjustment_id?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    player_id_r?: StringWithAggregatesFilter;
+    player_id?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     reason?: StringWithAggregatesFilter;
@@ -29,7 +29,7 @@ export class ManualAdjustmentScalarWhereWithAggregatesInput {
     amount?: FloatWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    created_by_r?: StringWithAggregatesFilter;
+    created_by?: StringWithAggregatesFilter;
 
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     cdate?: DateTimeWithAggregatesFilter;

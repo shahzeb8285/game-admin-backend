@@ -5,10 +5,10 @@ import { InputType } from '@nestjs/graphql';
 export class AdminLoginLogCountAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
-    login_id?: true;
+    admin_login_log_id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    admin_id_r?: true;
+    admin_id?: true;
 
     @Field(() => Boolean, {nullable:true})
     ip?: true;

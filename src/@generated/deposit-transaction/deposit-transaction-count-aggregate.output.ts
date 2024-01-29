@@ -33,7 +33,7 @@ export class DepositTransactionCountAggregate {
     status!: number;
 
     @Field(() => Int, {nullable:false})
-    admin_bank_account_id_r!: number;
+    admin_bank_account_id!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

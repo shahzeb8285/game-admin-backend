@@ -9,7 +9,7 @@ import { AdminRelationFilter } from '../admin/admin-relation-filter.input';
 export class AdminLoginLogWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
-    login_id?: string;
+    admin_login_log_id?: string;
 
     @Field(() => [AdminLoginLogWhereInput], {nullable:true})
     AND?: Array<AdminLoginLogWhereInput>;
@@ -21,7 +21,7 @@ export class AdminLoginLogWhereUniqueInput {
     NOT?: Array<AdminLoginLogWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
-    admin_id_r?: StringFilter;
+    admin_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     ip?: StringFilter;

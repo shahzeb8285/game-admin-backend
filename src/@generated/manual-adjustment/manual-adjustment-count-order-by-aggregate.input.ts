@@ -9,7 +9,7 @@ export class ManualAdjustmentCountOrderByAggregateInput {
     manual_adjustment_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    player_id_r?: keyof typeof SortOrder;
+    player_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     reason?: keyof typeof SortOrder;
@@ -18,7 +18,7 @@ export class ManualAdjustmentCountOrderByAggregateInput {
     amount?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    created_by_r?: keyof typeof SortOrder;
+    created_by?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     cdate?: keyof typeof SortOrder;

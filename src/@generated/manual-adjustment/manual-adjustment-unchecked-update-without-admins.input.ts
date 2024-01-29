@@ -9,7 +9,7 @@ export class ManualAdjustmentUncheckedUpdateWithoutAdminsInput {
     manual_adjustment_id?: string;
 
     @Field(() => String, {nullable:true})
-    player_id_r?: string;
+    player_id?: string;
 
     @Field(() => String, {nullable:true})
     reason?: string;

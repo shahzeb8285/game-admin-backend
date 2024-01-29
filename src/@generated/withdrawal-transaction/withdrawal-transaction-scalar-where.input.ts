@@ -45,5 +45,5 @@ export class WithdrawalTransactionScalarWhereInput {
     status?: EnumTransactionTypeFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    admin_bank_account_id_r?: StringFilter;
+    admin_bank_account_id?: StringFilter;
 }

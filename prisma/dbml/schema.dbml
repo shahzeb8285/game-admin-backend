@@ -104,9 +104,9 @@ Table player_login_logs {
 }
 
 Table admin_login_logs {
-  login_id String [pk]
+  admin_login_log_id String [pk]
   admins admins [not null]
-  admin_id_r String [not null]
+  admin_id String [not null]
   ip String [not null]
   login_time DateTime [default: `now()`, not null]
 }
@@ -146,11 +146,11 @@ Table game_rebates {
 Table manual_adjustments {
   manual_adjustment_id String [pk]
   players players [not null]
-  player_id_r String [not null]
+  player_id String [not null]
   reason String [not null]
   amount Float [not null]
   admins admins [not null]
-  created_by_r String [not null]
+  created_by String [not null]
   cdate DateTime [default: `now()`, not null]
 }
 
@@ -217,7 +217,7 @@ Table deposit_transactions {
   transaction_date String [not null]
   status TransactionType [not null, default: 'PENDING']
   admin_bank_accounts admin_bank_accounts [not null]
-  admin_bank_account_id_r String [not null]
+  admin_bank_account_id String [not null]
 }
 
 Table withdrawal_transactions {
@@ -232,7 +232,7 @@ Table withdrawal_transactions {
   transaction_date String [not null]
   status TransactionType [not null, default: 'PENDING']
   admin_bank_accounts admin_bank_accounts [not null]
-  admin_bank_account_id_r String [not null]
+  admin_bank_account_id String [not null]
 }
 
 Table transfer_in_transactions {
@@ -285,7 +285,7 @@ Ref: agent_rebates.agent_id_r > agents.agent_id
 
 Ref: player_login_logs.player_id_r > players.player_id
 
-Ref: admin_login_logs.admin_id_r > admins.admin_id
+Ref: admin_login_logs.admin_id > admins.admin_id
 
 Ref: current_active_players.player_id_r > players.player_id
 
@@ -293,9 +293,9 @@ Ref: game_history.player_id_r > players.player_id
 
 Ref: game_rebates.game_history_id > game_history.game_history_id
 
-Ref: manual_adjustments.player_id_r > players.player_id
+Ref: manual_adjustments.player_id > players.player_id
 
-Ref: manual_adjustments.created_by_r > admins.admin_id
+Ref: manual_adjustments.created_by > admins.admin_id
 
 Ref: player_wallets.player_id_r > players.player_id
 
@@ -303,11 +303,11 @@ Ref: wallet_requests.player_id_r > players.player_id
 
 Ref: deposit_transactions.player_id_r > players.player_id
 
-Ref: deposit_transactions.admin_bank_account_id_r > admin_bank_accounts.admin_bank_account_id
+Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank_account_id
 
 Ref: withdrawal_transactions.player_id_r > players.player_id
 
-Ref: withdrawal_transactions.admin_bank_account_id_r > admin_bank_accounts.admin_bank_account_id
+Ref: withdrawal_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank_account_id
 
 Ref: transfer_in_transactions.player_id_r > players.player_id
 

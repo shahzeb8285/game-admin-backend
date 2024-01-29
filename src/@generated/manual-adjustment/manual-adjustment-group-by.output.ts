@@ -14,7 +14,7 @@ export class ManualAdjustmentGroupBy {
     manual_adjustment_id!: string;
 
     @Field(() => String, {nullable:false})
-    player_id_r!: string;
+    player_id!: string;
 
     @Field(() => String, {nullable:false})
     reason!: string;
@@ -23,7 +23,7 @@ export class ManualAdjustmentGroupBy {
     amount!: number;
 
     @Field(() => String, {nullable:false})
-    created_by_r!: string;
+    created_by!: string;
 
     @Field(() => Date, {nullable:false})
     cdate!: Date | string;

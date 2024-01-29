@@ -48,7 +48,7 @@ export class WithdrawalTransactionWhereUniqueInput {
     status?: EnumTransactionTypeFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    admin_bank_account_id_r?: StringFilter;
+    admin_bank_account_id?: StringFilter;
 
     @Field(() => PlayerRelationFilter, {nullable:true})
     players?: PlayerRelationFilter;

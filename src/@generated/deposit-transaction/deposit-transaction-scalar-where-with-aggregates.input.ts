@@ -45,5 +45,5 @@ export class DepositTransactionScalarWhereWithAggregatesInput {
     status?: EnumTransactionTypeWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    admin_bank_account_id_r?: StringWithAggregatesFilter;
+    admin_bank_account_id?: StringWithAggregatesFilter;
 }

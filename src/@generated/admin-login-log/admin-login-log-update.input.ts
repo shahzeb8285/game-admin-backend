@@ -6,7 +6,7 @@ import { AdminUpdateOneRequiredWithoutAdmin_login_logsNestedInput } from '../adm
 export class AdminLoginLogUpdateInput {
 
     @Field(() => String, {nullable:true})
-    login_id?: string;
+    admin_login_log_id?: string;
 
     @Field(() => String, {nullable:true})
     ip?: string;

@@ -8,7 +8,7 @@ export class ManualAdjustmentCountAggregateInput {
     manual_adjustment_id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    player_id_r?: true;
+    player_id?: true;
 
     @Field(() => Boolean, {nullable:true})
     reason?: true;
@@ -17,7 +17,7 @@ export class ManualAdjustmentCountAggregateInput {
     amount?: true;
 
     @Field(() => Boolean, {nullable:true})
-    created_by_r?: true;
+    created_by?: true;
 
     @Field(() => Boolean, {nullable:true})
     cdate?: true;

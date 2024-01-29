@@ -9,7 +9,7 @@ export class ManualAdjustmentMaxAggregate {
     manual_adjustment_id?: string;
 
     @Field(() => String, {nullable:true})
-    player_id_r?: string;
+    player_id?: string;
 
     @Field(() => String, {nullable:true})
     reason?: string;
@@ -18,7 +18,7 @@ export class ManualAdjustmentMaxAggregate {
     amount?: number;
 
     @Field(() => String, {nullable:true})
-    created_by_r?: string;
+    created_by?: string;
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;

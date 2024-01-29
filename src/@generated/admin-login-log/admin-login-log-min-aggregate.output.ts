@@ -5,10 +5,10 @@ import { ObjectType } from '@nestjs/graphql';
 export class AdminLoginLogMinAggregate {
 
     @Field(() => String, {nullable:true})
-    login_id?: string;
+    admin_login_log_id?: string;
 
     @Field(() => String, {nullable:true})
-    admin_id_r?: string;
+    admin_id?: string;
 
     @Field(() => String, {nullable:true})
     ip?: string;

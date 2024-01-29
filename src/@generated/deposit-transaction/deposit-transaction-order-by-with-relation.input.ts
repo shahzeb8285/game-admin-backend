@@ -35,7 +35,7 @@ export class DepositTransactionOrderByWithRelationInput {
     status?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    admin_bank_account_id_r?: keyof typeof SortOrder;
+    admin_bank_account_id?: keyof typeof SortOrder;
 
     @Field(() => PlayerOrderByWithRelationInput, {nullable:true})
     players?: PlayerOrderByWithRelationInput;

@@ -10,7 +10,7 @@ export enum WithdrawalTransactionScalarFieldEnum {
     processed_by = "processed_by",
     transaction_date = "transaction_date",
     status = "status",
-    admin_bank_account_id_r = "admin_bank_account_id_r"
+    admin_bank_account_id = "admin_bank_account_id"
 }
 
 

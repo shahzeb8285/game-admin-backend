@@ -9,7 +9,7 @@ export class ManualAdjustmentCreateManyAdminsInput {
     manual_adjustment_id?: string;
 
     @Field(() => String, {nullable:false})
-    player_id_r!: string;
+    player_id!: string;
 
     @Field(() => String, {nullable:false})
     reason!: string;

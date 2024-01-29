@@ -22,7 +22,7 @@ export class ManualAdjustmentWhereInput {
     manual_adjustment_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    player_id_r?: StringFilter;
+    player_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     reason?: StringFilter;
@@ -31,7 +31,7 @@ export class ManualAdjustmentWhereInput {
     amount?: FloatFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    created_by_r?: StringFilter;
+    created_by?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;

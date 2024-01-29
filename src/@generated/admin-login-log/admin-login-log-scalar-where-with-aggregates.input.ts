@@ -16,10 +16,10 @@ export class AdminLoginLogScalarWhereWithAggregatesInput {
     NOT?: Array<AdminLoginLogScalarWhereWithAggregatesInput>;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    login_id?: StringWithAggregatesFilter;
+    admin_login_log_id?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    admin_id_r?: StringWithAggregatesFilter;
+    admin_id?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     ip?: StringWithAggregatesFilter;

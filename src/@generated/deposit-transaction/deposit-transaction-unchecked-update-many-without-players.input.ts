@@ -31,5 +31,5 @@ export class DepositTransactionUncheckedUpdateManyWithoutPlayersInput {
     status?: keyof typeof TransactionType;
 
     @Field(() => String, {nullable:true})
-    admin_bank_account_id_r?: string;
+    admin_bank_account_id?: string;
 }

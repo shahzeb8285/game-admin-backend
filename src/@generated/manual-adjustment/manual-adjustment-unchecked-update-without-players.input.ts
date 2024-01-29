@@ -15,7 +15,7 @@ export class ManualAdjustmentUncheckedUpdateWithoutPlayersInput {
     amount?: number;
 
     @Field(() => String, {nullable:true})
-    created_by_r?: string;
+    created_by?: string;
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;

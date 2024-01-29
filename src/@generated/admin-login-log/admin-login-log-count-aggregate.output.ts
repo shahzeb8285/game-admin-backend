@@ -6,10 +6,10 @@ import { Int } from '@nestjs/graphql';
 export class AdminLoginLogCountAggregate {
 
     @Field(() => Int, {nullable:false})
-    login_id!: number;
+    admin_login_log_id!: number;
 
     @Field(() => Int, {nullable:false})
-    admin_id_r!: number;
+    admin_id!: number;
 
     @Field(() => Int, {nullable:false})
     ip!: number;

@@ -7,10 +7,10 @@ import { Admin } from '../admin/admin.model';
 export class AdminLoginLog {
 
     @Field(() => ID, {nullable:false})
-    login_id!: string;
+    admin_login_log_id!: string;
 
     @Field(() => String, {nullable:false})
-    admin_id_r!: string;
+    admin_id!: string;
 
     @Field(() => String, {nullable:false})
     ip!: string;

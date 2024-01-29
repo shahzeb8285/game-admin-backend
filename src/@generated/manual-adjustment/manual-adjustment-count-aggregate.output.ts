@@ -9,7 +9,7 @@ export class ManualAdjustmentCountAggregate {
     manual_adjustment_id!: number;
 
     @Field(() => Int, {nullable:false})
-    player_id_r!: number;
+    player_id!: number;
 
     @Field(() => Int, {nullable:false})
     reason!: number;
@@ -18,7 +18,7 @@ export class ManualAdjustmentCountAggregate {
     amount!: number;
 
     @Field(() => Int, {nullable:false})
-    created_by_r!: number;
+    created_by!: number;
 
     @Field(() => Int, {nullable:false})
     cdate!: number;

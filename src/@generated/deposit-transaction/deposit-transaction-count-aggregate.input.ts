@@ -32,7 +32,7 @@ export class DepositTransactionCountAggregateInput {
     status?: true;
 
     @Field(() => Boolean, {nullable:true})
-    admin_bank_account_id_r?: true;
+    admin_bank_account_id?: true;
 
     @Field(() => Boolean, {nullable:true})
     _all?: true;

@@ -5,7 +5,7 @@ import { InputType } from '@nestjs/graphql';
 export class AdminLoginLogUncheckedCreateWithoutAdminsInput {
 
     @Field(() => String, {nullable:true})
-    login_id?: string;
+    admin_login_log_id?: string;
 
     @Field(() => String, {nullable:false})
     ip!: string;
