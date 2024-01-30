@@ -13,10 +13,10 @@ generator dbml {
 }
 
 generator nestgraphql {
-  provider = "node node_modules/prisma-nestjs-graphql"
-  output   = "../src/@generated"
-omitModelsCount = true
-  noAtomicOperations                    = true
+  provider           = "node node_modules/prisma-nestjs-graphql"
+  output             = "../src/@generated"
+  omitModelsCount    = true
+  noAtomicOperations = true
   // combineScalarFilters                  = false
   // reExport                              = None
   // emitSingle                            = true
@@ -77,10 +77,10 @@ model Player {
 }
 
 model Admin {
-  admin_id           String             @id @default(cuid())
-  admin_name         String             @unique
+  admin_id   String @id @default(cuid())
+  admin_name String @unique
 
-     /// @HideField()
+  /// @HideField()
 
   admin_password     String
   admin_roles        AdminRole          @relation(fields: [admin_role_id], references: [admin_role_id])
