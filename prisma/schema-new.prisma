@@ -286,7 +286,7 @@ model deposit_transactions {
   comment                String
   processed_by           String
   process_time           DateTime
-  status                 wallet_transaction_status
+  status                 wallet_transaction_status @default(PENDING)
   cdate                  DateTime
   udate                  DateTime
 }
@@ -305,7 +305,7 @@ model withdrawal_transactions {
   comment                   String
   processed_by              String
   process_time              DateTime
-  status                    wallet_transaction_status
+  status                    wallet_transaction_status @default(PENDING)
   cdate                     DateTime
   udate                     DateTime
 }
@@ -324,7 +324,7 @@ model transfer_in_transactions {
   comment                    String
   processed_by               String
   process_time               DateTime
-  status                     wallet_transaction_status
+  status                     wallet_transaction_status @default(PENDING)
   cdate                      DateTime
   udate                      DateTime
 }
@@ -343,7 +343,7 @@ model transfer_out_transactions {
   comment                     String
   processed_by                String
   process_time                DateTime
-  status                      wallet_transaction_status
+  status                      wallet_transaction_status @default(PENDING)
   cdate                       DateTime
   udate                       DateTime
 }
