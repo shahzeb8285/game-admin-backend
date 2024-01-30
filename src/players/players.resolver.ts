@@ -10,12 +10,12 @@ import { UserLoginHistory } from './entities/loginhistory.entity';
 import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 // import { Admin } from '../admins/entities/admin.entity';
 import { UserEntity } from '../common/decorators/user.decorator';
-import { Admin } from '../@generated/admin/admin.model';
-import { Player } from '../@generated/player/player.model';
-import { ManualAdjustment } from '../@generated/manual-adjustment/manual-adjustment.model';
-import { PlayerWhereInput } from 'src/@generated/player/player-where.input';
-import { PlayerLoginLogWhereInput } from 'src/@generated/player-login-log/player-login-log-where.input';
-import { ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustment/manual-adjustment-where.input';
+import { admins as Admin } from '../@generated/admins/admins.model';
+import { players as Player } from '../@generated/players/players.model';
+import { manual_adjustments as ManualAdjustment } from '../@generated/manual-adjustments/manual-adjustments.model';
+import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/players-where.input';
+import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
+import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)

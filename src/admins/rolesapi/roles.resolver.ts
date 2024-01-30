@@ -7,10 +7,10 @@ import { GqlAuthGuard } from '../../auth/gql-auth.guard';
 import { GqlAuthorizationGuard } from '../../auth/authorization.guard';
 import { CreateRoleInput } from '../dto/create-role.input';
 import { UpdateRoleInput } from '../dto/update-role.input';
-import { Admin } from '../../@generated/admin/admin.model';
-import { AdminAccesses } from '../../@generated/admin-accesses/admin-accesses.model';
-import { AdminRoleWhereInput } from '../../@generated/admin-role/admin-role-where.input';
-import { AdminAccessesWhereInput } from '../../@generated/admin-accesses/admin-accesses-where.input';
+import { admins as Admin } from '../../@generated/admins/admins.model';
+import { admin_accesses as AdminAccesses } from '../../@generated/admin-accesses/admin-accesses.model';
+import { admin_rolesWhereInput as AdminRoleWhereInput } from '../../@generated/admin-roles/admin-roles-where.input';
+import { admin_accessesWhereInput as AdminAccessesWhereInput } from '../../@generated/admin-accesses/admin-accesses-where.input';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -32,7 +32,7 @@ export class RolesResolver {
     const finalRoles = roles.map((role) => {
       return {
         ...role,
-        admin_accesses: role.role_accesses.map((item) => {
+        admin_accesses: role.admin_role_accesses.map((item) => {
           return item.admin_accesses;
         }),
       };
@@ -55,7 +55,7 @@ export class RolesResolver {
     const role = await this.rolesService.update(input.admin_role_id, input);
     return {
       ...role,
-      admin_accesses: role.role_accesses.map((item) => {
+      admin_accesses: role.admin_role_accesses.map((item) => {
         return item.admin_accesses;
       }),
     };

@@ -1,20 +1,25 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
-import { AdminRoleRelationFilter } from '../admin-role/admin-role-relation-filter.input';
-import { AdminAccessesRelationFilter } from '../admin-accesses/admin-accesses-relation-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { BoolFilter } from '../prisma/bool-filter.input';
+import { Admin_rolesRelationFilter } from '../prisma/admin-roles-relation-filter.input';
+import { Admin_accessesRelationFilter } from '../prisma/admin-accesses-relation-filter.input';
 
 @InputType()
-export class AdminRoleAccessesWhereInput {
+export class admin_role_accessesWhereInput {
 
-    @Field(() => [AdminRoleAccessesWhereInput], {nullable:true})
-    AND?: Array<AdminRoleAccessesWhereInput>;
+    @Field(() => [admin_role_accessesWhereInput], {nullable:true})
+    AND?: Array<admin_role_accessesWhereInput>;
 
-    @Field(() => [AdminRoleAccessesWhereInput], {nullable:true})
-    OR?: Array<AdminRoleAccessesWhereInput>;
+    @Field(() => [admin_role_accessesWhereInput], {nullable:true})
+    OR?: Array<admin_role_accessesWhereInput>;
 
-    @Field(() => [AdminRoleAccessesWhereInput], {nullable:true})
-    NOT?: Array<AdminRoleAccessesWhereInput>;
+    @Field(() => [admin_role_accessesWhereInput], {nullable:true})
+    NOT?: Array<admin_role_accessesWhereInput>;
+
+    @Field(() => StringFilter, {nullable:true})
+    admin_role_access_id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     admin_role_id?: StringFilter;
@@ -22,9 +27,24 @@ export class AdminRoleAccessesWhereInput {
     @Field(() => StringFilter, {nullable:true})
     admin_access_id?: StringFilter;
 
-    @Field(() => AdminRoleRelationFilter, {nullable:true})
-    admin_roles?: AdminRoleRelationFilter;
+    @Field(() => StringFilter, {nullable:true})
+    created_by?: StringFilter;
 
-    @Field(() => AdminAccessesRelationFilter, {nullable:true})
-    admin_accesses?: AdminAccessesRelationFilter;
+    @Field(() => StringFilter, {nullable:true})
+    updated_by?: StringFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    cdate?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    udate?: DateTimeFilter;
+
+    @Field(() => BoolFilter, {nullable:true})
+    enabled?: BoolFilter;
+
+    @Field(() => Admin_rolesRelationFilter, {nullable:true})
+    admin_roles?: Admin_rolesRelationFilter;
+
+    @Field(() => Admin_accessesRelationFilter, {nullable:true})
+    admin_accesses?: Admin_accessesRelationFilter;
 }

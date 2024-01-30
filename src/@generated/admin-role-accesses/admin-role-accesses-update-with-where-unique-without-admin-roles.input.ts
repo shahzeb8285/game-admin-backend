@@ -1,17 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { AdminRoleAccessesWhereUniqueInput } from './admin-role-accesses-where-unique.input';
+import { admin_role_accessesWhereUniqueInput } from './admin-role-accesses-where-unique.input';
 import { Type } from 'class-transformer';
-import { AdminRoleAccessesUpdateWithoutAdmin_rolesInput } from './admin-role-accesses-update-without-admin-roles.input';
+import { admin_role_accessesUpdateWithoutAdmin_rolesInput } from './admin-role-accesses-update-without-admin-roles.input';
 
 @InputType()
-export class AdminRoleAccessesUpdateWithWhereUniqueWithoutAdmin_rolesInput {
+export class admin_role_accessesUpdateWithWhereUniqueWithoutAdmin_rolesInput {
 
-    @Field(() => AdminRoleAccessesWhereUniqueInput, {nullable:false})
-    @Type(() => AdminRoleAccessesWhereUniqueInput)
-    where!: AdminRoleAccessesWhereUniqueInput;
+    @Field(() => admin_role_accessesWhereUniqueInput, {nullable:false})
+    @Type(() => admin_role_accessesWhereUniqueInput)
+    where!: admin_role_accessesWhereUniqueInput;
 
-    @Field(() => AdminRoleAccessesUpdateWithoutAdmin_rolesInput, {nullable:false})
-    @Type(() => AdminRoleAccessesUpdateWithoutAdmin_rolesInput)
-    data!: AdminRoleAccessesUpdateWithoutAdmin_rolesInput;
+    @Field(() => admin_role_accessesUpdateWithoutAdmin_rolesInput, {nullable:false})
+    @Type(() => admin_role_accessesUpdateWithoutAdmin_rolesInput)
+    data!: admin_role_accessesUpdateWithoutAdmin_rolesInput;
 }

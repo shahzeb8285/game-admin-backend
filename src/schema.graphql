@@ -2,286 +2,115 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Admin {
-  _count: AdminCount!
-  admin_id: ID!
-  admin_login_logs: [AdminLoginLog!]
-  admin_name: String!
-  admin_role_id: String!
-  admin_roles: AdminRole!
-  cdate: DateTime!
-  created_by: String!
-  enabled: Boolean!
-  manual_adjustments: [ManualAdjustment!]
-  udate: DateTime!
-}
-
-type AdminAccesses {
-  _count: AdminAccessesCount!
-  access_name: String!
-  admin_access_id: ID!
-  role_accesses: [AdminRoleAccesses!]
-}
-
-type AdminAccessesCount {
-  role_accesses: Int!
-}
-
-input AdminAccessesRelationFilter {
-  is: AdminAccessesWhereInput
-  isNot: AdminAccessesWhereInput
-}
-
-input AdminAccessesWhereInput {
-  AND: [AdminAccessesWhereInput!]
-  NOT: [AdminAccessesWhereInput!]
-  OR: [AdminAccessesWhereInput!]
-  access_name: StringFilter
-  admin_access_id: StringFilter
-  role_accesses: AdminRoleAccessesListRelationFilter
-}
-
-type AdminBankAccount {
-  _count: AdminBankAccountCount!
-  account_number: String!
-  admin_bank_account_id: ID!
-  bank_name: String!
-  deposit_transactions: [DepositTransaction!]
-  enabled: Boolean!
-  holder_name: String!
-  method: String!
-  withdrawal_transactions: [WithdrawalTransaction!]
-}
-
-type AdminBankAccountCount {
-  deposit_transactions: Int!
-  withdrawal_transactions: Int!
-}
-
-input AdminBankAccountRelationFilter {
-  is: AdminBankAccountWhereInput
-  isNot: AdminBankAccountWhereInput
-}
-
-input AdminBankAccountWhereInput {
-  AND: [AdminBankAccountWhereInput!]
-  NOT: [AdminBankAccountWhereInput!]
-  OR: [AdminBankAccountWhereInput!]
-  account_number: StringFilter
-  admin_bank_account_id: StringFilter
-  bank_name: StringFilter
-  deposit_transactions: DepositTransactionListRelationFilter
-  enabled: BoolFilter
-  holder_name: StringFilter
-  method: StringFilter
-  withdrawal_transactions: WithdrawalTransactionListRelationFilter
-}
-
-type AdminCount {
-  admin_login_logs: Int!
-  manual_adjustments: Int!
-}
-
-input AdminListRelationFilter {
-  every: AdminWhereInput
-  none: AdminWhereInput
-  some: AdminWhereInput
-}
-
-type AdminLoginLog {
-  admin_id_r: String!
-  admins: Admin!
-  ip: String!
-  login_id: ID!
-  login_time: DateTime!
-}
-
-input AdminLoginLogListRelationFilter {
-  every: AdminLoginLogWhereInput
-  none: AdminLoginLogWhereInput
-  some: AdminLoginLogWhereInput
-}
-
-input AdminLoginLogWhereInput {
-  AND: [AdminLoginLogWhereInput!]
-  NOT: [AdminLoginLogWhereInput!]
-  OR: [AdminLoginLogWhereInput!]
-  admin_id_r: StringFilter
-  admins: AdminRelationFilter
-  ip: StringFilter
-  login_id: StringFilter
-  login_time: DateTimeFilter
-}
-
-input AdminRelationFilter {
-  is: AdminWhereInput
-  isNot: AdminWhereInput
-}
-
-type AdminRole {
-  _count: AdminRoleCount!
-  admin_role_id: ID!
-  admin_role_name: String!
-  admins: [Admin!]
-  enabled: Boolean!
-  role_accesses: [AdminRoleAccesses!]
-}
-
-type AdminRoleAccesses {
-  admin_access_id: String!
-  admin_accesses: AdminAccesses!
-  admin_role_id: String!
-  admin_roles: AdminRole!
-}
-
-input AdminRoleAccessesListRelationFilter {
-  every: AdminRoleAccessesWhereInput
-  none: AdminRoleAccessesWhereInput
-  some: AdminRoleAccessesWhereInput
-}
-
-input AdminRoleAccessesWhereInput {
-  AND: [AdminRoleAccessesWhereInput!]
-  NOT: [AdminRoleAccessesWhereInput!]
-  OR: [AdminRoleAccessesWhereInput!]
-  admin_access_id: StringFilter
-  admin_accesses: AdminAccessesRelationFilter
-  admin_role_id: StringFilter
-  admin_roles: AdminRoleRelationFilter
-}
-
-type AdminRoleCount {
-  admins: Int!
-  role_accesses: Int!
-}
-
-input AdminRoleRelationFilter {
-  is: AdminRoleWhereInput
-  isNot: AdminRoleWhereInput
-}
-
-input AdminRoleWhereInput {
-  AND: [AdminRoleWhereInput!]
-  NOT: [AdminRoleWhereInput!]
-  OR: [AdminRoleWhereInput!]
-  admin_role_id: StringFilter
-  admin_role_name: StringFilter
-  admins: AdminListRelationFilter
-  enabled: BoolFilter
-  role_accesses: AdminRoleAccessesListRelationFilter
-}
-
 type AdminRoles {
   admin_role_id: ID!
   admin_role_name: String!
   enabled: Boolean!
-  role_accesses: [AdminRoleAccesses!]
+  role_accesses: [admin_role_accesses!]
 }
 
-input AdminWhereInput {
-  AND: [AdminWhereInput!]
-  NOT: [AdminWhereInput!]
-  OR: [AdminWhereInput!]
-  admin_id: StringFilter
-  admin_login_logs: AdminLoginLogListRelationFilter
-  admin_name: StringFilter
-  admin_password: StringFilter
-  admin_role_id: StringFilter
-  admin_roles: AdminRoleRelationFilter
-  cdate: DateTimeFilter
-  created_by: StringFilter
-  enabled: BoolFilter
-  manual_adjustments: ManualAdjustmentListRelationFilter
-  udate: DateTimeFilter
+type Admin_accessesCount {
+  admin_role_accesses: Int!
 }
 
-type Agent {
-  _count: AgentCount!
-  agent_id: ID!
-  agent_name: String!
-  agent_password: String!
-  agent_rebates: [AgentRebate!]
-  cdate: DateTime!
-  children: [Agent!]
-  created_by: String!
-  enabled: Boolean!
-  parent: Agent
-  parent_agent_id: String
-  players: [Player!]
-  udate: DateTime!
+input Admin_accessesRelationFilter {
+  is: admin_accessesWhereInput
+  isNot: admin_accessesWhereInput
 }
 
-type AgentCount {
-  agent_rebates: Int!
+type Admin_bank_accountsCount {
+  deposit_transactions: Int!
+  withdrawal_transactions: Int!
+}
+
+input Admin_bank_accountsNullableRelationFilter {
+  is: admin_bank_accountsWhereInput
+  isNot: admin_bank_accountsWhereInput
+}
+
+input Admin_bank_accountsRelationFilter {
+  is: admin_bank_accountsWhereInput
+  isNot: admin_bank_accountsWhereInput
+}
+
+input Admin_login_logsListRelationFilter {
+  every: admin_login_logsWhereInput
+  none: admin_login_logsWhereInput
+  some: admin_login_logsWhereInput
+}
+
+input Admin_role_accessesListRelationFilter {
+  every: admin_role_accessesWhereInput
+  none: admin_role_accessesWhereInput
+  some: admin_role_accessesWhereInput
+}
+
+type Admin_rolesCount {
+  admin_role_accesses: Int!
+  admins: Int!
+}
+
+input Admin_rolesRelationFilter {
+  is: admin_rolesWhereInput
+  isNot: admin_rolesWhereInput
+}
+
+type AdminsCount {
+  admin_login_logs: Int!
+  manual_adjustments: Int!
+}
+
+input AdminsListRelationFilter {
+  every: adminsWhereInput
+  none: adminsWhereInput
+  some: adminsWhereInput
+}
+
+input AdminsRelationFilter {
+  is: adminsWhereInput
+  isNot: adminsWhereInput
+}
+
+input Agent_rebate_ratesListRelationFilter {
+  every: agent_rebate_ratesWhereInput
+  none: agent_rebate_ratesWhereInput
+  some: agent_rebate_ratesWhereInput
+}
+
+input Agent_records_by_dayListRelationFilter {
+  every: agent_records_by_dayWhereInput
+  none: agent_records_by_dayWhereInput
+  some: agent_records_by_dayWhereInput
+}
+
+input Agent_sharesListRelationFilter {
+  every: agent_sharesWhereInput
+  none: agent_sharesWhereInput
+  some: agent_sharesWhereInput
+}
+
+type AgentsCount {
+  agent_rebate_rates: Int!
+  agent_records_by_day: Int!
+  agent_shares: Int!
   children: Int!
   players: Int!
 }
 
-input AgentListRelationFilter {
-  every: AgentWhereInput
-  none: AgentWhereInput
-  some: AgentWhereInput
+input AgentsListRelationFilter {
+  every: agentsWhereInput
+  none: agentsWhereInput
+  some: agentsWhereInput
 }
 
-input AgentNullableRelationFilter {
-  is: AgentWhereInput
-  isNot: AgentWhereInput
+input AgentsNullableRelationFilter {
+  is: agentsWhereInput
+  isNot: agentsWhereInput
 }
 
-type AgentRebate {
-  agent_id_r: String!
-  agent_rebate_id: ID!
-  agents: Agent!
-  created_by: String!
-  from_date: DateTime!
-  game_id: String!
-  is_active: Boolean!
-  rebate: Float!
-  thru_date: DateTime!
-}
-
-input AgentRebateListRelationFilter {
-  every: AgentRebateWhereInput
-  none: AgentRebateWhereInput
-  some: AgentRebateWhereInput
-}
-
-input AgentRebateWhereInput {
-  AND: [AgentRebateWhereInput!]
-  NOT: [AgentRebateWhereInput!]
-  OR: [AgentRebateWhereInput!]
-  agent_id_r: StringFilter
-  agent_rebate_id: StringFilter
-  agents: AgentRelationFilter
-  created_by: StringFilter
-  from_date: DateTimeFilter
-  game_id: StringFilter
-  is_active: BoolFilter
-  rebate: FloatFilter
-  thru_date: DateTimeFilter
-}
-
-input AgentRelationFilter {
-  is: AgentWhereInput
-  isNot: AgentWhereInput
-}
-
-input AgentWhereInput {
-  AND: [AgentWhereInput!]
-  NOT: [AgentWhereInput!]
-  OR: [AgentWhereInput!]
-  agent_id: StringFilter
-  agent_name: StringFilter
-  agent_password: StringFilter
-  agent_rebates: AgentRebateListRelationFilter
-  cdate: DateTimeFilter
-  children: AgentListRelationFilter
-  created_by: StringFilter
-  enabled: BoolFilter
-  parent: AgentNullableRelationFilter
-  parent_agent_id: StringNullableFilter
-  players: PlayerListRelationFilter
-  udate: DateTimeFilter
+input AgentsRelationFilter {
+  is: agentsWhereInput
+  isNot: agentsWhereInput
 }
 
 type Auth {
@@ -290,7 +119,7 @@ type Auth {
 
   """JWT refresh token"""
   refresh_token: JWT!
-  user: Admin!
+  user: admins!
 }
 
 type BankAccountEntity {
@@ -344,27 +173,6 @@ input CreateRoleInput {
   admin_role_name: String!
 }
 
-type CurrentActivePlayers {
-  last_active_time: DateTime!
-  player_id_r: ID!
-  players: Player!
-}
-
-input CurrentActivePlayersListRelationFilter {
-  every: CurrentActivePlayersWhereInput
-  none: CurrentActivePlayersWhereInput
-  some: CurrentActivePlayersWhereInput
-}
-
-input CurrentActivePlayersWhereInput {
-  AND: [CurrentActivePlayersWhereInput!]
-  NOT: [CurrentActivePlayersWhereInput!]
-  OR: [CurrentActivePlayersWhereInput!]
-  last_active_time: DateTimeFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -388,58 +196,46 @@ type DepositEntity {
   currency: String!
   deposit_transaction_id: String!
   player_id: String!
-  players: Player!
+  players: players!
   process_time: DateTime!
   processed_by: String!
   request_time: DateTime!
-  status: TransactionType!
+  status: wallet_transaction_status!
   transaction_date: String!
 }
 
-type DepositTransaction {
-  admin_bank_account_id_r: String!
-  admin_bank_accounts: AdminBankAccount!
-  amount: Float!
-  currency: String!
-  deposit_transaction_id: ID!
-  player_id_r: String!
-  players: Player!
-  process_time: DateTime!
-  processed_by: String!
-  request_time: DateTime!
-  status: TransactionType!
-  transaction_date: String!
+input Deposit_transactionsListRelationFilter {
+  every: deposit_transactionsWhereInput
+  none: deposit_transactionsWhereInput
+  some: deposit_transactionsWhereInput
 }
 
-input DepositTransactionListRelationFilter {
-  every: DepositTransactionWhereInput
-  none: DepositTransactionWhereInput
-  some: DepositTransactionWhereInput
+input Enumbank_methodFilter {
+  equals: bank_method
+  in: [bank_method!]
+  not: NestedEnumbank_methodFilter
+  notIn: [bank_method!]
 }
 
-input DepositTransactionWhereInput {
-  AND: [DepositTransactionWhereInput!]
-  NOT: [DepositTransactionWhereInput!]
-  OR: [DepositTransactionWhereInput!]
-  admin_bank_account_id_r: StringFilter
-  admin_bank_accounts: AdminBankAccountRelationFilter
-  amount: FloatFilter
-  currency: StringFilter
-  deposit_transaction_id: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  process_time: DateTimeFilter
-  processed_by: StringFilter
-  request_time: DateTimeFilter
-  status: EnumTransactionTypeFilter
-  transaction_date: StringFilter
+input Enumgame_currencyFilter {
+  equals: game_currency
+  in: [game_currency!]
+  not: NestedEnumgame_currencyFilter
+  notIn: [game_currency!]
 }
 
-input EnumTransactionTypeFilter {
-  equals: TransactionType
-  in: [TransactionType!]
-  not: NestedEnumTransactionTypeFilter
-  notIn: [TransactionType!]
+input Enumreal_currencyFilter {
+  equals: real_currency
+  in: [real_currency!]
+  not: NestedEnumreal_currencyFilter
+  notIn: [real_currency!]
+}
+
+input Enumwallet_transaction_statusFilter {
+  equals: wallet_transaction_status
+  in: [wallet_transaction_status!]
+  not: NestedEnumwallet_transaction_statusFilter
+  notIn: [wallet_transaction_status!]
 }
 
 input FloatFilter {
@@ -451,86 +247,6 @@ input FloatFilter {
   lte: Float
   not: NestedFloatFilter
   notIn: [Float!]
-}
-
-type GameHistory {
-  _count: GameHistoryCount!
-  bet_amount: Float!
-  cdate: DateTime!
-  game_history_id: ID!
-  game_id: String!
-  game_rebates: [GameRebate!]
-  i_gamedesc: String!
-  player_id_r: String!
-  players: Player!
-  transaction_date: String!
-  win_amount: Float!
-}
-
-type GameHistoryCount {
-  game_rebates: Int!
-}
-
-input GameHistoryListRelationFilter {
-  every: GameHistoryWhereInput
-  none: GameHistoryWhereInput
-  some: GameHistoryWhereInput
-}
-
-input GameHistoryRelationFilter {
-  is: GameHistoryWhereInput
-  isNot: GameHistoryWhereInput
-}
-
-input GameHistoryWhereInput {
-  AND: [GameHistoryWhereInput!]
-  NOT: [GameHistoryWhereInput!]
-  OR: [GameHistoryWhereInput!]
-  bet_amount: FloatFilter
-  cdate: DateTimeFilter
-  game_history_id: StringFilter
-  game_id: StringFilter
-  game_rebates: GameRebateListRelationFilter
-  i_gamedesc: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  transaction_date: StringFilter
-  win_amount: FloatFilter
-}
-
-type GameRebate {
-  category: String!
-  cdate: DateTime!
-  effective_bet_amount: Float!
-  game_history: GameHistory!
-  game_history_id: String!
-  game_id: String!
-  game_rebates_id: ID!
-  merchant_id: String!
-  rebate_amount: Float!
-  status: String!
-}
-
-input GameRebateListRelationFilter {
-  every: GameRebateWhereInput
-  none: GameRebateWhereInput
-  some: GameRebateWhereInput
-}
-
-input GameRebateWhereInput {
-  AND: [GameRebateWhereInput!]
-  NOT: [GameRebateWhereInput!]
-  OR: [GameRebateWhereInput!]
-  category: StringFilter
-  cdate: DateTimeFilter
-  effective_bet_amount: FloatFilter
-  game_history: GameHistoryRelationFilter
-  game_history_id: StringFilter
-  game_id: StringFilter
-  game_rebates_id: StringFilter
-  merchant_id: StringFilter
-  rebate_amount: FloatFilter
-  status: StringFilter
 }
 
 input IntFilter {
@@ -551,7 +267,7 @@ scalar JWT
 
 type LoginHistory {
   admin_id: String!
-  admins: Admin!
+  admins: admins!
   ip: String!
   login_id: ID!
   login_time: DateTime!
@@ -562,51 +278,26 @@ input LoginInput {
   password: String!
 }
 
-type ManualAdjustment {
-  admins: Admin!
-  amount: Float!
-  cdate: DateTime!
-  created_by_r: String!
-  manual_adjustment_id: ID!
-  player_id_r: String!
-  players: Player!
-  reason: String!
-}
-
-input ManualAdjustmentListRelationFilter {
-  every: ManualAdjustmentWhereInput
-  none: ManualAdjustmentWhereInput
-  some: ManualAdjustmentWhereInput
-}
-
-input ManualAdjustmentWhereInput {
-  AND: [ManualAdjustmentWhereInput!]
-  NOT: [ManualAdjustmentWhereInput!]
-  OR: [ManualAdjustmentWhereInput!]
-  admins: AdminRelationFilter
-  amount: FloatFilter
-  cdate: DateTimeFilter
-  created_by_r: StringFilter
-  manual_adjustment_id: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  reason: StringFilter
+input Manual_adjustmentsListRelationFilter {
+  every: manual_adjustmentsWhereInput
+  none: manual_adjustmentsWhereInput
+  some: manual_adjustmentsWhereInput
 }
 
 type Mutation {
-  createAdmin(data: CreateAdminInput!): Admin!
+  createAdmin(data: CreateAdminInput!): admins!
   createAdminRole(data: CreateRoleInput!): AdminRoles!
-  createAgent(data: CreateAgentInput!): Agent!
+  createAgent(data: CreateAgentInput!): agents!
   createBankAccount(data: CreateBankAccountInput!): BankAccountEntity!
-  createManualAdjustment(data: CreateManualAdjustment!): ManualAdjustment!
+  createManualAdjustment(data: CreateManualAdjustment!): manual_adjustments!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
-  updateAdmin(data: UpdateAdminInput!): Admin!
+  updateAdmin(data: UpdateAdminInput!): admins!
   updateAdminRole(data: UpdateRoleInput!): AdminRoles!
-  updateAgent(data: UpdateAgentInput!): Agent!
+  updateAgent(data: UpdateAgentInput!): agents!
   updateBankAccount(data: UpdateBankAccountInput!): BankAccountEntity!
   updateDeposit(data: UpdateFinanceInput!): DepositEntity!
-  updateUser(data: UpdatePlayerInput!): Player!
+  updateUser(data: UpdatePlayerInput!): players!
   updateWithdrawal(data: UpdateFinanceInput!): WithdrawalEntity!
 }
 
@@ -626,11 +317,32 @@ input NestedDateTimeFilter {
   notIn: [DateTime!]
 }
 
-input NestedEnumTransactionTypeFilter {
-  equals: TransactionType
-  in: [TransactionType!]
-  not: NestedEnumTransactionTypeFilter
-  notIn: [TransactionType!]
+input NestedEnumbank_methodFilter {
+  equals: bank_method
+  in: [bank_method!]
+  not: NestedEnumbank_methodFilter
+  notIn: [bank_method!]
+}
+
+input NestedEnumgame_currencyFilter {
+  equals: game_currency
+  in: [game_currency!]
+  not: NestedEnumgame_currencyFilter
+  notIn: [game_currency!]
+}
+
+input NestedEnumreal_currencyFilter {
+  equals: real_currency
+  in: [real_currency!]
+  not: NestedEnumreal_currencyFilter
+  notIn: [real_currency!]
+}
+
+input NestedEnumwallet_transaction_statusFilter {
+  equals: wallet_transaction_status
+  in: [wallet_transaction_status!]
+  not: NestedEnumwallet_transaction_statusFilter
+  notIn: [wallet_transaction_status!]
 }
 
 input NestedFloatFilter {
@@ -683,169 +395,56 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
-type Player {
-  _count: PlayerCount!
-  agent: Agent!
-  agent_id_r: String!
-  cdate: DateTime!
-  current_active_players: [CurrentActivePlayers!]
-  deposit_transactions: [DepositTransaction!]
-  enabled: Boolean!
-  game_history: [GameHistory!]
-  manual_adjustments: [ManualAdjustment!]
-  name: String!
-  player_id: ID!
-  player_login_logs: [PlayerLoginLog!]
-  player_wallets: [PlayerWallet!]
-  registration_date: String!
-  registration_ip: String!
-  tg_first_name: String!
-  tg_id: String!
-  tg_last_name: String!
-  tg_photo_url: String!
-  tg_user_name: String!
-  transfer_in_transactions: [TransferInTransaction!]
-  transfer_out_transactions: [TransferOutTransaction!]
-  udate: DateTime!
-  user_language: String!
-  wallet_requests: [WalletRequest!]
-  withdrawal_transactions: [WithdrawalTransaction!]
-}
-
-type PlayerCount {
-  current_active_players: Int!
-  deposit_transactions: Int!
-  game_history: Int!
-  manual_adjustments: Int!
-  player_login_logs: Int!
-  player_wallets: Int!
-  transfer_in_transactions: Int!
-  transfer_out_transactions: Int!
-  wallet_requests: Int!
+type Player_bank_accountsCount {
   withdrawal_transactions: Int!
 }
 
-input PlayerListRelationFilter {
-  every: PlayerWhereInput
-  none: PlayerWhereInput
-  some: PlayerWhereInput
+input Player_bank_accountsRelationFilter {
+  is: player_bank_accountsWhereInput
+  isNot: player_bank_accountsWhereInput
 }
 
-type PlayerLoginLog {
-  ip: String!
-  login_time: DateTime!
-  player_id_r: ID!
-  players: Player!
+type PlayersCount {
+  deposit_transactions: Int!
+  withdrawal_transactions: Int!
 }
 
-input PlayerLoginLogListRelationFilter {
-  every: PlayerLoginLogWhereInput
-  none: PlayerLoginLogWhereInput
-  some: PlayerLoginLogWhereInput
+input PlayersListRelationFilter {
+  every: playersWhereInput
+  none: playersWhereInput
+  some: playersWhereInput
 }
 
-input PlayerLoginLogWhereInput {
-  AND: [PlayerLoginLogWhereInput!]
-  NOT: [PlayerLoginLogWhereInput!]
-  OR: [PlayerLoginLogWhereInput!]
-  ip: StringFilter
-  login_time: DateTimeFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-}
-
-input PlayerRelationFilter {
-  is: PlayerWhereInput
-  isNot: PlayerWhereInput
-}
-
-type PlayerWallet {
-  amount: Float!
-  cdate: DateTime!
-  currency: String!
-  frozen_amount: Float!
-  player_id_r: String!
-  player_wallet_id: ID!
-  players: Player!
-  udate: DateTime!
-}
-
-input PlayerWalletListRelationFilter {
-  every: PlayerWalletWhereInput
-  none: PlayerWalletWhereInput
-  some: PlayerWalletWhereInput
-}
-
-input PlayerWalletWhereInput {
-  AND: [PlayerWalletWhereInput!]
-  NOT: [PlayerWalletWhereInput!]
-  OR: [PlayerWalletWhereInput!]
-  amount: FloatFilter
-  cdate: DateTimeFilter
-  currency: StringFilter
-  frozen_amount: FloatFilter
-  player_id_r: StringFilter
-  player_wallet_id: StringFilter
-  players: PlayerRelationFilter
-  udate: DateTimeFilter
-}
-
-input PlayerWhereInput {
-  AND: [PlayerWhereInput!]
-  NOT: [PlayerWhereInput!]
-  OR: [PlayerWhereInput!]
-  agent: AgentRelationFilter
-  agent_id_r: StringFilter
-  cdate: DateTimeFilter
-  current_active_players: CurrentActivePlayersListRelationFilter
-  deposit_transactions: DepositTransactionListRelationFilter
-  enabled: BoolFilter
-  game_history: GameHistoryListRelationFilter
-  manual_adjustments: ManualAdjustmentListRelationFilter
-  name: StringFilter
-  player_id: StringFilter
-  player_login_logs: PlayerLoginLogListRelationFilter
-  player_wallets: PlayerWalletListRelationFilter
-  registration_date: StringFilter
-  registration_ip: StringFilter
-  tg_first_name: StringFilter
-  tg_id: StringFilter
-  tg_last_name: StringFilter
-  tg_photo_url: StringFilter
-  tg_user_name: StringFilter
-  transfer_in_transactions: TransferInTransactionListRelationFilter
-  transfer_out_transactions: TransferOutTransactionListRelationFilter
-  udate: DateTimeFilter
-  user_language: StringFilter
-  wallet_requests: WalletRequestListRelationFilter
-  withdrawal_transactions: WithdrawalTransactionListRelationFilter
+input PlayersRelationFilter {
+  is: playersWhereInput
+  isNot: playersWhereInput
 }
 
 type Query {
   adminCount: CountDto!
   adminLoginCount: CountDto!
   adminRolesCount: CountDto!
-  admins(skip: Int! = 0, take: Int! = 10, where: AdminWhereInput! = {}): [Admin!]!
-  agents(skip: Int! = 0, take: Int! = 10, where: AgentWhereInput! = {}): [Agent!]!
+  admins(skip: Int! = 0, take: Int! = 10, where: adminsWhereInput! = {}): [admins!]!
+  agents(skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount: CountDto!
   bankAccountCount: CountDto!
-  bankaccounts(skip: Int! = 0, take: Int! = 10, where: AdminBankAccountWhereInput! = {}): [BankAccountEntity!]!
-  deposits(skip: Int! = 0, take: Int! = 10, where: DepositTransactionWhereInput! = {}): [DepositEntity!]!
+  bankaccounts(skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [BankAccountEntity!]!
+  deposits(skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [DepositEntity!]!
   depositsCount: CountDto!
   gamerebates: [BankAccountEntity!]!
-  getAccesses(skip: Int! = 0, take: Int! = 10, where: AdminAccessesWhereInput! = {}): [AdminAccesses!]!
-  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: AdminLoginLogWhereInput! = {}): [LoginHistory!]!
-  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: AdminRoleWhereInput! = {}): [AdminRoles!]!
-  getMe: Admin!
-  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: PlayerLoginLogWhereInput! = {}): [UserLoginHistory!]!
-  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: ManualAdjustmentWhereInput! = {}): [Player!]!
+  getAccesses(skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
+  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [LoginHistory!]!
+  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [AdminRoles!]!
+  getMe: admins!
+  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [UserLoginHistory!]!
+  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [players!]!
   manualAdjustmentCount: CountDto!
-  manualadjustments(skip: Int! = 0, take: Int! = 10, where: ManualAdjustmentWhereInput! = {}): [ManualAdjustment!]!
-  players(skip: Int! = 0, take: Int! = 10, where: PlayerWhereInput! = {}): [Player!]!
+  manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
+  players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   usersCount: CountDto!
   usersLoginCount: CountDto!
   withdrawalCount: CountDto!
-  withdrawals(skip: Int! = 0, take: Int! = 10, where: WithdrawalTransactionWhereInput! = {}): [WithdrawalEntity!]!
+  withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [WithdrawalEntity!]!
 }
 
 enum QueryMode {
@@ -889,90 +488,6 @@ type Token {
 
   """JWT refresh token"""
   refresh_token: JWT!
-}
-
-enum TransactionType {
-  PENDING
-  REJECTED
-  SUCCESS
-}
-
-type TransferInTransaction {
-  amount: Float!
-  counterpart_platform: String!
-  counterpart_username: String!
-  currency: String!
-  player_id_r: String!
-  players: Player!
-  process_time: DateTime!
-  processed_by: String!
-  request_time: DateTime!
-  status: TransactionType!
-  transaction_date: String!
-  transfer_in_Transaction_id: ID!
-}
-
-input TransferInTransactionListRelationFilter {
-  every: TransferInTransactionWhereInput
-  none: TransferInTransactionWhereInput
-  some: TransferInTransactionWhereInput
-}
-
-input TransferInTransactionWhereInput {
-  AND: [TransferInTransactionWhereInput!]
-  NOT: [TransferInTransactionWhereInput!]
-  OR: [TransferInTransactionWhereInput!]
-  amount: FloatFilter
-  counterpart_platform: StringFilter
-  counterpart_username: StringFilter
-  currency: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  process_time: DateTimeFilter
-  processed_by: StringFilter
-  request_time: DateTimeFilter
-  status: EnumTransactionTypeFilter
-  transaction_date: StringFilter
-  transfer_in_Transaction_id: StringFilter
-}
-
-type TransferOutTransaction {
-  amount: Float!
-  counterpart_platform: String!
-  counterpart_username: String!
-  currency: String!
-  player_id_r: String!
-  players: Player!
-  process_time: DateTime!
-  processed_by: String!
-  request_time: DateTime!
-  status: TransactionType!
-  transaction_date: String!
-  transfer_out_transaction_id: ID!
-}
-
-input TransferOutTransactionListRelationFilter {
-  every: TransferOutTransactionWhereInput
-  none: TransferOutTransactionWhereInput
-  some: TransferOutTransactionWhereInput
-}
-
-input TransferOutTransactionWhereInput {
-  AND: [TransferOutTransactionWhereInput!]
-  NOT: [TransferOutTransactionWhereInput!]
-  OR: [TransferOutTransactionWhereInput!]
-  amount: FloatFilter
-  counterpart_platform: StringFilter
-  counterpart_username: StringFilter
-  currency: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  process_time: DateTimeFilter
-  processed_by: StringFilter
-  request_time: DateTimeFilter
-  status: EnumTransactionTypeFilter
-  transaction_date: StringFilter
-  transfer_out_transaction_id: StringFilter
 }
 
 input UpdateAdminInput {
@@ -1021,62 +536,7 @@ type UserLoginHistory {
   ip: String!
   login_time: DateTime!
   player_id: String!
-  players: Player!
-}
-
-type WalletRequest {
-  amount: String!
-  currency: String!
-  game_extra: String!
-  hmac: String!
-  i_action_id: String!
-  i_extparam: String!
-  i_game_id: String!
-  i_gamedesc: String!
-  i_reference_action_id: String!
-  i_rollback: String!
-  jackpot_win: Int!
-  player_id_r: String!
-  players: Player!
-  response: String!
-  round_ended: Boolean!
-  round_start: Boolean!
-  subtype: String!
-  t_id: String!
-  type: String!
-  wallet_request_id: ID!
-}
-
-input WalletRequestListRelationFilter {
-  every: WalletRequestWhereInput
-  none: WalletRequestWhereInput
-  some: WalletRequestWhereInput
-}
-
-input WalletRequestWhereInput {
-  AND: [WalletRequestWhereInput!]
-  NOT: [WalletRequestWhereInput!]
-  OR: [WalletRequestWhereInput!]
-  amount: StringFilter
-  currency: StringFilter
-  game_extra: StringFilter
-  hmac: StringFilter
-  i_action_id: StringFilter
-  i_extparam: StringFilter
-  i_game_id: StringFilter
-  i_gamedesc: StringFilter
-  i_reference_action_id: StringFilter
-  i_rollback: StringFilter
-  jackpot_win: IntFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
-  response: StringFilter
-  round_ended: BoolFilter
-  round_start: BoolFilter
-  subtype: StringFilter
-  t_id: StringFilter
-  type: StringFilter
-  wallet_request_id: StringFilter
+  players: players!
 }
 
 type WithdrawalEntity {
@@ -1085,50 +545,521 @@ type WithdrawalEntity {
   amount: Float!
   currency: String!
   player_id: String!
-  players: Player!
+  players: players!
   process_time: DateTime!
   processed_by: String!
   request_time: DateTime!
-  status: TransactionType!
+  status: wallet_transaction_status!
   transaction_date: String!
   withdrawal_transaction_id: ID!
 }
 
-type WithdrawalTransaction {
-  admin_bank_account_id_r: String!
-  admin_bank_accounts: AdminBankAccount!
-  amount: Float!
-  currency: String!
-  player_id_r: String!
-  players: Player!
+input Withdrawal_transactionsListRelationFilter {
+  every: withdrawal_transactionsWhereInput
+  none: withdrawal_transactionsWhereInput
+  some: withdrawal_transactionsWhereInput
+}
+
+type admin_accesses {
+  _count: Admin_accessesCount!
+  access_name: String!
+  admin_access_id: ID!
+  admin_role_accesses: [admin_role_accesses!]
+}
+
+input admin_accessesWhereInput {
+  AND: [admin_accessesWhereInput!]
+  NOT: [admin_accessesWhereInput!]
+  OR: [admin_accessesWhereInput!]
+  access_name: StringFilter
+  admin_access_id: StringFilter
+  admin_role_accesses: Admin_role_accessesListRelationFilter
+}
+
+type admin_bank_accounts {
+  _count: Admin_bank_accountsCount!
+  account_number: String!
+  admin_bank_account_id: ID!
+  bank_name: String!
+  cdate: DateTime!
+  deposit_transactions: [deposit_transactions!]
+  enabled: Boolean!
+  holder_name: String!
+  method: bank_method!
+  udate: DateTime!
+  withdrawal_transactions: [withdrawal_transactions!]
+}
+
+input admin_bank_accountsWhereInput {
+  AND: [admin_bank_accountsWhereInput!]
+  NOT: [admin_bank_accountsWhereInput!]
+  OR: [admin_bank_accountsWhereInput!]
+  account_number: StringFilter
+  admin_bank_account_id: StringFilter
+  bank_name: StringFilter
+  cdate: DateTimeFilter
+  deposit_transactions: Deposit_transactionsListRelationFilter
+  enabled: BoolFilter
+  holder_name: StringFilter
+  method: Enumbank_methodFilter
+  udate: DateTimeFilter
+  withdrawal_transactions: Withdrawal_transactionsListRelationFilter
+}
+
+type admin_login_logs {
+  admin_id: String!
+  admin_login_log_id: ID!
+  admins: admins!
+  ip: String!
+  login_time: DateTime!
+}
+
+input admin_login_logsWhereInput {
+  AND: [admin_login_logsWhereInput!]
+  NOT: [admin_login_logsWhereInput!]
+  OR: [admin_login_logsWhereInput!]
+  admin_id: StringFilter
+  admin_login_log_id: StringFilter
+  admins: AdminsRelationFilter
+  ip: StringFilter
+  login_time: DateTimeFilter
+}
+
+type admin_role_accesses {
+  admin_access_id: String!
+  admin_accesses: admin_accesses!
+  admin_role_access_id: ID!
+  admin_role_id: String!
+  admin_roles: admin_roles!
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  udate: DateTime!
+  updated_by: String!
+}
+
+input admin_role_accessesWhereInput {
+  AND: [admin_role_accessesWhereInput!]
+  NOT: [admin_role_accessesWhereInput!]
+  OR: [admin_role_accessesWhereInput!]
+  admin_access_id: StringFilter
+  admin_accesses: Admin_accessesRelationFilter
+  admin_role_access_id: StringFilter
+  admin_role_id: StringFilter
+  admin_roles: Admin_rolesRelationFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  enabled: BoolFilter
+  udate: DateTimeFilter
+  updated_by: StringFilter
+}
+
+type admin_roles {
+  _count: Admin_rolesCount!
+  admin_role_accesses: [admin_role_accesses!]
+  admin_role_id: ID!
+  admin_role_name: String!
+  admins: [admins!]
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  udate: DateTime!
+}
+
+input admin_rolesWhereInput {
+  AND: [admin_rolesWhereInput!]
+  NOT: [admin_rolesWhereInput!]
+  OR: [admin_rolesWhereInput!]
+  admin_role_accesses: Admin_role_accessesListRelationFilter
+  admin_role_id: StringFilter
+  admin_role_name: StringFilter
+  admins: AdminsListRelationFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  enabled: BoolFilter
+  udate: DateTimeFilter
+}
+
+type admins {
+  _count: AdminsCount!
+  admin_id: ID!
+  admin_login_logs: [admin_login_logs!]
+  admin_name: String!
+  admin_password: String!
+  admin_role_id: String!
+  admin_roles: admin_roles!
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  manual_adjustments: [manual_adjustments!]
+  udate: DateTime!
+}
+
+input adminsWhereInput {
+  AND: [adminsWhereInput!]
+  NOT: [adminsWhereInput!]
+  OR: [adminsWhereInput!]
+  admin_id: StringFilter
+  admin_login_logs: Admin_login_logsListRelationFilter
+  admin_name: StringFilter
+  admin_password: StringFilter
+  admin_role_id: StringFilter
+  admin_roles: Admin_rolesRelationFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  enabled: BoolFilter
+  manual_adjustments: Manual_adjustmentsListRelationFilter
+  udate: DateTimeFilter
+}
+
+type agent_rebate_rates {
+  agent_id: String!
+  agent_rebate_rate_id: ID!
+  agents: agents!
+  cdate: DateTime!
+  created_by: String!
+  is_active: Boolean!
+  rebate: Float!
+  rebate_category_id: Int!
+}
+
+input agent_rebate_ratesWhereInput {
+  AND: [agent_rebate_ratesWhereInput!]
+  NOT: [agent_rebate_ratesWhereInput!]
+  OR: [agent_rebate_ratesWhereInput!]
+  agent_id: StringFilter
+  agent_rebate_rate_id: StringFilter
+  agents: AgentsRelationFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  is_active: BoolFilter
+  rebate: FloatFilter
+  rebate_category_id: IntFilter
+}
+
+type agent_records_by_day {
+  agent_id: String!
+  agent_records_by_day_id: ID!
+  agents: agents!
+  cdate: DateTime!
+  child_agent_id: String!
+  effective_bet_amount: Float!
+  game_date: DateTime!
+  game_pnl_expense: Float!
+  game_pnl_income: Float!
+  game_records_by_day_id: String!
+  is_active: Boolean!
+  player_id: String!
+  rebate_category_id: Int!
+  rebate_expense: Float!
+  rebate_income: Float!
+  udate: DateTime!
+}
+
+input agent_records_by_dayWhereInput {
+  AND: [agent_records_by_dayWhereInput!]
+  NOT: [agent_records_by_dayWhereInput!]
+  OR: [agent_records_by_dayWhereInput!]
+  agent_id: StringFilter
+  agent_records_by_day_id: StringFilter
+  agents: AgentsRelationFilter
+  cdate: DateTimeFilter
+  child_agent_id: StringFilter
+  effective_bet_amount: FloatFilter
+  game_date: DateTimeFilter
+  game_pnl_expense: FloatFilter
+  game_pnl_income: FloatFilter
+  game_records_by_day_id: StringFilter
+  is_active: BoolFilter
+  player_id: StringFilter
+  rebate_category_id: IntFilter
+  rebate_expense: FloatFilter
+  rebate_income: FloatFilter
+  udate: DateTimeFilter
+}
+
+type agent_shares {
+  agent_id: String!
+  agent_share_id: ID!
+  agents: agents!
+  cdate: DateTime!
+  created_by: String!
+  enabled: Boolean!
+  is_active: Boolean!
+  shares: Float!
+  udate: DateTime!
+}
+
+input agent_sharesWhereInput {
+  AND: [agent_sharesWhereInput!]
+  NOT: [agent_sharesWhereInput!]
+  OR: [agent_sharesWhereInput!]
+  agent_id: StringFilter
+  agent_share_id: StringFilter
+  agents: AgentsRelationFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  enabled: BoolFilter
+  is_active: BoolFilter
+  shares: FloatFilter
+  udate: DateTimeFilter
+}
+
+type agents {
+  _count: AgentsCount!
+  agent_id: ID!
+  agent_name: String!
+  agent_password: String!
+  agent_rebate_rates: [agent_rebate_rates!]
+  agent_records_by_day: [agent_records_by_day!]
+  agent_shares: [agent_shares!]
+  cdate: DateTime!
+  children: [agents!]
+  created_by: String!
+  enabled: Boolean!
+  parent: agents
+  parent_agent_id: String
+  players: [players!]
+  udate: DateTime!
+}
+
+input agentsWhereInput {
+  AND: [agentsWhereInput!]
+  NOT: [agentsWhereInput!]
+  OR: [agentsWhereInput!]
+  agent_id: StringFilter
+  agent_name: StringFilter
+  agent_password: StringFilter
+  agent_rebate_rates: Agent_rebate_ratesListRelationFilter
+  agent_records_by_day: Agent_records_by_dayListRelationFilter
+  agent_shares: Agent_sharesListRelationFilter
+  cdate: DateTimeFilter
+  children: AgentsListRelationFilter
+  created_by: StringFilter
+  enabled: BoolFilter
+  parent: AgentsNullableRelationFilter
+  parent_agent_id: StringNullableFilter
+  players: PlayersListRelationFilter
+  udate: DateTimeFilter
+}
+
+enum bank_method {
+  BANK
+  FPS
+}
+
+type deposit_transactions {
+  admin_bank_account: admin_bank_accounts!
+  admin_bank_account_id: String!
+  cdate: DateTime!
+  comment: String!
+  deposit_transaction_id: ID!
+  game_amount: Float!
+  game_currency: game_currency!
+  player_id: String!
+  player_remarks: String!
+  players: players!
   process_time: DateTime!
   processed_by: String!
-  request_time: DateTime!
-  status: TransactionType!
+  status: wallet_transaction_status!
+  transaction_amount: Float!
+  transaction_currency: real_currency!
   transaction_date: String!
-  withdrawal_transaction_id: ID!
+  udate: DateTime!
 }
 
-input WithdrawalTransactionListRelationFilter {
-  every: WithdrawalTransactionWhereInput
-  none: WithdrawalTransactionWhereInput
-  some: WithdrawalTransactionWhereInput
-}
-
-input WithdrawalTransactionWhereInput {
-  AND: [WithdrawalTransactionWhereInput!]
-  NOT: [WithdrawalTransactionWhereInput!]
-  OR: [WithdrawalTransactionWhereInput!]
-  admin_bank_account_id_r: StringFilter
-  admin_bank_accounts: AdminBankAccountRelationFilter
-  amount: FloatFilter
-  currency: StringFilter
-  player_id_r: StringFilter
-  players: PlayerRelationFilter
+input deposit_transactionsWhereInput {
+  AND: [deposit_transactionsWhereInput!]
+  NOT: [deposit_transactionsWhereInput!]
+  OR: [deposit_transactionsWhereInput!]
+  admin_bank_account: Admin_bank_accountsRelationFilter
+  admin_bank_account_id: StringFilter
+  cdate: DateTimeFilter
+  comment: StringFilter
+  deposit_transaction_id: StringFilter
+  game_amount: FloatFilter
+  game_currency: Enumgame_currencyFilter
+  player_id: StringFilter
+  player_remarks: StringFilter
+  players: PlayersRelationFilter
   process_time: DateTimeFilter
   processed_by: StringFilter
-  request_time: DateTimeFilter
-  status: EnumTransactionTypeFilter
+  status: Enumwallet_transaction_statusFilter
+  transaction_amount: FloatFilter
+  transaction_currency: Enumreal_currencyFilter
   transaction_date: StringFilter
+  udate: DateTimeFilter
+}
+
+enum game_currency {
+  fHKD
+}
+
+type manual_adjustments {
+  admins: admins!
+  amount: Float!
+  cdate: DateTime!
+  created_by: String!
+  manual_adjustment_id: ID!
+  player_id: String!
+  reason: String!
+}
+
+input manual_adjustmentsWhereInput {
+  AND: [manual_adjustmentsWhereInput!]
+  NOT: [manual_adjustmentsWhereInput!]
+  OR: [manual_adjustmentsWhereInput!]
+  admins: AdminsRelationFilter
+  amount: FloatFilter
+  cdate: DateTimeFilter
+  created_by: StringFilter
+  manual_adjustment_id: StringFilter
+  player_id: StringFilter
+  reason: StringFilter
+}
+
+type player_bank_accounts {
+  _count: Player_bank_accountsCount!
+  account_number: String!
+  bank_name: String!
+  cdate: DateTime!
+  enabled: Boolean!
+  holder_name: String!
+  method: bank_method!
+  player_bank_account_id: ID!
+  player_id: String!
+  udate: DateTime!
+  withdrawal_transactions: [withdrawal_transactions!]
+}
+
+input player_bank_accountsWhereInput {
+  AND: [player_bank_accountsWhereInput!]
+  NOT: [player_bank_accountsWhereInput!]
+  OR: [player_bank_accountsWhereInput!]
+  account_number: StringFilter
+  bank_name: StringFilter
+  cdate: DateTimeFilter
+  enabled: BoolFilter
+  holder_name: StringFilter
+  method: Enumbank_methodFilter
+  player_bank_account_id: StringFilter
+  player_id: StringFilter
+  udate: DateTimeFilter
+  withdrawal_transactions: Withdrawal_transactionsListRelationFilter
+}
+
+input player_login_logsWhereInput {
+  AND: [player_login_logsWhereInput!]
+  NOT: [player_login_logsWhereInput!]
+  OR: [player_login_logsWhereInput!]
+  ip: StringFilter
+  login_time: DateTimeFilter
+  player_id: StringFilter
+  player_login_log_id: StringFilter
+}
+
+type players {
+  _count: PlayersCount!
+  agent: agents!
+  agent_id: String!
+  cdate: DateTime!
+  deposit_transactions: [deposit_transactions!]
+  enabled: Boolean!
+  fundist_password: String!
+  name: String!
+  password: String!
+  player_id: ID!
+  registration_date: String!
+  registration_ip: String!
+  tg_first_name: String!
+  tg_id: String!
+  tg_last_name: String!
+  tg_photo_url: String!
+  tg_username: String!
+  udate: DateTime!
+  user_language: String!
+  withdrawal_transactions: [withdrawal_transactions!]
+}
+
+input playersWhereInput {
+  AND: [playersWhereInput!]
+  NOT: [playersWhereInput!]
+  OR: [playersWhereInput!]
+  agent: AgentsRelationFilter
+  agent_id: StringFilter
+  cdate: DateTimeFilter
+  deposit_transactions: Deposit_transactionsListRelationFilter
+  enabled: BoolFilter
+  fundist_password: StringFilter
+  name: StringFilter
+  password: StringFilter
+  player_id: StringFilter
+  registration_date: StringFilter
+  registration_ip: StringFilter
+  tg_first_name: StringFilter
+  tg_id: StringFilter
+  tg_last_name: StringFilter
+  tg_photo_url: StringFilter
+  tg_username: StringFilter
+  udate: DateTimeFilter
+  user_language: StringFilter
+  withdrawal_transactions: Withdrawal_transactionsListRelationFilter
+}
+
+enum real_currency {
+  HKD
+  USDT
+}
+
+enum wallet_transaction_status {
+  FAILED
+  PENDING
+  SUCCESS
+}
+
+type withdrawal_transactions {
+  admin_bank_accounts: admin_bank_accounts
+  admin_bank_accountsAdmin_bank_account_id: String
+  cdate: DateTime!
+  comment: String!
+  game_amount: Float!
+  game_currency: game_currency!
+  player_bank_account: player_bank_accounts!
+  player_bank_account_id: String!
+  player_id: String!
+  player_remarks: String!
+  players: players!
+  process_time: DateTime!
+  processed_by: String!
+  status: wallet_transaction_status!
+  transaction_amount: Float!
+  transaction_currency: real_currency!
+  transaction_date: String!
+  udate: DateTime!
+  withdrawal_transaction_id: ID!
+}
+
+input withdrawal_transactionsWhereInput {
+  AND: [withdrawal_transactionsWhereInput!]
+  NOT: [withdrawal_transactionsWhereInput!]
+  OR: [withdrawal_transactionsWhereInput!]
+  admin_bank_accounts: Admin_bank_accountsNullableRelationFilter
+  admin_bank_accountsAdmin_bank_account_id: StringNullableFilter
+  cdate: DateTimeFilter
+  comment: StringFilter
+  game_amount: FloatFilter
+  game_currency: Enumgame_currencyFilter
+  player_bank_account: Player_bank_accountsRelationFilter
+  player_bank_account_id: StringFilter
+  player_id: StringFilter
+  player_remarks: StringFilter
+  players: PlayersRelationFilter
+  process_time: DateTimeFilter
+  processed_by: StringFilter
+  status: Enumwallet_transaction_statusFilter
+  transaction_amount: FloatFilter
+  transaction_currency: Enumreal_currencyFilter
+  transaction_date: StringFilter
+  udate: DateTimeFilter
   withdrawal_transaction_id: StringFilter
 }

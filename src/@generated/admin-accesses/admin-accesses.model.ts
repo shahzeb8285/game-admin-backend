@@ -1,21 +1,20 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { AdminRoleAccesses } from '../admin-role-accesses/admin-role-accesses.model';
-import { AdminAccessesCount } from '../admin/admin-accesses-count.output';
+import { admin_role_accesses } from '../admin-role-accesses/admin-role-accesses.model';
+import { Admin_accessesCount } from '../prisma/admin-accesses-count.output';
 
 @ObjectType()
-export class AdminAccesses {
+export class admin_accesses {
+  @Field(() => ID, { nullable: false })
+  admin_access_id!: string;
 
-    @Field(() => ID, {nullable:false})
-    admin_access_id!: string;
+  @Field(() => String, { nullable: false })
+  access_name!: string;
 
-    @Field(() => String, {nullable:false})
-    access_name!: string;
+  @Field(() => [admin_role_accesses], { nullable: true })
+  admin_role_accesses?: Array<admin_role_accesses>;
 
-    @Field(() => [AdminRoleAccesses], {nullable:true})
-    role_accesses?: Array<AdminRoleAccesses>;
-
-    @Field(() => AdminAccessesCount, {nullable:false})
-    _count?: AdminAccessesCount;
+  @Field(() => Admin_accessesCount, { nullable: false })
+  _count?: Admin_accessesCount;
 }

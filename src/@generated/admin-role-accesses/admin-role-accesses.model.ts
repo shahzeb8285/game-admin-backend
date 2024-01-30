@@ -1,10 +1,14 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
-import { AdminRole } from '../admin-role/admin-role.model';
-import { AdminAccesses } from '../admin-accesses/admin-accesses.model';
+import { ID } from '@nestjs/graphql';
+import { admin_roles } from '../admin-roles/admin-roles.model';
+import { admin_accesses } from '../admin-accesses/admin-accesses.model';
 
 @ObjectType()
-export class AdminRoleAccesses {
+export class admin_role_accesses {
+
+    @Field(() => ID, {nullable:false})
+    admin_role_access_id!: string;
 
     @Field(() => String, {nullable:false})
     admin_role_id!: string;
@@ -12,9 +16,24 @@ export class AdminRoleAccesses {
     @Field(() => String, {nullable:false})
     admin_access_id!: string;
 
-    @Field(() => AdminRole, {nullable:false})
-    admin_roles?: AdminRole;
+    @Field(() => String, {nullable:false})
+    created_by!: string;
 
-    @Field(() => AdminAccesses, {nullable:false})
-    admin_accesses?: AdminAccesses;
+    @Field(() => String, {nullable:false})
+    updated_by!: string;
+
+    @Field(() => Date, {nullable:false})
+    cdate!: Date;
+
+    @Field(() => Date, {nullable:false})
+    udate!: Date;
+
+    @Field(() => Boolean, {nullable:false,defaultValue:true})
+    enabled!: boolean;
+
+    @Field(() => admin_roles, {nullable:false})
+    admin_roles?: admin_roles;
+
+    @Field(() => admin_accesses, {nullable:false})
+    admin_accesses?: admin_accesses;
 }

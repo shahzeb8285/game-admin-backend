@@ -1,27 +1,27 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { AdminRoleAccessesCreateWithoutAdmin_accessesInput } from './admin-role-accesses-create-without-admin-accesses.input';
+import { admin_role_accessesCreateWithoutAdmin_accessesInput } from './admin-role-accesses-create-without-admin-accesses.input';
 import { Type } from 'class-transformer';
-import { AdminRoleAccessesCreateOrConnectWithoutAdmin_accessesInput } from './admin-role-accesses-create-or-connect-without-admin-accesses.input';
-import { AdminRoleAccessesCreateManyAdmin_accessesInputEnvelope } from './admin-role-accesses-create-many-admin-accesses-input-envelope.input';
-import { AdminRoleAccessesWhereUniqueInput } from './admin-role-accesses-where-unique.input';
+import { admin_role_accessesCreateOrConnectWithoutAdmin_accessesInput } from './admin-role-accesses-create-or-connect-without-admin-accesses.input';
+import { admin_role_accessesCreateManyAdmin_accessesInputEnvelope } from './admin-role-accesses-create-many-admin-accesses-input-envelope.input';
+import { admin_role_accessesWhereUniqueInput } from './admin-role-accesses-where-unique.input';
 
 @InputType()
-export class AdminRoleAccessesUncheckedCreateNestedManyWithoutAdmin_accessesInput {
+export class admin_role_accessesUncheckedCreateNestedManyWithoutAdmin_accessesInput {
 
-    @Field(() => [AdminRoleAccessesCreateWithoutAdmin_accessesInput], {nullable:true})
-    @Type(() => AdminRoleAccessesCreateWithoutAdmin_accessesInput)
-    create?: Array<AdminRoleAccessesCreateWithoutAdmin_accessesInput>;
+    @Field(() => [admin_role_accessesCreateWithoutAdmin_accessesInput], {nullable:true})
+    @Type(() => admin_role_accessesCreateWithoutAdmin_accessesInput)
+    create?: Array<admin_role_accessesCreateWithoutAdmin_accessesInput>;
 
-    @Field(() => [AdminRoleAccessesCreateOrConnectWithoutAdmin_accessesInput], {nullable:true})
-    @Type(() => AdminRoleAccessesCreateOrConnectWithoutAdmin_accessesInput)
-    connectOrCreate?: Array<AdminRoleAccessesCreateOrConnectWithoutAdmin_accessesInput>;
+    @Field(() => [admin_role_accessesCreateOrConnectWithoutAdmin_accessesInput], {nullable:true})
+    @Type(() => admin_role_accessesCreateOrConnectWithoutAdmin_accessesInput)
+    connectOrCreate?: Array<admin_role_accessesCreateOrConnectWithoutAdmin_accessesInput>;
 
-    @Field(() => AdminRoleAccessesCreateManyAdmin_accessesInputEnvelope, {nullable:true})
-    @Type(() => AdminRoleAccessesCreateManyAdmin_accessesInputEnvelope)
-    createMany?: AdminRoleAccessesCreateManyAdmin_accessesInputEnvelope;
+    @Field(() => admin_role_accessesCreateManyAdmin_accessesInputEnvelope, {nullable:true})
+    @Type(() => admin_role_accessesCreateManyAdmin_accessesInputEnvelope)
+    createMany?: admin_role_accessesCreateManyAdmin_accessesInputEnvelope;
 
-    @Field(() => [AdminRoleAccessesWhereUniqueInput], {nullable:true})
-    @Type(() => AdminRoleAccessesWhereUniqueInput)
-    connect?: Array<AdminRoleAccessesWhereUniqueInput>;
+    @Field(() => [admin_role_accessesWhereUniqueInput], {nullable:true})
+    @Type(() => admin_role_accessesWhereUniqueInput)
+    connect?: Array<admin_role_accessesWhereUniqueInput>;
 }

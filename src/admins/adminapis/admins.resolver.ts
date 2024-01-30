@@ -10,10 +10,10 @@ import { GqlAuthorizationGuard } from '../../auth/authorization.guard';
 import { LoginHistory } from '../entities/loginhistory.entity';
 import { Prisma } from '@prisma/client';
 import { GraphQLResolveInfo } from 'graphql';
-import { Admin } from '../../@generated/admin/admin.model';
-import { AdminWhereInput } from '../../@generated/admin/admin-where.input';
+import { admins as Admin } from '../../@generated/admins/admins.model';
+import { adminsWhereInput as AdminWhereInput } from '../../@generated/admins/admins-where.input';
 import { CountDto } from '../../common/models/count.model';
-import { AdminLoginLogWhereInput } from '../../@generated/admin-login-log/admin-login-log-where.input';
+import { admin_login_logsWhereInput as AdminLoginLogWhereInput } from '../../@generated/admin-login-logs/admin-login-logs-where.input';
 // import { AdminWhereInput,Admin } from '../../@generated';
 
 @Resolver(() => Admin)

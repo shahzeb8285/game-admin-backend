@@ -10,9 +10,9 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
 import { BankAccountEntity } from './entities/bankaccount.entity';
-import { DepositTransactionWhereInput } from '../@generated/deposit-transaction/deposit-transaction-where.input';
-import { WithdrawalTransactionWhereInput } from '../@generated/withdrawal-transaction/withdrawal-transaction-where.input';
-import { AdminBankAccountWhereInput } from '../@generated/admin-bank-account/admin-bank-account-where.input';
+import { deposit_transactionsWhereInput as DepositTransactionWhereInput } from '../@generated/deposit-transactions/deposit-transactions-where.input';
+import { withdrawal_transactionsWhereInput as WithdrawalTransactionWhereInput } from '../@generated/withdrawal-transactions/withdrawal-transactions-where.input';
+import { admin_bank_accountsWhereInput as AdminBankAccountWhereInput } from '../@generated/admin-bank-accounts/admin-bank-accounts-where.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {

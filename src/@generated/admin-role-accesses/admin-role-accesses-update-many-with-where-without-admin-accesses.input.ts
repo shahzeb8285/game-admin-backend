@@ -1,17 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { AdminRoleAccessesScalarWhereInput } from './admin-role-accesses-scalar-where.input';
+import { admin_role_accessesScalarWhereInput } from './admin-role-accesses-scalar-where.input';
 import { Type } from 'class-transformer';
-import { AdminRoleAccessesUncheckedUpdateManyWithoutAdmin_accessesInput } from './admin-role-accesses-unchecked-update-many-without-admin-accesses.input';
+import { admin_role_accessesUpdateManyMutationInput } from './admin-role-accesses-update-many-mutation.input';
 
 @InputType()
-export class AdminRoleAccessesUpdateManyWithWhereWithoutAdmin_accessesInput {
+export class admin_role_accessesUpdateManyWithWhereWithoutAdmin_accessesInput {
 
-    @Field(() => AdminRoleAccessesScalarWhereInput, {nullable:false})
-    @Type(() => AdminRoleAccessesScalarWhereInput)
-    where!: AdminRoleAccessesScalarWhereInput;
+    @Field(() => admin_role_accessesScalarWhereInput, {nullable:false})
+    @Type(() => admin_role_accessesScalarWhereInput)
+    where!: admin_role_accessesScalarWhereInput;
 
-    @Field(() => AdminRoleAccessesUncheckedUpdateManyWithoutAdmin_accessesInput, {nullable:false})
-    @Type(() => AdminRoleAccessesUncheckedUpdateManyWithoutAdmin_accessesInput)
-    data!: AdminRoleAccessesUncheckedUpdateManyWithoutAdmin_accessesInput;
+    @Field(() => admin_role_accessesUpdateManyMutationInput, {nullable:false})
+    @Type(() => admin_role_accessesUpdateManyMutationInput)
+    data!: admin_role_accessesUpdateManyMutationInput;
 }

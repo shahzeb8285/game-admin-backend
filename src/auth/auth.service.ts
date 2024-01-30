@@ -1,5 +1,5 @@
 import { PrismaService } from 'nestjs-prisma';
-import { Prisma,  Admin} from '@prisma/client';
+import { Prisma, admins as Admin } from '@prisma/client';
 import {
   Injectable,
   NotFoundException,
@@ -20,18 +20,21 @@ export class AuthService {
     private readonly prisma: PrismaService,
     private readonly passwordService: PasswordService,
     private readonly configService: ConfigService,
-  ) { }
+  ) {}
 
-
-
-  async login(admin_name: string, password: string, ip:string): Promise<Token> {
-    const admin = await this.prisma.admin.findUnique({
+  async login(
+    admin_name: string,
+    password: string,
+    ip: string,
+  ): Promise<Token> {
+    const admin = await this.prisma.admins.findUnique({
       where: { admin_name },
-
     });
 
     if (!admin) {
-      throw new NotFoundException(`No admin found for adminName: ${admin_name}`);
+      throw new NotFoundException(
+        `No admin found for adminName: ${admin_name}`,
+      );
     }
 
     const passwordValid = await this.passwordService.validatePassword(
@@ -43,56 +46,59 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
-    await this.prisma.adminLoginLog.create({
+    await this.prisma.admin_login_logs.create({
       data: {
         ip,
         admins: {
           connect: {
-            admin_id:admin.admin_id
-          }
-        }
+            admin_id: admin.admin_id,
+          },
+        },
         // loginTime:
-      }
-    })
+      },
+    });
     return this.generateTokens({
       adminId: admin.admin_id,
-      roleId: admin.admin_role_id
+      roleId: admin.admin_role_id,
     });
   }
 
   validateUser(admin_id: string): Promise<Admin> {
-    return this.prisma.admin.findUnique({
-      where: { admin_id }, include: {
+    return this.prisma.admins.findUnique({
+      where: { admin_id },
+      include: {
         admin_roles: {
           include: {
-            role_accesses: {
+            admin_role_accesses: {
               include: {
-                admin_accesses:true
-              }
+                admin_accesses: true,
+              },
             },
-          }
-        }
-    }});
+          },
+        },
+      },
+    });
   }
 
   getUserFromToken(token: string): Promise<Admin> {
     const admin_id = this.jwtService.decode(token)['userId'];
-    return this.prisma.admin.findUnique({
-      where: { admin_id }, include: {
+    return this.prisma.admins.findUnique({
+      where: { admin_id },
+      include: {
         admin_roles: {
           include: {
-            role_accesses: {
+            admin_role_accesses: {
               include: {
-                admin_accesses:true
-              }
+                admin_accesses: true,
+              },
             },
-            
-          }
-        }
-    } });
+          },
+        },
+      },
+    });
   }
 
-  generateTokens(payload: { adminId: string, roleId: string }): Token {
+  generateTokens(payload: { adminId: string; roleId: string }): Token {
     return {
       access_token: this.generateAccessToken(payload),
       refresh_token: this.generateRefreshToken(payload),
@@ -119,7 +125,7 @@ export class AuthService {
 
       return this.generateTokens({
         adminId,
-        roleId
+        roleId,
       });
     } catch (e) {
       throw new UnauthorizedException();

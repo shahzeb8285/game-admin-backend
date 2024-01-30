@@ -2,38 +2,74 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
+Table player_login_logs {
+  player_login_log_id String [pk]
+  player_id String [not null]
+  ip String [not null]
+  login_time DateTime [default: `now()`, not null]
+}
+
+Table admin_login_logs {
+  admin_login_log_id String [pk]
+  admins admins [not null]
+  admin_id String [not null]
+  ip String [not null]
+  login_time DateTime [default: `now()`, not null]
+}
+
+Table manual_adjustments {
+  manual_adjustment_id String [pk]
+  player_id String [not null]
+  reason String [not null]
+  amount Float [not null]
+  admins admins [not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+}
+
 Table players {
   player_id String [pk]
   name String [not null]
   tg_id String [unique, not null]
   tg_first_name String [not null]
   tg_last_name String [not null]
-  tg_user_name String [unique, not null]
+  tg_username String [unique, not null]
   tg_photo_url String [not null]
   user_language String [not null]
   registration_ip String [not null]
   agent agents [not null]
-  agent_id_r String [not null]
+  agent_id String [not null]
+  registration_date String [not null]
+  password String [not null]
+  fundist_password String [not null]
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
-  registration_date String [not null]
-  player_login_logs player_login_logs [not null]
-  current_active_players current_active_players [not null]
-  game_history game_history [not null]
-  manual_adjustments manual_adjustments [not null]
-  player_wallets player_wallets [not null]
-  wallet_requests wallet_requests [not null]
   deposit_transactions deposit_transactions [not null]
   withdrawal_transactions withdrawal_transactions [not null]
-  transfer_in_transactions transfer_in_transactions [not null]
-  transfer_out_transactions transfer_out_transactions [not null]
+}
+
+Table agents {
+  agent_id String [pk]
+  agent_name String [unique, not null]
+  agent_password String [not null]
+  parent agents
+  parent_agent_id String
+  children agents [not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+  players players [not null]
+  agent_rebate_rates agent_rebate_rates [not null]
+  agent_shares agent_shares [not null]
+  agent_records_by_day agent_records_by_day [not null]
 }
 
 Table admins {
   admin_id String [pk]
   admin_name String [unique, not null]
-  admin_password String [not null, note: '@HideField()']
+  admin_password String [not null]
   admin_roles admin_roles [not null]
   admin_role_id String [not null]
   created_by String [not null]
@@ -47,136 +83,247 @@ Table admins {
 Table admin_roles {
   admin_role_id String [pk]
   admin_role_name String [unique, not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
   enabled Boolean [not null, default: true]
   admins admins [not null]
-  role_accesses admin_role_accesses [not null]
+  admin_role_accesses admin_role_accesses [not null]
 }
 
 Table admin_accesses {
   admin_access_id String [pk]
   access_name String [unique, not null]
-  role_accesses admin_role_accesses [not null]
+  admin_role_accesses admin_role_accesses [not null]
 }
 
 Table admin_role_accesses {
+  admin_role_access_id String [pk]
   admin_roles admin_roles [not null]
   admin_role_id String [not null]
   admin_accesses admin_accesses [not null]
   admin_access_id String [not null]
-
-  indexes {
-    (admin_role_id, admin_access_id) [pk]
-  }
+  created_by String [not null]
+  updated_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
 }
 
-Table agents {
-  agent_id String [pk]
-  agent_name String [unique, not null]
-  agent_password String [not null]
+Table exchange_rates {
+  exchange_rate_id String [pk]
+  real_currency real_currency [not null]
+  game_currency game_currency [not null]
+  game_per_real Float [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table agent_rebate_rates {
+  agent_rebate_rate_id String [pk]
+  agents agents [not null]
+  agent_id String [not null]
+  rebate_category_id Int [not null]
+  rebate Float [not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  is_active Boolean [not null]
+}
+
+Table player_rebate_rates {
+  player_rebate_rate_id String [pk]
+  player_id String [not null]
+  rebate_category_id Int [not null]
+  rebate Float [not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  is_active Boolean [not null]
+}
+
+Table agent_shares {
+  agent_share_id String [pk]
+  agents agents [not null]
+  agent_id String [not null]
+  shares Float [not null]
   created_by String [not null]
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
-  players players [not null]
-  agent_rebates agent_rebates [not null]
-  parent agents
-  parent_agent_id String
-  children agents [not null]
-}
-
-Table agent_rebates {
-  agent_rebate_id String [pk]
-  agents agents [not null]
-  agent_id_r String [not null]
-  game_id String [not null]
-  rebate Float [not null]
-  created_by String [not null]
-  from_date DateTime [not null]
-  thru_date DateTime [not null]
   is_active Boolean [not null]
 }
 
-Table player_login_logs {
-  players players [not null]
-  player_id_r String [pk]
-  ip String [not null]
-  login_time DateTime [not null]
-}
-
-Table admin_login_logs {
-  admin_login_log_id String [pk]
-  admins admins [not null]
-  admin_id String [not null]
-  ip String [not null]
-  login_time DateTime [default: `now()`, not null]
-}
-
-Table current_active_players {
-  players players [not null]
-  player_id_r String [pk]
-  last_active_time DateTime [not null]
-}
-
-Table game_history {
-  game_history_id String [pk]
-  game_id String [not null]
-  players players [not null]
-  player_id_r String [not null]
-  i_gamedesc String [not null]
-  bet_amount Float [not null]
-  win_amount Float [not null]
-  transaction_date String [not null]
-  cdate DateTime [default: `now()`, not null]
-  game_rebates game_rebates [not null]
-}
-
-Table game_rebates {
-  game_rebates_id String [pk]
-  game_history game_history [not null]
-  game_history_id String [not null]
-  merchant_id String [not null]
-  game_id String [not null]
-  category String [not null]
-  effective_bet_amount Float [not null]
-  rebate_amount Float [not null]
-  status String [not null]
-  cdate DateTime [default: `now()`, not null]
-}
-
-Table manual_adjustments {
-  manual_adjustment_id String [pk]
-  players players [not null]
+Table game_records_by_period {
+  game_records_by_period_id String [pk]
+  game_date DateTime [not null]
+  game_url String [not null]
   player_id String [not null]
-  reason String [not null]
-  amount Float [not null]
-  admins admins [not null]
-  created_by String [not null]
-  cdate DateTime [default: `now()`, not null]
+  rebate_category_id Int [not null]
+  effective_bet_amount Float [not null]
+  pnl Float [not null]
+  rebate_amount Float [not null]
+  rebate_status rebate_status [not null, default: 'NOT_CALCULATED']
 }
 
-Table all_ow_requests {
-  allow_request_id String [pk]
-  request String [not null]
+Table game_records_by_day {
+  game_records_by_day_id String [pk]
+  game_date DateTime [default: `now()`, not null]
+  player_id String [not null]
+  rebate_category_id Int [not null]
+  effective_bet_amount Float [not null]
+  pnl Float [not null]
+  rebate_amount Float [not null]
   cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  is_active Boolean [not null]
+}
+
+Table agent_records_by_day {
+  agent_records_by_day_id String [pk]
+  game_records_by_day_id String [not null]
+  game_date DateTime [default: `now()`, not null]
+  player_id String [not null]
+  rebate_category_id Int [not null]
+  agents agents [not null]
+  agent_id String [not null]
+  child_agent_id String [not null]
+  effective_bet_amount Float [not null]
+  rebate_income Float [not null]
+  rebate_expense Float [not null]
+  game_pnl_income Float [not null]
+  game_pnl_expense Float [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  is_active Boolean [not null]
+}
+
+Table admin_bank_accounts {
+  admin_bank_account_id String [pk]
+  bank_name String [not null]
+  account_number String [not null]
+  holder_name String [not null]
+  method bank_method [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+  deposit_transactions deposit_transactions [not null]
+  withdrawal_transactions withdrawal_transactions [not null]
+}
+
+Table player_bank_accounts {
+  player_bank_account_id String [pk]
+  player_id String [not null]
+  bank_name String [not null]
+  account_number String [not null]
+  holder_name String [not null]
+  method bank_method [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+  withdrawal_transactions withdrawal_transactions [not null]
 }
 
 Table player_wallets {
   player_wallet_id String [pk]
-  players players [not null]
-  player_id_r String [not null]
-  currency String [not null]
+  player_id String [not null]
+  currency game_currency [not null]
   amount Float [not null]
   frozen_amount Float [not null]
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
 }
 
+Table deposit_transactions {
+  deposit_transaction_id String [pk]
+  players players [not null]
+  player_id String [not null]
+  transaction_currency real_currency [not null]
+  transaction_amount Float [not null]
+  game_currency game_currency [not null]
+  game_amount Float [not null]
+  admin_bank_account admin_bank_accounts [not null]
+  admin_bank_account_id String [not null]
+  transaction_date String [not null]
+  player_remarks String [not null]
+  comment String [not null]
+  processed_by String [not null]
+  process_time DateTime [default: `now()`, not null]
+  status wallet_transaction_status [not null, default: 'PENDING']
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+}
+
+Table withdrawal_transactions {
+  withdrawal_transaction_id String [pk]
+  players players [not null]
+  player_id String [not null]
+  transaction_currency real_currency [not null]
+  transaction_amount Float [not null]
+  game_currency game_currency [not null]
+  game_amount Float [not null]
+  player_bank_account player_bank_accounts [not null]
+  player_bank_account_id String [not null]
+  transaction_date String [not null]
+  player_remarks String [not null]
+  comment String [not null]
+  processed_by String [not null]
+  process_time DateTime [default: `now()`, not null]
+  status wallet_transaction_status [not null, default: 'PENDING']
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  admin_bank_accounts admin_bank_accounts
+  admin_bank_accountsAdmin_bank_account_id String
+}
+
+Table transfer_in_transactions {
+  transfer_in_transaction_id String [pk]
+  player_id String [not null]
+  transaction_currency real_currency [not null]
+  transaction_amount Float [not null]
+  game_currency game_currency [not null]
+  game_amount Float [not null]
+  counterpart_platform String [not null]
+  counterpart_username String [not null]
+  transaction_date String [not null]
+  player_remarks String [not null]
+  comment String [not null]
+  processed_by String [not null]
+  process_time DateTime [default: `now()`, not null]
+  status wallet_transaction_status [not null, default: 'PENDING']
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+}
+
+Table transfer_out_transactions {
+  transfer_out_transaction_id String [pk]
+  player_id String [not null]
+  transaction_currency real_currency [not null]
+  transaction_amount Float [not null]
+  game_currency game_currency [not null]
+  game_amount Float [not null]
+  counterpart_platform String [not null]
+  counterpart_username String [not null]
+  transaction_date String [not null]
+  player_remarks String [not null]
+  comment String [not null]
+  processed_by String [not null]
+  process_time DateTime [default: `now()`, not null]
+  status wallet_transaction_status [not null, default: 'PENDING']
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+}
+
+Table all_ow_requests {
+  all_ow_request_id String [pk]
+  request String [not null]
+  cdate DateTime [default: `now()`, not null]
+}
+
 Table wallet_requests {
   wallet_request_id String [pk]
-  t_id String [not null]
+  tid String [not null]
   type String [not null]
-  players players [not null]
-  player_id_r String [not null]
+  player_id String [not null]
   currency String [not null]
   amount String [not null]
   i_game_id String [not null]
@@ -192,86 +339,169 @@ Table wallet_requests {
   jackpot_win Int [not null]
   hmac String [not null]
   response String [not null]
+  cdate DateTime [default: `now()`, not null]
 }
 
-Table admin_bank_accounts {
-  admin_bank_account_id String [pk]
-  bank_name String [not null]
-  account_number String [not null]
-  holder_name String [not null]
-  enabled Boolean [not null, default: false]
-  method String [not null]
-  deposit_transactions deposit_transactions [not null]
-  withdrawal_transactions withdrawal_transactions [not null]
+Table game_actions {
+  game_action_id String [pk]
+  actid String [not null]
+  type String [not null]
+  amount String [not null]
+  timestamp String [not null]
+  game_round_info_id String [not null]
 }
 
-Table deposit_transactions {
-  deposit_transaction_id String [pk]
-  players players [not null]
-  player_id_r String [not null]
-  amount Float [not null]
-  currency String [not null]
-  request_time DateTime [not null]
-  process_time DateTime [not null]
-  processed_by String [not null]
-  transaction_date String [not null]
-  status TransactionType [not null, default: 'PENDING']
-  admin_bank_accounts admin_bank_accounts [not null]
-  admin_bank_account_id String [not null]
+Table game_round_infos {
+  game_round_info_id String [pk]
+  game_id String [not null]
+  player_id String [not null]
+  i_gamedesc String [not null]
+  i_extparam String [not null]
+  game_extra String [not null]
+  cdate DateTime [default: `now()`, not null]
 }
 
-Table withdrawal_transactions {
-  withdrawal_transaction_id String [pk]
-  players players [not null]
-  player_id_r String [not null]
-  amount Float [not null]
-  currency String [not null]
-  request_time DateTime [not null]
-  process_time DateTime [not null]
-  processed_by String [not null]
-  transaction_date String [not null]
-  status TransactionType [not null, default: 'PENDING']
-  admin_bank_accounts admin_bank_accounts [not null]
-  admin_bank_account_id String [not null]
+Table unprocessed_game_round_infos {
+  game_round_info_id String [pk]
 }
 
-Table transfer_in_transactions {
-  transfer_in_Transaction_id String [pk]
-  players players [not null]
-  player_id_r String [not null]
-  amount Float [not null]
-  currency String [not null]
-  request_time DateTime [not null]
-  process_time DateTime [not null]
-  processed_by String [not null]
-  transaction_date String [not null]
-  status TransactionType [not null, default: 'PENDING']
-  counterpart_platform String [not null]
-  counterpart_username String [not null]
+Table game_record_rounds {
+  game_round_info_id String [pk]
+  game_date DateTime [default: `now()`, not null]
+  game_url String [not null]
+  player_id String [not null]
+  rebate_category_id Int [not null]
+  bet_amount Float [not null]
+  payout Float [not null]
+  effective_bet_amount Float [not null]
+  is_processed Boolean [not null]
+  game_records_by_period_id String [not null]
 }
 
-Table transfer_out_transactions {
-  transfer_out_transaction_id String [pk]
-  players players [not null]
-  player_id_r String [not null]
-  amount Float [not null]
-  currency String [not null]
-  request_time DateTime [not null]
-  process_time DateTime [not null]
-  processed_by String [not null]
-  transaction_date String [not null]
-  status TransactionType [not null, default: 'PENDING']
-  counterpart_platform String [not null]
-  counterpart_username String [not null]
+Table sg_games {
+  sg_game_id String [pk]
+  game_id Int [not null]
+  url String [not null]
+  game_name String [not null]
+  image String [not null]
+  category_id String [not null]
+  merchant_id Int [not null]
+  sort Int [not null]
+  page_code String [not null]
+  mobile_page_code String [not null]
+  rtp Float [not null]
+  coun_rest_id Int [not null]
+  external_code String [not null]
+  mobile_external_code String [not null]
+  table_id String [not null]
+  has_demo Boolean [not null]
+  freeround Boolean [not null]
+  bonus_buy Boolean [not null]
+  megaways Boolean [not null]
+  freespins Boolean [not null]
+  min_bet_default Float [not null]
+  max_bet_default Float [not null]
+  max_multiplier Float [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
 }
 
-Enum TransactionType {
+Table sg_categories {
+  sg_category_id String [pk]
+  category_id Int [not null]
+  category_name String [not null]
+  csort Int [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table fl_categories {
+  fl_categories_id String [pk]
+  category_id Int [not null]
+  category_name String [not null]
+  csort Int [not null]
+  rebate_priority Int [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table categories_mappings {
+  categories_mapping_id String [pk]
+  sg_category_id Int [not null]
+  fl_category_id Int [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table sg_merchants {
+  sg_merchant_id String [pk]
+  merchant_id Int [not null]
+  merchant_name String [not null]
+  merchant_alias String [not null]
+  image String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table sg_countries_restrictions {
+  sg_coun_rest_id String [pk]
+  coun_rest_id Int [not null]
+  coun_rest_name String [not null]
+  merchant_id Int [not null]
+  countries String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Table sg_merchants_currencies {
+  sg_merchants_currency_id String [pk]
+  merchants_currency_id Int [not null]
+  merchant_id Int [not null]
+  currencies String [not null]
+  cdate DateTime [default: `now()`, not null]
+  udate DateTime [not null]
+  enabled Boolean [not null, default: true]
+}
+
+Enum rebate_status {
+  NOT_CALCULATED
+  DISTRIBUTED
+  COLLECTED
+}
+
+Enum bank_method {
+  FPS
+  BANK
+}
+
+Enum wallet_transaction_status {
   PENDING
-  REJECTED
   SUCCESS
+  FAILED
 }
 
-Ref: players.agent_id_r > agents.agent_id
+Enum real_currency {
+  HKD
+  USDT
+}
+
+Enum game_currency {
+  fHKD
+}
+
+Ref: admin_login_logs.admin_id > admins.admin_id
+
+Ref: manual_adjustments.created_by > admins.admin_id
+
+Ref: players.agent_id > agents.agent_id
+
+Ref: agents.parent_agent_id - agents.agent_id
 
 Ref: admins.admin_role_id > admin_roles.admin_role_id
 
@@ -279,36 +509,18 @@ Ref: admin_role_accesses.admin_role_id > admin_roles.admin_role_id
 
 Ref: admin_role_accesses.admin_access_id > admin_accesses.admin_access_id
 
-Ref: agents.parent_agent_id - agents.agent_id
+Ref: agent_rebate_rates.agent_id > agents.agent_id
 
-Ref: agent_rebates.agent_id_r > agents.agent_id
+Ref: agent_shares.agent_id > agents.agent_id
 
-Ref: player_login_logs.player_id_r > players.player_id
+Ref: agent_records_by_day.agent_id > agents.agent_id
 
-Ref: admin_login_logs.admin_id > admins.admin_id
-
-Ref: current_active_players.player_id_r > players.player_id
-
-Ref: game_history.player_id_r > players.player_id
-
-Ref: game_rebates.game_history_id > game_history.game_history_id
-
-Ref: manual_adjustments.player_id > players.player_id
-
-Ref: manual_adjustments.created_by > admins.admin_id
-
-Ref: player_wallets.player_id_r > players.player_id
-
-Ref: wallet_requests.player_id_r > players.player_id
-
-Ref: deposit_transactions.player_id_r > players.player_id
+Ref: deposit_transactions.player_id > players.player_id
 
 Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank_account_id
 
-Ref: withdrawal_transactions.player_id_r > players.player_id
+Ref: withdrawal_transactions.player_id > players.player_id
 
-Ref: withdrawal_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank_account_id
+Ref: withdrawal_transactions.player_bank_account_id > player_bank_accounts.player_bank_account_id
 
-Ref: transfer_in_transactions.player_id_r > players.player_id
-
-Ref: transfer_out_transactions.player_id_r > players.player_id
+Ref: withdrawal_transactions.admin_bank_accountsAdmin_bank_account_id > admin_bank_accounts.admin_bank_account_id

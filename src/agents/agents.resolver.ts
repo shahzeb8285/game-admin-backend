@@ -7,9 +7,9 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
 import { UserEntity } from '../common/decorators/user.decorator';
-import { Admin } from '../@generated/admin/admin.model';
-import { Agent } from '../@generated/agent/agent.model';
-import { AgentWhereInput } from '../@generated/agent/agent-where.input';
+import { admins as Admin } from '../@generated/admins/admins.model';
+import { agents as Agent } from '../@generated/agents/agents.model';
+import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents-where.input';
 // import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)

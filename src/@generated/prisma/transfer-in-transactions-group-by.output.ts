@@ -1,0 +1,78 @@
+import { Field } from '@nestjs/graphql';
+import { ObjectType } from '@nestjs/graphql';
+import { real_currency } from './real-currency.enum';
+import { Float } from '@nestjs/graphql';
+import { game_currency } from './game-currency.enum';
+import { wallet_transaction_status } from './wallet-transaction-status.enum';
+import { Transfer_in_transactionsCountAggregate } from './transfer-in-transactions-count-aggregate.output';
+import { Transfer_in_transactionsAvgAggregate } from './transfer-in-transactions-avg-aggregate.output';
+import { Transfer_in_transactionsSumAggregate } from './transfer-in-transactions-sum-aggregate.output';
+import { Transfer_in_transactionsMinAggregate } from './transfer-in-transactions-min-aggregate.output';
+import { Transfer_in_transactionsMaxAggregate } from './transfer-in-transactions-max-aggregate.output';
+
+@ObjectType()
+export class Transfer_in_transactionsGroupBy {
+
+    @Field(() => String, {nullable:false})
+    transfer_in_transaction_id!: string;
+
+    @Field(() => String, {nullable:false})
+    player_id!: string;
+
+    @Field(() => real_currency, {nullable:false})
+    transaction_currency!: keyof typeof real_currency;
+
+    @Field(() => Float, {nullable:false})
+    transaction_amount!: number;
+
+    @Field(() => game_currency, {nullable:false})
+    game_currency!: keyof typeof game_currency;
+
+    @Field(() => Float, {nullable:false})
+    game_amount!: number;
+
+    @Field(() => String, {nullable:false})
+    counterpart_platform!: string;
+
+    @Field(() => String, {nullable:false})
+    counterpart_username!: string;
+
+    @Field(() => String, {nullable:false})
+    transaction_date!: string;
+
+    @Field(() => String, {nullable:false})
+    player_remarks!: string;
+
+    @Field(() => String, {nullable:false})
+    comment!: string;
+
+    @Field(() => String, {nullable:false})
+    processed_by!: string;
+
+    @Field(() => Date, {nullable:false})
+    process_time!: Date | string;
+
+    @Field(() => wallet_transaction_status, {nullable:false})
+    status!: keyof typeof wallet_transaction_status;
+
+    @Field(() => Date, {nullable:false})
+    cdate!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    udate!: Date | string;
+
+    @Field(() => Transfer_in_transactionsCountAggregate, {nullable:true})
+    _count?: Transfer_in_transactionsCountAggregate;
+
+    @Field(() => Transfer_in_transactionsAvgAggregate, {nullable:true})
+    _avg?: Transfer_in_transactionsAvgAggregate;
+
+    @Field(() => Transfer_in_transactionsSumAggregate, {nullable:true})
+    _sum?: Transfer_in_transactionsSumAggregate;
+
+    @Field(() => Transfer_in_transactionsMinAggregate, {nullable:true})
+    _min?: Transfer_in_transactionsMinAggregate;
+
+    @Field(() => Transfer_in_transactionsMaxAggregate, {nullable:true})
+    _max?: Transfer_in_transactionsMaxAggregate;
+}

@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 // import { Admins } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { JwtDto } from './dto/jwt.dto';
-import { Admin } from '@prisma/client';
+import { admins as Admin } from '@prisma/client';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

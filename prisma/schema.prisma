@@ -46,211 +46,328 @@ generator nestgraphql {
   // decorate_3_arguments                  = "[]"
 }
 
-model Player {
-  player_id                 String                   @id @default(cuid())
-  name                      String
-  tg_id                     String                   @unique
-  tg_first_name             String
-  tg_last_name              String
-  tg_user_name              String                   @unique
-  tg_photo_url              String
-  user_language             String
-  registration_ip           String
-  agent                     Agent                    @relation(fields: [agent_id_r], references: [agent_id])
-  agent_id_r                String
-  cdate                     DateTime                 @default(now())
-  udate                     DateTime                 @updatedAt
-  enabled                   Boolean                  @default(true)
-  registration_date         String
-  player_login_logs         PlayerLoginLog[]
-  current_active_players    CurrentActivePlayers[]
-  game_history              GameHistory[]
-  manual_adjustments        ManualAdjustment[]
-  player_wallets            PlayerWallet[]
-  wallet_requests           WalletRequest[]
-  deposit_transactions      DepositTransaction[]
-  withdrawal_transactions   WithdrawalTransaction[]
-  transfer_in_transactions  TransferInTransaction[]
-  transfer_out_transactions TransferOutTransaction[]
-
-  @@map("players")
+model player_login_logs {
+  player_login_log_id String   @id @default(cuid())
+  player_id           String
+  ip                  String
+  login_time          DateTime @default(now())
 }
 
-model Admin {
-  admin_id   String @id @default(cuid())
-  admin_name String @unique
-
-  /// @HideField()
-
-  admin_password     String
-  admin_roles        AdminRole          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id      String
-  created_by         String
-  cdate              DateTime           @default(now())
-  udate              DateTime           @updatedAt
-  enabled            Boolean            @default(true)
-  admin_login_logs   AdminLoginLog[]
-  manual_adjustments ManualAdjustment[]
-
-  @@map("admins")
+model admin_login_logs {
+  admin_login_log_id String   @id @default(cuid())
+  admins             admins   @relation(fields: [admin_id], references: [admin_id])
+  admin_id           String
+  ip                 String
+  login_time         DateTime @default(now())
 }
 
-model AdminRole {
-  admin_role_id   String              @id @default(cuid())
-  admin_role_name String              @unique
-  enabled         Boolean             @default(true)
-  admins          Admin[]
-  role_accesses   AdminRoleAccesses[]
-
-  @@map("admin_roles")
-}
-
-model AdminAccesses {
-  admin_access_id String              @id @default(cuid())
-  access_name     String              @unique
-  role_accesses   AdminRoleAccesses[]
-
-  @@map("admin_accesses")
-}
-
-model AdminRoleAccesses {
-  admin_roles     AdminRole     @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id   String
-  admin_accesses  AdminAccesses @relation(fields: [admin_access_id], references: [admin_access_id])
-  admin_access_id String
-
-  @@id([admin_role_id, admin_access_id])
-  @@map("admin_role_accesses")
-}
-
-model Agent {
-  agent_id        String        @id @default(cuid())
-  agent_name      String        @unique
-  agent_password  String
-  created_by      String
-  cdate           DateTime      @default(now())
-  udate           DateTime      @updatedAt
-  enabled         Boolean       @default(true)
-  players         Player[]
-  agent_rebates   AgentRebate[]
-  parent          Agent?        @relation("children", fields: [parent_agent_id], references: [agent_id])
-  parent_agent_id String?       @map("agent_id_m")
-  children        Agent[]       @relation("children")
-
-  @@map("agents")
-}
-
-model AgentRebate {
-  agent_rebate_id String   @id @default(cuid())
-  agents          Agent    @relation(fields: [agent_id_r], references: [agent_id])
-  agent_id_r      String
-  game_id         String
-  rebate          Float
-  created_by      String
-  from_date       DateTime
-  thru_date       DateTime
-  is_active       Boolean
-
-  @@map("agent_rebates")
-}
-
-model PlayerLoginLog {
-  players     Player   @relation(fields: [player_id_r], references: [player_id])
-  player_id_r String   @id
-  ip          String
-  login_time  DateTime
-
-  @@map("player_login_logs")
-}
-
-model AdminLoginLog {
-  login_id   String   @id @default(cuid())
-  admins     Admin    @relation(fields: [admin_id_r], references: [admin_id])
-  admin_id_r String
-  ip         String
-  login_time DateTime @default(now())
-
-  @@map("admin_login_logs")
-}
-
-model CurrentActivePlayers {
-  players          Player   @relation(fields: [player_id_r], references: [player_id])
-  player_id_r      String   @id
-  last_active_time DateTime
-
-  @@map("current_active_players")
-}
-
-model GameHistory {
-  game_history_id  String       @id @default(cuid())
-  game_id          String
-  players          Player       @relation(fields: [player_id_r], references: [player_id])
-  player_id_r      String
-  i_gamedesc       String
-  bet_amount       Float
-  win_amount       Float
-  transaction_date String
-  cdate            DateTime     @default(now())
-  game_rebates     GameRebate[]
-
-  @@map("game_history")
-}
-
-model GameRebate {
-  game_rebates_id      String      @id @default(cuid())
-  game_history         GameHistory @relation(fields: [game_history_id], references: [game_history_id])
-  game_history_id      String
-  merchant_id          String
-  game_id              String
-  category             String
-  effective_bet_amount Float
-  rebate_amount        Float
-  status               String
-  cdate                DateTime    @default(now())
-
-  @@map("game_rebates")
-}
-
-model ManualAdjustment {
+model manual_adjustments {
   manual_adjustment_id String   @id @default(cuid())
-  players              Player   @relation(fields: [player_id_r], references: [player_id])
-  player_id_r          String
+  player_id            String
   reason               String
   amount               Float
-  admins               Admin    @relation(fields: [created_by_r], references: [admin_id])
-  created_by_r         String
+  admins               admins   @relation(fields: [created_by], references: [admin_id])
+  created_by           String
   cdate                DateTime @default(now())
-
-  @@map("manual_adjustments")
 }
 
-model AllOwRequest {
-  allow_request_id String   @id @default(cuid())
-  request          String
-  cdate            DateTime @default(now())
-
-  @@map("all_ow_requests")
+model players {
+  player_id               String                    @id @default(cuid())
+  name                    String
+  tg_id                   String                    @unique
+  tg_first_name           String
+  tg_last_name            String
+  tg_username             String                    @unique
+  tg_photo_url            String
+  user_language           String
+  registration_ip         String
+  agent                   agents                    @relation(fields: [agent_id], references: [agent_id])
+  agent_id                String
+  registration_date       String
+  password                String
+  fundist_password        String
+  cdate                   DateTime                  @default(now())
+  udate                   DateTime                  @updatedAt
+  enabled                 Boolean                   @default(true)
+  deposit_transactions    deposit_transactions[]
+  withdrawal_transactions withdrawal_transactions[]
 }
 
-model PlayerWallet {
-  player_wallet_id String   @id @default(cuid())
-  players          Player   @relation(fields: [player_id_r], references: [player_id])
-  player_id_r      String
-  currency         String
+model agents {
+  agent_id             String                 @id @default(cuid())
+  agent_name           String                 @unique
+  agent_password       String
+  parent               agents?                @relation("children", fields: [parent_agent_id], references: [agent_id])
+  parent_agent_id      String?                @map("agent_id_m")
+  children             agents[]               @relation("children")
+  created_by           String
+  cdate                DateTime               @default(now())
+  udate                DateTime               @updatedAt
+  enabled              Boolean                @default(true)
+  players              players[]
+  agent_rebate_rates   agent_rebate_rates[]
+  agent_shares         agent_shares[]
+  agent_records_by_day agent_records_by_day[]
+}
+
+model admins {
+  admin_id           String               @id @default(cuid())
+  admin_name         String               @unique
+  admin_password     String
+  admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
+  admin_role_id      String
+  created_by         String
+  cdate              DateTime             @default(now())
+  udate              DateTime             @updatedAt
+  enabled            Boolean              @default(true)
+  admin_login_logs   admin_login_logs[]
+  manual_adjustments manual_adjustments[]
+}
+
+model admin_roles {
+  admin_role_id       String                @id @default(cuid())
+  admin_role_name     String                @unique
+  created_by          String
+  cdate               DateTime              @default(now())
+  udate               DateTime              @updatedAt
+  enabled             Boolean               @default(true)
+  admins              admins[]
+  admin_role_accesses admin_role_accesses[]
+}
+
+model admin_accesses {
+  admin_access_id     String                @id @default(cuid())
+  access_name         String                @unique
+  admin_role_accesses admin_role_accesses[]
+}
+
+model admin_role_accesses {
+  admin_role_access_id String         @id @default(cuid())
+  admin_roles          admin_roles    @relation(fields: [admin_role_id], references: [admin_role_id])
+  admin_role_id        String
+  admin_accesses       admin_accesses @relation(fields: [admin_access_id], references: [admin_access_id])
+  admin_access_id      String
+  created_by           String
+  updated_by           String
+  cdate                DateTime       @default(now())
+  udate                DateTime       @updatedAt
+  enabled              Boolean        @default(true)
+}
+
+model exchange_rates {
+  exchange_rate_id String        @id @default(cuid())
+  real_currency    real_currency
+  game_currency    game_currency
+  game_per_real    Float
+  cdate            DateTime      @default(now())
+  udate            DateTime      @updatedAt
+  enabled          Boolean       @default(true)
+}
+
+model agent_rebate_rates {
+  agent_rebate_rate_id String   @id @default(cuid())
+  agents               agents   @relation(fields: [agent_id], references: [agent_id])
+  agent_id             String
+  rebate_category_id   Int
+  rebate               Float
+  created_by           String
+  cdate                DateTime @default(now())
+  is_active            Boolean
+}
+
+model player_rebate_rates {
+  player_rebate_rate_id String   @id @default(cuid())
+  player_id             String
+  rebate_category_id    Int
+  rebate                Float
+  created_by            String
+  cdate                 DateTime @default(now())
+  is_active             Boolean
+}
+
+model agent_shares {
+  agent_share_id String   @id @default(cuid())
+  agents         agents   @relation(fields: [agent_id], references: [agent_id])
+  agent_id       String
+  shares         Float
+  created_by     String
+  cdate          DateTime @default(now())
+  udate          DateTime @updatedAt
+  enabled        Boolean  @default(true)
+  is_active      Boolean
+}
+
+model game_records_by_period {
+  game_records_by_period_id String        @id @default(cuid())
+  game_date                 DateTime
+  game_url                  String
+  player_id                 String
+  rebate_category_id        Int
+  effective_bet_amount      Float
+  pnl                       Float
+  rebate_amount             Float
+  rebate_status             rebate_status @default(NOT_CALCULATED)
+}
+
+model game_records_by_day {
+  game_records_by_day_id String   @id @default(cuid())
+  game_date              DateTime @default(now())
+  player_id              String
+  rebate_category_id     Int
+  effective_bet_amount   Float
+  pnl                    Float
+  rebate_amount          Float
+  cdate                  DateTime @default(now())
+  udate                  DateTime @updatedAt
+  is_active              Boolean
+}
+
+model agent_records_by_day {
+  agent_records_by_day_id String   @id @default(cuid())
+  game_records_by_day_id  String
+  game_date               DateTime @default(now())
+  player_id               String
+  rebate_category_id      Int
+  agents                  agents   @relation(fields: [agent_id], references: [agent_id])
+  agent_id                String
+  child_agent_id          String
+  effective_bet_amount    Float
+  rebate_income           Float
+  rebate_expense          Float
+  game_pnl_income         Float
+  game_pnl_expense        Float
+  cdate                   DateTime @default(now())
+  udate                   DateTime @updatedAt
+  is_active               Boolean
+}
+
+model admin_bank_accounts {
+  admin_bank_account_id   String                    @id @default(cuid())
+  bank_name               String
+  account_number          String
+  holder_name             String
+  method                  bank_method
+  cdate                   DateTime                  @default(now())
+  udate                   DateTime                  @updatedAt
+  enabled                 Boolean                   @default(true)
+  deposit_transactions    deposit_transactions[]
+  withdrawal_transactions withdrawal_transactions[]
+}
+
+model player_bank_accounts {
+  player_bank_account_id  String                    @id @default(cuid())
+  player_id               String
+  bank_name               String
+  account_number          String
+  holder_name             String
+  method                  bank_method
+  cdate                   DateTime                  @default(now())
+  udate                   DateTime                  @updatedAt
+  enabled                 Boolean                   @default(true)
+  withdrawal_transactions withdrawal_transactions[]
+}
+
+model player_wallets {
+  player_wallet_id String        @id @default(cuid())
+  player_id        String
+  currency         game_currency
   amount           Float
   frozen_amount    Float
-  cdate            DateTime @default(now())
-  udate            DateTime @updatedAt
-
-  @@map("player_wallets")
+  cdate            DateTime      @default(now())
+  udate            DateTime      @updatedAt
 }
 
-model WalletRequest {
-  wallet_request_id     String  @id @default(cuid())
-  t_id                  String
+model deposit_transactions {
+  deposit_transaction_id String                    @id @default(cuid())
+  players                players                   @relation(fields: [player_id], references: [player_id])
+  player_id              String
+  transaction_currency   real_currency
+  transaction_amount     Float
+  game_currency          game_currency
+  game_amount            Float
+  admin_bank_account     admin_bank_accounts       @relation(fields: [admin_bank_account_id], references: [admin_bank_account_id])
+  admin_bank_account_id  String
+  transaction_date       String
+  player_remarks         String
+  comment                String
+  processed_by           String
+  process_time           DateTime                  @default(now())
+  status                 wallet_transaction_status @default(PENDING)
+  cdate                  DateTime                  @default(now())
+  udate                  DateTime                  @updatedAt
+}
+
+model withdrawal_transactions {
+  withdrawal_transaction_id                String                    @id @default(cuid())
+  players                                  players                   @relation(fields: [player_id], references: [player_id])
+  player_id                                String
+  transaction_currency                     real_currency
+  transaction_amount                       Float
+  game_currency                            game_currency
+  game_amount                              Float
+  player_bank_account                      player_bank_accounts      @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
+  player_bank_account_id                   String
+  transaction_date                         String
+  player_remarks                           String
+  comment                                  String
+  processed_by                             String
+  process_time                             DateTime                  @default(now())
+  status                                   wallet_transaction_status @default(PENDING)
+  cdate                                    DateTime                  @default(now())
+  udate                                    DateTime                  @updatedAt
+  admin_bank_accounts                      admin_bank_accounts?      @relation(fields: [admin_bank_accountsAdmin_bank_account_id], references: [admin_bank_account_id])
+  admin_bank_accountsAdmin_bank_account_id String?
+}
+
+model transfer_in_transactions {
+  transfer_in_transaction_id String                    @id @default(cuid())
+  player_id                  String
+  transaction_currency       real_currency
+  transaction_amount         Float
+  game_currency              game_currency
+  game_amount                Float
+  counterpart_platform       String
+  counterpart_username       String
+  transaction_date           String
+  player_remarks             String
+  comment                    String
+  processed_by               String
+  process_time               DateTime                  @default(now())
+  status                     wallet_transaction_status @default(PENDING)
+  cdate                      DateTime                  @default(now())
+  udate                      DateTime                  @updatedAt
+}
+
+model transfer_out_transactions {
+  transfer_out_transaction_id String                    @id @default(cuid())
+  player_id                   String
+  transaction_currency        real_currency
+  transaction_amount          Float
+  game_currency               game_currency
+  game_amount                 Float
+  counterpart_platform        String
+  counterpart_username        String
+  transaction_date            String
+  player_remarks              String
+  comment                     String
+  processed_by                String
+  process_time                DateTime                  @default(now())
+  status                      wallet_transaction_status @default(PENDING)
+  cdate                       DateTime                  @default(now())
+  udate                       DateTime                  @updatedAt
+}
+
+model all_ow_requests {
+  all_ow_request_id String   @id @default(cuid())
+  request           String
+  cdate             DateTime @default(now())
+}
+
+model wallet_requests {
+  wallet_request_id     String   @id @default(cuid())
+  tid                   String
   type                  String
-  players               Player  @relation(fields: [player_id_r], references: [player_id])
-  player_id_r           String
+  player_id             String
   currency              String
   amount                String
   i_game_id             String
@@ -266,93 +383,158 @@ model WalletRequest {
   jackpot_win           Int
   hmac                  String
   response              String
-
-  @@map("wallet_requests")
+  cdate                 DateTime @default(now())
 }
 
-model AdminBankAccount {
-  admin_bank_account_id   String                  @id @default(cuid())
-  bank_name               String
-  account_number          String
-  holder_name             String
-  enabled                 Boolean                 @default(false)
-  method                  String
-  deposit_transactions    DepositTransaction[]
-  withdrawal_transactions WithdrawalTransaction[]
-
-  @@map("admin_bank_accounts")
+model game_actions {
+  game_action_id     String @id @default(cuid())
+  actid              String
+  type               String
+  amount             String
+  timestamp          String
+  game_round_info_id String
 }
 
-model DepositTransaction {
-  deposit_transaction_id  String           @id @default(cuid())
-  players                 Player           @relation(fields: [player_id_r], references: [player_id])
-  player_id_r             String
-  amount                  Float
-  currency                String
-  request_time            DateTime
-  process_time            DateTime
-  processed_by            String
-  transaction_date        String
-  status                  TransactionType  @default(PENDING)
-  admin_bank_accounts     AdminBankAccount @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
-  admin_bank_account_id_r String
-
-  @@map("deposit_transactions")
+model game_round_infos {
+  game_round_info_id String   @id @default(cuid())
+  game_id            String
+  player_id          String
+  i_gamedesc         String
+  i_extparam         String
+  game_extra         String
+  cdate              DateTime @default(now())
 }
 
-model WithdrawalTransaction {
-  withdrawal_transaction_id String           @id @default(cuid())
-  players                   Player           @relation(fields: [player_id_r], references: [player_id])
-  player_id_r               String
-  amount                    Float
-  currency                  String
-  request_time              DateTime
-  process_time              DateTime
-  processed_by              String
-  transaction_date          String
-  status                    TransactionType  @default(PENDING)
-  admin_bank_accounts       AdminBankAccount @relation(fields: [admin_bank_account_id_r], references: [admin_bank_account_id])
-  admin_bank_account_id_r   String
-
-  @@map("withdrawal_transactions")
+model unprocessed_game_round_infos {
+  game_round_info_id String @id @default(cuid())
 }
 
-model TransferInTransaction {
-  transfer_in_Transaction_id String          @id @default(cuid())
-  players                    Player          @relation(fields: [player_id_r], references: [player_id])
-  player_id_r                String
-  amount                     Float
-  currency                   String
-  request_time               DateTime
-  process_time               DateTime
-  processed_by               String
-  transaction_date           String
-  status                     TransactionType @default(PENDING)
-  counterpart_platform       String
-  counterpart_username       String
-
-  @@map("transfer_in_transactions")
+model game_record_rounds {
+  game_round_info_id        String   @id @default(cuid())
+  game_date                 DateTime @default(now())
+  game_url                  String
+  player_id                 String
+  rebate_category_id        Int
+  bet_amount                Float
+  payout                    Float
+  effective_bet_amount      Float
+  is_processed              Boolean
+  game_records_by_period_id String
 }
 
-model TransferOutTransaction {
-  transfer_out_transaction_id String          @id @default(cuid())
-  players                     Player          @relation(fields: [player_id_r], references: [player_id])
-  player_id_r                 String
-  amount                      Float
-  currency                    String
-  request_time                DateTime
-  process_time                DateTime
-  processed_by                String
-  transaction_date            String
-  status                      TransactionType @default(PENDING)
-  counterpart_platform        String
-  counterpart_username        String
-
-  @@map("transfer_out_transactions")
+model sg_games {
+  sg_game_id           String   @id @default(cuid())
+  game_id              Int
+  url                  String
+  game_name            String
+  image                String
+  category_id          String
+  merchant_id          Int
+  sort                 Int
+  page_code            String
+  mobile_page_code     String
+  rtp                  Float
+  coun_rest_id         Int
+  external_code        String
+  mobile_external_code String
+  table_id             String
+  has_demo             Boolean
+  freeround            Boolean
+  bonus_buy            Boolean
+  megaways             Boolean
+  freespins            Boolean
+  min_bet_default      Float
+  max_bet_default      Float
+  max_multiplier       Float
+  cdate                DateTime @default(now())
+  udate                DateTime @updatedAt
+  enabled              Boolean  @default(true)
 }
 
-enum TransactionType {
+model sg_categories {
+  sg_category_id String   @id @default(cuid())
+  category_id    Int
+  category_name  String
+  csort          Int
+  cdate          DateTime @default(now())
+  udate          DateTime @updatedAt
+  enabled        Boolean  @default(true)
+}
+
+model fl_categories {
+  fl_categories_id String   @id @default(cuid())
+  category_id      Int
+  category_name    String
+  csort            Int
+  rebate_priority  Int
+  cdate            DateTime @default(now())
+  udate            DateTime @updatedAt
+  enabled          Boolean  @default(true)
+}
+
+model categories_mappings {
+  categories_mapping_id String   @id @default(cuid())
+  sg_category_id        Int
+  fl_category_id        Int
+  cdate                 DateTime @default(now())
+  udate                 DateTime @updatedAt
+  enabled               Boolean  @default(true)
+}
+
+model sg_merchants {
+  sg_merchant_id String   @id @default(cuid())
+  merchant_id    Int
+  merchant_name  String
+  merchant_alias String
+  image          String
+  cdate          DateTime @default(now())
+  udate          DateTime @updatedAt
+  enabled        Boolean  @default(true)
+}
+
+model sg_countries_restrictions {
+  sg_coun_rest_id String   @id @default(cuid())
+  coun_rest_id    Int
+  coun_rest_name  String
+  merchant_id     Int
+  countries       String
+  cdate           DateTime @default(now())
+  udate           DateTime @updatedAt
+  enabled         Boolean  @default(true)
+}
+
+model sg_merchants_currencies {
+  sg_merchants_currency_id String   @id @default(cuid())
+  merchants_currency_id    Int
+  merchant_id              Int
+  currencies               String
+  cdate                    DateTime @default(now())
+  udate                    DateTime @updatedAt
+  enabled                  Boolean  @default(true)
+}
+
+enum rebate_status {
+  NOT_CALCULATED
+  DISTRIBUTED
+  COLLECTED
+}
+
+enum bank_method {
+  FPS
+  BANK
+}
+
+enum wallet_transaction_status {
   PENDING
-  REJECTED
   SUCCESS
+  FAILED
+}
+
+enum real_currency {
+  HKD
+  USDT
+}
+
+enum game_currency {
+  fHKD
 }

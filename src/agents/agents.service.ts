@@ -12,7 +12,7 @@ export class AgentsService {
   ) {}
 
   async getRootParentId() {
-    const agent = await this.prisma.agent.findFirst({
+    const agent = await this.prisma.agents.findFirst({
       where: {
         agent_name: 'root',
       },
@@ -38,7 +38,7 @@ export class AgentsService {
       parentAgentID = await this.getRootParentId();
     }
 
-    return this.prisma.agent.create({
+    return this.prisma.agents.create({
       data: {
         ...payload,
         parent: {
@@ -51,10 +51,10 @@ export class AgentsService {
   }
 
   findAll({ skip, take, where }) {
-    return this.prisma.agent.findMany({
+    return this.prisma.agents.findMany({
       skip,
       orderBy: {
-        cdate:"desc",
+        cdate: 'desc',
       },
       take,
       where,
@@ -75,7 +75,7 @@ export class AgentsService {
       );
     }
 
-    return this.prisma.agent.update({
+    return this.prisma.agents.update({
       where: {
         agent_id,
       },

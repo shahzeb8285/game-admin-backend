@@ -1,19 +1,19 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
-import { AdminRoleAccessesListRelationFilter } from '../admin-role-accesses/admin-role-accesses-list-relation-filter.input';
+import { Admin_role_accessesListRelationFilter } from '../prisma/admin-role-accesses-list-relation-filter.input';
 
 @InputType()
-export class AdminAccessesWhereInput {
+export class admin_accessesWhereInput {
 
-    @Field(() => [AdminAccessesWhereInput], {nullable:true})
-    AND?: Array<AdminAccessesWhereInput>;
+    @Field(() => [admin_accessesWhereInput], {nullable:true})
+    AND?: Array<admin_accessesWhereInput>;
 
-    @Field(() => [AdminAccessesWhereInput], {nullable:true})
-    OR?: Array<AdminAccessesWhereInput>;
+    @Field(() => [admin_accessesWhereInput], {nullable:true})
+    OR?: Array<admin_accessesWhereInput>;
 
-    @Field(() => [AdminAccessesWhereInput], {nullable:true})
-    NOT?: Array<AdminAccessesWhereInput>;
+    @Field(() => [admin_accessesWhereInput], {nullable:true})
+    NOT?: Array<admin_accessesWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
     admin_access_id?: StringFilter;
@@ -21,6 +21,6 @@ export class AdminAccessesWhereInput {
     @Field(() => StringFilter, {nullable:true})
     access_name?: StringFilter;
 
-    @Field(() => AdminRoleAccessesListRelationFilter, {nullable:true})
-    role_accesses?: AdminRoleAccessesListRelationFilter;
+    @Field(() => Admin_role_accessesListRelationFilter, {nullable:true})
+    admin_role_accesses?: Admin_role_accessesListRelationFilter;
 }

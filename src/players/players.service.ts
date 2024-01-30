@@ -8,12 +8,12 @@ export class PlayersService {
   constructor(private readonly prisma: PrismaService) {}
 
   findAll({ skip, take, where }) {
-    return this.prisma.player.findMany({
+    return this.prisma.players.findMany({
       skip,
       take,
       where,
       orderBy: {
-        cdate:"desc",
+        cdate: 'desc',
       },
       include: {
         agent: true,
@@ -22,36 +22,30 @@ export class PlayersService {
   }
 
   getUserLoginHistory({ skip, take, where }) {
-    return this.prisma.playerLoginLog.findMany({
+    return this.prisma.player_login_logs.findMany({
       skip,
       take,
       where,
       orderBy: {
-        login_time:"desc",
-      },
-      include: {
-        players: true,
+        login_time: 'desc',
       },
     });
   }
 
   getManualAdjustments({ skip, take, where }) {
-    return this.prisma.manualAdjustment.findMany({
+    return this.prisma.manual_adjustments.findMany({
       skip,
       take,
-      
+
       where,
       orderBy: {
-        cdate:"desc",
-      },
-      include: {
-        players: true,
+        cdate: 'desc',
       },
     });
   }
 
   changePlayerStatus(data: UpdatePlayerInput) {
-    return this.prisma.player.update({
+    return this.prisma.players.update({
       where: {
         player_id: data.user_id,
       },
@@ -71,7 +65,7 @@ export class PlayersService {
 
     delete payload.playerID;
 
-    return this.prisma.manualAdjustment.create({
+    return this.prisma.manual_adjustments.create({
       data: {
         ...payload,
         admins: {

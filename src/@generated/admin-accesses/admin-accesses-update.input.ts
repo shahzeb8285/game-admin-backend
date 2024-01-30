@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { AdminRoleAccessesUpdateManyWithoutAdmin_accessesNestedInput } from '../admin-role-accesses/admin-role-accesses-update-many-without-admin-accesses-nested.input';
+import { admin_role_accessesUpdateManyWithoutAdmin_accessesNestedInput } from '../admin-role-accesses/admin-role-accesses-update-many-without-admin-accesses-nested.input';
 
 @InputType()
-export class AdminAccessesUpdateInput {
+export class admin_accessesUpdateInput {
 
     @Field(() => String, {nullable:true})
     admin_access_id?: string;
@@ -11,6 +11,6 @@ export class AdminAccessesUpdateInput {
     @Field(() => String, {nullable:true})
     access_name?: string;
 
-    @Field(() => AdminRoleAccessesUpdateManyWithoutAdmin_accessesNestedInput, {nullable:true})
-    role_accesses?: AdminRoleAccessesUpdateManyWithoutAdmin_accessesNestedInput;
+    @Field(() => admin_role_accessesUpdateManyWithoutAdmin_accessesNestedInput, {nullable:true})
+    admin_role_accesses?: admin_role_accessesUpdateManyWithoutAdmin_accessesNestedInput;
 }

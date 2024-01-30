@@ -1,0 +1,19 @@
+import { Field } from '@nestjs/graphql';
+import { ObjectType } from '@nestjs/graphql';
+import { ID } from '@nestjs/graphql';
+
+@ObjectType()
+export class player_login_logs {
+
+    @Field(() => ID, {nullable:false})
+    player_login_log_id!: string;
+
+    @Field(() => String, {nullable:false})
+    player_id!: string;
+
+    @Field(() => String, {nullable:false})
+    ip!: string;
+
+    @Field(() => Date, {nullable:false})
+    login_time!: Date;
+}

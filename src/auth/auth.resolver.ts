@@ -14,30 +14,31 @@ import { SignupInput } from './dto/signup.input';
 import { RefreshTokenInput } from './dto/refresh-token.input';
 // import { User } from '../users/models/user.model';
 import { UserIp } from '../common/decorators/ip.decorator';
-import {BadGatewayException, UseGuards} from "@nestjs/common"
+import { BadGatewayException, UseGuards } from '@nestjs/common';
 // import { Admin } from '../admins/entities/admin.entity';
 import { GqlAuthGuard } from './gql-auth.guard';
 import { UserEntity } from '../common/decorators/user.decorator';
-import { Admin } from '../@generated/admin/admin.model';
+import { admins as Admin } from '../@generated/admins/admins.model';
 // import { Admin } from '../@generated';
 @Resolver(() => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
-  
   @Mutation(() => Auth)
-  async login(@Args('data') { admin_name, password }: LoginInput,@UserIp() ipAddress: string) {
-    
-    console.log("asasasasasa",ipAddress)
+  async login(
+    @Args('data') { admin_name, password }: LoginInput,
+    @UserIp() ipAddress: string,
+  ) {
+    console.log('asasasasasa', ipAddress);
 
     if (!ipAddress) {
-      throw new BadGatewayException("IP not found")
+      throw new BadGatewayException('IP not found');
     }
 
     const { access_token, refresh_token } = await this.auth.login(
       admin_name.toLowerCase(),
       password,
-      ipAddress
+      ipAddress,
     );
 
     return {
@@ -54,6 +55,6 @@ export class AuthResolver {
   @Query(() => Admin)
   @UseGuards(GqlAuthGuard)
   async getMe(@UserEntity() user) {
-    return user
+    return user;
   }
 }

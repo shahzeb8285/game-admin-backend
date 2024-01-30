@@ -11,7 +11,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async adminCount() {
-    const counts = await this.prismaService.admin.count();
+    const counts = await this.prismaService.admins.count();
     return {
       counts,
     };
@@ -19,7 +19,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async agentsCount() {
-    const counts = await this.prismaService.agent.count();
+    const counts = await this.prismaService.agents.count();
     return {
       counts,
     };
@@ -27,7 +27,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async adminLoginCount() {
-    const counts = await this.prismaService.adminLoginLog.count();
+    const counts = await this.prismaService.admin_login_logs.count();
     return {
       counts,
     };
@@ -35,7 +35,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async usersCount() {
-    const counts = await this.prismaService.player.count();
+    const counts = await this.prismaService.players.count();
     return {
       counts,
     };
@@ -43,7 +43,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async usersLoginCount() {
-    const counts = await this.prismaService.playerLoginLog.count();
+    const counts = await this.prismaService.player_login_logs.count();
     return {
       counts,
     };
@@ -51,7 +51,7 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async manualAdjustmentCount() {
-    const counts = await this.prismaService.manualAdjustment.count();
+    const counts = await this.prismaService.manual_adjustments.count();
     return {
       counts,
     };
@@ -59,28 +59,28 @@ export class CountsResolver {
 
   @Query(() => CountDto)
   async adminRolesCount() {
-    const counts = await this.prismaService.adminRole.count();
+    const counts = await this.prismaService.admin_roles.count();
     return {
       counts,
     };
   }
   @Query(() => CountDto)
   async depositsCount() {
-    const counts = await this.prismaService.depositTransaction.count();
+    const counts = await this.prismaService.deposit_transactions.count();
     return {
       counts,
     };
   }
   @Query(() => CountDto)
   async withdrawalCount() {
-    const counts = await this.prismaService.withdrawalTransaction.count();
+    const counts = await this.prismaService.withdrawal_transactions.count();
     return {
       counts,
     };
   }
   @Query(() => CountDto)
   async bankAccountCount() {
-    const counts = await this.prismaService.adminBankAccount.count();
+    const counts = await this.prismaService.admin_bank_accounts.count();
     return {
       counts,
     };

@@ -3,16 +3,16 @@ import { InputType } from '@nestjs/graphql';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 
 @InputType()
-export class AdminAccessesScalarWhereWithAggregatesInput {
+export class admin_accessesScalarWhereWithAggregatesInput {
 
-    @Field(() => [AdminAccessesScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<AdminAccessesScalarWhereWithAggregatesInput>;
+    @Field(() => [admin_accessesScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<admin_accessesScalarWhereWithAggregatesInput>;
 
-    @Field(() => [AdminAccessesScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<AdminAccessesScalarWhereWithAggregatesInput>;
+    @Field(() => [admin_accessesScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<admin_accessesScalarWhereWithAggregatesInput>;
 
-    @Field(() => [AdminAccessesScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<AdminAccessesScalarWhereWithAggregatesInput>;
+    @Field(() => [admin_accessesScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<admin_accessesScalarWhereWithAggregatesInput>;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     admin_access_id?: StringWithAggregatesFilter;

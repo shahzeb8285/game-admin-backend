@@ -5,15 +5,18 @@ import {
 } from './dto/create-finance.input';
 import { UpdateFinanceInput } from './dto/update-finance.input';
 import { PrismaService } from 'nestjs-prisma';
+import { bank_method } from 'src/@generated/prisma/bank-method.enum';
+import { wallet_transaction_status } from 'src/@generated/prisma/wallet-transaction-status.enum';
 
 @Injectable()
 export class FinancesService {
   constructor(private readonly prisma: PrismaService) {}
 
   createBankAccount(data: CreateBankAccountInput) {
-    return this.prisma.adminBankAccount.create({
+    return this.prisma.admin_bank_accounts.create({
       data: {
         ...data,
+        method: bank_method[data.method],
       },
     });
   }
@@ -23,7 +26,7 @@ export class FinancesService {
       ...data,
     };
     delete payload.adminBankAccountID;
-    return this.prisma.adminBankAccount.update({
+    return this.prisma.admin_bank_accounts.update({
       where: {
         admin_bank_account_id: data.admin_bank_account_id,
       },
@@ -34,27 +37,27 @@ export class FinancesService {
   }
 
   getDeposits({ skip, take, where }) {
-    return this.prisma.depositTransaction.findMany({
+    return this.prisma.deposit_transactions.findMany({
       skip,
       orderBy: {
-        transaction_date:"desc",
+        transaction_date: 'desc',
       },
       take,
       where,
       include: {
         players: true,
-        admin_bank_accounts: true,
+        admin_bank_account: true,
       },
     });
   }
 
   getBankAccounts({ skip, take, where }) {
-    return this.prisma.adminBankAccount.findMany({
+    return this.prisma.admin_bank_accounts.findMany({
       skip,
       take,
       where,
       orderBy: {
-        holder_name:"desc",
+        holder_name: 'desc',
       },
       include: {
         deposit_transactions: true,
@@ -64,46 +67,50 @@ export class FinancesService {
   }
 
   getWithdrawals({ skip, take, where }) {
-    return this.prisma.withdrawalTransaction.findMany({
+    return this.prisma.withdrawal_transactions.findMany({
       skip,
       take,
       where,
       orderBy: {
-        transaction_date:"desc",
+        transaction_date: 'desc',
       },
       include: {
         players: true,
-        admin_bank_accounts: true,
+        player_bank_account: true,
       },
     });
   }
 
   updateWithdrawal(data: UpdateFinanceInput) {
-    return this.prisma.withdrawalTransaction.update({
+    return this.prisma.withdrawal_transactions.update({
       where: {
         withdrawal_transaction_id: data.id,
       },
       data: {
-        status: data.is_enabled ? 'SUCCESS' : 'REJECTED',
+        status: data.is_enabled
+          ? wallet_transaction_status.SUCCESS
+          : wallet_transaction_status.FAILED,
       },
       include: {
         players: true,
-        admin_bank_accounts: true,
+        player_bank_account: true,
       },
     });
   }
 
   updateDeposit(data: UpdateFinanceInput) {
-    return this.prisma.depositTransaction.update({
+    return this.prisma.deposit_transactions.update({
       where: {
         deposit_transaction_id: data.id,
       },
       data: {
-        status: data.is_enabled ? 'SUCCESS' : 'REJECTED',
+        status: data.is_enabled
+          ? wallet_transaction_status.SUCCESS
+          : wallet_transaction_status.FAILED,
       },
       include: {
         players: true,
-        admin_bank_accounts: true,
+        admin_bank_account: true,
       },
     });
   }
