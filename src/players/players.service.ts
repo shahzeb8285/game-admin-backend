@@ -44,6 +44,9 @@ export class PlayersService {
       orderBy: {
         cdate: 'desc',
       },
+      include: {
+        players: true,
+      },
     });
   }
 

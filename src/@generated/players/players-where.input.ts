@@ -9,6 +9,7 @@ import { AgentsRelationFilter } from '../prisma/agents-relation-filter.input';
 import { Deposit_transactionsListRelationFilter } from '../prisma/deposit-transactions-list-relation-filter.input';
 import { Withdrawal_transactionsListRelationFilter } from '../prisma/withdrawal-transactions-list-relation-filter.input';
 import { Player_login_logsListRelationFilter } from '../prisma/player-login-logs-list-relation-filter.input';
+import { Manual_adjustmentsListRelationFilter } from '../prisma/manual-adjustments-list-relation-filter.input';
 
 @InputType()
 export class playersWhereInput {
@@ -81,4 +82,7 @@ export class playersWhereInput {
 
     @Field(() => Player_login_logsListRelationFilter, {nullable:true})
     player_login_logs?: Player_login_logsListRelationFilter;
+
+    @Field(() => Manual_adjustmentsListRelationFilter, {nullable:true})
+    manual_adjustments?: Manual_adjustmentsListRelationFilter;
 }

@@ -20,6 +20,7 @@ Table admin_login_logs {
 
 Table manual_adjustments {
   manual_adjustment_id String [pk]
+  players players [not null]
   player_id String [not null]
   reason String [not null]
   amount Float [not null]
@@ -49,6 +50,7 @@ Table players {
   deposit_transactions deposit_transactions [not null]
   withdrawal_transactions withdrawal_transactions [not null]
   player_login_logs player_login_logs [not null]
+  manual_adjustments manual_adjustments [not null]
 }
 
 Table agents {
@@ -495,6 +497,8 @@ Enum game_currency {
 Ref: player_login_logs.player_id > players.player_id
 
 Ref: admin_login_logs.admin_id > admins.admin_id
+
+Ref: manual_adjustments.player_id > players.player_id
 
 Ref: manual_adjustments.created_by > admins.admin_id
 

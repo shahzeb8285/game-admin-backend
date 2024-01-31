@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 import { admins } from '../admins/admins.model';
 
 @ObjectType()
@@ -24,6 +25,9 @@ export class manual_adjustments {
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 
     @Field(() => admins, {nullable:false})
     admins?: admins;

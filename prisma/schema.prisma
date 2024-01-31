@@ -37,6 +37,7 @@ model admin_login_logs {
 
 model manual_adjustments {
   manual_adjustment_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players              players  @relation(fields: [player_id], references: [player_id])
   player_id            String
   reason               String
   amount               Float
@@ -66,6 +67,7 @@ model players {
   deposit_transactions    deposit_transactions[]
   withdrawal_transactions withdrawal_transactions[]
   player_login_logs       player_login_logs[]
+  manual_adjustments      manual_adjustments[]
 }
 
 model agents {

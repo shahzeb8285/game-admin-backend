@@ -13,4 +13,7 @@ export class PlayersCount {
 
     @Field(() => Int, {nullable:false})
     player_login_logs!: number;
+
+    @Field(() => Int, {nullable:false})
+    manual_adjustments!: number;
 }

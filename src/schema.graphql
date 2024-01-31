@@ -398,6 +398,7 @@ input Player_login_logsListRelationFilter {
 
 type PlayersCount {
   deposit_transactions: Int!
+  manual_adjustments: Int!
   player_login_logs: Int!
   withdrawal_transactions: Int!
 }
@@ -879,6 +880,7 @@ type manual_adjustments {
   created_by: String!
   manual_adjustment_id: ID!
   player_id: String!
+  players: players!
   reason: String!
 }
 
@@ -892,6 +894,7 @@ input manual_adjustmentsWhereInput {
   created_by: StringFilter
   manual_adjustment_id: UuidFilter
   player_id: StringFilter
+  players: PlayersRelationFilter
   reason: StringFilter
 }
 
@@ -952,6 +955,7 @@ type players {
   deposit_transactions: [deposit_transactions!]
   enabled: Boolean!
   fundist_password: String!
+  manual_adjustments: [manual_adjustments!]
   name: String
   password: String!
   player_id: ID!
@@ -978,6 +982,7 @@ input playersWhereInput {
   deposit_transactions: Deposit_transactionsListRelationFilter
   enabled: BoolFilter
   fundist_password: StringFilter
+  manual_adjustments: Manual_adjustmentsListRelationFilter
   name: StringNullableFilter
   password: StringFilter
   player_id: UuidFilter

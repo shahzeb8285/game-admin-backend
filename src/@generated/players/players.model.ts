@@ -5,6 +5,7 @@ import { agents } from '../agents/agents.model';
 import { deposit_transactions } from '../deposit-transactions/deposit-transactions.model';
 import { withdrawal_transactions } from '../withdrawal-transactions/withdrawal-transactions.model';
 import { player_login_logs } from '../player-login-logs/player-login-logs.model';
+import { manual_adjustments } from '../manual-adjustments/manual-adjustments.model';
 import { PlayersCount } from '../prisma/players-count.output';
 
 @ObjectType()
@@ -69,6 +70,9 @@ export class players {
 
     @Field(() => [player_login_logs], {nullable:true})
     player_login_logs?: Array<player_login_logs>;
+
+    @Field(() => [manual_adjustments], {nullable:true})
+    manual_adjustments?: Array<manual_adjustments>;
 
     @Field(() => PlayersCount, {nullable:false})
     _count?: PlayersCount;

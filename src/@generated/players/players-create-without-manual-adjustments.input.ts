@@ -2,11 +2,11 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { agentsCreateNestedOneWithoutPlayersInput } from '../agents/agents-create-nested-one-without-players.input';
 import { deposit_transactionsCreateNestedManyWithoutPlayersInput } from '../deposit-transactions/deposit-transactions-create-nested-many-without-players.input';
+import { withdrawal_transactionsCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-create-nested-many-without-players.input';
 import { player_login_logsCreateNestedManyWithoutPlayersInput } from '../player-login-logs/player-login-logs-create-nested-many-without-players.input';
-import { manual_adjustmentsCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-create-nested-many-without-players.input';
 
 @InputType()
-export class playersCreateWithoutWithdrawal_transactionsInput {
+export class playersCreateWithoutManual_adjustmentsInput {
 
     @Field(() => String, {nullable:true})
     player_id?: string;
@@ -59,9 +59,9 @@ export class playersCreateWithoutWithdrawal_transactionsInput {
     @Field(() => deposit_transactionsCreateNestedManyWithoutPlayersInput, {nullable:true})
     deposit_transactions?: deposit_transactionsCreateNestedManyWithoutPlayersInput;
 
+    @Field(() => withdrawal_transactionsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    withdrawal_transactions?: withdrawal_transactionsCreateNestedManyWithoutPlayersInput;
+
     @Field(() => player_login_logsCreateNestedManyWithoutPlayersInput, {nullable:true})
     player_login_logs?: player_login_logsCreateNestedManyWithoutPlayersInput;
-
-    @Field(() => manual_adjustmentsCreateNestedManyWithoutPlayersInput, {nullable:true})
-    manual_adjustments?: manual_adjustmentsCreateNestedManyWithoutPlayersInput;
 }

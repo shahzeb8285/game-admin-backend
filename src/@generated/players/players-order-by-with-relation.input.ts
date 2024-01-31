@@ -6,6 +6,7 @@ import { agentsOrderByWithRelationInput } from '../agents/agents-order-by-with-r
 import { deposit_transactionsOrderByRelationAggregateInput } from '../deposit-transactions/deposit-transactions-order-by-relation-aggregate.input';
 import { withdrawal_transactionsOrderByRelationAggregateInput } from '../withdrawal-transactions/withdrawal-transactions-order-by-relation-aggregate.input';
 import { player_login_logsOrderByRelationAggregateInput } from '../player-login-logs/player-login-logs-order-by-relation-aggregate.input';
+import { manual_adjustmentsOrderByRelationAggregateInput } from '../manual-adjustments/manual-adjustments-order-by-relation-aggregate.input';
 
 @InputType()
 export class playersOrderByWithRelationInput {
@@ -69,4 +70,7 @@ export class playersOrderByWithRelationInput {
 
     @Field(() => player_login_logsOrderByRelationAggregateInput, {nullable:true})
     player_login_logs?: player_login_logsOrderByRelationAggregateInput;
+
+    @Field(() => manual_adjustmentsOrderByRelationAggregateInput, {nullable:true})
+    manual_adjustments?: manual_adjustmentsOrderByRelationAggregateInput;
 }

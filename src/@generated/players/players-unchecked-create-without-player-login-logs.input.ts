@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { deposit_transactionsUncheckedCreateNestedManyWithoutPlayersInput } from '../deposit-transactions/deposit-transactions-unchecked-create-nested-many-without-players.input';
 import { withdrawal_transactionsUncheckedCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-unchecked-create-nested-many-without-players.input';
+import { manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-unchecked-create-nested-many-without-players.input';
 
 @InputType()
 export class playersUncheckedCreateWithoutPlayer_login_logsInput {
@@ -59,4 +60,7 @@ export class playersUncheckedCreateWithoutPlayer_login_logsInput {
 
     @Field(() => withdrawal_transactionsUncheckedCreateNestedManyWithoutPlayersInput, {nullable:true})
     withdrawal_transactions?: withdrawal_transactionsUncheckedCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput, {nullable:true})
+    manual_adjustments?: manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput;
 }

@@ -1,11 +1,11 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { deposit_transactionsUncheckedUpdateManyWithoutPlayersNestedInput } from '../deposit-transactions/deposit-transactions-unchecked-update-many-without-players-nested.input';
+import { withdrawal_transactionsUncheckedUpdateManyWithoutPlayersNestedInput } from '../withdrawal-transactions/withdrawal-transactions-unchecked-update-many-without-players-nested.input';
 import { player_login_logsUncheckedUpdateManyWithoutPlayersNestedInput } from '../player-login-logs/player-login-logs-unchecked-update-many-without-players-nested.input';
-import { manual_adjustmentsUncheckedUpdateManyWithoutPlayersNestedInput } from '../manual-adjustments/manual-adjustments-unchecked-update-many-without-players-nested.input';
 
 @InputType()
-export class playersUncheckedUpdateWithoutWithdrawal_transactionsInput {
+export class playersUncheckedUpdateWithoutManual_adjustmentsInput {
 
     @Field(() => String, {nullable:true})
     player_id?: string;
@@ -58,9 +58,9 @@ export class playersUncheckedUpdateWithoutWithdrawal_transactionsInput {
     @Field(() => deposit_transactionsUncheckedUpdateManyWithoutPlayersNestedInput, {nullable:true})
     deposit_transactions?: deposit_transactionsUncheckedUpdateManyWithoutPlayersNestedInput;
 
+    @Field(() => withdrawal_transactionsUncheckedUpdateManyWithoutPlayersNestedInput, {nullable:true})
+    withdrawal_transactions?: withdrawal_transactionsUncheckedUpdateManyWithoutPlayersNestedInput;
+
     @Field(() => player_login_logsUncheckedUpdateManyWithoutPlayersNestedInput, {nullable:true})
     player_login_logs?: player_login_logsUncheckedUpdateManyWithoutPlayersNestedInput;
-
-    @Field(() => manual_adjustmentsUncheckedUpdateManyWithoutPlayersNestedInput, {nullable:true})
-    manual_adjustments?: manual_adjustmentsUncheckedUpdateManyWithoutPlayersNestedInput;
 }

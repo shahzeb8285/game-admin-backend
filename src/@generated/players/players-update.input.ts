@@ -4,6 +4,7 @@ import { agentsUpdateOneRequiredWithoutPlayersNestedInput } from '../agents/agen
 import { deposit_transactionsUpdateManyWithoutPlayersNestedInput } from '../deposit-transactions/deposit-transactions-update-many-without-players-nested.input';
 import { withdrawal_transactionsUpdateManyWithoutPlayersNestedInput } from '../withdrawal-transactions/withdrawal-transactions-update-many-without-players-nested.input';
 import { player_login_logsUpdateManyWithoutPlayersNestedInput } from '../player-login-logs/player-login-logs-update-many-without-players-nested.input';
+import { manual_adjustmentsUpdateManyWithoutPlayersNestedInput } from '../manual-adjustments/manual-adjustments-update-many-without-players-nested.input';
 
 @InputType()
 export class playersUpdateInput {
@@ -64,4 +65,7 @@ export class playersUpdateInput {
 
     @Field(() => player_login_logsUpdateManyWithoutPlayersNestedInput, {nullable:true})
     player_login_logs?: player_login_logsUpdateManyWithoutPlayersNestedInput;
+
+    @Field(() => manual_adjustmentsUpdateManyWithoutPlayersNestedInput, {nullable:true})
+    manual_adjustments?: manual_adjustmentsUpdateManyWithoutPlayersNestedInput;
 }

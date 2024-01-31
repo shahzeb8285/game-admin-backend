@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 
 @InputType()
-export class manual_adjustmentsUpdateManyMutationInput {
+export class manual_adjustmentsUncheckedUpdateManyWithoutPlayersInput {
 
     @Field(() => String, {nullable:true})
     manual_adjustment_id?: string;
@@ -13,6 +13,9 @@ export class manual_adjustmentsUpdateManyMutationInput {
 
     @Field(() => Float, {nullable:true})
     amount?: number;
+
+    @Field(() => String, {nullable:true})
+    created_by?: string;
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;

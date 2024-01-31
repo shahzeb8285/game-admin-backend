@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { deposit_transactionsCreateNestedManyWithoutPlayersInput } from '../deposit-transactions/deposit-transactions-create-nested-many-without-players.input';
 import { withdrawal_transactionsCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-create-nested-many-without-players.input';
 import { player_login_logsCreateNestedManyWithoutPlayersInput } from '../player-login-logs/player-login-logs-create-nested-many-without-players.input';
+import { manual_adjustmentsCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-create-nested-many-without-players.input';
 
 @InputType()
 export class playersCreateWithoutAgentInput {
@@ -60,4 +61,7 @@ export class playersCreateWithoutAgentInput {
 
     @Field(() => player_login_logsCreateNestedManyWithoutPlayersInput, {nullable:true})
     player_login_logs?: player_login_logsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => manual_adjustmentsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    manual_adjustments?: manual_adjustmentsCreateNestedManyWithoutPlayersInput;
 }
