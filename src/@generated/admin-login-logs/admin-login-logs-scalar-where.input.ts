@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
@@ -15,8 +16,8 @@ export class admin_login_logsScalarWhereInput {
     @Field(() => [admin_login_logsScalarWhereInput], {nullable:true})
     NOT?: Array<admin_login_logsScalarWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    admin_login_log_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    admin_login_log_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     admin_id?: StringFilter;

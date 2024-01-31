@@ -22,12 +22,6 @@ export class agent_shares {
     @Field(() => Date, {nullable:false})
     cdate!: Date;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date;
-
-    @Field(() => Boolean, {nullable:false,defaultValue:true})
-    enabled!: boolean;
-
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
 

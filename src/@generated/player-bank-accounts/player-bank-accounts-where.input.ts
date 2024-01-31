@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { Enumbank_methodFilter } from '../prisma/enumbank-method-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -18,8 +19,8 @@ export class player_bank_accountsWhereInput {
     @Field(() => [player_bank_accountsWhereInput], {nullable:true})
     NOT?: Array<player_bank_accountsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    player_bank_account_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    player_bank_account_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     player_id?: StringFilter;

@@ -13,22 +13,27 @@ import { BankAccountEntity } from './entities/bankaccount.entity';
 import { deposit_transactionsWhereInput as DepositTransactionWhereInput } from '../@generated/deposit-transactions/deposit-transactions-where.input';
 import { withdrawal_transactionsWhereInput as WithdrawalTransactionWhereInput } from '../@generated/withdrawal-transactions/withdrawal-transactions-where.input';
 import { admin_bank_accountsWhereInput as AdminBankAccountWhereInput } from '../@generated/admin-bank-accounts/admin-bank-accounts-where.input';
+import { deposit_transactions } from 'src/@generated/deposit-transactions/deposit-transactions.model';
+import { withdrawal_transactions } from 'src/@generated/withdrawal-transactions/withdrawal-transactions.model';
+import { admin_bank_accounts } from 'src/@generated/admin-bank-accounts/admin-bank-accounts.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
   constructor(private readonly financesService: FinancesService) {}
 
-  @Query(() => [DepositEntity], { name: 'deposits' })
-  getDeposits(
+  @Query(() => [deposit_transactions], { name: 'deposits' })
+  async getDeposits(
     @Args({ name: 'where', defaultValue: {} })
     where: DepositTransactionWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
-    return this.financesService.getDeposits({ skip, take, where });
+    const data = await this.financesService.getDeposits({ skip, take, where });
+    console.log("getDeposits",{dsaaa:data[0]})
+    return data
   }
 
-  @Query(() => [WithdrawalEntity], { name: 'withdrawals' })
+  @Query(() => [withdrawal_transactions], { name: 'withdrawals' })
   getWithdrawals(
     @Args({ name: 'where', defaultValue: {} })
     where: WithdrawalTransactionWhereInput,
@@ -38,7 +43,7 @@ export class FinancesResolver {
     return this.financesService.getWithdrawals({ skip, take, where });
   }
 
-  @Query(() => [BankAccountEntity], { name: 'bankaccounts' })
+  @Query(() => [admin_bank_accounts], { name: 'adminBankAccounts' })
   getBankAccounts(
     @Args({ name: 'where', defaultValue: {} })
     where: AdminBankAccountWhereInput,
@@ -48,26 +53,26 @@ export class FinancesResolver {
     return this.financesService.getBankAccounts({ skip, take, where });
   }
 
-  @Mutation(() => WithdrawalEntity)
+  @Mutation(() => withdrawal_transactions)
   updateWithdrawal(@Args('data') input: UpdateFinanceInput) {
     return this.financesService.updateWithdrawal(input);
   }
 
-  @Mutation(() => DepositEntity)
+  @Mutation(() => deposit_transactions)
   updateDeposit(@Args('data') input: UpdateFinanceInput) {
     return this.financesService.updateDeposit(input);
   }
 
-  @Mutation(() => BankAccountEntity)
+  @Mutation(() => admin_bank_accounts)
   createBankAccount(@Args('data') input: CreateBankAccountInput) {
     return this.financesService.createBankAccount(input);
   }
 
-  @Mutation(() => BankAccountEntity)
+  @Mutation(() => admin_bank_accounts)
   updateBankAccount(@Args('data') input: UpdateBankAccountInput) {
     return this.financesService.updateBankAccount(input);
   }
 
-  @Query(() => [BankAccountEntity], { name: 'gamerebates' })
+  @Query(() => [admin_bank_accounts], { name: 'gamerebates' })
   getGameRebates() {}
 }

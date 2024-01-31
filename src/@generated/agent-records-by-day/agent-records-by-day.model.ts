@@ -26,8 +26,8 @@ export class agent_records_by_day {
     @Field(() => String, {nullable:false})
     agent_id!: string;
 
-    @Field(() => String, {nullable:false})
-    child_agent_id!: string;
+    @Field(() => String, {nullable:true})
+    child_agent_id!: string | null;
 
     @Field(() => Float, {nullable:false})
     effective_bet_amount!: number;

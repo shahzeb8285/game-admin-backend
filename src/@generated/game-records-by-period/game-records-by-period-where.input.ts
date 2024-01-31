@@ -1,7 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { Enumrebate_statusFilter } from '../prisma/enumrebate-status-filter.input';
@@ -18,8 +19,8 @@ export class game_records_by_periodWhereInput {
     @Field(() => [game_records_by_periodWhereInput], {nullable:true})
     NOT?: Array<game_records_by_periodWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    game_records_by_period_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    game_records_by_period_id?: UuidFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     game_date?: DateTimeFilter;

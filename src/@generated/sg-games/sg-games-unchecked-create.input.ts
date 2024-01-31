@@ -33,20 +33,20 @@ export class sg_gamesUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     page_code!: string;
 
-    @Field(() => String, {nullable:false})
-    mobile_page_code!: string;
+    @Field(() => String, {nullable:true})
+    mobile_page_code?: string;
 
-    @Field(() => Float, {nullable:false})
-    rtp!: number;
+    @Field(() => Float, {nullable:true})
+    rtp?: number;
 
     @Field(() => Int, {nullable:false})
     coun_rest_id!: number;
 
-    @Field(() => String, {nullable:false})
-    external_code!: string;
+    @Field(() => String, {nullable:true})
+    external_code?: string;
 
-    @Field(() => String, {nullable:false})
-    mobile_external_code!: string;
+    @Field(() => String, {nullable:true})
+    mobile_external_code?: string;
 
     @Field(() => String, {nullable:false})
     table_id!: string;
@@ -66,14 +66,14 @@ export class sg_gamesUncheckedCreateInput {
     @Field(() => Boolean, {nullable:false})
     freespins!: boolean;
 
-    @Field(() => Float, {nullable:false})
-    min_bet_default!: number;
+    @Field(() => Float, {nullable:true})
+    min_bet_default?: number;
 
-    @Field(() => Float, {nullable:false})
-    max_bet_default!: number;
+    @Field(() => Float, {nullable:true})
+    max_bet_default?: number;
 
-    @Field(() => Float, {nullable:false})
-    max_multiplier!: number;
+    @Field(() => Float, {nullable:true})
+    max_multiplier?: number;
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;

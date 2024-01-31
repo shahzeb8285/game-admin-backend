@@ -6,8 +6,6 @@ export enum Agent_sharesScalarFieldEnum {
     shares = "shares",
     created_by = "created_by",
     cdate = "cdate",
-    udate = "udate",
-    enabled = "enabled",
     is_active = "is_active"
 }
 

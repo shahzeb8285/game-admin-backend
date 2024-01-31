@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 import { Enumreal_currencyWithAggregatesFilter } from '../prisma/enumreal-currency-with-aggregates-filter.input';
 import { Enumgame_currencyWithAggregatesFilter } from '../prisma/enumgame-currency-with-aggregates-filter.input';
 import { FloatWithAggregatesFilter } from '../prisma/float-with-aggregates-filter.input';
@@ -19,8 +19,8 @@ export class exchange_ratesScalarWhereWithAggregatesInput {
     @Field(() => [exchange_ratesScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<exchange_ratesScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    exchange_rate_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    exchange_rate_id?: UuidWithAggregatesFilter;
 
     @Field(() => Enumreal_currencyWithAggregatesFilter, {nullable:true})
     real_currency?: Enumreal_currencyWithAggregatesFilter;

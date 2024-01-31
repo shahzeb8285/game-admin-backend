@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { playersWhereInput } from './players-where.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
@@ -29,8 +30,8 @@ export class playersWhereUniqueInput {
     @Field(() => [playersWhereInput], {nullable:true})
     NOT?: Array<playersWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    name?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     tg_first_name?: StringFilter;
@@ -38,8 +39,8 @@ export class playersWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     tg_last_name?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    tg_photo_url?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    tg_photo_url?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     user_language?: StringFilter;

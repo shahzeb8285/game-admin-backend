@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 
 @InputType()
 export class unprocessed_game_round_infosScalarWhereWithAggregatesInput {
@@ -14,6 +14,6 @@ export class unprocessed_game_round_infosScalarWhereWithAggregatesInput {
     @Field(() => [unprocessed_game_round_infosScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<unprocessed_game_round_infosScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    game_round_info_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    game_round_info_id?: UuidWithAggregatesFilter;
 }

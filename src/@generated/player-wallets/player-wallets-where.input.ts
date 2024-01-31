@@ -1,9 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { Enumgame_currencyFilter } from '../prisma/enumgame-currency-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 
 @InputType()
 export class player_walletsWhereInput {
@@ -17,8 +18,8 @@ export class player_walletsWhereInput {
     @Field(() => [player_walletsWhereInput], {nullable:true})
     NOT?: Array<player_walletsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    player_wallet_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    player_wallet_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     player_id?: StringFilter;
@@ -32,9 +33,9 @@ export class player_walletsWhereInput {
     @Field(() => FloatFilter, {nullable:true})
     frozen_amount?: FloatFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    cdate?: DateTimeFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    cdate?: DateTimeNullableFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    udate?: DateTimeFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    udate?: DateTimeNullableFilter;
 }

@@ -20,12 +20,6 @@ input Admin_accessesRelationFilter {
 
 type Admin_bank_accountsCount {
   deposit_transactions: Int!
-  withdrawal_transactions: Int!
-}
-
-input Admin_bank_accountsNullableRelationFilter {
-  is: admin_bank_accountsWhereInput
-  isNot: admin_bank_accountsWhereInput
 }
 
 input Admin_bank_accountsRelationFilter {
@@ -122,17 +116,6 @@ type Auth {
   user: admins!
 }
 
-type BankAccountEntity {
-  account_number: String!
-  admin_bank_account_id: ID!
-  bank_name: String!
-  deposit_transactions: [DepositEntity!]
-  enabled: Boolean!
-  holder_name: String!
-  method: String!
-  withdrawal_transactions: [WithdrawalEntity!]
-}
-
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -189,19 +172,15 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
-type DepositEntity {
-  admin_bank_account_id: String!
-  admin_bank_accounts: BankAccountEntity!
-  amount: Float!
-  currency: String!
-  deposit_transaction_id: String!
-  player_id: String!
-  players: players!
-  process_time: DateTime!
-  processed_by: String!
-  request_time: DateTime!
-  status: wallet_transaction_status!
-  transaction_date: String!
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
 }
 
 input Deposit_transactionsListRelationFilter {
@@ -288,17 +267,17 @@ type Mutation {
   createAdmin(data: CreateAdminInput!): admins!
   createAdminRole(data: CreateRoleInput!): AdminRoles!
   createAgent(data: CreateAgentInput!): agents!
-  createBankAccount(data: CreateBankAccountInput!): BankAccountEntity!
+  createBankAccount(data: CreateBankAccountInput!): admin_bank_accounts!
   createManualAdjustment(data: CreateManualAdjustment!): manual_adjustments!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   updateAdmin(data: UpdateAdminInput!): admins!
   updateAdminRole(data: UpdateRoleInput!): AdminRoles!
   updateAgent(data: UpdateAgentInput!): agents!
-  updateBankAccount(data: UpdateBankAccountInput!): BankAccountEntity!
-  updateDeposit(data: UpdateFinanceInput!): DepositEntity!
+  updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
+  updateDeposit(data: UpdateFinanceInput!): deposit_transactions!
   updateUser(data: UpdatePlayerInput!): players!
-  updateWithdrawal(data: UpdateFinanceInput!): WithdrawalEntity!
+  updateWithdrawal(data: UpdateFinanceInput!): withdrawal_transactions!
 }
 
 input NestedBoolFilter {
@@ -314,6 +293,17 @@ input NestedDateTimeFilter {
   lt: DateTime
   lte: DateTime
   not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
 }
 
@@ -395,6 +385,17 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
+input NestedUuidFilter {
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedUuidFilter
+  notIn: [String!]
+}
+
 type Player_bank_accountsCount {
   withdrawal_transactions: Int!
 }
@@ -421,6 +422,7 @@ input PlayersRelationFilter {
 }
 
 type Query {
+  adminBankAccounts(skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [admin_bank_accounts!]!
   adminCount: CountDto!
   adminLoginCount: CountDto!
   adminRolesCount: CountDto!
@@ -428,10 +430,9 @@ type Query {
   agents(skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount: CountDto!
   bankAccountCount: CountDto!
-  bankaccounts(skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [BankAccountEntity!]!
-  deposits(skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [DepositEntity!]!
+  deposits(skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
   depositsCount: CountDto!
-  gamerebates: [BankAccountEntity!]!
+  gamerebates: [admin_bank_accounts!]!
   getAccesses(skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
   getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [LoginHistory!]!
   getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [AdminRoles!]!
@@ -444,7 +445,7 @@ type Query {
   usersCount: CountDto!
   usersLoginCount: CountDto!
   withdrawalCount: CountDto!
-  withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [WithdrawalEntity!]!
+  withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
 }
 
 enum QueryMode {
@@ -539,19 +540,16 @@ type UserLoginHistory {
   players: players!
 }
 
-type WithdrawalEntity {
-  admin_bank_account_id: String!
-  admin_bank_accounts: BankAccountEntity!
-  amount: Float!
-  currency: String!
-  player_id: String!
-  players: players!
-  process_time: DateTime!
-  processed_by: String!
-  request_time: DateTime!
-  status: wallet_transaction_status!
-  transaction_date: String!
-  withdrawal_transaction_id: ID!
+input UuidFilter {
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedUuidFilter
+  notIn: [String!]
 }
 
 input Withdrawal_transactionsListRelationFilter {
@@ -572,7 +570,7 @@ input admin_accessesWhereInput {
   NOT: [admin_accessesWhereInput!]
   OR: [admin_accessesWhereInput!]
   access_name: StringFilter
-  admin_access_id: StringFilter
+  admin_access_id: UuidFilter
   admin_role_accesses: Admin_role_accessesListRelationFilter
 }
 
@@ -587,7 +585,6 @@ type admin_bank_accounts {
   holder_name: String!
   method: bank_method!
   udate: DateTime!
-  withdrawal_transactions: [withdrawal_transactions!]
 }
 
 input admin_bank_accountsWhereInput {
@@ -595,7 +592,7 @@ input admin_bank_accountsWhereInput {
   NOT: [admin_bank_accountsWhereInput!]
   OR: [admin_bank_accountsWhereInput!]
   account_number: StringFilter
-  admin_bank_account_id: StringFilter
+  admin_bank_account_id: UuidFilter
   bank_name: StringFilter
   cdate: DateTimeFilter
   deposit_transactions: Deposit_transactionsListRelationFilter
@@ -603,7 +600,6 @@ input admin_bank_accountsWhereInput {
   holder_name: StringFilter
   method: Enumbank_methodFilter
   udate: DateTimeFilter
-  withdrawal_transactions: Withdrawal_transactionsListRelationFilter
 }
 
 type admin_login_logs {
@@ -619,7 +615,7 @@ input admin_login_logsWhereInput {
   NOT: [admin_login_logsWhereInput!]
   OR: [admin_login_logsWhereInput!]
   admin_id: StringFilter
-  admin_login_log_id: StringFilter
+  admin_login_log_id: UuidFilter
   admins: AdminsRelationFilter
   ip: StringFilter
   login_time: DateTimeFilter
@@ -644,7 +640,7 @@ input admin_role_accessesWhereInput {
   OR: [admin_role_accessesWhereInput!]
   admin_access_id: StringFilter
   admin_accesses: Admin_accessesRelationFilter
-  admin_role_access_id: StringFilter
+  admin_role_access_id: UuidFilter
   admin_role_id: StringFilter
   admin_roles: Admin_rolesRelationFilter
   cdate: DateTimeFilter
@@ -671,7 +667,7 @@ input admin_rolesWhereInput {
   NOT: [admin_rolesWhereInput!]
   OR: [admin_rolesWhereInput!]
   admin_role_accesses: Admin_role_accessesListRelationFilter
-  admin_role_id: StringFilter
+  admin_role_id: UuidFilter
   admin_role_name: StringFilter
   admins: AdminsListRelationFilter
   cdate: DateTimeFilter
@@ -699,7 +695,7 @@ input adminsWhereInput {
   AND: [adminsWhereInput!]
   NOT: [adminsWhereInput!]
   OR: [adminsWhereInput!]
-  admin_id: StringFilter
+  admin_id: UuidFilter
   admin_login_logs: Admin_login_logsListRelationFilter
   admin_name: StringFilter
   admin_password: StringFilter
@@ -728,7 +724,7 @@ input agent_rebate_ratesWhereInput {
   NOT: [agent_rebate_ratesWhereInput!]
   OR: [agent_rebate_ratesWhereInput!]
   agent_id: StringFilter
-  agent_rebate_rate_id: StringFilter
+  agent_rebate_rate_id: UuidFilter
   agents: AgentsRelationFilter
   cdate: DateTimeFilter
   created_by: StringFilter
@@ -742,7 +738,7 @@ type agent_records_by_day {
   agent_records_by_day_id: ID!
   agents: agents!
   cdate: DateTime!
-  child_agent_id: String!
+  child_agent_id: String
   effective_bet_amount: Float!
   game_date: DateTime!
   game_pnl_expense: Float!
@@ -761,10 +757,10 @@ input agent_records_by_dayWhereInput {
   NOT: [agent_records_by_dayWhereInput!]
   OR: [agent_records_by_dayWhereInput!]
   agent_id: StringFilter
-  agent_records_by_day_id: StringFilter
+  agent_records_by_day_id: UuidFilter
   agents: AgentsRelationFilter
   cdate: DateTimeFilter
-  child_agent_id: StringFilter
+  child_agent_id: StringNullableFilter
   effective_bet_amount: FloatFilter
   game_date: DateTimeFilter
   game_pnl_expense: FloatFilter
@@ -784,10 +780,8 @@ type agent_shares {
   agents: agents!
   cdate: DateTime!
   created_by: String!
-  enabled: Boolean!
   is_active: Boolean!
   shares: Float!
-  udate: DateTime!
 }
 
 input agent_sharesWhereInput {
@@ -795,14 +789,12 @@ input agent_sharesWhereInput {
   NOT: [agent_sharesWhereInput!]
   OR: [agent_sharesWhereInput!]
   agent_id: StringFilter
-  agent_share_id: StringFilter
+  agent_share_id: UuidFilter
   agents: AgentsRelationFilter
   cdate: DateTimeFilter
   created_by: StringFilter
-  enabled: BoolFilter
   is_active: BoolFilter
   shares: FloatFilter
-  udate: DateTimeFilter
 }
 
 type agents {
@@ -827,7 +819,7 @@ input agentsWhereInput {
   AND: [agentsWhereInput!]
   NOT: [agentsWhereInput!]
   OR: [agentsWhereInput!]
-  agent_id: StringFilter
+  agent_id: UuidFilter
   agent_name: StringFilter
   agent_password: StringFilter
   agent_rebate_rates: Agent_rebate_ratesListRelationFilter
@@ -852,15 +844,15 @@ type deposit_transactions {
   admin_bank_account: admin_bank_accounts!
   admin_bank_account_id: String!
   cdate: DateTime!
-  comment: String!
+  comment: String
   deposit_transaction_id: ID!
   game_amount: Float!
   game_currency: game_currency!
   player_id: String!
   player_remarks: String!
   players: players!
-  process_time: DateTime!
-  processed_by: String!
+  process_time: DateTime
+  processed_by: String
   status: wallet_transaction_status!
   transaction_amount: Float!
   transaction_currency: real_currency!
@@ -875,15 +867,15 @@ input deposit_transactionsWhereInput {
   admin_bank_account: Admin_bank_accountsRelationFilter
   admin_bank_account_id: StringFilter
   cdate: DateTimeFilter
-  comment: StringFilter
-  deposit_transaction_id: StringFilter
+  comment: StringNullableFilter
+  deposit_transaction_id: UuidFilter
   game_amount: FloatFilter
   game_currency: Enumgame_currencyFilter
   player_id: StringFilter
   player_remarks: StringFilter
   players: PlayersRelationFilter
-  process_time: DateTimeFilter
-  processed_by: StringFilter
+  process_time: DateTimeNullableFilter
+  processed_by: StringNullableFilter
   status: Enumwallet_transaction_statusFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
@@ -913,7 +905,7 @@ input manual_adjustmentsWhereInput {
   amount: FloatFilter
   cdate: DateTimeFilter
   created_by: StringFilter
-  manual_adjustment_id: StringFilter
+  manual_adjustment_id: UuidFilter
   player_id: StringFilter
   reason: StringFilter
 }
@@ -942,7 +934,7 @@ input player_bank_accountsWhereInput {
   enabled: BoolFilter
   holder_name: StringFilter
   method: Enumbank_methodFilter
-  player_bank_account_id: StringFilter
+  player_bank_account_id: UuidFilter
   player_id: StringFilter
   udate: DateTimeFilter
   withdrawal_transactions: Withdrawal_transactionsListRelationFilter
@@ -955,7 +947,7 @@ input player_login_logsWhereInput {
   ip: StringFilter
   login_time: DateTimeFilter
   player_id: StringFilter
-  player_login_log_id: StringFilter
+  player_login_log_id: UuidFilter
 }
 
 type players {
@@ -966,7 +958,7 @@ type players {
   deposit_transactions: [deposit_transactions!]
   enabled: Boolean!
   fundist_password: String!
-  name: String!
+  name: String
   password: String!
   player_id: ID!
   registration_date: String!
@@ -974,7 +966,7 @@ type players {
   tg_first_name: String!
   tg_id: String!
   tg_last_name: String!
-  tg_photo_url: String!
+  tg_photo_url: String
   tg_username: String!
   udate: DateTime!
   user_language: String!
@@ -991,15 +983,15 @@ input playersWhereInput {
   deposit_transactions: Deposit_transactionsListRelationFilter
   enabled: BoolFilter
   fundist_password: StringFilter
-  name: StringFilter
+  name: StringNullableFilter
   password: StringFilter
-  player_id: StringFilter
+  player_id: UuidFilter
   registration_date: StringFilter
   registration_ip: StringFilter
   tg_first_name: StringFilter
   tg_id: StringFilter
   tg_last_name: StringFilter
-  tg_photo_url: StringFilter
+  tg_photo_url: StringNullableFilter
   tg_username: StringFilter
   udate: DateTimeFilter
   user_language: StringFilter
@@ -1018,10 +1010,8 @@ enum wallet_transaction_status {
 }
 
 type withdrawal_transactions {
-  admin_bank_accounts: admin_bank_accounts
-  admin_bank_accountsAdmin_bank_account_id: String
   cdate: DateTime!
-  comment: String!
+  comment: String
   game_amount: Float!
   game_currency: game_currency!
   player_bank_account: player_bank_accounts!
@@ -1029,8 +1019,8 @@ type withdrawal_transactions {
   player_id: String!
   player_remarks: String!
   players: players!
-  process_time: DateTime!
-  processed_by: String!
+  process_time: DateTime
+  processed_by: String
   status: wallet_transaction_status!
   transaction_amount: Float!
   transaction_currency: real_currency!
@@ -1043,10 +1033,8 @@ input withdrawal_transactionsWhereInput {
   AND: [withdrawal_transactionsWhereInput!]
   NOT: [withdrawal_transactionsWhereInput!]
   OR: [withdrawal_transactionsWhereInput!]
-  admin_bank_accounts: Admin_bank_accountsNullableRelationFilter
-  admin_bank_accountsAdmin_bank_account_id: StringNullableFilter
   cdate: DateTimeFilter
-  comment: StringFilter
+  comment: StringNullableFilter
   game_amount: FloatFilter
   game_currency: Enumgame_currencyFilter
   player_bank_account: Player_bank_accountsRelationFilter
@@ -1054,12 +1042,12 @@ input withdrawal_transactionsWhereInput {
   player_id: StringFilter
   player_remarks: StringFilter
   players: PlayersRelationFilter
-  process_time: DateTimeFilter
-  processed_by: StringFilter
+  process_time: DateTimeNullableFilter
+  processed_by: StringNullableFilter
   status: Enumwallet_transaction_statusFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
   transaction_date: StringFilter
   udate: DateTimeFilter
-  withdrawal_transaction_id: StringFilter
+  withdrawal_transaction_id: UuidFilter
 }

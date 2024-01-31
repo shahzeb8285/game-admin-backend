@@ -1,5 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
@@ -19,11 +21,11 @@ export class playersWhereInput {
     @Field(() => [playersWhereInput], {nullable:true})
     NOT?: Array<playersWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    player_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    player_id?: UuidFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    name?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     tg_id?: StringFilter;
@@ -37,8 +39,8 @@ export class playersWhereInput {
     @Field(() => StringFilter, {nullable:true})
     tg_username?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    tg_photo_url?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    tg_photo_url?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     user_language?: StringFilter;

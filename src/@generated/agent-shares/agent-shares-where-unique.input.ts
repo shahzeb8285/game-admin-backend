@@ -34,12 +34,6 @@ export class agent_sharesWhereUniqueInput {
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    udate?: DateTimeFilter;
-
-    @Field(() => BoolFilter, {nullable:true})
-    enabled?: BoolFilter;
-
     @Field(() => BoolFilter, {nullable:true})
     is_active?: BoolFilter;
 

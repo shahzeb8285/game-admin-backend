@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
@@ -18,8 +19,8 @@ export class agent_rebate_ratesScalarWhereInput {
     @Field(() => [agent_rebate_ratesScalarWhereInput], {nullable:true})
     NOT?: Array<agent_rebate_ratesScalarWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    agent_rebate_rate_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    agent_rebate_rate_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     agent_id?: StringFilter;

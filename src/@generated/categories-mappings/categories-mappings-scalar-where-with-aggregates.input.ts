@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
@@ -17,8 +17,8 @@ export class categories_mappingsScalarWhereWithAggregatesInput {
     @Field(() => [categories_mappingsScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<categories_mappingsScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    categories_mapping_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    categories_mapping_id?: UuidWithAggregatesFilter;
 
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     sg_category_id?: IntWithAggregatesFilter;

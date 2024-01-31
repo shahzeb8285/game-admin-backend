@@ -6,7 +6,6 @@ import { Enumbank_methodFilter } from '../prisma/enumbank-method-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { Deposit_transactionsListRelationFilter } from '../prisma/deposit-transactions-list-relation-filter.input';
-import { Withdrawal_transactionsListRelationFilter } from '../prisma/withdrawal-transactions-list-relation-filter.input';
 
 @InputType()
 export class admin_bank_accountsWhereUniqueInput {
@@ -46,7 +45,4 @@ export class admin_bank_accountsWhereUniqueInput {
 
     @Field(() => Deposit_transactionsListRelationFilter, {nullable:true})
     deposit_transactions?: Deposit_transactionsListRelationFilter;
-
-    @Field(() => Withdrawal_transactionsListRelationFilter, {nullable:true})
-    withdrawal_transactions?: Withdrawal_transactionsListRelationFilter;
 }

@@ -15,8 +15,7 @@ export enum Withdrawal_transactionsScalarFieldEnum {
     process_time = "process_time",
     status = "status",
     cdate = "cdate",
-    udate = "udate",
-    admin_bank_accountsAdmin_bank_account_id = "admin_bank_accountsAdmin_bank_account_id"
+    udate = "udate"
 }
 
 

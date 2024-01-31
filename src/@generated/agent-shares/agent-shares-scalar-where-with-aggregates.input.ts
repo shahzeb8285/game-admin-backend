@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { FloatWithAggregatesFilter } from '../prisma/float-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
@@ -17,8 +18,8 @@ export class agent_sharesScalarWhereWithAggregatesInput {
     @Field(() => [agent_sharesScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<agent_sharesScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    agent_share_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    agent_share_id?: UuidWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     agent_id?: StringWithAggregatesFilter;
@@ -31,12 +32,6 @@ export class agent_sharesScalarWhereWithAggregatesInput {
 
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     cdate?: DateTimeWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    udate?: DateTimeWithAggregatesFilter;
-
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    enabled?: BoolWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     is_active?: BoolWithAggregatesFilter;

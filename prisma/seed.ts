@@ -5,23 +5,32 @@ import rawaccesses from '../src/configs/accesses.config';
 const prisma = new PrismaClient();
 
 async function main() {
-  const accesses = Object.keys(rawaccesses).map((key) => {
+  const rawAccesses = Object.keys(rawaccesses).map((key) => {
     return { access_name: key };
   });
+
+   await prisma.admin_accesses.createMany({
+    data:rawAccesses
+   })
+   const rootUUID = "f87da71f-959d-4845-9098-c67cd3d774df"
+
+  const accesses = await prisma.admin_accesses.findMany()
 
   const admin_role = await prisma.admin_roles.create({
     data: {
       admin_role_name: 'super_admin',
-      created_by: 'root', //todo Add the missing created_by property
+      created_by: rootUUID, //todo Add the missing created_by property
       admin_role_accesses: {
         create: accesses.map((item) => {
           return {
             admin_accesses: {
-              create: item,
+              connect: {
+                admin_access_id:item.admin_access_id
+              },
             },
-            created_by: 'root',
+            created_by: rootUUID,
             //todo fix the created_by property
-            updated_by: 'root',
+            updated_by: rootUUID,
             //todo fix the updated_by property
           };
         }),
@@ -35,7 +44,7 @@ async function main() {
     data: {
       agent_name: 'root',
       agent_password: agentHashedPassword,
-      created_by: 'root',
+      created_by: rootUUID,
     },
   });
 
@@ -45,7 +54,7 @@ async function main() {
     data: {
       admin_name: 'testadmin',
       admin_password: hashedPassword,
-      created_by: 'root',
+      created_by: rootUUID,
       admin_roles: {
         connect: {
           admin_role_id: admin_role.admin_role_id,

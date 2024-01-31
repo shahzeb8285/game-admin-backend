@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
@@ -17,8 +17,8 @@ export class categories_mappingsWhereInput {
     @Field(() => [categories_mappingsWhereInput], {nullable:true})
     NOT?: Array<categories_mappingsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    categories_mapping_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    categories_mapping_id?: UuidFilter;
 
     @Field(() => IntFilter, {nullable:true})
     sg_category_id?: IntFilter;

@@ -4,30 +4,31 @@ import { bank_method } from './bank-method.enum';
 
 @ObjectType()
 export class Player_bank_accountsMaxAggregate {
-  @Field(() => String, { nullable: true })
-  player_bank_account_id?: string;
 
-  @Field(() => String, { nullable: true })
-  player_id?: string;
+    @Field(() => String, {nullable:true})
+    player_bank_account_id?: string;
 
-  @Field(() => String, { nullable: true })
-  bank_name?: string;
+    @Field(() => String, {nullable:true})
+    player_id?: string;
 
-  @Field(() => String, { nullable: true })
-  account_number?: string;
+    @Field(() => String, {nullable:true})
+    bank_name?: string;
 
-  @Field(() => String, { nullable: true })
-  holder_name?: string;
+    @Field(() => String, {nullable:true})
+    account_number?: string;
 
-  @Field(() => bank_method, { nullable: true })
-  method?: keyof typeof bank_method;
+    @Field(() => String, {nullable:true})
+    holder_name?: string;
 
-  @Field(() => Date, { nullable: true })
-  cdate?: Date | string;
+    @Field(() => bank_method, {nullable:true})
+    method?: keyof typeof bank_method;
 
-  @Field(() => Date, { nullable: true })
-  udate?: Date | string;
+    @Field(() => Date, {nullable:true})
+    cdate?: Date | string;
 
-  @Field(() => Boolean, { nullable: true })
-  enabled?: boolean;
+    @Field(() => Date, {nullable:true})
+    udate?: Date | string;
+
+    @Field(() => Boolean, {nullable:true})
+    enabled?: boolean;
 }

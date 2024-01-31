@@ -26,11 +26,11 @@ export class Player_walletsGroupBy {
     @Field(() => Float, {nullable:false})
     frozen_amount!: number;
 
-    @Field(() => Date, {nullable:false})
-    cdate!: Date | string;
+    @Field(() => Date, {nullable:true})
+    cdate?: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date | string;
+    @Field(() => Date, {nullable:true})
+    udate?: Date | string;
 
     @Field(() => Player_walletsCountAggregate, {nullable:true})
     _count?: Player_walletsCountAggregate;

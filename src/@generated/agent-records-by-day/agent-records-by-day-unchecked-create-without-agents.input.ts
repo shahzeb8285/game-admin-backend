@@ -21,8 +21,8 @@ export class agent_records_by_dayUncheckedCreateWithoutAgentsInput {
     @Field(() => Int, {nullable:false})
     rebate_category_id!: number;
 
-    @Field(() => String, {nullable:false})
-    child_agent_id!: string;
+    @Field(() => String, {nullable:true})
+    child_agent_id?: string;
 
     @Field(() => Float, {nullable:false})
     effective_bet_amount!: number;

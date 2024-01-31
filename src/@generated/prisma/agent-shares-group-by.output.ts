@@ -25,12 +25,6 @@ export class Agent_sharesGroupBy {
     @Field(() => Date, {nullable:false})
     cdate!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date | string;
-
-    @Field(() => Boolean, {nullable:false})
-    enabled!: boolean;
-
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
 

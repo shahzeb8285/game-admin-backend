@@ -22,12 +22,6 @@ export class agent_sharesOrderByWithRelationInput {
     cdate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    udate?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    enabled?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     is_active?: keyof typeof SortOrder;
 
     @Field(() => agentsOrderByWithRelationInput, {nullable:true})

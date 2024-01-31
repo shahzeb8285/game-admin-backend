@@ -3,7 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { sg_gamesWhereInput } from './sg-games-where.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { FloatFilter } from '../prisma/float-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { FloatNullableFilter } from '../prisma/float-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
@@ -46,20 +47,20 @@ export class sg_gamesWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     page_code?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    mobile_page_code?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    mobile_page_code?: StringNullableFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    rtp?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    rtp?: FloatNullableFilter;
 
     @Field(() => IntFilter, {nullable:true})
     coun_rest_id?: IntFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    external_code?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    external_code?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    mobile_external_code?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    mobile_external_code?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     table_id?: StringFilter;
@@ -79,14 +80,14 @@ export class sg_gamesWhereUniqueInput {
     @Field(() => BoolFilter, {nullable:true})
     freespins?: BoolFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    min_bet_default?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    min_bet_default?: FloatNullableFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    max_bet_default?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    max_bet_default?: FloatNullableFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    max_multiplier?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    max_multiplier?: FloatNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;

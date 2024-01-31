@@ -29,12 +29,12 @@ Table manual_adjustments {
 
 Table players {
   player_id String [pk]
-  name String [not null]
+  name String
   tg_id String [unique, not null]
   tg_first_name String [not null]
   tg_last_name String [not null]
   tg_username String [unique, not null]
-  tg_photo_url String [not null]
+  tg_photo_url String
   user_language String [not null]
   registration_ip String [not null]
   agent agents [not null]
@@ -148,8 +148,6 @@ Table agent_shares {
   shares Float [not null]
   created_by String [not null]
   cdate DateTime [default: `now()`, not null]
-  udate DateTime [not null]
-  enabled Boolean [not null, default: true]
   is_active Boolean [not null]
 }
 
@@ -186,7 +184,7 @@ Table agent_records_by_day {
   rebate_category_id Int [not null]
   agents agents [not null]
   agent_id String [not null]
-  child_agent_id String [not null]
+  child_agent_id String
   effective_bet_amount Float [not null]
   rebate_income Float [not null]
   rebate_expense Float [not null]
@@ -207,7 +205,6 @@ Table admin_bank_accounts {
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
   deposit_transactions deposit_transactions [not null]
-  withdrawal_transactions withdrawal_transactions [not null]
 }
 
 Table player_bank_accounts {
@@ -229,8 +226,8 @@ Table player_wallets {
   currency game_currency [not null]
   amount Float [not null]
   frozen_amount Float [not null]
-  cdate DateTime [default: `now()`, not null]
-  udate DateTime [not null]
+  cdate DateTime [default: `now()`]
+  udate DateTime
 }
 
 Table deposit_transactions {
@@ -245,9 +242,9 @@ Table deposit_transactions {
   admin_bank_account_id String [not null]
   transaction_date String [not null]
   player_remarks String [not null]
-  comment String [not null]
-  processed_by String [not null]
-  process_time DateTime [default: `now()`, not null]
+  comment String
+  processed_by String
+  process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
@@ -265,14 +262,12 @@ Table withdrawal_transactions {
   player_bank_account_id String [not null]
   transaction_date String [not null]
   player_remarks String [not null]
-  comment String [not null]
-  processed_by String [not null]
-  process_time DateTime [default: `now()`, not null]
+  comment String
+  processed_by String
+  process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
-  admin_bank_accounts admin_bank_accounts
-  admin_bank_accountsAdmin_bank_account_id String
 }
 
 Table transfer_in_transactions {
@@ -286,9 +281,9 @@ Table transfer_in_transactions {
   counterpart_username String [not null]
   transaction_date String [not null]
   player_remarks String [not null]
-  comment String [not null]
-  processed_by String [not null]
-  process_time DateTime [default: `now()`, not null]
+  comment String
+  processed_by String
+  process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
@@ -305,9 +300,9 @@ Table transfer_out_transactions {
   counterpart_username String [not null]
   transaction_date String [not null]
   player_remarks String [not null]
-  comment String [not null]
-  processed_by String [not null]
-  process_time DateTime [default: `now()`, not null]
+  comment String
+  processed_by String
+  process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
@@ -327,16 +322,16 @@ Table wallet_requests {
   currency String [not null]
   amount String [not null]
   i_game_id String [not null]
-  i_extparam String [not null]
+  i_extparam String
   i_rollback String [not null]
   i_gamedesc String [not null]
   i_action_id String [not null]
   i_reference_action_id String [not null]
   round_start Boolean [not null]
   round_ended Boolean [not null]
-  game_extra String [not null]
+  game_extra String
   subtype String [not null]
-  jackpot_win Int [not null]
+  jackpot_win Int
   hmac String [not null]
   response String [not null]
   cdate DateTime [default: `now()`, not null]
@@ -356,8 +351,8 @@ Table game_round_infos {
   game_id String [not null]
   player_id String [not null]
   i_gamedesc String [not null]
-  i_extparam String [not null]
-  game_extra String [not null]
+  i_extparam String
+  game_extra String
   cdate DateTime [default: `now()`, not null]
 }
 
@@ -388,20 +383,20 @@ Table sg_games {
   merchant_id Int [not null]
   sort Int [not null]
   page_code String [not null]
-  mobile_page_code String [not null]
-  rtp Float [not null]
+  mobile_page_code String
+  rtp Float
   coun_rest_id Int [not null]
-  external_code String [not null]
-  mobile_external_code String [not null]
+  external_code String
+  mobile_external_code String
   table_id String [not null]
   has_demo Boolean [not null]
   freeround Boolean [not null]
   bonus_buy Boolean [not null]
   megaways Boolean [not null]
   freespins Boolean [not null]
-  min_bet_default Float [not null]
-  max_bet_default Float [not null]
-  max_multiplier Float [not null]
+  min_bet_default Float
+  max_bet_default Float
+  max_multiplier Float
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
@@ -422,7 +417,7 @@ Table fl_categories {
   category_id Int [not null]
   category_name String [not null]
   csort Int [not null]
-  rebate_priority Int [not null]
+  rebate_priority Int
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
@@ -522,5 +517,3 @@ Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank
 Ref: withdrawal_transactions.player_id > players.player_id
 
 Ref: withdrawal_transactions.player_bank_account_id > player_bank_accounts.player_bank_account_id
-
-Ref: withdrawal_transactions.admin_bank_accountsAdmin_bank_account_id > admin_bank_accounts.admin_bank_account_id

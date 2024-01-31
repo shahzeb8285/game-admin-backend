@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -17,8 +18,8 @@ export class agentsScalarWhereInput {
     @Field(() => [agentsScalarWhereInput], {nullable:true})
     NOT?: Array<agentsScalarWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    agent_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    agent_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     agent_name?: StringFilter;

@@ -31,8 +31,8 @@ export class Wallet_requestsGroupBy {
     @Field(() => String, {nullable:false})
     i_game_id!: string;
 
-    @Field(() => String, {nullable:false})
-    i_extparam!: string;
+    @Field(() => String, {nullable:true})
+    i_extparam?: string;
 
     @Field(() => String, {nullable:false})
     i_rollback!: string;
@@ -52,14 +52,14 @@ export class Wallet_requestsGroupBy {
     @Field(() => Boolean, {nullable:false})
     round_ended!: boolean;
 
-    @Field(() => String, {nullable:false})
-    game_extra!: string;
+    @Field(() => String, {nullable:true})
+    game_extra?: string;
 
     @Field(() => String, {nullable:false})
     subtype!: string;
 
-    @Field(() => Int, {nullable:false})
-    jackpot_win!: number;
+    @Field(() => Int, {nullable:true})
+    jackpot_win?: number;
 
     @Field(() => String, {nullable:false})
     hmac!: string;

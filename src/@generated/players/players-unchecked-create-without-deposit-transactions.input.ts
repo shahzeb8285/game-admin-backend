@@ -8,8 +8,8 @@ export class playersUncheckedCreateWithoutDeposit_transactionsInput {
     @Field(() => String, {nullable:true})
     player_id?: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
     @Field(() => String, {nullable:false})
     tg_id!: string;
@@ -23,8 +23,8 @@ export class playersUncheckedCreateWithoutDeposit_transactionsInput {
     @Field(() => String, {nullable:false})
     tg_username!: string;
 
-    @Field(() => String, {nullable:false})
-    tg_photo_url!: string;
+    @Field(() => String, {nullable:true})
+    tg_photo_url?: string;
 
     @Field(() => String, {nullable:false})
     user_language!: string;

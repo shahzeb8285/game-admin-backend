@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 
 @InputType()
 export class wallet_requestsOrderByWithRelationInput {
@@ -26,8 +27,8 @@ export class wallet_requestsOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     i_game_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    i_extparam?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    i_extparam?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     i_rollback?: keyof typeof SortOrder;
@@ -47,14 +48,14 @@ export class wallet_requestsOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     round_ended?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    game_extra?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    game_extra?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     subtype?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    jackpot_win?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    jackpot_win?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     hmac?: keyof typeof SortOrder;

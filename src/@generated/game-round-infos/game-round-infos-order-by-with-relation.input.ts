@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 
 @InputType()
 export class game_round_infosOrderByWithRelationInput {
@@ -17,11 +18,11 @@ export class game_round_infosOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     i_gamedesc?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    i_extparam?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    i_extparam?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    game_extra?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    game_extra?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     cdate?: keyof typeof SortOrder;

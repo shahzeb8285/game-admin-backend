@@ -22,9 +22,9 @@ export class player_wallets {
     @Field(() => Float, {nullable:false})
     frozen_amount!: number;
 
-    @Field(() => Date, {nullable:false})
-    cdate!: Date;
+    @Field(() => Date, {nullable:true})
+    cdate!: Date | null;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date;
+    @Field(() => Date, {nullable:true})
+    udate!: Date | null;
 }

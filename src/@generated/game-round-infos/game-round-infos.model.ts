@@ -17,11 +17,11 @@ export class game_round_infos {
     @Field(() => String, {nullable:false})
     i_gamedesc!: string;
 
-    @Field(() => String, {nullable:false})
-    i_extparam!: string;
+    @Field(() => String, {nullable:true})
+    i_extparam!: string | null;
 
-    @Field(() => String, {nullable:false})
-    game_extra!: string;
+    @Field(() => String, {nullable:true})
+    game_extra!: string | null;
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;

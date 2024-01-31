@@ -49,7 +49,4 @@ export class withdrawal_transactionsMaxOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     udate?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    admin_bank_accountsAdmin_bank_account_id?: keyof typeof SortOrder;
 }

@@ -39,14 +39,14 @@ export class transfer_in_transactions {
     @Field(() => String, {nullable:false})
     player_remarks!: string;
 
-    @Field(() => String, {nullable:false})
-    comment!: string;
+    @Field(() => String, {nullable:true})
+    comment!: string | null;
 
-    @Field(() => String, {nullable:false})
-    processed_by!: string;
+    @Field(() => String, {nullable:true})
+    processed_by!: string | null;
 
-    @Field(() => Date, {nullable:false})
-    process_time!: Date;
+    @Field(() => Date, {nullable:true})
+    process_time!: Date | null;
 
     @Field(() => wallet_transaction_status, {nullable:false,defaultValue:'PENDING'})
     status!: keyof typeof wallet_transaction_status;

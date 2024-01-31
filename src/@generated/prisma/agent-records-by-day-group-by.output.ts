@@ -29,8 +29,8 @@ export class Agent_records_by_dayGroupBy {
     @Field(() => String, {nullable:false})
     agent_id!: string;
 
-    @Field(() => String, {nullable:false})
-    child_agent_id!: string;
+    @Field(() => String, {nullable:true})
+    child_agent_id?: string;
 
     @Field(() => Float, {nullable:false})
     effective_bet_amount!: number;

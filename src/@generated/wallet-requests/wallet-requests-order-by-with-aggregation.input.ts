@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 import { wallet_requestsCountOrderByAggregateInput } from './wallet-requests-count-order-by-aggregate.input';
 import { wallet_requestsAvgOrderByAggregateInput } from './wallet-requests-avg-order-by-aggregate.input';
 import { wallet_requestsMaxOrderByAggregateInput } from './wallet-requests-max-order-by-aggregate.input';
@@ -31,8 +32,8 @@ export class wallet_requestsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     i_game_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    i_extparam?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    i_extparam?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     i_rollback?: keyof typeof SortOrder;
@@ -52,14 +53,14 @@ export class wallet_requestsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     round_ended?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    game_extra?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    game_extra?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     subtype?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    jackpot_win?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    jackpot_win?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     hmac?: keyof typeof SortOrder;

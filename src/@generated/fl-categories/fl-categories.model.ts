@@ -18,8 +18,8 @@ export class fl_categories {
     @Field(() => Int, {nullable:false})
     csort!: number;
 
-    @Field(() => Int, {nullable:false})
-    rebate_priority!: number;
+    @Field(() => Int, {nullable:true})
+    rebate_priority!: number | null;
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;

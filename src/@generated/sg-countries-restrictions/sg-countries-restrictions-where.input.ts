@@ -1,7 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 
@@ -17,8 +18,8 @@ export class sg_countries_restrictionsWhereInput {
     @Field(() => [sg_countries_restrictionsWhereInput], {nullable:true})
     NOT?: Array<sg_countries_restrictionsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    sg_coun_rest_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    sg_coun_rest_id?: UuidFilter;
 
     @Field(() => IntFilter, {nullable:true})
     coun_rest_id?: IntFilter;

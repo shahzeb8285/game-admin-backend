@@ -1,7 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 
@@ -17,8 +18,8 @@ export class sg_merchantsWhereInput {
     @Field(() => [sg_merchantsWhereInput], {nullable:true})
     NOT?: Array<sg_merchantsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    sg_merchant_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    sg_merchant_id?: UuidFilter;
 
     @Field(() => IntFilter, {nullable:true})
     merchant_id?: IntFilter;

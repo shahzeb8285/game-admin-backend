@@ -4,6 +4,7 @@ import { agent_records_by_dayWhereInput } from './agent-records-by-day-where.inp
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { AgentsRelationFilter } from '../prisma/agents-relation-filter.input';
@@ -38,8 +39,8 @@ export class agent_records_by_dayWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     agent_id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    child_agent_id?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    child_agent_id?: StringNullableFilter;
 
     @Field(() => FloatFilter, {nullable:true})
     effective_bet_amount?: FloatFilter;

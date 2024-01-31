@@ -1,8 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 
@@ -18,8 +20,8 @@ export class agent_records_by_dayScalarWhereInput {
     @Field(() => [agent_records_by_dayScalarWhereInput], {nullable:true})
     NOT?: Array<agent_records_by_dayScalarWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    agent_records_by_day_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    agent_records_by_day_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     game_records_by_day_id?: StringFilter;
@@ -36,8 +38,8 @@ export class agent_records_by_dayScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     agent_id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    child_agent_id?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    child_agent_id?: StringNullableFilter;
 
     @Field(() => FloatFilter, {nullable:true})
     effective_bet_amount?: FloatFilter;

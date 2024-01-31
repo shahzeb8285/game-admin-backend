@@ -12,8 +12,8 @@ export class players {
     @Field(() => ID, {nullable:false})
     player_id!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+    @Field(() => String, {nullable:true})
+    name!: string | null;
 
     @Field(() => String, {nullable:false})
     tg_id!: string;
@@ -27,8 +27,8 @@ export class players {
     @Field(() => String, {nullable:false})
     tg_username!: string;
 
-    @Field(() => String, {nullable:false})
-    tg_photo_url!: string;
+    @Field(() => String, {nullable:true})
+    tg_photo_url!: string | null;
 
     @Field(() => String, {nullable:false})
     user_language!: string;

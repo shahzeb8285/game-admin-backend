@@ -51,8 +51,5 @@ export class Withdrawal_transactionsCountAggregate {
     udate!: number;
 
     @Field(() => Int, {nullable:false})
-    admin_bank_accountsAdmin_bank_account_id!: number;
-
-    @Field(() => Int, {nullable:false})
     _all!: number;
 }

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 
 @InputType()
 export class player_walletsOrderByWithRelationInput {
@@ -20,9 +21,9 @@ export class player_walletsOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     frozen_amount?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    cdate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    cdate?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    udate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    udate?: SortOrderInput;
 }

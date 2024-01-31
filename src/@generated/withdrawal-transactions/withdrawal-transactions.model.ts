@@ -7,7 +7,6 @@ import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
 import { players } from '../players/players.model';
 import { player_bank_accounts } from '../player-bank-accounts/player-bank-accounts.model';
-import { admin_bank_accounts } from '../admin-bank-accounts/admin-bank-accounts.model';
 
 @ObjectType()
 export class withdrawal_transactions {
@@ -39,14 +38,14 @@ export class withdrawal_transactions {
     @Field(() => String, {nullable:false})
     player_remarks!: string;
 
-    @Field(() => String, {nullable:false})
-    comment!: string;
+    @Field(() => String, {nullable:true})
+    comment!: string | null;
 
-    @Field(() => String, {nullable:false})
-    processed_by!: string;
+    @Field(() => String, {nullable:true})
+    processed_by!: string | null;
 
-    @Field(() => Date, {nullable:false})
-    process_time!: Date;
+    @Field(() => Date, {nullable:true})
+    process_time!: Date | null;
 
     @Field(() => wallet_transaction_status, {nullable:false,defaultValue:'PENDING'})
     status!: keyof typeof wallet_transaction_status;
@@ -57,15 +56,9 @@ export class withdrawal_transactions {
     @Field(() => Date, {nullable:false})
     udate!: Date;
 
-    @Field(() => String, {nullable:true})
-    admin_bank_accountsAdmin_bank_account_id!: string | null;
-
     @Field(() => players, {nullable:false})
     players?: players;
 
     @Field(() => player_bank_accounts, {nullable:false})
     player_bank_account?: player_bank_accounts;
-
-    @Field(() => admin_bank_accounts, {nullable:true})
-    admin_bank_accounts?: admin_bank_accounts | null;
 }

@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { Enumbank_methodWithAggregatesFilter } from '../prisma/enumbank-method-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
@@ -17,8 +18,8 @@ export class admin_bank_accountsScalarWhereWithAggregatesInput {
     @Field(() => [admin_bank_accountsScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<admin_bank_accountsScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    admin_bank_account_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    admin_bank_account_id?: UuidWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     bank_name?: StringWithAggregatesFilter;

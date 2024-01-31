@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { deposit_transactionsOrderByRelationAggregateInput } from '../deposit-transactions/deposit-transactions-order-by-relation-aggregate.input';
-import { withdrawal_transactionsOrderByRelationAggregateInput } from '../withdrawal-transactions/withdrawal-transactions-order-by-relation-aggregate.input';
 
 @InputType()
 export class admin_bank_accountsOrderByWithRelationInput {
@@ -33,7 +32,4 @@ export class admin_bank_accountsOrderByWithRelationInput {
 
     @Field(() => deposit_transactionsOrderByRelationAggregateInput, {nullable:true})
     deposit_transactions?: deposit_transactionsOrderByRelationAggregateInput;
-
-    @Field(() => withdrawal_transactionsOrderByRelationAggregateInput, {nullable:true})
-    withdrawal_transactions?: withdrawal_transactionsOrderByRelationAggregateInput;
 }

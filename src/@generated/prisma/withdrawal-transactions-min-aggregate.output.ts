@@ -52,7 +52,4 @@ export class Withdrawal_transactionsMinAggregate {
 
     @Field(() => Date, {nullable:true})
     udate?: Date | string;
-
-    @Field(() => String, {nullable:true})
-    admin_bank_accountsAdmin_bank_account_id?: string;
 }

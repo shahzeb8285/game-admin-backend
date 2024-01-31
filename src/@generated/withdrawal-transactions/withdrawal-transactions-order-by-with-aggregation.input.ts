@@ -38,14 +38,14 @@ export class withdrawal_transactionsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     player_remarks?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    comment?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    comment?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    processed_by?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    processed_by?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    process_time?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    process_time?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     status?: keyof typeof SortOrder;
@@ -55,9 +55,6 @@ export class withdrawal_transactionsOrderByWithAggregationInput {
 
     @Field(() => SortOrder, {nullable:true})
     udate?: keyof typeof SortOrder;
-
-    @Field(() => SortOrderInput, {nullable:true})
-    admin_bank_accountsAdmin_bank_account_id?: SortOrderInput;
 
     @Field(() => withdrawal_transactionsCountOrderByAggregateInput, {nullable:true})
     _count?: withdrawal_transactionsCountOrderByAggregateInput;

@@ -17,12 +17,6 @@ export class agent_sharesCreateWithoutAgentsInput {
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    udate?: Date | string;
-
-    @Field(() => Boolean, {nullable:true})
-    enabled?: boolean;
-
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
 }

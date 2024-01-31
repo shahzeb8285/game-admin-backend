@@ -18,12 +18,6 @@ export class agent_sharesUpdateInput {
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    udate?: Date | string;
-
-    @Field(() => Boolean, {nullable:true})
-    enabled?: boolean;
-
     @Field(() => Boolean, {nullable:true})
     is_active?: boolean;
 

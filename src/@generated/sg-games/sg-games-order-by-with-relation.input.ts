@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 
 @InputType()
 export class sg_gamesOrderByWithRelationInput {
@@ -32,20 +33,20 @@ export class sg_gamesOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     page_code?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    mobile_page_code?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    mobile_page_code?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    rtp?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    rtp?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     coun_rest_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    external_code?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    external_code?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    mobile_external_code?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    mobile_external_code?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     table_id?: keyof typeof SortOrder;
@@ -65,14 +66,14 @@ export class sg_gamesOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     freespins?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    min_bet_default?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    min_bet_default?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    max_bet_default?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    max_bet_default?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    max_multiplier?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    max_multiplier?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     cdate?: keyof typeof SortOrder;

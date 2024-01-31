@@ -45,7 +45,13 @@ export class FinancesService {
       take,
       where,
       include: {
-        players: true,
+        players: {
+          include: {
+            agent:true
+          }
+        },
+        
+        // players: true,
         admin_bank_account: true,
       },
     });
@@ -61,7 +67,8 @@ export class FinancesService {
       },
       include: {
         deposit_transactions: true,
-        withdrawal_transactions: true,
+        
+        // withdrawal_transactions: true,
       },
     });
   }

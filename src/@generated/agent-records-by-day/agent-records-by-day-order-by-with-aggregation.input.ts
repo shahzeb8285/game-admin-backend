@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 import { agent_records_by_dayCountOrderByAggregateInput } from './agent-records-by-day-count-order-by-aggregate.input';
 import { agent_records_by_dayAvgOrderByAggregateInput } from './agent-records-by-day-avg-order-by-aggregate.input';
 import { agent_records_by_dayMaxOrderByAggregateInput } from './agent-records-by-day-max-order-by-aggregate.input';
@@ -28,8 +29,8 @@ export class agent_records_by_dayOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     agent_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    child_agent_id?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    child_agent_id?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     effective_bet_amount?: keyof typeof SortOrder;

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 import { player_walletsCountOrderByAggregateInput } from './player-wallets-count-order-by-aggregate.input';
 import { player_walletsAvgOrderByAggregateInput } from './player-wallets-avg-order-by-aggregate.input';
 import { player_walletsMaxOrderByAggregateInput } from './player-wallets-max-order-by-aggregate.input';
@@ -25,11 +26,11 @@ export class player_walletsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     frozen_amount?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    cdate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    cdate?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    udate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    udate?: SortOrderInput;
 
     @Field(() => player_walletsCountOrderByAggregateInput, {nullable:true})
     _count?: player_walletsCountOrderByAggregateInput;

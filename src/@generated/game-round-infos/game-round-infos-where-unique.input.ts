@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { game_round_infosWhereInput } from './game-round-infos-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -28,11 +29,11 @@ export class game_round_infosWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     i_gamedesc?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    i_extparam?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    i_extparam?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    game_extra?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_extra?: StringNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;

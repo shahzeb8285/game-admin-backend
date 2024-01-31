@@ -5,7 +5,6 @@ import { Float } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
 import { playersUpdateOneRequiredWithoutWithdrawal_transactionsNestedInput } from '../players/players-update-one-required-without-withdrawal-transactions-nested.input';
-import { admin_bank_accountsUpdateOneWithoutWithdrawal_transactionsNestedInput } from '../admin-bank-accounts/admin-bank-accounts-update-one-without-withdrawal-transactions-nested.input';
 
 @InputType()
 export class withdrawal_transactionsUpdateWithoutPlayer_bank_accountInput {
@@ -51,7 +50,4 @@ export class withdrawal_transactionsUpdateWithoutPlayer_bank_accountInput {
 
     @Field(() => playersUpdateOneRequiredWithoutWithdrawal_transactionsNestedInput, {nullable:true})
     players?: playersUpdateOneRequiredWithoutWithdrawal_transactionsNestedInput;
-
-    @Field(() => admin_bank_accountsUpdateOneWithoutWithdrawal_transactionsNestedInput, {nullable:true})
-    admin_bank_accounts?: admin_bank_accountsUpdateOneWithoutWithdrawal_transactionsNestedInput;
 }

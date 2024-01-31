@@ -21,11 +21,5 @@ export class agent_sharesMaxOrderByAggregateInput {
     cdate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    udate?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    enabled?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     is_active?: keyof typeof SortOrder;
 }

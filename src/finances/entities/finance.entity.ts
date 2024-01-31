@@ -22,14 +22,14 @@ export class DepositEntity {
   @Field(() => String, { nullable: false })
   player_id!: string;
 
-  @Field(() => Float, { nullable: false })
-  amount!: number;
+  // @Field(() => Float, { nullable: false })
+  // amount!: number;
 
   @Field(() => String, { nullable: false })
   currency!: string;
 
-  @Field(() => Date, { nullable: false })
-  request_time!: Date;
+  // @Field(() => Date, { nullable: false })
+  // request_time!: Date;
 
   @Field(() => Date, { nullable: false })
   process_time!: Date;
@@ -46,11 +46,11 @@ export class DepositEntity {
   @Field(() => String, { nullable: false })
   admin_bank_account_id!: string;
 
-  @Field(() => Player, { nullable: false })
+  @Field(() => Player, { nullable: true })
   players?: Player;
 
   @Field(() => BankAccountEntity, { nullable: false })
-  admin_bank_accounts?: BankAccountEntity;
+  admin_bank_account?: BankAccountEntity;
 }
 
 @ObjectType()
@@ -67,8 +67,8 @@ export class WithdrawalEntity {
   @Field(() => String, { nullable: false })
   currency!: string;
 
-  @Field(() => Date, { nullable: false })
-  request_time!: Date;
+  // @Field(() => Date, { nullable: false })
+  // request_time!: Date;
 
   @Field(() => Date, { nullable: false })
   process_time!: Date;

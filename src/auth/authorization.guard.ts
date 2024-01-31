@@ -16,7 +16,7 @@ export class GqlAuthorizationGuard implements CanActivate {
       if (!user.admin_roles.enabled) {
         return false
       }
-      const permissions = user.admin_roles.role_accesses.map((item) => {
+      const permissions = user.admin_roles.admin_role_accesses.map((item) => {
         return item.admin_accesses.access_name
       })
 

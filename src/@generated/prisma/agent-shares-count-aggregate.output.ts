@@ -21,12 +21,6 @@ export class Agent_sharesCountAggregate {
     cdate!: number;
 
     @Field(() => Int, {nullable:false})
-    udate!: number;
-
-    @Field(() => Int, {nullable:false})
-    enabled!: number;
-
-    @Field(() => Int, {nullable:false})
     is_active!: number;
 
     @Field(() => Int, {nullable:false})

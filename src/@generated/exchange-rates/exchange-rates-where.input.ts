@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { Enumreal_currencyFilter } from '../prisma/enumreal-currency-filter.input';
 import { Enumgame_currencyFilter } from '../prisma/enumgame-currency-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
@@ -19,8 +19,8 @@ export class exchange_ratesWhereInput {
     @Field(() => [exchange_ratesWhereInput], {nullable:true})
     NOT?: Array<exchange_ratesWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    exchange_rate_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    exchange_rate_id?: UuidFilter;
 
     @Field(() => Enumreal_currencyFilter, {nullable:true})
     real_currency?: Enumreal_currencyFilter;

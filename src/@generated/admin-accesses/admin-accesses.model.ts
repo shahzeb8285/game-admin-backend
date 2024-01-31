@@ -6,15 +6,16 @@ import { Admin_accessesCount } from '../prisma/admin-accesses-count.output';
 
 @ObjectType()
 export class admin_accesses {
-  @Field(() => ID, { nullable: false })
-  admin_access_id!: string;
 
-  @Field(() => String, { nullable: false })
-  access_name!: string;
+    @Field(() => ID, {nullable:false})
+    admin_access_id!: string;
 
-  @Field(() => [admin_role_accesses], { nullable: true })
-  admin_role_accesses?: Array<admin_role_accesses>;
+    @Field(() => String, {nullable:false})
+    access_name!: string;
 
-  @Field(() => Admin_accessesCount, { nullable: false })
-  _count?: Admin_accessesCount;
+    @Field(() => [admin_role_accesses], {nullable:true})
+    admin_role_accesses?: Array<admin_role_accesses>;
+
+    @Field(() => Admin_accessesCount, {nullable:false})
+    _count?: Admin_accessesCount;
 }

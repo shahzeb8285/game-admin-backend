@@ -35,11 +35,11 @@ export class withdrawal_transactionsUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     player_remarks!: string;
 
-    @Field(() => String, {nullable:false})
-    comment!: string;
+    @Field(() => String, {nullable:true})
+    comment?: string;
 
-    @Field(() => String, {nullable:false})
-    processed_by!: string;
+    @Field(() => String, {nullable:true})
+    processed_by?: string;
 
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;
@@ -52,7 +52,4 @@ export class withdrawal_transactionsUncheckedCreateInput {
 
     @Field(() => Date, {nullable:true})
     udate?: Date | string;
-
-    @Field(() => String, {nullable:true})
-    admin_bank_accountsAdmin_bank_account_id?: string;
 }

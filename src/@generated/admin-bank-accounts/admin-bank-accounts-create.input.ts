@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { bank_method } from '../prisma/bank-method.enum';
 import { deposit_transactionsCreateNestedManyWithoutAdmin_bank_accountInput } from '../deposit-transactions/deposit-transactions-create-nested-many-without-admin-bank-account.input';
-import { withdrawal_transactionsCreateNestedManyWithoutAdmin_bank_accountsInput } from '../withdrawal-transactions/withdrawal-transactions-create-nested-many-without-admin-bank-accounts.input';
 
 @InputType()
 export class admin_bank_accountsCreateInput {
@@ -33,7 +32,4 @@ export class admin_bank_accountsCreateInput {
 
     @Field(() => deposit_transactionsCreateNestedManyWithoutAdmin_bank_accountInput, {nullable:true})
     deposit_transactions?: deposit_transactionsCreateNestedManyWithoutAdmin_bank_accountInput;
-
-    @Field(() => withdrawal_transactionsCreateNestedManyWithoutAdmin_bank_accountsInput, {nullable:true})
-    withdrawal_transactions?: withdrawal_transactionsCreateNestedManyWithoutAdmin_bank_accountsInput;
 }

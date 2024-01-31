@@ -1,8 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -17,8 +19,8 @@ export class wallet_requestsWhereInput {
     @Field(() => [wallet_requestsWhereInput], {nullable:true})
     NOT?: Array<wallet_requestsWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    wallet_request_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    wallet_request_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     tid?: StringFilter;
@@ -38,8 +40,8 @@ export class wallet_requestsWhereInput {
     @Field(() => StringFilter, {nullable:true})
     i_game_id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    i_extparam?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    i_extparam?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     i_rollback?: StringFilter;
@@ -59,14 +61,14 @@ export class wallet_requestsWhereInput {
     @Field(() => BoolFilter, {nullable:true})
     round_ended?: BoolFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    game_extra?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_extra?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     subtype?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    jackpot_win?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    jackpot_win?: IntNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     hmac?: StringFilter;

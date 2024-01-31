@@ -5,7 +5,6 @@ import { Float } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
 import { playersCreateNestedOneWithoutWithdrawal_transactionsInput } from '../players/players-create-nested-one-without-withdrawal-transactions.input';
-import { admin_bank_accountsCreateNestedOneWithoutWithdrawal_transactionsInput } from '../admin-bank-accounts/admin-bank-accounts-create-nested-one-without-withdrawal-transactions.input';
 
 @InputType()
 export class withdrawal_transactionsCreateWithoutPlayer_bank_accountInput {
@@ -31,11 +30,11 @@ export class withdrawal_transactionsCreateWithoutPlayer_bank_accountInput {
     @Field(() => String, {nullable:false})
     player_remarks!: string;
 
-    @Field(() => String, {nullable:false})
-    comment!: string;
+    @Field(() => String, {nullable:true})
+    comment?: string;
 
-    @Field(() => String, {nullable:false})
-    processed_by!: string;
+    @Field(() => String, {nullable:true})
+    processed_by?: string;
 
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;
@@ -51,7 +50,4 @@ export class withdrawal_transactionsCreateWithoutPlayer_bank_accountInput {
 
     @Field(() => playersCreateNestedOneWithoutWithdrawal_transactionsInput, {nullable:false})
     players!: playersCreateNestedOneWithoutWithdrawal_transactionsInput;
-
-    @Field(() => admin_bank_accountsCreateNestedOneWithoutWithdrawal_transactionsInput, {nullable:true})
-    admin_bank_accounts?: admin_bank_accountsCreateNestedOneWithoutWithdrawal_transactionsInput;
 }

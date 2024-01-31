@@ -17,8 +17,8 @@ export class fl_categoriesCreateManyInput {
     @Field(() => Int, {nullable:false})
     csort!: number;
 
-    @Field(() => Int, {nullable:false})
-    rebate_priority!: number;
+    @Field(() => Int, {nullable:true})
+    rebate_priority?: number;
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
