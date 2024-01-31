@@ -20,7 +20,8 @@ generator nestgraphql {
 }
 
 model player_login_logs {
-  player_login_log_id String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  player_login_log_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players             players  @relation(fields: [player_id], references: [player_id])
   player_id           String
   ip                  String
   login_time          DateTime @default(now())
@@ -64,6 +65,7 @@ model players {
   enabled                 Boolean                   @default(true)
   deposit_transactions    deposit_transactions[]
   withdrawal_transactions withdrawal_transactions[]
+  player_login_logs       player_login_logs[]
 }
 
 model agents {
@@ -71,7 +73,7 @@ model agents {
   agent_name           String                 @unique
   agent_password       String
   parent               agents?                @relation("children", fields: [parent_agent_id], references: [agent_id])
-  parent_agent_id      String?                
+  parent_agent_id      String?
   children             agents[]               @relation("children")
   created_by           String
   cdate                DateTime               @default(now())
@@ -109,8 +111,8 @@ model admin_roles {
 }
 
 model admin_accesses {
-  admin_access_id     String  @map("adminAccessID")              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  access_name         String    @map("accessName")            @unique
+  admin_access_id     String                @id @default(dbgenerated("gen_random_uuid()")) @map("adminAccessID") @db.Uuid
+  access_name         String                @unique @map("accessName")
   admin_role_accesses admin_role_accesses[]
 }
 
@@ -213,15 +215,15 @@ model agent_records_by_day {
 }
 
 model admin_bank_accounts {
-  admin_bank_account_id   String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  bank_name               String
-  account_number          String
-  holder_name             String
-  method                  bank_method
-  cdate                   DateTime                  @default(now())
-  udate                   DateTime                  @updatedAt
-  enabled                 Boolean                   @default(true)
-  deposit_transactions    deposit_transactions[]
+  admin_bank_account_id String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bank_name             String
+  account_number        String
+  holder_name           String
+  method                bank_method
+  cdate                 DateTime               @default(now())
+  udate                 DateTime               @updatedAt
+  enabled               Boolean                @default(true)
+  deposit_transactions  deposit_transactions[]
   // withdrawal_transactions withdrawal_transactions[]
 }
 
@@ -244,8 +246,8 @@ model player_wallets {
   currency         game_currency
   amount           Float
   frozen_amount    Float
-  cdate            DateTime?      @default(now())
-  udate            DateTime?      @updatedAt
+  cdate            DateTime?     @default(now())
+  udate            DateTime?     @updatedAt
 }
 
 model deposit_transactions {
@@ -262,30 +264,30 @@ model deposit_transactions {
   player_remarks         String
   comment                String?
   processed_by           String?
-  process_time           DateTime?                  @default(now())
+  process_time           DateTime?                 @default(now())
   status                 wallet_transaction_status @default(PENDING)
   cdate                  DateTime                  @default(now())
   udate                  DateTime                  @updatedAt
 }
 
 model withdrawal_transactions {
-  withdrawal_transaction_id                String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  players                                  players                   @relation(fields: [player_id], references: [player_id])
-  player_id                                String
-  transaction_currency                     real_currency
-  transaction_amount                       Float
-  game_currency                            game_currency
-  game_amount                              Float
-  player_bank_account                      player_bank_accounts      @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
-  player_bank_account_id                   String
-  transaction_date                         String
-  player_remarks                           String
-  comment                                  String?
-  processed_by                             String?
-  process_time                             DateTime?                  @default(now())
-  status                                   wallet_transaction_status @default(PENDING)
-  cdate                                    DateTime                  @default(now())
-  udate                                    DateTime                  @updatedAt
+  withdrawal_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                   players                   @relation(fields: [player_id], references: [player_id])
+  player_id                 String
+  transaction_currency      real_currency
+  transaction_amount        Float
+  game_currency             game_currency
+  game_amount               Float
+  player_bank_account       player_bank_accounts      @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
+  player_bank_account_id    String
+  transaction_date          String
+  player_remarks            String
+  comment                   String?
+  processed_by              String?
+  process_time              DateTime?                 @default(now())
+  status                    wallet_transaction_status @default(PENDING)
+  cdate                     DateTime                  @default(now())
+  udate                     DateTime                  @updatedAt
   // admin_bank_accounts                      admin_bank_accounts?      @relation(fields: [admin_bank_accountsAdmin_bank_account_id], references: [admin_bank_account_id])
   // admin_bank_accountsAdmin_bank_account_id String?
 }

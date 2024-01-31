@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { agentsUpdateOneRequiredWithoutPlayersNestedInput } from '../agents/agents-update-one-required-without-players-nested.input';
 import { withdrawal_transactionsUpdateManyWithoutPlayersNestedInput } from '../withdrawal-transactions/withdrawal-transactions-update-many-without-players-nested.input';
+import { player_login_logsUpdateManyWithoutPlayersNestedInput } from '../player-login-logs/player-login-logs-update-many-without-players-nested.input';
 
 @InputType()
 export class playersUpdateWithoutDeposit_transactionsInput {
@@ -56,4 +57,7 @@ export class playersUpdateWithoutDeposit_transactionsInput {
 
     @Field(() => withdrawal_transactionsUpdateManyWithoutPlayersNestedInput, {nullable:true})
     withdrawal_transactions?: withdrawal_transactionsUpdateManyWithoutPlayersNestedInput;
+
+    @Field(() => player_login_logsUpdateManyWithoutPlayersNestedInput, {nullable:true})
+    player_login_logs?: player_login_logsUpdateManyWithoutPlayersNestedInput;
 }

@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 
 @InputType()
-export class player_login_logsUpdateManyMutationInput {
+export class player_login_logsUncheckedUpdateManyWithoutPlayersInput {
 
     @Field(() => String, {nullable:true})
     player_login_log_id?: string;

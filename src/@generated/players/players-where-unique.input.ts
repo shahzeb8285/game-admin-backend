@@ -8,6 +8,7 @@ import { BoolFilter } from '../prisma/bool-filter.input';
 import { AgentsRelationFilter } from '../prisma/agents-relation-filter.input';
 import { Deposit_transactionsListRelationFilter } from '../prisma/deposit-transactions-list-relation-filter.input';
 import { Withdrawal_transactionsListRelationFilter } from '../prisma/withdrawal-transactions-list-relation-filter.input';
+import { Player_login_logsListRelationFilter } from '../prisma/player-login-logs-list-relation-filter.input';
 
 @InputType()
 export class playersWhereUniqueInput {
@@ -77,4 +78,7 @@ export class playersWhereUniqueInput {
 
     @Field(() => Withdrawal_transactionsListRelationFilter, {nullable:true})
     withdrawal_transactions?: Withdrawal_transactionsListRelationFilter;
+
+    @Field(() => Player_login_logsListRelationFilter, {nullable:true})
+    player_login_logs?: Player_login_logsListRelationFilter;
 }

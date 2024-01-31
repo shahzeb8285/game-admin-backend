@@ -4,6 +4,7 @@
 
 Table player_login_logs {
   player_login_log_id String [pk]
+  players players [not null]
   player_id String [not null]
   ip String [not null]
   login_time DateTime [default: `now()`, not null]
@@ -47,6 +48,7 @@ Table players {
   enabled Boolean [not null, default: true]
   deposit_transactions deposit_transactions [not null]
   withdrawal_transactions withdrawal_transactions [not null]
+  player_login_logs player_login_logs [not null]
 }
 
 Table agents {
@@ -489,6 +491,8 @@ Enum real_currency {
 Enum game_currency {
   fHKD
 }
+
+Ref: player_login_logs.player_id > players.player_id
 
 Ref: admin_login_logs.admin_id > admins.admin_id
 

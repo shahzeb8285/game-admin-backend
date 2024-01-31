@@ -5,6 +5,7 @@ import { SortOrderInput } from '../prisma/sort-order.input';
 import { agentsOrderByWithRelationInput } from '../agents/agents-order-by-with-relation.input';
 import { deposit_transactionsOrderByRelationAggregateInput } from '../deposit-transactions/deposit-transactions-order-by-relation-aggregate.input';
 import { withdrawal_transactionsOrderByRelationAggregateInput } from '../withdrawal-transactions/withdrawal-transactions-order-by-relation-aggregate.input';
+import { player_login_logsOrderByRelationAggregateInput } from '../player-login-logs/player-login-logs-order-by-relation-aggregate.input';
 
 @InputType()
 export class playersOrderByWithRelationInput {
@@ -65,4 +66,7 @@ export class playersOrderByWithRelationInput {
 
     @Field(() => withdrawal_transactionsOrderByRelationAggregateInput, {nullable:true})
     withdrawal_transactions?: withdrawal_transactionsOrderByRelationAggregateInput;
+
+    @Field(() => player_login_logsOrderByRelationAggregateInput, {nullable:true})
+    player_login_logs?: player_login_logsOrderByRelationAggregateInput;
 }

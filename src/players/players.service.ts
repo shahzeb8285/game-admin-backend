@@ -29,6 +29,9 @@ export class PlayersService {
       orderBy: {
         login_time: 'desc',
       },
+      include: {
+        players: true,
+      },
     });
   }
 

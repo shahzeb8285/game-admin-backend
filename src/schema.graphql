@@ -390,8 +390,15 @@ input Player_bank_accountsRelationFilter {
   isNot: player_bank_accountsWhereInput
 }
 
+input Player_login_logsListRelationFilter {
+  every: player_login_logsWhereInput
+  none: player_login_logsWhereInput
+  some: player_login_logsWhereInput
+}
+
 type PlayersCount {
   deposit_transactions: Int!
+  player_login_logs: Int!
   withdrawal_transactions: Int!
 }
 
@@ -923,6 +930,7 @@ type player_login_logs {
   login_time: DateTime!
   player_id: String!
   player_login_log_id: ID!
+  players: players!
 }
 
 input player_login_logsWhereInput {
@@ -933,6 +941,7 @@ input player_login_logsWhereInput {
   login_time: DateTimeFilter
   player_id: StringFilter
   player_login_log_id: UuidFilter
+  players: PlayersRelationFilter
 }
 
 type players {
@@ -946,6 +955,7 @@ type players {
   name: String
   password: String!
   player_id: ID!
+  player_login_logs: [player_login_logs!]
   registration_date: String!
   registration_ip: String!
   tg_first_name: String!
@@ -971,6 +981,7 @@ input playersWhereInput {
   name: StringNullableFilter
   password: StringFilter
   player_id: UuidFilter
+  player_login_logs: Player_login_logsListRelationFilter
   registration_date: StringFilter
   registration_ip: StringFilter
   tg_first_name: StringFilter

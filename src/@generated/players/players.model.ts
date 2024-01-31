@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { agents } from '../agents/agents.model';
 import { deposit_transactions } from '../deposit-transactions/deposit-transactions.model';
 import { withdrawal_transactions } from '../withdrawal-transactions/withdrawal-transactions.model';
+import { player_login_logs } from '../player-login-logs/player-login-logs.model';
 import { PlayersCount } from '../prisma/players-count.output';
 
 @ObjectType()
@@ -65,6 +66,9 @@ export class players {
 
     @Field(() => [withdrawal_transactions], {nullable:true})
     withdrawal_transactions?: Array<withdrawal_transactions>;
+
+    @Field(() => [player_login_logs], {nullable:true})
+    player_login_logs?: Array<player_login_logs>;
 
     @Field(() => PlayersCount, {nullable:false})
     _count?: PlayersCount;

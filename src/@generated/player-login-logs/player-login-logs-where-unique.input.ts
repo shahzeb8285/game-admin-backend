@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { player_login_logsWhereInput } from './player-login-logs-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class player_login_logsWhereUniqueInput {
@@ -27,4 +28,7 @@ export class player_login_logsWhereUniqueInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     login_time?: DateTimeFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

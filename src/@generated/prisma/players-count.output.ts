@@ -10,4 +10,7 @@ export class PlayersCount {
 
     @Field(() => Int, {nullable:false})
     withdrawal_transactions!: number;
+
+    @Field(() => Int, {nullable:false})
+    player_login_logs!: number;
 }

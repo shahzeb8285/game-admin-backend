@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class player_login_logs {
@@ -16,4 +17,7 @@ export class player_login_logs {
 
     @Field(() => Date, {nullable:false})
     login_time!: Date;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }
