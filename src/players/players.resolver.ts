@@ -5,7 +5,7 @@ import { UpdatePlayerInput } from './dto/update-player.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
-import { UserLoginHistory } from './entities/loginhistory.entity';
+// import { UserLoginHistory } from './entities/loginhistory.entity';
 // import { ManualAdjustment } from './entities/manualadjustment.entity';
 import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 // import { Admin } from '../admins/entities/admin.entity';
@@ -16,6 +16,7 @@ import { manual_adjustments as ManualAdjustment } from '../@generated/manual-adj
 import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/players-where.input';
 import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
 import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
+import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -31,7 +32,7 @@ export class PlayersResolver {
     return this.playersService.findAll({ skip, take, where });
   }
 
-  @Query(() => [UserLoginHistory])
+  @Query(() => [player_login_logs])
   getUserLoginHistory(
     @Args({ name: 'where', defaultValue: {} }) where: PlayerLoginLogWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,

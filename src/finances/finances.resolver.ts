@@ -1,6 +1,6 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {  Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { FinancesService } from './finances.service';
-import { DepositEntity, WithdrawalEntity } from './entities/finance.entity';
+// import { DepositEntity, WithdrawalEntity } from './entities/finance.entity';
 import {
   CreateBankAccountInput,
   UpdateBankAccountInput,
@@ -9,7 +9,6 @@ import { UpdateFinanceInput } from './dto/update-finance.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
-import { BankAccountEntity } from './entities/bankaccount.entity';
 import { deposit_transactionsWhereInput as DepositTransactionWhereInput } from '../@generated/deposit-transactions/deposit-transactions-where.input';
 import { withdrawal_transactionsWhereInput as WithdrawalTransactionWhereInput } from '../@generated/withdrawal-transactions/withdrawal-transactions-where.input';
 import { admin_bank_accountsWhereInput as AdminBankAccountWhereInput } from '../@generated/admin-bank-accounts/admin-bank-accounts-where.input';

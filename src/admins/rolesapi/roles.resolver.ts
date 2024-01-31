@@ -1,7 +1,5 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { RoleService } from './roles.service';
-import { AdminRoles } from '../entities/admin.entity';
-import { UpdateAdminInput } from '../dto/update-admin.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../../auth/gql-auth.guard';
 import { GqlAuthorizationGuard } from '../../auth/authorization.guard';
@@ -11,18 +9,19 @@ import { admins as Admin } from '../../@generated/admins/admins.model';
 import { admin_accesses as AdminAccesses } from '../../@generated/admin-accesses/admin-accesses.model';
 import { admin_rolesWhereInput as AdminRoleWhereInput } from '../../@generated/admin-roles/admin-roles-where.input';
 import { admin_accessesWhereInput as AdminAccessesWhereInput } from '../../@generated/admin-accesses/admin-accesses-where.input';
+import { admin_roles } from 'src/@generated/admin-roles/admin-roles.model';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class RolesResolver {
   constructor(private readonly rolesService: RoleService) {}
 
-  @Mutation(() => AdminRoles)
+  @Mutation(() => admin_roles)
   createAdminRole(@Args('data') input: CreateRoleInput) {
     return this.rolesService.create(input);
   }
 
-  @Query(() => [AdminRoles])
+  @Query(() => [admin_roles])
   async getAdminsRoles(
     @Args({ name: 'where', defaultValue: {} }) where: AdminRoleWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
@@ -50,7 +49,7 @@ export class RolesResolver {
     return this.rolesService.findAllAccess({ skip, take, where });
   }
 
-  @Mutation(() => AdminRoles)
+  @Mutation(() => admin_roles)
   async updateAdminRole(@Args('data') input: UpdateRoleInput) {
     const role = await this.rolesService.update(input.admin_role_id, input);
     return {

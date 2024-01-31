@@ -2,13 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type AdminRoles {
-  admin_role_id: ID!
-  admin_role_name: String!
-  enabled: Boolean!
-  role_accesses: [admin_role_accesses!]
-}
-
 type Admin_accessesCount {
   admin_role_accesses: Int!
 }
@@ -244,14 +237,6 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 """
 scalar JWT
 
-type LoginHistory {
-  admin_id: String!
-  admins: admins!
-  ip: String!
-  login_id: ID!
-  login_time: DateTime!
-}
-
 input LoginInput {
   admin_name: String!
   password: String!
@@ -265,14 +250,14 @@ input Manual_adjustmentsListRelationFilter {
 
 type Mutation {
   createAdmin(data: CreateAdminInput!): admins!
-  createAdminRole(data: CreateRoleInput!): AdminRoles!
+  createAdminRole(data: CreateRoleInput!): admin_roles!
   createAgent(data: CreateAgentInput!): agents!
   createBankAccount(data: CreateBankAccountInput!): admin_bank_accounts!
   createManualAdjustment(data: CreateManualAdjustment!): manual_adjustments!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   updateAdmin(data: UpdateAdminInput!): admins!
-  updateAdminRole(data: UpdateRoleInput!): AdminRoles!
+  updateAdminRole(data: UpdateRoleInput!): admin_roles!
   updateAgent(data: UpdateAgentInput!): agents!
   updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
   updateDeposit(data: UpdateFinanceInput!): deposit_transactions!
@@ -434,10 +419,10 @@ type Query {
   depositsCount: CountDto!
   gamerebates: [admin_bank_accounts!]!
   getAccesses(skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
-  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [LoginHistory!]!
-  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [AdminRoles!]!
+  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
+  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getMe: admins!
-  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [UserLoginHistory!]!
+  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
   getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [players!]!
   manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
@@ -531,13 +516,6 @@ input UpdateRoleInput {
   admin_role_name: String
   enabled: Boolean
   remove_access_names: [String!]
-}
-
-type UserLoginHistory {
-  ip: String!
-  login_time: DateTime!
-  player_id: String!
-  players: players!
 }
 
 input UuidFilter {
@@ -938,6 +916,13 @@ input player_bank_accountsWhereInput {
   player_id: StringFilter
   udate: DateTimeFilter
   withdrawal_transactions: Withdrawal_transactionsListRelationFilter
+}
+
+type player_login_logs {
+  ip: String!
+  login_time: DateTime!
+  player_id: String!
+  player_login_log_id: ID!
 }
 
 input player_login_logsWhereInput {
