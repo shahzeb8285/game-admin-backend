@@ -47,10 +47,10 @@ export class FinancesService {
       include: {
         players: {
           include: {
-            agent:true
-          }
+            agent: true,
+          },
         },
-        
+
         // players: true,
         admin_bank_account: true,
       },
@@ -67,7 +67,7 @@ export class FinancesService {
       },
       include: {
         deposit_transactions: true,
-        
+
         // withdrawal_transactions: true,
       },
     });
@@ -82,7 +82,11 @@ export class FinancesService {
         transaction_date: 'desc',
       },
       include: {
-        players: true,
+        players: {
+          include: {
+            agent: true,
+          },
+        },
         player_bank_account: true,
       },
     });
