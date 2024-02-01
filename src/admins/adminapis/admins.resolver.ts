@@ -21,7 +21,7 @@ export class AdminsResolver {
     @UserEntity() user: Admin,
     @Args('data') createAdminInput: CreateAdminInput,
   ) {
-    return this.adminsService.create(createAdminInput, user.admin_name);
+    return this.adminsService.create(createAdminInput, user.admin_id);
   }
 
   @Query(() => [Admin], { name: 'admins' })
