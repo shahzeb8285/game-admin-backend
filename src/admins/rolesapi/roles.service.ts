@@ -7,7 +7,7 @@ import { UpdateRoleInput } from '../dto/update-role.input';
 export class RoleService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createAdminInput: CreateRoleInput, createdBy:string) {
+  async create(createAdminInput: CreateRoleInput, createdBy: string) {
     return this.prisma.admin_roles.create({
       data: {
         ...createAdminInput,
@@ -48,7 +48,29 @@ export class RoleService {
 
     return ids;
   }
-  async update(admin_role_id: string, input: UpdateRoleInput) {
+
+  // async getAccessByIds(addedIds: any) {
+  //   const filteredAccesses = [];
+  //   const accesses = await this.prisma.admin_accesses.findMany();
+  //   console.log('addedIds', addedIds, accesses);
+  //   addedIds.forEach((id) => {
+  //     const foundAccess = accesses.find(
+  //       (access) => access.admin_access_id === id.admin_access_id,
+  //     );
+  //     if (foundAccess) {
+  //       filteredAccesses.push(foundAccess);
+  //     }
+  //   });
+  //   console.log('filteredAccesses', filteredAccesses);
+
+  //   return filteredAccesses;
+  // }
+
+  async update(
+    admin_id: string,
+    admin_role_id: string,
+    input: UpdateRoleInput,
+  ) {
     const updatePayload: any = {
       ...input,
     };
@@ -77,16 +99,26 @@ export class RoleService {
     delete updatePayload.remove_access_names;
     delete updatePayload.admin_role_id;
 
+    // const addedAccesses = await this.getAccessByIds(addedAccessIds);
+
     return this.prisma.admin_roles.update({
       where: {
         admin_role_id,
       },
       data: {
         ...updatePayload,
-        role_accesses: {
-          createMany: {
-            data: addedAccessIds,
-          },
+        admin_role_accesses: {
+          create: addedAccessIds.map((item) => {
+            return {
+              admin_accesses: {
+                connect: {
+                  admin_access_id: item.admin_access_id,
+                },
+              },
+              created_by: admin_id,
+              updated_by: admin_id,
+            };
+          }),
         },
       },
       include: {

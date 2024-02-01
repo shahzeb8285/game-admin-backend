@@ -18,10 +18,12 @@ export class RolesResolver {
   constructor(private readonly rolesService: RoleService) {}
 
   @Mutation(() => admin_roles)
-  createAdminRole(    @UserEntity() user: Admin,
+  createAdminRole(
+    @UserEntity() user: Admin,
 
-    @Args('data') input: CreateRoleInput) {
-    return this.rolesService.create(input,user.admin_id);
+    @Args('data') input: CreateRoleInput,
+  ) {
+    return this.rolesService.create(input, user.admin_id);
   }
 
   @Query(() => [admin_roles])
@@ -31,7 +33,7 @@ export class RolesResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     const roles = await this.rolesService.findAll({ skip, take, where });
-   
+
     const finalRoles = roles.map((role) => {
       return {
         ...role,
@@ -54,8 +56,15 @@ export class RolesResolver {
   }
 
   @Mutation(() => admin_roles)
-  async updateAdminRole(@Args('data') input: UpdateRoleInput) {
-    const role = await this.rolesService.update(input.admin_role_id, input);
+  async updateAdminRole(
+    @UserEntity() user: Admin,
+    @Args('data') input: UpdateRoleInput,
+  ) {
+    const role = await this.rolesService.update(
+      user.admin_id,
+      input.admin_role_id,
+      input,
+    );
     return {
       ...role,
       admin_accesses: role.admin_role_accesses.map((item) => {

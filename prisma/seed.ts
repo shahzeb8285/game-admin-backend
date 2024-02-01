@@ -9,12 +9,12 @@ async function main() {
     return { access_name: key };
   });
 
-   await prisma.admin_accesses.createMany({
-    data:rawAccesses
-   })
-   const rootUUID = "f87da71f-959d-4845-9098-c67cd3d774df"
+  await prisma.admin_accesses.createMany({
+    data: rawAccesses,
+  });
+  const rootUUID = 'f87da71f-959d-4845-9098-c67cd3d774df';
 
-  const accesses = await prisma.admin_accesses.findMany()
+  const accesses = await prisma.admin_accesses.findMany();
 
   const admin_role = await prisma.admin_roles.create({
     data: {
@@ -25,7 +25,7 @@ async function main() {
           return {
             admin_accesses: {
               connect: {
-                admin_access_id:item.admin_access_id
+                admin_access_id: item.admin_access_id,
               },
             },
             created_by: rootUUID,
