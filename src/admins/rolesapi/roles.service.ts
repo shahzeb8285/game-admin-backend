@@ -7,11 +7,11 @@ import { UpdateRoleInput } from '../dto/update-role.input';
 export class RoleService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createAdminInput: CreateRoleInput) {
+  async create(createAdminInput: CreateRoleInput, createdBy:string) {
     return this.prisma.admin_roles.create({
       data: {
         ...createAdminInput,
-        created_by: 'fix this', // todo how to get current admin id
+        created_by: createdBy, // todo how to get current admin id
       },
     });
   }

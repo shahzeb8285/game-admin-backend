@@ -627,7 +627,7 @@ input admin_role_accessesWhereInput {
   admin_access_id: StringFilter
   admin_accesses: Admin_accessesRelationFilter
   admin_role_access_id: UuidFilter
-  admin_role_id: StringFilter
+  admin_role_id: UuidFilter
   admin_roles: Admin_rolesRelationFilter
   cdate: DateTimeFilter
   created_by: StringFilter
@@ -685,7 +685,7 @@ input adminsWhereInput {
   admin_login_logs: Admin_login_logsListRelationFilter
   admin_name: StringFilter
   admin_password: StringFilter
-  admin_role_id: StringFilter
+  admin_role_id: UuidFilter
   admin_roles: Admin_rolesRelationFilter
   cdate: DateTimeFilter
   created_by: StringFilter

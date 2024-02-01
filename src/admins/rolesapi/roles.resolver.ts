@@ -10,6 +10,7 @@ import { admin_accesses as AdminAccesses } from '../../@generated/admin-accesses
 import { admin_rolesWhereInput as AdminRoleWhereInput } from '../../@generated/admin-roles/admin-roles-where.input';
 import { admin_accessesWhereInput as AdminAccessesWhereInput } from '../../@generated/admin-accesses/admin-accesses-where.input';
 import { admin_roles } from 'src/@generated/admin-roles/admin-roles.model';
+import { UserEntity } from 'src/common/decorators/user.decorator';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -17,8 +18,10 @@ export class RolesResolver {
   constructor(private readonly rolesService: RoleService) {}
 
   @Mutation(() => admin_roles)
-  createAdminRole(@Args('data') input: CreateRoleInput) {
-    return this.rolesService.create(input);
+  createAdminRole(    @UserEntity() user: Admin,
+
+    @Args('data') input: CreateRoleInput) {
+    return this.rolesService.create(input,user.admin_id);
   }
 
   @Query(() => [admin_roles])
@@ -28,6 +31,7 @@ export class RolesResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     const roles = await this.rolesService.findAll({ skip, take, where });
+   
     const finalRoles = roles.map((role) => {
       return {
         ...role,

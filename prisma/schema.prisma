@@ -92,7 +92,7 @@ model admins {
   admin_name         String               @unique
   admin_password     String
   admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id      String
+  admin_role_id      String @db.Uuid
   created_by         String
   cdate              DateTime             @default(now())
   udate              DateTime             @updatedAt
@@ -121,7 +121,7 @@ model admin_accesses {
 model admin_role_accesses {
   admin_role_access_id String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   admin_roles          admin_roles    @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id        String
+  admin_role_id        String @db.Uuid
   admin_accesses       admin_accesses @relation(fields: [admin_access_id], references: [admin_access_id])
   admin_access_id      String
   created_by           String

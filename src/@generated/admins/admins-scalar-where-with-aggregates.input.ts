@@ -26,8 +26,8 @@ export class adminsScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     admin_password?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    admin_role_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    admin_role_id?: UuidWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     created_by?: StringWithAggregatesFilter;

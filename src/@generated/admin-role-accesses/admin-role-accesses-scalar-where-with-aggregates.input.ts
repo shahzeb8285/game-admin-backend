@@ -20,8 +20,8 @@ export class admin_role_accessesScalarWhereWithAggregatesInput {
     @Field(() => UuidWithAggregatesFilter, {nullable:true})
     admin_role_access_id?: UuidWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    admin_role_id?: StringWithAggregatesFilter;
+    @Field(() => UuidWithAggregatesFilter, {nullable:true})
+    admin_role_id?: UuidWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     admin_access_id?: StringWithAggregatesFilter;

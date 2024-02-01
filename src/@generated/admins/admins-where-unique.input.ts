@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { adminsWhereInput } from './admins-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { UuidFilter } from '../prisma/uuid-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { Admin_rolesRelationFilter } from '../prisma/admin-roles-relation-filter.input';
@@ -29,8 +30,8 @@ export class adminsWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     admin_password?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    admin_role_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    admin_role_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     created_by?: StringFilter;

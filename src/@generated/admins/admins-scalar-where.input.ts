@@ -26,8 +26,8 @@ export class adminsScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     admin_password?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    admin_role_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    admin_role_id?: UuidFilter;
 
     @Field(() => StringFilter, {nullable:true})
     created_by?: StringFilter;
