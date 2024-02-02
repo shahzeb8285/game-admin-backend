@@ -17,8 +17,8 @@ import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/pl
 import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
 import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
 import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
-import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
 import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
+import { game_record_rounds_with_sg_games } from './dto/game_record_rounds_with_sg_games';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -43,7 +43,7 @@ export class PlayersResolver {
     return this.playersService.getUserLoginHistory({ skip, take, where });
   }
 
-  @Query(() => [game_record_rounds])
+  @Query(() => [game_record_rounds_with_sg_games])
   getUsersGameHistory(
     @Args({ name: 'where', defaultValue: {} })
     where: game_record_roundsWhereInput,

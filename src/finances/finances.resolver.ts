@@ -1,4 +1,4 @@
-import {  Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { FinancesService } from './finances.service';
 // import { DepositEntity, WithdrawalEntity } from './entities/finance.entity';
 import {
@@ -28,8 +28,8 @@ export class FinancesResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     const data = await this.financesService.getDeposits({ skip, take, where });
-    console.log("getDeposits",{dsaaa:data[0]})
-    return data
+    console.log('getDeposits', { dsaaa: data[0] });
+    return data;
   }
 
   @Query(() => [withdrawal_transactions], { name: 'withdrawals' })

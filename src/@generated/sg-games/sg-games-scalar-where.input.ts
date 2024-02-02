@@ -7,7 +7,6 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatNullableFilter } from '../prisma/float-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { UuidNullableFilter } from '../prisma/uuid-nullable-filter.input';
 
 @InputType()
 export class sg_gamesScalarWhereInput {
@@ -98,7 +97,4 @@ export class sg_gamesScalarWhereInput {
 
     @Field(() => BoolFilter, {nullable:true})
     enabled?: BoolFilter;
-
-    @Field(() => UuidNullableFilter, {nullable:true})
-    game_record_roundsGame_round_info_id?: UuidNullableFilter;
 }

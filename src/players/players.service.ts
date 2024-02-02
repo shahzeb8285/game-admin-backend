@@ -35,8 +35,8 @@ export class PlayersService {
     });
   }
 
-  getUsersGameHistory({ skip, take, where }) {
-    return this.prisma.game_record_rounds.findMany({
+  async getUsersGameHistory({ skip, take, where }) {
+    const gameRecordRounds = await this.prisma.game_record_rounds.findMany({
       skip,
       take,
       where,
@@ -47,6 +47,64 @@ export class PlayersService {
         players: true,
       },
     });
+
+    const gameRecordRoundsWithSgGames = await Promise.all(
+      gameRecordRounds.map(async (record) => {
+        // Check sg_games
+        const sgGames = await this.prisma.sg_games.findFirst({
+          where: {
+            url: record.game_url,
+            enabled: true,
+          },
+        });
+
+        const findMerchant = await this.checkMerchantEnabled(
+          sgGames.merchant_id,
+        );
+        return {
+          ...record,
+          sg_games: sgGames,
+          sg_merchants: findMerchant,
+        };
+      }),
+    );
+
+    const gameRecordRoundsWithSgGamesAndCategories = await Promise.all(
+      gameRecordRoundsWithSgGames.map(async (record) => {
+        const findCategory = await this.checkCategoryEnabled(
+          record.rebate_category_id,
+        );
+
+        return {
+          ...record,
+          fl_categories: findCategory,
+        };
+      }),
+    );
+
+    return gameRecordRoundsWithSgGamesAndCategories;
+  }
+
+  async checkMerchantEnabled(merchantId: number) {
+    const merchant = await this.prisma.sg_merchants.findFirst({
+      where: {
+        merchant_id: merchantId,
+        enabled: true,
+      },
+    });
+
+    return merchant;
+  }
+
+  async checkCategoryEnabled(categoryId: number) {
+    const category = await this.prisma.fl_categories.findFirst({
+      where: {
+        category_id: categoryId,
+        enabled: true,
+      },
+    });
+
+    return category;
   }
 
   getManualAdjustments({ skip, take, where }) {

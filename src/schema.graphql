@@ -520,7 +520,7 @@ type Query {
   getMe: admins!
   getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
   getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [players!]!
-  getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: game_record_roundsWhereInput! = {}): [game_record_rounds!]!
+  getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: game_record_roundsWhereInput! = {}): [game_record_rounds_with_sg_games!]!
   manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
@@ -978,6 +978,17 @@ input deposit_transactionsWhereInput {
   udate: DateTimeFilter
 }
 
+type fl_categories {
+  category_id: Int!
+  category_name: String!
+  cdate: DateTime!
+  csort: Int!
+  enabled: Boolean!
+  fl_categories_id: ID!
+  rebate_priority: Int
+  udate: DateTime!
+}
+
 enum game_currency {
   fHKD
 }
@@ -1011,6 +1022,23 @@ input game_record_roundsWhereInput {
   player_id: StringFilter
   players: PlayersRelationFilter
   rebate_category_id: IntFilter
+}
+
+type game_record_rounds_with_sg_games {
+  bet_amount: Float!
+  effective_bet_amount: Float!
+  fl_categories: fl_categories!
+  game_date: DateTime!
+  game_records_by_period_id: String!
+  game_round_info_id: ID!
+  game_url: String!
+  is_processed: Boolean!
+  payout: Float!
+  player_id: String!
+  players: players!
+  rebate_category_id: Int!
+  sg_games: sg_games!
+  sg_merchants: sg_merchants!
 }
 
 type game_records_by_day {
@@ -1307,6 +1335,46 @@ enum rebate_status {
   COLLECTED
   DISTRIBUTED
   NOT_CALCULATED
+}
+
+type sg_games {
+  bonus_buy: Boolean!
+  category_id: String!
+  cdate: DateTime!
+  coun_rest_id: Int!
+  enabled: Boolean!
+  external_code: String
+  freeround: Boolean!
+  freespins: Boolean!
+  game_id: Int!
+  game_name: String!
+  has_demo: Boolean!
+  image: String!
+  max_bet_default: Float
+  max_multiplier: Float
+  megaways: Boolean!
+  merchant_id: Int!
+  min_bet_default: Float
+  mobile_external_code: String
+  mobile_page_code: String
+  page_code: String!
+  rtp: Float
+  sg_game_id: ID!
+  sort: Int!
+  table_id: String!
+  udate: DateTime!
+  url: String!
+}
+
+type sg_merchants {
+  cdate: DateTime!
+  enabled: Boolean!
+  image: String!
+  merchant_alias: String!
+  merchant_id: Int!
+  merchant_name: String!
+  sg_merchant_id: ID!
+  udate: DateTime!
 }
 
 type transfer_in_transactions {

@@ -13,9 +13,6 @@ export class sg_gamesCreateManyGame_record_roundsInput {
     game_id!: number;
 
     @Field(() => String, {nullable:false})
-    url!: string;
-
-    @Field(() => String, {nullable:false})
     game_name!: string;
 
     @Field(() => String, {nullable:false})

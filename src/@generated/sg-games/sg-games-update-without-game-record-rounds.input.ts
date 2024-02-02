@@ -13,9 +13,6 @@ export class sg_gamesUpdateWithoutGame_record_roundsInput {
     game_id?: number;
 
     @Field(() => String, {nullable:true})
-    url?: string;
-
-    @Field(() => String, {nullable:true})
     game_name?: string;
 
     @Field(() => String, {nullable:true})
