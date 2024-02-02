@@ -140,7 +140,6 @@ input CreateBankAccountInput {
 
 input CreateManualAdjustment {
   amount: Float!
-  cdate: DateTime
   player_id: String!
   reason: String!
 }

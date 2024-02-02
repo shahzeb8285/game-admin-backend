@@ -69,19 +69,19 @@ export class PlayersService {
       ...data,
     };
 
-    delete payload.playerID;
+    delete payload.player_id;
 
     return this.prisma.manual_adjustments.create({
       data: {
         ...payload,
         admins: {
           connect: {
-            adminID: createdBy,
+            admin_id: createdBy,
           },
         },
         players: {
           connect: {
-            playerID: data.player_id,
+            player_id: data.player_id,
           },
         },
       },
