@@ -525,6 +525,7 @@ type Query {
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   usersCount: CountDto!
+  usersGameHistoryCount: CountDto!
   usersLoginCount: CountDto!
   withdrawalCount: CountDto!
   withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
