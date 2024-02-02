@@ -47,27 +47,38 @@ model manual_adjustments {
 }
 
 model players {
-  player_id               String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name                    String?
-  tg_id                   String                    @unique
-  tg_first_name           String
-  tg_last_name            String
-  tg_username             String                    @unique
-  tg_photo_url            String?
-  user_language           String
-  registration_ip         String
-  agent                   agents                    @relation(fields: [agent_id], references: [agent_id])
-  agent_id                String
-  registration_date       String
-  password                String
-  fundist_password        String
-  cdate                   DateTime                  @default(now())
-  udate                   DateTime                  @updatedAt
-  enabled                 Boolean                   @default(true)
-  deposit_transactions    deposit_transactions[]
-  withdrawal_transactions withdrawal_transactions[]
-  player_login_logs       player_login_logs[]
-  manual_adjustments      manual_adjustments[]
+  player_id                 String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                      String?
+  tg_id                     String                      @unique
+  tg_first_name             String
+  tg_last_name              String
+  tg_username               String                      @unique
+  tg_photo_url              String?
+  user_language             String
+  registration_ip           String
+  agent                     agents                      @relation(fields: [agent_id], references: [agent_id])
+  agent_id                  String
+  registration_date         String
+  password                  String
+  fundist_password          String
+  cdate                     DateTime                    @default(now())
+  udate                     DateTime                    @updatedAt
+  enabled                   Boolean                     @default(true)
+  deposit_transactions      deposit_transactions[]
+  withdrawal_transactions   withdrawal_transactions[]
+  player_login_logs         player_login_logs[]
+  manual_adjustments        manual_adjustments[]
+  player_rebate_rates       player_rebate_rates[]
+  game_records_by_period    game_records_by_period[]
+  game_records_by_day       game_records_by_day[]
+  agent_records_by_day      agent_records_by_day[]
+  player_bank_accounts      player_bank_accounts[]
+  player_wallets            player_wallets[]
+  transfer_in_transactions  transfer_in_transactions[]
+  transfer_out_transactions transfer_out_transactions[]
+  wallet_requests           wallet_requests[]
+  game_round_infos          game_round_infos[]
+  game_record_rounds        game_record_rounds[]
 }
 
 model agents {
@@ -92,7 +103,7 @@ model admins {
   admin_name         String               @unique
   admin_password     String
   admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id      String @db.Uuid
+  admin_role_id      String               @db.Uuid
   created_by         String
   cdate              DateTime             @default(now())
   udate              DateTime             @updatedAt
@@ -121,7 +132,7 @@ model admin_accesses {
 model admin_role_accesses {
   admin_role_access_id String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   admin_roles          admin_roles    @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id        String @db.Uuid
+  admin_role_id        String         @db.Uuid
   admin_accesses       admin_accesses @relation(fields: [admin_access_id], references: [admin_access_id])
   admin_access_id      String
   created_by           String
@@ -154,6 +165,7 @@ model agent_rebate_rates {
 
 model player_rebate_rates {
   player_rebate_rate_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players               players  @relation(fields: [player_id], references: [player_id])
   player_id             String
   rebate_category_id    Int
   rebate                Float
@@ -176,6 +188,7 @@ model game_records_by_period {
   game_records_by_period_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_date                 DateTime
   game_url                  String
+  players                   players       @relation(fields: [player_id], references: [player_id])
   player_id                 String
   rebate_category_id        Int
   effective_bet_amount      Float
@@ -187,6 +200,7 @@ model game_records_by_period {
 model game_records_by_day {
   game_records_by_day_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_date              DateTime @default(now())
+  players                players  @relation(fields: [player_id], references: [player_id])
   player_id              String
   rebate_category_id     Int
   effective_bet_amount   Float
@@ -201,6 +215,7 @@ model agent_records_by_day {
   agent_records_by_day_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_records_by_day_id  String
   game_date               DateTime @default(now())
+  players                 players  @relation(fields: [player_id], references: [player_id])
   player_id               String
   rebate_category_id      Int
   agents                  agents   @relation(fields: [agent_id], references: [agent_id])
@@ -231,6 +246,7 @@ model admin_bank_accounts {
 
 model player_bank_accounts {
   player_bank_account_id  String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                 players                   @relation(fields: [player_id], references: [player_id])
   player_id               String
   bank_name               String
   account_number          String
@@ -244,6 +260,7 @@ model player_bank_accounts {
 
 model player_wallets {
   player_wallet_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players          players       @relation(fields: [player_id], references: [player_id])
   player_id        String
   currency         game_currency
   amount           Float
@@ -296,6 +313,7 @@ model withdrawal_transactions {
 
 model transfer_in_transactions {
   transfer_in_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                    players                   @relation(fields: [player_id], references: [player_id])
   player_id                  String
   transaction_currency       real_currency
   transaction_amount         Float
@@ -315,6 +333,7 @@ model transfer_in_transactions {
 
 model transfer_out_transactions {
   transfer_out_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                     players                   @relation(fields: [player_id], references: [player_id])
   player_id                   String
   transaction_currency        real_currency
   transaction_amount          Float
@@ -342,6 +361,7 @@ model wallet_requests {
   wallet_request_id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tid                   String
   type                  String
+  players               players  @relation(fields: [player_id], references: [player_id])
   player_id             String
   currency              String
   amount                String
@@ -373,6 +393,7 @@ model game_actions {
 model game_round_infos {
   game_round_info_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_id            String
+  players            players  @relation(fields: [player_id], references: [player_id])
   player_id          String
   i_gamedesc         String
   i_extparam         String?
@@ -388,6 +409,7 @@ model game_record_rounds {
   game_round_info_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_date                 DateTime @default(now())
   game_url                  String
+  players                   players  @relation(fields: [player_id], references: [player_id])
   player_id                 String
   rebate_category_id        Int
   bet_amount                Float

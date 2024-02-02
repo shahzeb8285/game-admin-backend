@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { playersUpdateOneRequiredWithoutWallet_requestsNestedInput } from '../players/players-update-one-required-without-wallet-requests-nested.input';
 
 @InputType()
 export class wallet_requestsUpdateInput {
@@ -13,9 +14,6 @@ export class wallet_requestsUpdateInput {
 
     @Field(() => String, {nullable:true})
     type?: string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
 
     @Field(() => String, {nullable:true})
     currency?: string;
@@ -64,4 +62,7 @@ export class wallet_requestsUpdateInput {
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
+
+    @Field(() => playersUpdateOneRequiredWithoutWallet_requestsNestedInput, {nullable:true})
+    players?: playersUpdateOneRequiredWithoutWallet_requestsNestedInput;
 }

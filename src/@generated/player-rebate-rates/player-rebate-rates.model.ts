@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class player_rebate_rates {
@@ -27,4 +28,7 @@ export class player_rebate_rates {
 
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

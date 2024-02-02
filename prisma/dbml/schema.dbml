@@ -51,6 +51,17 @@ Table players {
   withdrawal_transactions withdrawal_transactions [not null]
   player_login_logs player_login_logs [not null]
   manual_adjustments manual_adjustments [not null]
+  player_rebate_rates player_rebate_rates [not null]
+  game_records_by_period game_records_by_period [not null]
+  game_records_by_day game_records_by_day [not null]
+  agent_records_by_day agent_records_by_day [not null]
+  player_bank_accounts player_bank_accounts [not null]
+  player_wallets player_wallets [not null]
+  transfer_in_transactions transfer_in_transactions [not null]
+  transfer_out_transactions transfer_out_transactions [not null]
+  wallet_requests wallet_requests [not null]
+  game_round_infos game_round_infos [not null]
+  game_record_rounds game_record_rounds [not null]
 }
 
 Table agents {
@@ -137,6 +148,7 @@ Table agent_rebate_rates {
 
 Table player_rebate_rates {
   player_rebate_rate_id String [pk]
+  players players [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
   rebate Float [not null]
@@ -159,6 +171,7 @@ Table game_records_by_period {
   game_records_by_period_id String [pk]
   game_date DateTime [not null]
   game_url String [not null]
+  players players [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
   effective_bet_amount Float [not null]
@@ -170,6 +183,7 @@ Table game_records_by_period {
 Table game_records_by_day {
   game_records_by_day_id String [pk]
   game_date DateTime [default: `now()`, not null]
+  players players [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
   effective_bet_amount Float [not null]
@@ -184,6 +198,7 @@ Table agent_records_by_day {
   agent_records_by_day_id String [pk]
   game_records_by_day_id String [not null]
   game_date DateTime [default: `now()`, not null]
+  players players [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
   agents agents [not null]
@@ -213,6 +228,7 @@ Table admin_bank_accounts {
 
 Table player_bank_accounts {
   player_bank_account_id String [pk]
+  players players [not null]
   player_id String [not null]
   bank_name String [not null]
   account_number String [not null]
@@ -226,6 +242,7 @@ Table player_bank_accounts {
 
 Table player_wallets {
   player_wallet_id String [pk]
+  players players [not null]
   player_id String [not null]
   currency game_currency [not null]
   amount Float [not null]
@@ -276,6 +293,7 @@ Table withdrawal_transactions {
 
 Table transfer_in_transactions {
   transfer_in_transaction_id String [pk]
+  players players [not null]
   player_id String [not null]
   transaction_currency real_currency [not null]
   transaction_amount Float [not null]
@@ -295,6 +313,7 @@ Table transfer_in_transactions {
 
 Table transfer_out_transactions {
   transfer_out_transaction_id String [pk]
+  players players [not null]
   player_id String [not null]
   transaction_currency real_currency [not null]
   transaction_amount Float [not null]
@@ -322,6 +341,7 @@ Table wallet_requests {
   wallet_request_id String [pk]
   tid String [not null]
   type String [not null]
+  players players [not null]
   player_id String [not null]
   currency String [not null]
   amount String [not null]
@@ -353,6 +373,7 @@ Table game_actions {
 Table game_round_infos {
   game_round_info_id String [pk]
   game_id String [not null]
+  players players [not null]
   player_id String [not null]
   i_gamedesc String [not null]
   i_extparam String
@@ -368,6 +389,7 @@ Table game_record_rounds {
   game_round_info_id String [pk]
   game_date DateTime [default: `now()`, not null]
   game_url String [not null]
+  players players [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
   bet_amount Float [not null]
@@ -514,9 +536,21 @@ Ref: admin_role_accesses.admin_access_id > admin_accesses.admin_access_id
 
 Ref: agent_rebate_rates.agent_id > agents.agent_id
 
+Ref: player_rebate_rates.player_id > players.player_id
+
 Ref: agent_shares.agent_id > agents.agent_id
 
+Ref: game_records_by_period.player_id > players.player_id
+
+Ref: game_records_by_day.player_id > players.player_id
+
+Ref: agent_records_by_day.player_id > players.player_id
+
 Ref: agent_records_by_day.agent_id > agents.agent_id
+
+Ref: player_bank_accounts.player_id > players.player_id
+
+Ref: player_wallets.player_id > players.player_id
 
 Ref: deposit_transactions.player_id > players.player_id
 
@@ -525,3 +559,13 @@ Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank
 Ref: withdrawal_transactions.player_id > players.player_id
 
 Ref: withdrawal_transactions.player_bank_account_id > player_bank_accounts.player_bank_account_id
+
+Ref: transfer_in_transactions.player_id > players.player_id
+
+Ref: transfer_out_transactions.player_id > players.player_id
+
+Ref: wallet_requests.player_id > players.player_id
+
+Ref: game_round_infos.player_id > players.player_id
+
+Ref: game_record_rounds.player_id > players.player_id

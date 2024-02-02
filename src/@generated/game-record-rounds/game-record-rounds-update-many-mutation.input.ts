@@ -15,9 +15,6 @@ export class game_record_roundsUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     game_url?: string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => Int, {nullable:true})
     rebate_category_id?: number;
 

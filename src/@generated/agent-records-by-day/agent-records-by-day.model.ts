@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 import { agents } from '../agents/agents.model';
 
 @ObjectType()
@@ -52,6 +53,9 @@ export class agent_records_by_day {
 
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 
     @Field(() => agents, {nullable:false})
     agents?: agents;

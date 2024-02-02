@@ -35,6 +35,20 @@ export class PlayersService {
     });
   }
 
+  getUsersGameHistory({ skip, take, where }) {
+    return this.prisma.game_record_rounds.findMany({
+      skip,
+      take,
+      where,
+      orderBy: {
+        game_date: 'desc',
+      },
+      include: {
+        players: true,
+      },
+    });
+  }
+
   getManualAdjustments({ skip, take, where }) {
     return this.prisma.manual_adjustments.findMany({
       skip,

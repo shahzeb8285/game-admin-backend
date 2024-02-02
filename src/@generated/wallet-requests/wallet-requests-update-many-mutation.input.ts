@@ -15,9 +15,6 @@ export class wallet_requestsUpdateManyMutationInput {
     type?: string;
 
     @Field(() => String, {nullable:true})
-    player_id?: string;
-
-    @Field(() => String, {nullable:true})
     currency?: string;
 
     @Field(() => String, {nullable:true})

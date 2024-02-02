@@ -11,9 +11,6 @@ export class transfer_in_transactionsUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     transfer_in_transaction_id?: string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => real_currency, {nullable:true})
     transaction_currency?: keyof typeof real_currency;
 

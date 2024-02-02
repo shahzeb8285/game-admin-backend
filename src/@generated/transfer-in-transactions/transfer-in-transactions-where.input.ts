@@ -9,6 +9,7 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { Enumwallet_transaction_statusFilter } from '../prisma/enumwallet-transaction-status-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class transfer_in_transactionsWhereInput {
@@ -69,4 +70,7 @@ export class transfer_in_transactionsWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     udate?: DateTimeFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

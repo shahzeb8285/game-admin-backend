@@ -9,9 +9,6 @@ export class player_bank_accountsUpdateManyMutationInput {
     player_bank_account_id?: string;
 
     @Field(() => String, {nullable:true})
-    player_id?: string;
-
-    @Field(() => String, {nullable:true})
     bank_name?: string;
 
     @Field(() => String, {nullable:true})

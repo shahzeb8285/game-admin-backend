@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { bank_method } from '../prisma/bank-method.enum';
+import { players } from '../players/players.model';
 import { withdrawal_transactions } from '../withdrawal-transactions/withdrawal-transactions.model';
 import { Player_bank_accountsCount } from '../prisma/player-bank-accounts-count.output';
 
@@ -34,6 +35,9 @@ export class player_bank_accounts {
 
     @Field(() => Boolean, {nullable:false,defaultValue:true})
     enabled!: boolean;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 
     @Field(() => [withdrawal_transactions], {nullable:true})
     withdrawal_transactions?: Array<withdrawal_transactions>;

@@ -12,9 +12,6 @@ export class game_records_by_dayUpdateManyMutationInput {
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => Int, {nullable:true})
     rebate_category_id?: number;
 

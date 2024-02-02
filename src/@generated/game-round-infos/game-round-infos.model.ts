@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class game_round_infos {
@@ -25,4 +26,7 @@ export class game_round_infos {
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

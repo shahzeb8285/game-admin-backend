@@ -6,6 +6,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class player_rebate_ratesWhereInput {
@@ -39,4 +40,7 @@ export class player_rebate_ratesWhereInput {
 
     @Field(() => BoolFilter, {nullable:true})
     is_active?: BoolFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

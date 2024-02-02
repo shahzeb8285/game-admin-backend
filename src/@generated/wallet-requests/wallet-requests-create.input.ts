@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { playersCreateNestedOneWithoutWallet_requestsInput } from '../players/players-create-nested-one-without-wallet-requests.input';
 
 @InputType()
 export class wallet_requestsCreateInput {
@@ -13,9 +14,6 @@ export class wallet_requestsCreateInput {
 
     @Field(() => String, {nullable:false})
     type!: string;
-
-    @Field(() => String, {nullable:false})
-    player_id!: string;
 
     @Field(() => String, {nullable:false})
     currency!: string;
@@ -64,4 +62,7 @@ export class wallet_requestsCreateInput {
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
+
+    @Field(() => playersCreateNestedOneWithoutWallet_requestsInput, {nullable:false})
+    players!: playersCreateNestedOneWithoutWallet_requestsInput;
 }

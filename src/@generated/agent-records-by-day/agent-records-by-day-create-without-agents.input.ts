@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { playersCreateNestedOneWithoutAgent_records_by_dayInput } from '../players/players-create-nested-one-without-agent-records-by-day.input';
 
 @InputType()
 export class agent_records_by_dayCreateWithoutAgentsInput {
@@ -14,9 +15,6 @@ export class agent_records_by_dayCreateWithoutAgentsInput {
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
-
-    @Field(() => String, {nullable:false})
-    player_id!: string;
 
     @Field(() => Int, {nullable:false})
     rebate_category_id!: number;
@@ -47,4 +45,7 @@ export class agent_records_by_dayCreateWithoutAgentsInput {
 
     @Field(() => Boolean, {nullable:false})
     is_active!: boolean;
+
+    @Field(() => playersCreateNestedOneWithoutAgent_records_by_dayInput, {nullable:false})
+    players!: playersCreateNestedOneWithoutAgent_records_by_dayInput;
 }

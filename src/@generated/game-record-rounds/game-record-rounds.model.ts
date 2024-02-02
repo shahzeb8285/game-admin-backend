@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class game_record_rounds {
@@ -36,4 +37,7 @@ export class game_record_rounds {
 
     @Field(() => String, {nullable:false})
     game_records_by_period_id!: string;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

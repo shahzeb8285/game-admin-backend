@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { bank_method } from '../prisma/bank-method.enum';
+import { playersUpdateOneRequiredWithoutPlayer_bank_accountsNestedInput } from '../players/players-update-one-required-without-player-bank-accounts-nested.input';
 import { withdrawal_transactionsUpdateManyWithoutPlayer_bank_accountNestedInput } from '../withdrawal-transactions/withdrawal-transactions-update-many-without-player-bank-account-nested.input';
 
 @InputType()
@@ -8,9 +9,6 @@ export class player_bank_accountsUpdateInput {
 
     @Field(() => String, {nullable:true})
     player_bank_account_id?: string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
 
     @Field(() => String, {nullable:true})
     bank_name?: string;
@@ -32,6 +30,9 @@ export class player_bank_accountsUpdateInput {
 
     @Field(() => Boolean, {nullable:true})
     enabled?: boolean;
+
+    @Field(() => playersUpdateOneRequiredWithoutPlayer_bank_accountsNestedInput, {nullable:true})
+    players?: playersUpdateOneRequiredWithoutPlayer_bank_accountsNestedInput;
 
     @Field(() => withdrawal_transactionsUpdateManyWithoutPlayer_bank_accountNestedInput, {nullable:true})
     withdrawal_transactions?: withdrawal_transactionsUpdateManyWithoutPlayer_bank_accountNestedInput;

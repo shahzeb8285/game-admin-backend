@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class wallet_requests {
@@ -65,4 +66,7 @@ export class wallet_requests {
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

@@ -11,9 +11,6 @@ export class game_round_infosUpdateManyMutationInput {
     game_id?: string;
 
     @Field(() => String, {nullable:true})
-    player_id?: string;
-
-    @Field(() => String, {nullable:true})
     i_gamedesc?: string;
 
     @Field(() => String, {nullable:true})

@@ -9,9 +9,6 @@ export class player_rebate_ratesUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     player_rebate_rate_id?: string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => Int, {nullable:true})
     rebate_category_id?: number;
 

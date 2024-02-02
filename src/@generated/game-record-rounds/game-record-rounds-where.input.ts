@@ -6,6 +6,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class game_record_roundsWhereInput {
@@ -48,4 +49,7 @@ export class game_record_roundsWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     game_records_by_period_id?: StringFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

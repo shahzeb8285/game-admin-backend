@@ -7,6 +7,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 import { AgentsRelationFilter } from '../prisma/agents-relation-filter.input';
 
 @InputType()
@@ -65,6 +66,9 @@ export class agent_records_by_dayWhereUniqueInput {
 
     @Field(() => BoolFilter, {nullable:true})
     is_active?: BoolFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 
     @Field(() => AgentsRelationFilter, {nullable:true})
     agents?: AgentsRelationFilter;

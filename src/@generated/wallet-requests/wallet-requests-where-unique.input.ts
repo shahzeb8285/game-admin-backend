@@ -6,6 +6,7 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class wallet_requestsWhereUniqueInput {
@@ -78,4 +79,7 @@ export class wallet_requestsWhereUniqueInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

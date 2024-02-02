@@ -4,6 +4,17 @@ import { deposit_transactionsCreateNestedManyWithoutPlayersInput } from '../depo
 import { withdrawal_transactionsCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-create-nested-many-without-players.input';
 import { player_login_logsCreateNestedManyWithoutPlayersInput } from '../player-login-logs/player-login-logs-create-nested-many-without-players.input';
 import { manual_adjustmentsCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-create-nested-many-without-players.input';
+import { player_rebate_ratesCreateNestedManyWithoutPlayersInput } from '../player-rebate-rates/player-rebate-rates-create-nested-many-without-players.input';
+import { game_records_by_periodCreateNestedManyWithoutPlayersInput } from '../game-records-by-period/game-records-by-period-create-nested-many-without-players.input';
+import { game_records_by_dayCreateNestedManyWithoutPlayersInput } from '../game-records-by-day/game-records-by-day-create-nested-many-without-players.input';
+import { agent_records_by_dayCreateNestedManyWithoutPlayersInput } from '../agent-records-by-day/agent-records-by-day-create-nested-many-without-players.input';
+import { player_bank_accountsCreateNestedManyWithoutPlayersInput } from '../player-bank-accounts/player-bank-accounts-create-nested-many-without-players.input';
+import { player_walletsCreateNestedManyWithoutPlayersInput } from '../player-wallets/player-wallets-create-nested-many-without-players.input';
+import { transfer_in_transactionsCreateNestedManyWithoutPlayersInput } from '../transfer-in-transactions/transfer-in-transactions-create-nested-many-without-players.input';
+import { transfer_out_transactionsCreateNestedManyWithoutPlayersInput } from '../transfer-out-transactions/transfer-out-transactions-create-nested-many-without-players.input';
+import { wallet_requestsCreateNestedManyWithoutPlayersInput } from '../wallet-requests/wallet-requests-create-nested-many-without-players.input';
+import { game_round_infosCreateNestedManyWithoutPlayersInput } from '../game-round-infos/game-round-infos-create-nested-many-without-players.input';
+import { game_record_roundsCreateNestedManyWithoutPlayersInput } from '../game-record-rounds/game-record-rounds-create-nested-many-without-players.input';
 
 @InputType()
 export class playersCreateWithoutAgentInput {
@@ -64,4 +75,37 @@ export class playersCreateWithoutAgentInput {
 
     @Field(() => manual_adjustmentsCreateNestedManyWithoutPlayersInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => player_rebate_ratesCreateNestedManyWithoutPlayersInput, {nullable:true})
+    player_rebate_rates?: player_rebate_ratesCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => game_records_by_periodCreateNestedManyWithoutPlayersInput, {nullable:true})
+    game_records_by_period?: game_records_by_periodCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => game_records_by_dayCreateNestedManyWithoutPlayersInput, {nullable:true})
+    game_records_by_day?: game_records_by_dayCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => agent_records_by_dayCreateNestedManyWithoutPlayersInput, {nullable:true})
+    agent_records_by_day?: agent_records_by_dayCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => player_bank_accountsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    player_bank_accounts?: player_bank_accountsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => player_walletsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    player_wallets?: player_walletsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => transfer_in_transactionsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    transfer_in_transactions?: transfer_in_transactionsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => transfer_out_transactionsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    transfer_out_transactions?: transfer_out_transactionsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => wallet_requestsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    wallet_requests?: wallet_requestsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => game_round_infosCreateNestedManyWithoutPlayersInput, {nullable:true})
+    game_round_infos?: game_round_infosCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => game_record_roundsCreateNestedManyWithoutPlayersInput, {nullable:true})
+    game_record_rounds?: game_record_roundsCreateNestedManyWithoutPlayersInput;
 }

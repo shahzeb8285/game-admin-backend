@@ -17,6 +17,8 @@ import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/pl
 import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
 import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
 import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
+import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
+import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -39,6 +41,16 @@ export class PlayersResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     return this.playersService.getUserLoginHistory({ skip, take, where });
+  }
+
+  @Query(() => [game_record_rounds])
+  getUsersGameHistory(
+    @Args({ name: 'where', defaultValue: {} })
+    where: game_record_roundsWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+  ) {
+    return this.playersService.getUsersGameHistory({ skip, take, where });
   }
 
   @Query(() => [ManualAdjustment], { name: 'manualadjustments' })

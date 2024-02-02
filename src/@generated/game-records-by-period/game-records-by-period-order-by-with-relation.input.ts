@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { playersOrderByWithRelationInput } from '../players/players-order-by-with-relation.input';
 
 @InputType()
 export class game_records_by_periodOrderByWithRelationInput {
@@ -31,4 +32,7 @@ export class game_records_by_periodOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     rebate_status?: keyof typeof SortOrder;
+
+    @Field(() => playersOrderByWithRelationInput, {nullable:true})
+    players?: playersOrderByWithRelationInput;
 }

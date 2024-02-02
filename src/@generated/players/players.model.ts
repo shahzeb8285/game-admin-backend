@@ -6,6 +6,17 @@ import { deposit_transactions } from '../deposit-transactions/deposit-transactio
 import { withdrawal_transactions } from '../withdrawal-transactions/withdrawal-transactions.model';
 import { player_login_logs } from '../player-login-logs/player-login-logs.model';
 import { manual_adjustments } from '../manual-adjustments/manual-adjustments.model';
+import { player_rebate_rates } from '../player-rebate-rates/player-rebate-rates.model';
+import { game_records_by_period } from '../game-records-by-period/game-records-by-period.model';
+import { game_records_by_day } from '../game-records-by-day/game-records-by-day.model';
+import { agent_records_by_day } from '../agent-records-by-day/agent-records-by-day.model';
+import { player_bank_accounts } from '../player-bank-accounts/player-bank-accounts.model';
+import { player_wallets } from '../player-wallets/player-wallets.model';
+import { transfer_in_transactions } from '../transfer-in-transactions/transfer-in-transactions.model';
+import { transfer_out_transactions } from '../transfer-out-transactions/transfer-out-transactions.model';
+import { wallet_requests } from '../wallet-requests/wallet-requests.model';
+import { game_round_infos } from '../game-round-infos/game-round-infos.model';
+import { game_record_rounds } from '../game-record-rounds/game-record-rounds.model';
 import { PlayersCount } from '../prisma/players-count.output';
 
 @ObjectType()
@@ -73,6 +84,39 @@ export class players {
 
     @Field(() => [manual_adjustments], {nullable:true})
     manual_adjustments?: Array<manual_adjustments>;
+
+    @Field(() => [player_rebate_rates], {nullable:true})
+    player_rebate_rates?: Array<player_rebate_rates>;
+
+    @Field(() => [game_records_by_period], {nullable:true})
+    game_records_by_period?: Array<game_records_by_period>;
+
+    @Field(() => [game_records_by_day], {nullable:true})
+    game_records_by_day?: Array<game_records_by_day>;
+
+    @Field(() => [agent_records_by_day], {nullable:true})
+    agent_records_by_day?: Array<agent_records_by_day>;
+
+    @Field(() => [player_bank_accounts], {nullable:true})
+    player_bank_accounts?: Array<player_bank_accounts>;
+
+    @Field(() => [player_wallets], {nullable:true})
+    player_wallets?: Array<player_wallets>;
+
+    @Field(() => [transfer_in_transactions], {nullable:true})
+    transfer_in_transactions?: Array<transfer_in_transactions>;
+
+    @Field(() => [transfer_out_transactions], {nullable:true})
+    transfer_out_transactions?: Array<transfer_out_transactions>;
+
+    @Field(() => [wallet_requests], {nullable:true})
+    wallet_requests?: Array<wallet_requests>;
+
+    @Field(() => [game_round_infos], {nullable:true})
+    game_round_infos?: Array<game_round_infos>;
+
+    @Field(() => [game_record_rounds], {nullable:true})
+    game_record_rounds?: Array<game_record_rounds>;
 
     @Field(() => PlayersCount, {nullable:false})
     _count?: PlayersCount;

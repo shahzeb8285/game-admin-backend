@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { Float } from '@nestjs/graphql';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class player_wallets {
@@ -27,4 +28,7 @@ export class player_wallets {
 
     @Field(() => Date, {nullable:true})
     udate!: Date | null;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

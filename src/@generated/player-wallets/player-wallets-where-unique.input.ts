@@ -5,6 +5,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { Enumgame_currencyFilter } from '../prisma/enumgame-currency-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class player_walletsWhereUniqueInput {
@@ -38,4 +39,7 @@ export class player_walletsWhereUniqueInput {
 
     @Field(() => DateTimeNullableFilter, {nullable:true})
     udate?: DateTimeNullableFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

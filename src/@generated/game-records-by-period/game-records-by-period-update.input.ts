@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { rebate_status } from '../prisma/rebate-status.enum';
+import { playersUpdateOneRequiredWithoutGame_records_by_periodNestedInput } from '../players/players-update-one-required-without-game-records-by-period-nested.input';
 
 @InputType()
 export class game_records_by_periodUpdateInput {
@@ -15,9 +16,6 @@ export class game_records_by_periodUpdateInput {
 
     @Field(() => String, {nullable:true})
     game_url?: string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
 
     @Field(() => Int, {nullable:true})
     rebate_category_id?: number;
@@ -33,4 +31,7 @@ export class game_records_by_periodUpdateInput {
 
     @Field(() => rebate_status, {nullable:true})
     rebate_status?: keyof typeof rebate_status;
+
+    @Field(() => playersUpdateOneRequiredWithoutGame_records_by_periodNestedInput, {nullable:true})
+    players?: playersUpdateOneRequiredWithoutGame_records_by_periodNestedInput;
 }

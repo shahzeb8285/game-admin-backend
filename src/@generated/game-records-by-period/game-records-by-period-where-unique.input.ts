@@ -6,6 +6,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { Enumrebate_statusFilter } from '../prisma/enumrebate-status-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class game_records_by_periodWhereUniqueInput {
@@ -45,4 +46,7 @@ export class game_records_by_periodWhereUniqueInput {
 
     @Field(() => Enumrebate_statusFilter, {nullable:true})
     rebate_status?: Enumrebate_statusFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 }

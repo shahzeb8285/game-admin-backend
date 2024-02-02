@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { rebate_status } from '../prisma/rebate-status.enum';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class game_records_by_period {
@@ -34,4 +35,7 @@ export class game_records_by_period {
 
     @Field(() => rebate_status, {nullable:false,defaultValue:'NOT_CALCULATED'})
     rebate_status!: keyof typeof rebate_status;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }

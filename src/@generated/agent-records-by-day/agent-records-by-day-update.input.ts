@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { playersUpdateOneRequiredWithoutAgent_records_by_dayNestedInput } from '../players/players-update-one-required-without-agent-records-by-day-nested.input';
 import { agentsUpdateOneRequiredWithoutAgent_records_by_dayNestedInput } from '../agents/agents-update-one-required-without-agent-records-by-day-nested.input';
 
 @InputType()
@@ -15,9 +16,6 @@ export class agent_records_by_dayUpdateInput {
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
 
     @Field(() => Int, {nullable:true})
     rebate_category_id?: number;
@@ -48,6 +46,9 @@ export class agent_records_by_dayUpdateInput {
 
     @Field(() => Boolean, {nullable:true})
     is_active?: boolean;
+
+    @Field(() => playersUpdateOneRequiredWithoutAgent_records_by_dayNestedInput, {nullable:true})
+    players?: playersUpdateOneRequiredWithoutAgent_records_by_dayNestedInput;
 
     @Field(() => agentsUpdateOneRequiredWithoutAgent_records_by_dayNestedInput, {nullable:true})
     agents?: agentsUpdateOneRequiredWithoutAgent_records_by_dayNestedInput;
