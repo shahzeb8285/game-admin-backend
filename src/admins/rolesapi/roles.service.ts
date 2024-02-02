@@ -11,7 +11,7 @@ export class RoleService {
     return this.prisma.admin_roles.create({
       data: {
         ...createAdminInput,
-        created_by: createdBy, // todo how to get current admin id
+        created_by: createdBy,
       },
     });
   }

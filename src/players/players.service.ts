@@ -85,6 +85,10 @@ export class PlayersService {
           },
         },
       },
+      include: {
+        players: true,
+        admins: true,
+      },
     });
   }
 }
