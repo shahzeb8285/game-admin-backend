@@ -7,36 +7,37 @@ import { players } from '../players/players.model';
 
 @ObjectType()
 export class game_record_rounds {
-  @Field(() => ID, { nullable: false })
-  game_round_info_id!: string;
 
-  @Field(() => Date, { nullable: false })
-  game_date!: Date;
+    @Field(() => ID, {nullable:false})
+    game_round_info_id!: string;
 
-  @Field(() => String, { nullable: false })
-  game_url!: string;
+    @Field(() => Date, {nullable:false})
+    game_date!: Date;
 
-  @Field(() => String, { nullable: false })
-  player_id!: string;
+    @Field(() => String, {nullable:false})
+    game_url!: string;
 
-  @Field(() => Int, { nullable: false })
-  rebate_category_id!: number;
+    @Field(() => String, {nullable:false})
+    player_id!: string;
 
-  @Field(() => Float, { nullable: false })
-  bet_amount!: number;
+    @Field(() => Int, {nullable:false})
+    rebate_category_id!: number;
 
-  @Field(() => Float, { nullable: false })
-  payout!: number;
+    @Field(() => Float, {nullable:false})
+    bet_amount!: number;
 
-  @Field(() => Float, { nullable: false })
-  effective_bet_amount!: number;
+    @Field(() => Float, {nullable:false})
+    payout!: number;
 
-  @Field(() => Boolean, { nullable: false })
-  is_processed!: boolean;
+    @Field(() => Float, {nullable:false})
+    effective_bet_amount!: number;
 
-  @Field(() => String, { nullable: false })
-  game_records_by_period_id!: string;
+    @Field(() => Boolean, {nullable:false})
+    is_processed!: boolean;
 
-  @Field(() => players, { nullable: false })
-  players?: players;
+    @Field(() => String, {nullable:false})
+    game_records_by_period_id!: string;
+
+    @Field(() => players, {nullable:false})
+    players?: players;
 }
