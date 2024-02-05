@@ -92,4 +92,11 @@ export class CountsResolver {
       counts,
     };
   }
+  @Query(() => CountDto)
+  async usersBonusHistoryCount() {
+    const counts = await this.prismaService.rebate_transactions.count();
+    return {
+      counts,
+    };
+  }
 }

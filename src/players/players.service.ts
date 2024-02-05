@@ -119,6 +119,7 @@ export class PlayersService {
       },
       include: {
         players: true,
+        admins: true,
       },
     });
   }
@@ -149,12 +150,12 @@ export class PlayersService {
         ...payload,
         admins: {
           connect: {
-            adminID: createdBy,
+            admin_id: createdBy,
           },
         },
         players: {
           connect: {
-            playerID: data.player_id,
+            player_id: data.player_id,
           },
         },
       },
