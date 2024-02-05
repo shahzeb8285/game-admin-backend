@@ -5,6 +5,7 @@ import { game_record_roundsWhereInput } from './game-record-rounds-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { FloatNullableFilter } from '../prisma/float-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { Game_round_infosRelationFilter } from '../prisma/game-round-infos-relation-filter.input';
@@ -41,14 +42,14 @@ export class game_record_roundsWhereUniqueInput {
     @Field(() => IntFilter, {nullable:true})
     rebate_category_id?: IntFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    bet_amount?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    bet_amount?: FloatNullableFilter;
 
     @Field(() => FloatFilter, {nullable:true})
     payout?: FloatFilter;
 
-    @Field(() => FloatFilter, {nullable:true})
-    effective_bet_amount?: FloatFilter;
+    @Field(() => FloatNullableFilter, {nullable:true})
+    effective_bet_amount?: FloatNullableFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     is_processed?: BoolFilter;

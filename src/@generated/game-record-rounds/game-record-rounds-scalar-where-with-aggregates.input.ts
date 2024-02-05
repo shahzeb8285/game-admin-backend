@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
+import { FloatNullableWithAggregatesFilter } from '../prisma/float-nullable-with-aggregates-filter.input';
 import { FloatWithAggregatesFilter } from '../prisma/float-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
 
@@ -33,14 +34,14 @@ export class game_record_roundsScalarWhereWithAggregatesInput {
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     rebate_category_id?: IntWithAggregatesFilter;
 
-    @Field(() => FloatWithAggregatesFilter, {nullable:true})
-    bet_amount?: FloatWithAggregatesFilter;
+    @Field(() => FloatNullableWithAggregatesFilter, {nullable:true})
+    bet_amount?: FloatNullableWithAggregatesFilter;
 
     @Field(() => FloatWithAggregatesFilter, {nullable:true})
     payout?: FloatWithAggregatesFilter;
 
-    @Field(() => FloatWithAggregatesFilter, {nullable:true})
-    effective_bet_amount?: FloatWithAggregatesFilter;
+    @Field(() => FloatNullableWithAggregatesFilter, {nullable:true})
+    effective_bet_amount?: FloatNullableWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     is_processed?: BoolWithAggregatesFilter;

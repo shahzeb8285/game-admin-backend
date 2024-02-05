@@ -407,9 +407,9 @@ model game_record_rounds {
   player_id                 String
   rebate_category_id        Int
   category                  fl_categories @relation(fields: [rebate_category_id], references: [category_id])
-  bet_amount                Float
+  bet_amount                Float?
   payout                    Float
-  effective_bet_amount      Float
+  effective_bet_amount      Float?
   is_processed              Boolean
   player                    players       @relation(fields: [player_id], references: [player_id])
   game_records_by_period_id String

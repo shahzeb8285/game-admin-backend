@@ -385,9 +385,9 @@ Table game_record_rounds {
   player_id String [not null]
   rebate_category_id Int [not null]
   category fl_categories [not null]
-  bet_amount Float [not null]
+  bet_amount Float
   payout Float [not null]
-  effective_bet_amount Float [not null]
+  effective_bet_amount Float
   is_processed Boolean [not null]
   player players [not null]
   game_records_by_period_id String [not null]

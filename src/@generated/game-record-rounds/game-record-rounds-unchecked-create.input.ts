@@ -21,14 +21,14 @@ export class game_record_roundsUncheckedCreateInput {
     @Field(() => Int, {nullable:false})
     rebate_category_id!: number;
 
-    @Field(() => Float, {nullable:false})
-    bet_amount!: number;
+    @Field(() => Float, {nullable:true})
+    bet_amount?: number;
 
     @Field(() => Float, {nullable:false})
     payout!: number;
 
-    @Field(() => Float, {nullable:false})
-    effective_bet_amount!: number;
+    @Field(() => Float, {nullable:true})
+    effective_bet_amount?: number;
 
     @Field(() => Boolean, {nullable:false})
     is_processed!: boolean;
