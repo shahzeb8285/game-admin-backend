@@ -230,6 +230,17 @@ input FloatFilter {
   notIn: [Float!]
 }
 
+input FloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatNullableFilter
+  notIn: [Float!]
+}
+
 input Game_record_roundsListRelationFilter {
   every: game_record_roundsWhereInput
   none: game_record_roundsWhereInput
@@ -366,6 +377,17 @@ input NestedFloatFilter {
   notIn: [Float!]
 }
 
+input NestedFloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatNullableFilter
+  notIn: [Float!]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -485,6 +507,7 @@ type Query {
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   usersCount: CountDto!
+  usersGameHistoryCount: CountDto!
   usersLoginCount: CountDto!
   withdrawalCount: CountDto!
   withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
@@ -957,9 +980,9 @@ enum game_currency {
 }
 
 type game_record_rounds {
-  bet_amount: Float!
+  bet_amount: Float
   category: fl_categories!
-  effective_bet_amount: Float!
+  effective_bet_amount: Float
   game_date: DateTime!
   game_records_by_period_id: String!
   game_round: game_round_infos!
@@ -976,9 +999,9 @@ input game_record_roundsWhereInput {
   AND: [game_record_roundsWhereInput!]
   NOT: [game_record_roundsWhereInput!]
   OR: [game_record_roundsWhereInput!]
-  bet_amount: FloatFilter
+  bet_amount: FloatNullableFilter
   category: Fl_categoriesRelationFilter
-  effective_bet_amount: FloatFilter
+  effective_bet_amount: FloatNullableFilter
   game_date: DateTimeFilter
   game_records_by_period_id: StringFilter
   game_round: Game_round_infosRelationFilter

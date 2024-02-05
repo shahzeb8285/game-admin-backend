@@ -19,7 +19,7 @@ import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/
 import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
 import { rebate_transactions } from 'src/@generated/rebate-transactions/rebate-transactions.model';
 import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
-import {  UserGameHistory } from './entities/gamehistory.entity';
+import { UserGameHistory } from './entities/gamehistory.entity';
 import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -78,11 +78,6 @@ export class PlayersResolver {
     return this.playersService.createManualAdjustment(user.admin_id, input);
   }
 
-
-
-
-
-
   @Query(() => [game_record_rounds])
   getUsersGameHistory(
     @Args({ name: 'where', defaultValue: {} })
@@ -92,7 +87,4 @@ export class PlayersResolver {
   ) {
     return this.playersService.findAllUserGameHistory({ skip, take, where });
   }
-
-
-  
 }

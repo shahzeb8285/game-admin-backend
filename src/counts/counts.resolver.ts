@@ -85,4 +85,11 @@ export class CountsResolver {
       counts,
     };
   }
+  @Query(() => CountDto)
+  async usersGameHistoryCount() {
+    const counts = await this.prismaService.game_record_rounds.count();
+    return {
+      counts,
+    };
+  }
 }

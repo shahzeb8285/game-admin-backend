@@ -5,7 +5,7 @@ import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 
 @Injectable()
 export class PlayersService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   findAll({ skip, take, where }) {
     return this.prisma.players.findMany({
@@ -30,7 +30,7 @@ export class PlayersService {
         cdate: 'desc',
       },
       include: {
-        player: true
+        player: true,
       },
     });
   }
@@ -72,26 +72,27 @@ export class PlayersService {
         player: {
           select: {
             tg_id: true,
-          }
+          },
         },
 
         category: {
           select: {
             category_name: true,
-            enabled: true
-          }
+            enabled: true,
+          },
         },
+        bet_amount: true,
         payout: true,
         effective_bet_amount: true,
         is_processed: true,
         game_round: {
           select: {
-            cdate: true
-          }
+            cdate: true,
+          },
         },
-        
+
         // game: {
-          
+
         //   select: {
         //     enabled: true,
         //     game_name: true,
@@ -104,9 +105,6 @@ export class PlayersService {
         //   }
         // }
       },
-
-
-
     });
   }
 
