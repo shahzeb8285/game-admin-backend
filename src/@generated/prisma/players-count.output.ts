@@ -16,4 +16,10 @@ export class PlayersCount {
 
     @Field(() => Int, {nullable:false})
     manual_adjustments!: number;
+
+    @Field(() => Int, {nullable:false})
+    rebate_transactions!: number;
+
+    @Field(() => Int, {nullable:false})
+    game_record_rounds!: number;
 }

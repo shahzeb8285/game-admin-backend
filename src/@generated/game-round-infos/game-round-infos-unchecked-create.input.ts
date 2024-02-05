@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { game_record_roundsUncheckedCreateNestedManyWithoutGame_roundInput } from '../game-record-rounds/game-record-rounds-unchecked-create-nested-many-without-game-round.input';
 
 @InputType()
 export class game_round_infosUncheckedCreateInput {
@@ -24,4 +25,7 @@ export class game_round_infosUncheckedCreateInput {
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
+
+    @Field(() => game_record_roundsUncheckedCreateNestedManyWithoutGame_roundInput, {nullable:true})
+    game_record_rounds?: game_record_roundsUncheckedCreateNestedManyWithoutGame_roundInput;
 }

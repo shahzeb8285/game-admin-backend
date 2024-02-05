@@ -1,25 +1,15 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 
 @InputType()
 export class game_record_roundsUpdateManyMutationInput {
-
-    @Field(() => String, {nullable:true})
-    game_round_info_id?: string;
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     game_url?: string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
-    @Field(() => Int, {nullable:true})
-    rebate_category_id?: number;
 
     @Field(() => Float, {nullable:true})
     bet_amount?: number;

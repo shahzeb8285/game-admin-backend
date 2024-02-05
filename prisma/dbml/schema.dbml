@@ -51,6 +51,8 @@ Table players {
   withdrawal_transactions withdrawal_transactions [not null]
   player_login_logs player_login_logs [not null]
   manual_adjustments manual_adjustments [not null]
+  rebate_transactions rebate_transactions [not null]
+  game_record_rounds game_record_rounds [not null]
 }
 
 Table agents {
@@ -122,6 +124,16 @@ Table exchange_rates {
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
+}
+
+Table rebate_transactions {
+  rebate_transaction_id String [pk]
+  player_id String [not null]
+  amount Int [not null]
+  cdate DateTime [default: `now()`, not null]
+  bonus_type String
+  description String
+  player players [not null]
 }
 
 Table agent_rebate_rates {
@@ -358,6 +370,7 @@ Table game_round_infos {
   i_extparam String
   game_extra String
   cdate DateTime [default: `now()`, not null]
+  game_record_rounds game_record_rounds [not null]
 }
 
 Table unprocessed_game_round_infos {
@@ -365,45 +378,52 @@ Table unprocessed_game_round_infos {
 }
 
 Table game_record_rounds {
-  game_round_info_id String [pk]
+  game_round_info_id String [not null]
+  game_round game_round_infos [not null]
   game_date DateTime [default: `now()`, not null]
   game_url String [not null]
   player_id String [not null]
   rebate_category_id Int [not null]
+  category fl_categories [not null]
   bet_amount Float [not null]
   payout Float [not null]
   effective_bet_amount Float [not null]
   is_processed Boolean [not null]
+  player players [not null]
   game_records_by_period_id String [not null]
+
+  indexes {
+    (game_round_info_id, game_date, game_url, player_id, rebate_category_id, game_records_by_period_id) [pk]
+  }
 }
 
 Table sg_games {
   sg_game_id String [pk]
   game_id Int [not null]
-  url String [not null]
+  url String [unique, not null]
   game_name String [not null]
   image String [not null]
   category_id String [not null]
   merchant_id Int [not null]
-  sort Int [not null]
-  page_code String [not null]
+  sort Int
+  page_code String
   mobile_page_code String
   rtp Float
-  coun_rest_id Int [not null]
+  coun_rest_id Int
   external_code String
   mobile_external_code String
-  table_id String [not null]
-  has_demo Boolean [not null]
-  freeround Boolean [not null]
-  bonus_buy Boolean [not null]
-  megaways Boolean [not null]
-  freespins Boolean [not null]
+  table_id String
+  has_demo Boolean
+  freeround Boolean
+  bonus_buy Boolean
+  megaways Boolean
+  freespins Boolean
   min_bet_default Float
   max_bet_default Float
   max_multiplier Float
-  cdate DateTime [default: `now()`, not null]
-  udate DateTime [not null]
-  enabled Boolean [not null, default: true]
+  cdate DateTime [default: `now()`]
+  udate DateTime
+  enabled Boolean [default: true]
 }
 
 Table sg_categories {
@@ -418,13 +438,14 @@ Table sg_categories {
 
 Table fl_categories {
   fl_categories_id String [pk]
-  category_id Int [not null]
+  category_id Int [unique, not null]
   category_name String [not null]
   csort Int [not null]
   rebate_priority Int
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]
+  game_record_rounds game_record_rounds [not null]
 }
 
 Table categories_mappings {
@@ -512,6 +533,8 @@ Ref: admin_role_accesses.admin_role_id > admin_roles.admin_role_id
 
 Ref: admin_role_accesses.admin_access_id > admin_accesses.admin_access_id
 
+Ref: rebate_transactions.player_id > players.player_id
+
 Ref: agent_rebate_rates.agent_id > agents.agent_id
 
 Ref: agent_shares.agent_id > agents.agent_id
@@ -525,3 +548,9 @@ Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank
 Ref: withdrawal_transactions.player_id > players.player_id
 
 Ref: withdrawal_transactions.player_bank_account_id > player_bank_accounts.player_bank_account_id
+
+Ref: game_record_rounds.game_round_info_id > game_round_infos.game_round_info_id
+
+Ref: game_record_rounds.rebate_category_id > fl_categories.category_id
+
+Ref: game_record_rounds.player_id > players.player_id

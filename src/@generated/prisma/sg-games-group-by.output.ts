@@ -32,11 +32,11 @@ export class Sg_gamesGroupBy {
     @Field(() => Int, {nullable:false})
     merchant_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    sort!: number;
+    @Field(() => Int, {nullable:true})
+    sort?: number;
 
-    @Field(() => String, {nullable:false})
-    page_code!: string;
+    @Field(() => String, {nullable:true})
+    page_code?: string;
 
     @Field(() => String, {nullable:true})
     mobile_page_code?: string;
@@ -44,8 +44,8 @@ export class Sg_gamesGroupBy {
     @Field(() => Float, {nullable:true})
     rtp?: number;
 
-    @Field(() => Int, {nullable:false})
-    coun_rest_id!: number;
+    @Field(() => Int, {nullable:true})
+    coun_rest_id?: number;
 
     @Field(() => String, {nullable:true})
     external_code?: string;
@@ -53,23 +53,23 @@ export class Sg_gamesGroupBy {
     @Field(() => String, {nullable:true})
     mobile_external_code?: string;
 
-    @Field(() => String, {nullable:false})
-    table_id!: string;
+    @Field(() => String, {nullable:true})
+    table_id?: string;
 
-    @Field(() => Boolean, {nullable:false})
-    has_demo!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    has_demo?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    freeround!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freeround?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    bonus_buy!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    bonus_buy?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    megaways!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    megaways?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    freespins!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freespins?: boolean;
 
     @Field(() => Float, {nullable:true})
     min_bet_default?: number;
@@ -80,14 +80,14 @@ export class Sg_gamesGroupBy {
     @Field(() => Float, {nullable:true})
     max_multiplier?: number;
 
-    @Field(() => Date, {nullable:false})
-    cdate!: Date | string;
+    @Field(() => Date, {nullable:true})
+    cdate?: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date | string;
+    @Field(() => Date, {nullable:true})
+    udate?: Date | string;
 
-    @Field(() => Boolean, {nullable:false})
-    enabled!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    enabled?: boolean;
 
     @Field(() => Sg_gamesCountAggregate, {nullable:true})
     _count?: Sg_gamesCountAggregate;

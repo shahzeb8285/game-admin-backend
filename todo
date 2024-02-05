@@ -1,40 +1,29 @@
+Mapping
 
-if no parent in agent then make root as parent
-1. create the first super admin with root name 
-
-
-ui
-
-1. change the user bonus to game rebates history in ui
-2. in agent list show toggle for enable disable after all agents
+1. user bonus history ###
+    map to  rebate txn table
 
 
+2. usr game history 
+    table : game record rounds
+    gameid : gameroundinfoid
 
+    username : player tg_id
+    system name: game_url-> sg_games 
+      if sg_game is enabled and sg_merchant enable  also be true then show merchant name 
+    else show "-"
 
-3. implement counts in fetch all 
-
-
-
-
-ui
-
-in agent list the divider should be visible on expand 
-
-change the label agent to the parent agent 
-on upper header show transfer in and transfer out 
-
-map it to the no of pending txns 
-if pending> 0 make it red otherwise no color changes
-
-1. Admin Logs are not properly integrated
-
-
-
-2. Data should be in desc by date
-
-3. check pagination on all pages
-
-4. toast in api fail case 
+    game category :
+     game record rounds -> rebate_category_id -> fl_categories -> catgry name 
+      if fl_category is enalbed 
+      else show  "-"
+     
+     gamename:  game_url-> sg_games -> game_name
+     bet result -> payout
+     tableId: no need
+     game result,bet detail:"-"
+     status: isProcssed? "Proccesed", "UnProcessed"
+     bet time: map game round info -> cdate
 
 
 
@@ -44,3 +33,24 @@ if pending> 0 make it red otherwise no color changes
 
 
 
+Ui 
+ user game history:
+    add game date row in user game history and map with game date 
+    add search field with username 
+    and game  from and to date filter       
+
+user bonus history:
+    add search field with username 
+    and game  from and to date filter       
+
+add date filter on all ( table pages) not create
+
+
+      
+
+
+
+
+
+
+### check table for updates

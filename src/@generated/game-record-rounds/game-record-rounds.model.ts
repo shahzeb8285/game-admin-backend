@@ -1,13 +1,15 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
-import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { game_round_infos } from '../game-round-infos/game-round-infos.model';
+import { fl_categories } from '../fl-categories/fl-categories.model';
+import { players } from '../players/players.model';
 
 @ObjectType()
 export class game_record_rounds {
 
-    @Field(() => ID, {nullable:false})
+    @Field(() => String, {nullable:false})
     game_round_info_id!: string;
 
     @Field(() => Date, {nullable:false})
@@ -36,4 +38,13 @@ export class game_record_rounds {
 
     @Field(() => String, {nullable:false})
     game_records_by_period_id!: string;
+
+    @Field(() => game_round_infos, {nullable:false})
+    game_round?: game_round_infos;
+
+    @Field(() => fl_categories, {nullable:false})
+    category?: fl_categories;
+
+    @Field(() => players, {nullable:false})
+    player?: players;
 }

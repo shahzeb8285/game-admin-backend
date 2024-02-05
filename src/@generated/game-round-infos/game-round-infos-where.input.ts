@@ -4,6 +4,7 @@ import { UuidFilter } from '../prisma/uuid-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { Game_record_roundsListRelationFilter } from '../prisma/game-record-rounds-list-relation-filter.input';
 
 @InputType()
 export class game_round_infosWhereInput {
@@ -37,4 +38,7 @@ export class game_round_infosWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;
+
+    @Field(() => Game_record_roundsListRelationFilter, {nullable:true})
+    game_record_rounds?: Game_record_roundsListRelationFilter;
 }

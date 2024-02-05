@@ -28,11 +28,11 @@ export class sg_games {
     @Field(() => Int, {nullable:false})
     merchant_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    sort!: number;
+    @Field(() => Int, {nullable:true})
+    sort!: number | null;
 
-    @Field(() => String, {nullable:false})
-    page_code!: string;
+    @Field(() => String, {nullable:true})
+    page_code!: string | null;
 
     @Field(() => String, {nullable:true})
     mobile_page_code!: string | null;
@@ -40,8 +40,8 @@ export class sg_games {
     @Field(() => Float, {nullable:true})
     rtp!: number | null;
 
-    @Field(() => Int, {nullable:false})
-    coun_rest_id!: number;
+    @Field(() => Int, {nullable:true})
+    coun_rest_id!: number | null;
 
     @Field(() => String, {nullable:true})
     external_code!: string | null;
@@ -49,23 +49,23 @@ export class sg_games {
     @Field(() => String, {nullable:true})
     mobile_external_code!: string | null;
 
-    @Field(() => String, {nullable:false})
-    table_id!: string;
+    @Field(() => String, {nullable:true})
+    table_id!: string | null;
 
-    @Field(() => Boolean, {nullable:false})
-    has_demo!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    has_demo!: boolean | null;
 
-    @Field(() => Boolean, {nullable:false})
-    freeround!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freeround!: boolean | null;
 
-    @Field(() => Boolean, {nullable:false})
-    bonus_buy!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    bonus_buy!: boolean | null;
 
-    @Field(() => Boolean, {nullable:false})
-    megaways!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    megaways!: boolean | null;
 
-    @Field(() => Boolean, {nullable:false})
-    freespins!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freespins!: boolean | null;
 
     @Field(() => Float, {nullable:true})
     min_bet_default!: number | null;
@@ -76,12 +76,12 @@ export class sg_games {
     @Field(() => Float, {nullable:true})
     max_multiplier!: number | null;
 
-    @Field(() => Date, {nullable:false})
-    cdate!: Date;
+    @Field(() => Date, {nullable:true})
+    cdate!: Date | null;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date;
+    @Field(() => Date, {nullable:true})
+    udate!: Date | null;
 
-    @Field(() => Boolean, {nullable:false,defaultValue:true})
-    enabled!: boolean;
+    @Field(() => Boolean, {nullable:true,defaultValue:true})
+    enabled!: boolean | null;
 }

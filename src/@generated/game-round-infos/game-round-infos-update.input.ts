@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { game_record_roundsUpdateManyWithoutGame_roundNestedInput } from '../game-record-rounds/game-record-rounds-update-many-without-game-round-nested.input';
 
 @InputType()
 export class game_round_infosUpdateInput {
@@ -24,4 +25,7 @@ export class game_round_infosUpdateInput {
 
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
+
+    @Field(() => game_record_roundsUpdateManyWithoutGame_roundNestedInput, {nullable:true})
+    game_record_rounds?: game_record_roundsUpdateManyWithoutGame_roundNestedInput;
 }

@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { deposit_transactionsUncheckedCreateNestedManyWithoutPlayersInput } from '../deposit-transactions/deposit-transactions-unchecked-create-nested-many-without-players.input';
 import { withdrawal_transactionsUncheckedCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-unchecked-create-nested-many-without-players.input';
 import { manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-unchecked-create-nested-many-without-players.input';
+import { rebate_transactionsUncheckedCreateNestedManyWithoutPlayerInput } from '../rebate-transactions/rebate-transactions-unchecked-create-nested-many-without-player.input';
+import { game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput } from '../game-record-rounds/game-record-rounds-unchecked-create-nested-many-without-player.input';
 
 @InputType()
 export class playersUncheckedCreateWithoutPlayer_login_logsInput {
@@ -63,4 +65,10 @@ export class playersUncheckedCreateWithoutPlayer_login_logsInput {
 
     @Field(() => manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsUncheckedCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => rebate_transactionsUncheckedCreateNestedManyWithoutPlayerInput, {nullable:true})
+    rebate_transactions?: rebate_transactionsUncheckedCreateNestedManyWithoutPlayerInput;
+
+    @Field(() => game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput, {nullable:true})
+    game_record_rounds?: game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput;
 }

@@ -27,11 +27,11 @@ export class sg_gamesCreateManyInput {
     @Field(() => Int, {nullable:false})
     merchant_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    sort!: number;
+    @Field(() => Int, {nullable:true})
+    sort?: number;
 
-    @Field(() => String, {nullable:false})
-    page_code!: string;
+    @Field(() => String, {nullable:true})
+    page_code?: string;
 
     @Field(() => String, {nullable:true})
     mobile_page_code?: string;
@@ -39,8 +39,8 @@ export class sg_gamesCreateManyInput {
     @Field(() => Float, {nullable:true})
     rtp?: number;
 
-    @Field(() => Int, {nullable:false})
-    coun_rest_id!: number;
+    @Field(() => Int, {nullable:true})
+    coun_rest_id?: number;
 
     @Field(() => String, {nullable:true})
     external_code?: string;
@@ -48,23 +48,23 @@ export class sg_gamesCreateManyInput {
     @Field(() => String, {nullable:true})
     mobile_external_code?: string;
 
-    @Field(() => String, {nullable:false})
-    table_id!: string;
+    @Field(() => String, {nullable:true})
+    table_id?: string;
 
-    @Field(() => Boolean, {nullable:false})
-    has_demo!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    has_demo?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    freeround!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freeround?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    bonus_buy!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    bonus_buy?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    megaways!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    megaways?: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    freespins!: boolean;
+    @Field(() => Boolean, {nullable:true})
+    freespins?: boolean;
 
     @Field(() => Float, {nullable:true})
     min_bet_default?: number;

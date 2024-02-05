@@ -6,6 +6,8 @@ import { deposit_transactions } from '../deposit-transactions/deposit-transactio
 import { withdrawal_transactions } from '../withdrawal-transactions/withdrawal-transactions.model';
 import { player_login_logs } from '../player-login-logs/player-login-logs.model';
 import { manual_adjustments } from '../manual-adjustments/manual-adjustments.model';
+import { rebate_transactions } from '../rebate-transactions/rebate-transactions.model';
+import { game_record_rounds } from '../game-record-rounds/game-record-rounds.model';
 import { PlayersCount } from '../prisma/players-count.output';
 
 @ObjectType()
@@ -73,6 +75,12 @@ export class players {
 
     @Field(() => [manual_adjustments], {nullable:true})
     manual_adjustments?: Array<manual_adjustments>;
+
+    @Field(() => [rebate_transactions], {nullable:true})
+    rebate_transactions?: Array<rebate_transactions>;
+
+    @Field(() => [game_record_rounds], {nullable:true})
+    game_record_rounds?: Array<game_record_rounds>;
 
     @Field(() => PlayersCount, {nullable:false})
     _count?: PlayersCount;

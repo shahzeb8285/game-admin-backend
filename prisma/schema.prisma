@@ -68,6 +68,8 @@ model players {
   withdrawal_transactions withdrawal_transactions[]
   player_login_logs       player_login_logs[]
   manual_adjustments      manual_adjustments[]
+  rebate_transactions     rebate_transactions[]
+  game_record_rounds      game_record_rounds[]
 }
 
 model agents {
@@ -92,7 +94,7 @@ model admins {
   admin_name         String               @unique
   admin_password     String
   admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id      String @db.Uuid
+  admin_role_id      String               @db.Uuid
   created_by         String
   cdate              DateTime             @default(now())
   udate              DateTime             @updatedAt
@@ -121,7 +123,7 @@ model admin_accesses {
 model admin_role_accesses {
   admin_role_access_id String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   admin_roles          admin_roles    @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id        String @db.Uuid
+  admin_role_id        String         @db.Uuid
   admin_accesses       admin_accesses @relation(fields: [admin_access_id], references: [admin_access_id])
   admin_access_id      String
   created_by           String
@@ -139,6 +141,16 @@ model exchange_rates {
   cdate            DateTime      @default(now())
   udate            DateTime      @updatedAt
   enabled          Boolean       @default(true)
+}
+
+model rebate_transactions {
+  rebate_transaction_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  player_id             String
+  amount                Int
+  cdate                 DateTime @default(now())
+  bonus_type            String?
+  description           String?
+  player                players  @relation(fields: [player_id], references: [player_id])
 }
 
 model agent_rebate_rates {
@@ -371,13 +383,14 @@ model game_actions {
 }
 
 model game_round_infos {
-  game_round_info_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  game_round_info_id String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   game_id            String
   player_id          String
   i_gamedesc         String
   i_extparam         String?
   game_extra         String?
-  cdate              DateTime @default(now())
+  cdate              DateTime             @default(now())
+  game_record_rounds game_record_rounds[]
 }
 
 model unprocessed_game_round_infos {
@@ -385,45 +398,55 @@ model unprocessed_game_round_infos {
 }
 
 model game_record_rounds {
-  game_round_info_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  game_date                 DateTime @default(now())
+  game_round_info_id String
+  game_round         game_round_infos @relation(fields: [game_round_info_id], references: [game_round_info_id])
+
+  game_date                 DateTime      @default(now())
   game_url                  String
+  // game                      sg_games      @relation(fields: [game_url], references: [url])
   player_id                 String
   rebate_category_id        Int
+  category                  fl_categories @relation(fields: [rebate_category_id], references: [category_id])
   bet_amount                Float
   payout                    Float
   effective_bet_amount      Float
   is_processed              Boolean
+  player                    players       @relation(fields: [player_id], references: [player_id])
   game_records_by_period_id String
+
+  @@id([game_round_info_id,game_date,game_url,player_id,rebate_category_id,game_records_by_period_id])
 }
 
 model sg_games {
-  sg_game_id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  game_id              Int
-  url                  String
-  game_name            String
-  image                String
-  category_id          String
-  merchant_id          Int
-  sort                 Int
-  page_code            String
+  sg_game_id  String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  game_id     Int
+  url         String       @unique 
+  game_name   String
+  image       String
+  category_id String
+  merchant_id Int
+  // merchant    sg_merchants @relation(fields: [merchant_id], references: [merchant_id])
+
+  sort                 Int?
+  page_code            String?
   mobile_page_code     String?
   rtp                  Float?
-  coun_rest_id         Int
+  coun_rest_id         Int?
   external_code        String?
   mobile_external_code String?
-  table_id             String
-  has_demo             Boolean
-  freeround            Boolean
-  bonus_buy            Boolean
-  megaways             Boolean
-  freespins            Boolean
+  table_id             String?
+  has_demo             Boolean?
+  freeround            Boolean?
+  bonus_buy            Boolean?
+  megaways             Boolean?
+  freespins            Boolean?
   min_bet_default      Float?
   max_bet_default      Float?
   max_multiplier       Float?
-  cdate                DateTime @default(now())
-  udate                DateTime @updatedAt
-  enabled              Boolean  @default(true)
+  cdate                DateTime?             @default(now())
+  udate                DateTime?             @updatedAt
+  enabled              Boolean?             @default(true)
+  // game_record_rounds   game_record_rounds[]
 }
 
 model sg_categories {
@@ -437,14 +460,15 @@ model sg_categories {
 }
 
 model fl_categories {
-  fl_categories_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  category_id      Int
-  category_name    String
-  csort            Int
-  rebate_priority  Int?
-  cdate            DateTime @default(now())
-  udate            DateTime @updatedAt
-  enabled          Boolean  @default(true)
+  fl_categories_id   String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  category_id        Int                  @unique
+  category_name      String
+  csort              Int
+  rebate_priority    Int?
+  cdate              DateTime             @default(now())
+  udate              DateTime             @updatedAt
+  enabled            Boolean              @default(true)
+  game_record_rounds game_record_rounds[]
 }
 
 model categories_mappings {
@@ -457,14 +481,15 @@ model categories_mappings {
 }
 
 model sg_merchants {
-  sg_merchant_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  merchant_id    Int
+  sg_merchant_id String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  merchant_id    Int        
   merchant_name  String
   merchant_alias String
   image          String
-  cdate          DateTime @default(now())
-  udate          DateTime @updatedAt
-  enabled        Boolean  @default(true)
+  cdate          DateTime   @default(now())
+  udate          DateTime   @updatedAt
+  enabled        Boolean    @default(true)
+  // sg_games       sg_games[]
 }
 
 model sg_countries_restrictions {

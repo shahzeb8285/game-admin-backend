@@ -10,6 +10,8 @@ import { Deposit_transactionsListRelationFilter } from '../prisma/deposit-transa
 import { Withdrawal_transactionsListRelationFilter } from '../prisma/withdrawal-transactions-list-relation-filter.input';
 import { Player_login_logsListRelationFilter } from '../prisma/player-login-logs-list-relation-filter.input';
 import { Manual_adjustmentsListRelationFilter } from '../prisma/manual-adjustments-list-relation-filter.input';
+import { Rebate_transactionsListRelationFilter } from '../prisma/rebate-transactions-list-relation-filter.input';
+import { Game_record_roundsListRelationFilter } from '../prisma/game-record-rounds-list-relation-filter.input';
 
 @InputType()
 export class playersWhereInput {
@@ -85,4 +87,10 @@ export class playersWhereInput {
 
     @Field(() => Manual_adjustmentsListRelationFilter, {nullable:true})
     manual_adjustments?: Manual_adjustmentsListRelationFilter;
+
+    @Field(() => Rebate_transactionsListRelationFilter, {nullable:true})
+    rebate_transactions?: Rebate_transactionsListRelationFilter;
+
+    @Field(() => Game_record_roundsListRelationFilter, {nullable:true})
+    game_record_rounds?: Game_record_roundsListRelationFilter;
 }

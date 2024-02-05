@@ -1,6 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { game_record_rounds } from '../game-record-rounds/game-record-rounds.model';
+import { Game_round_infosCount } from '../prisma/game-round-infos-count.output';
 
 @ObjectType()
 export class game_round_infos {
@@ -25,4 +27,10 @@ export class game_round_infos {
 
     @Field(() => Date, {nullable:false})
     cdate!: Date;
+
+    @Field(() => [game_record_rounds], {nullable:true})
+    game_record_rounds?: Array<game_record_rounds>;
+
+    @Field(() => Game_round_infosCount, {nullable:false})
+    _count?: Game_round_infosCount;
 }

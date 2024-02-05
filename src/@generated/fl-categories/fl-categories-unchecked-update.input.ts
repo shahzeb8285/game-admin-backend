@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { game_record_roundsUncheckedUpdateManyWithoutCategoryNestedInput } from '../game-record-rounds/game-record-rounds-unchecked-update-many-without-category-nested.input';
 
 @InputType()
 export class fl_categoriesUncheckedUpdateInput {
@@ -28,4 +29,7 @@ export class fl_categoriesUncheckedUpdateInput {
 
     @Field(() => Boolean, {nullable:true})
     enabled?: boolean;
+
+    @Field(() => game_record_roundsUncheckedUpdateManyWithoutCategoryNestedInput, {nullable:true})
+    game_record_rounds?: game_record_roundsUncheckedUpdateManyWithoutCategoryNestedInput;
 }

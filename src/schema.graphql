@@ -210,6 +210,15 @@ input Enumwallet_transaction_statusFilter {
   notIn: [wallet_transaction_status!]
 }
 
+type Fl_categoriesCount {
+  game_record_rounds: Int!
+}
+
+input Fl_categoriesRelationFilter {
+  is: fl_categoriesWhereInput
+  isNot: fl_categoriesWhereInput
+}
+
 input FloatFilter {
   equals: Float
   gt: Float
@@ -221,6 +230,21 @@ input FloatFilter {
   notIn: [Float!]
 }
 
+input Game_record_roundsListRelationFilter {
+  every: game_record_roundsWhereInput
+  none: game_record_roundsWhereInput
+  some: game_record_roundsWhereInput
+}
+
+type Game_round_infosCount {
+  game_record_rounds: Int!
+}
+
+input Game_round_infosRelationFilter {
+  is: game_round_infosWhereInput
+  isNot: game_round_infosWhereInput
+}
+
 input IntFilter {
   equals: Int
   gt: Int
@@ -229,6 +253,17 @@ input IntFilter {
   lt: Int
   lte: Int
   not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
   notIn: [Int!]
 }
 
@@ -342,6 +377,17 @@ input NestedIntFilter {
   notIn: [Int!]
 }
 
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
 input NestedStringFilter {
   contains: String
   endsWith: String
@@ -398,8 +444,10 @@ input Player_login_logsListRelationFilter {
 
 type PlayersCount {
   deposit_transactions: Int!
+  game_record_rounds: Int!
   manual_adjustments: Int!
   player_login_logs: Int!
+  rebate_transactions: Int!
   withdrawal_transactions: Int!
 }
 
@@ -431,7 +479,8 @@ type Query {
   getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getMe: admins!
   getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
-  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [players!]!
+  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
+  getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [game_record_rounds!]!
   manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
@@ -444,6 +493,12 @@ type Query {
 enum QueryMode {
   default
   insensitive
+}
+
+input Rebate_transactionsListRelationFilter {
+  every: rebate_transactionsWhereInput
+  none: rebate_transactionsWhereInput
+  some: rebate_transactionsWhereInput
 }
 
 input StringFilter {
@@ -869,8 +924,97 @@ input deposit_transactionsWhereInput {
   udate: DateTimeFilter
 }
 
+type fl_categories {
+  _count: Fl_categoriesCount!
+  category_id: Int!
+  category_name: String!
+  cdate: DateTime!
+  csort: Int!
+  enabled: Boolean!
+  fl_categories_id: ID!
+  game_record_rounds: [game_record_rounds!]
+  rebate_priority: Int
+  udate: DateTime!
+}
+
+input fl_categoriesWhereInput {
+  AND: [fl_categoriesWhereInput!]
+  NOT: [fl_categoriesWhereInput!]
+  OR: [fl_categoriesWhereInput!]
+  category_id: IntFilter
+  category_name: StringFilter
+  cdate: DateTimeFilter
+  csort: IntFilter
+  enabled: BoolFilter
+  fl_categories_id: UuidFilter
+  game_record_rounds: Game_record_roundsListRelationFilter
+  rebate_priority: IntNullableFilter
+  udate: DateTimeFilter
+}
+
 enum game_currency {
   fHKD
+}
+
+type game_record_rounds {
+  bet_amount: Float!
+  category: fl_categories!
+  effective_bet_amount: Float!
+  game_date: DateTime!
+  game_records_by_period_id: String!
+  game_round: game_round_infos!
+  game_round_info_id: String!
+  game_url: String!
+  is_processed: Boolean!
+  payout: Float!
+  player: players!
+  player_id: String!
+  rebate_category_id: Int!
+}
+
+input game_record_roundsWhereInput {
+  AND: [game_record_roundsWhereInput!]
+  NOT: [game_record_roundsWhereInput!]
+  OR: [game_record_roundsWhereInput!]
+  bet_amount: FloatFilter
+  category: Fl_categoriesRelationFilter
+  effective_bet_amount: FloatFilter
+  game_date: DateTimeFilter
+  game_records_by_period_id: StringFilter
+  game_round: Game_round_infosRelationFilter
+  game_round_info_id: StringFilter
+  game_url: StringFilter
+  is_processed: BoolFilter
+  payout: FloatFilter
+  player: PlayersRelationFilter
+  player_id: StringFilter
+  rebate_category_id: IntFilter
+}
+
+type game_round_infos {
+  _count: Game_round_infosCount!
+  cdate: DateTime!
+  game_extra: String
+  game_id: String!
+  game_record_rounds: [game_record_rounds!]
+  game_round_info_id: ID!
+  i_extparam: String
+  i_gamedesc: String!
+  player_id: String!
+}
+
+input game_round_infosWhereInput {
+  AND: [game_round_infosWhereInput!]
+  NOT: [game_round_infosWhereInput!]
+  OR: [game_round_infosWhereInput!]
+  cdate: DateTimeFilter
+  game_extra: StringNullableFilter
+  game_id: StringFilter
+  game_record_rounds: Game_record_roundsListRelationFilter
+  game_round_info_id: UuidFilter
+  i_extparam: StringNullableFilter
+  i_gamedesc: StringFilter
+  player_id: StringFilter
 }
 
 type manual_adjustments {
@@ -955,11 +1099,13 @@ type players {
   deposit_transactions: [deposit_transactions!]
   enabled: Boolean!
   fundist_password: String!
+  game_record_rounds: [game_record_rounds!]
   manual_adjustments: [manual_adjustments!]
   name: String
   password: String!
   player_id: ID!
   player_login_logs: [player_login_logs!]
+  rebate_transactions: [rebate_transactions!]
   registration_date: String!
   registration_ip: String!
   tg_first_name: String!
@@ -982,11 +1128,13 @@ input playersWhereInput {
   deposit_transactions: Deposit_transactionsListRelationFilter
   enabled: BoolFilter
   fundist_password: StringFilter
+  game_record_rounds: Game_record_roundsListRelationFilter
   manual_adjustments: Manual_adjustmentsListRelationFilter
   name: StringNullableFilter
   password: StringFilter
   player_id: UuidFilter
   player_login_logs: Player_login_logsListRelationFilter
+  rebate_transactions: Rebate_transactionsListRelationFilter
   registration_date: StringFilter
   registration_ip: StringFilter
   tg_first_name: StringFilter
@@ -1002,6 +1150,29 @@ input playersWhereInput {
 enum real_currency {
   HKD
   USDT
+}
+
+type rebate_transactions {
+  amount: Int!
+  bonus_type: String
+  cdate: DateTime!
+  description: String
+  player: players!
+  player_id: String!
+  rebate_transaction_id: ID!
+}
+
+input rebate_transactionsWhereInput {
+  AND: [rebate_transactionsWhereInput!]
+  NOT: [rebate_transactionsWhereInput!]
+  OR: [rebate_transactionsWhereInput!]
+  amount: IntFilter
+  bonus_type: StringNullableFilter
+  cdate: DateTimeFilter
+  description: StringNullableFilter
+  player: PlayersRelationFilter
+  player_id: StringFilter
+  rebate_transaction_id: UuidFilter
 }
 
 enum wallet_transaction_status {

@@ -7,6 +7,8 @@ import { deposit_transactionsOrderByRelationAggregateInput } from '../deposit-tr
 import { withdrawal_transactionsOrderByRelationAggregateInput } from '../withdrawal-transactions/withdrawal-transactions-order-by-relation-aggregate.input';
 import { player_login_logsOrderByRelationAggregateInput } from '../player-login-logs/player-login-logs-order-by-relation-aggregate.input';
 import { manual_adjustmentsOrderByRelationAggregateInput } from '../manual-adjustments/manual-adjustments-order-by-relation-aggregate.input';
+import { rebate_transactionsOrderByRelationAggregateInput } from '../rebate-transactions/rebate-transactions-order-by-relation-aggregate.input';
+import { game_record_roundsOrderByRelationAggregateInput } from '../game-record-rounds/game-record-rounds-order-by-relation-aggregate.input';
 
 @InputType()
 export class playersOrderByWithRelationInput {
@@ -73,4 +75,10 @@ export class playersOrderByWithRelationInput {
 
     @Field(() => manual_adjustmentsOrderByRelationAggregateInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsOrderByRelationAggregateInput;
+
+    @Field(() => rebate_transactionsOrderByRelationAggregateInput, {nullable:true})
+    rebate_transactions?: rebate_transactionsOrderByRelationAggregateInput;
+
+    @Field(() => game_record_roundsOrderByRelationAggregateInput, {nullable:true})
+    game_record_rounds?: game_record_roundsOrderByRelationAggregateInput;
 }

@@ -17,6 +17,10 @@ import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/pl
 import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
 import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
 import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
+import { rebate_transactions } from 'src/@generated/rebate-transactions/rebate-transactions.model';
+import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
+import {  UserGameHistory } from './entities/gamehistory.entity';
+import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -51,15 +55,14 @@ export class PlayersResolver {
     return this.playersService.getManualAdjustments({ skip, take, where });
   }
 
-  @Query(() => [Player])
+  @Query(() => [rebate_transactions])
   getUsersBonusHistory(
     @Args({ name: 'where', defaultValue: {} })
-    where: ManualAdjustmentWhereInput,
-    //todo no generated type for this
+    where: rebate_transactionsWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
-    return this.playersService.findAll({ skip, take, where });
+    return this.playersService.findAllUserBonusHistory({ skip, take, where });
   }
 
   @Mutation(() => Player)
@@ -74,4 +77,22 @@ export class PlayersResolver {
   ) {
     return this.playersService.createManualAdjustment(user.admin_id, input);
   }
+
+
+
+
+
+
+  @Query(() => [game_record_rounds])
+  getUsersGameHistory(
+    @Args({ name: 'where', defaultValue: {} })
+    where: rebate_transactionsWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+  ) {
+    return this.playersService.findAllUserGameHistory({ skip, take, where });
+  }
+
+
+  
 }

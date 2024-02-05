@@ -32,11 +32,11 @@ export class sg_gamesOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     merchant_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    sort?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    sort?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    page_code?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    page_code?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     mobile_page_code?: SortOrderInput;
@@ -44,8 +44,8 @@ export class sg_gamesOrderByWithAggregationInput {
     @Field(() => SortOrderInput, {nullable:true})
     rtp?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    coun_rest_id?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    coun_rest_id?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     external_code?: SortOrderInput;
@@ -53,23 +53,23 @@ export class sg_gamesOrderByWithAggregationInput {
     @Field(() => SortOrderInput, {nullable:true})
     mobile_external_code?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    table_id?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    table_id?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    has_demo?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    has_demo?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    freeround?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    freeround?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    bonus_buy?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    bonus_buy?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    megaways?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    megaways?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    freespins?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    freespins?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     min_bet_default?: SortOrderInput;
@@ -80,14 +80,14 @@ export class sg_gamesOrderByWithAggregationInput {
     @Field(() => SortOrderInput, {nullable:true})
     max_multiplier?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    cdate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    cdate?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    udate?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    udate?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    enabled?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    enabled?: SortOrderInput;
 
     @Field(() => sg_gamesCountOrderByAggregateInput, {nullable:true})
     _count?: sg_gamesCountOrderByAggregateInput;

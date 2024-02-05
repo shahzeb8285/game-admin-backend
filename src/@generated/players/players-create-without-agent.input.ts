@@ -4,6 +4,8 @@ import { deposit_transactionsCreateNestedManyWithoutPlayersInput } from '../depo
 import { withdrawal_transactionsCreateNestedManyWithoutPlayersInput } from '../withdrawal-transactions/withdrawal-transactions-create-nested-many-without-players.input';
 import { player_login_logsCreateNestedManyWithoutPlayersInput } from '../player-login-logs/player-login-logs-create-nested-many-without-players.input';
 import { manual_adjustmentsCreateNestedManyWithoutPlayersInput } from '../manual-adjustments/manual-adjustments-create-nested-many-without-players.input';
+import { rebate_transactionsCreateNestedManyWithoutPlayerInput } from '../rebate-transactions/rebate-transactions-create-nested-many-without-player.input';
+import { game_record_roundsCreateNestedManyWithoutPlayerInput } from '../game-record-rounds/game-record-rounds-create-nested-many-without-player.input';
 
 @InputType()
 export class playersCreateWithoutAgentInput {
@@ -64,4 +66,10 @@ export class playersCreateWithoutAgentInput {
 
     @Field(() => manual_adjustmentsCreateNestedManyWithoutPlayersInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsCreateNestedManyWithoutPlayersInput;
+
+    @Field(() => rebate_transactionsCreateNestedManyWithoutPlayerInput, {nullable:true})
+    rebate_transactions?: rebate_transactionsCreateNestedManyWithoutPlayerInput;
+
+    @Field(() => game_record_roundsCreateNestedManyWithoutPlayerInput, {nullable:true})
+    game_record_rounds?: game_record_roundsCreateNestedManyWithoutPlayerInput;
 }

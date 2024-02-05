@@ -6,8 +6,8 @@ import { Float } from '@nestjs/graphql';
 @InputType()
 export class game_record_roundsCreateManyInput {
 
-    @Field(() => String, {nullable:true})
-    game_round_info_id?: string;
+    @Field(() => String, {nullable:false})
+    game_round_info_id!: string;
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;

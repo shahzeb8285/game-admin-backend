@@ -1,25 +1,18 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { game_round_infosCreateNestedOneWithoutGame_record_roundsInput } from '../game-round-infos/game-round-infos-create-nested-one-without-game-record-rounds.input';
+import { fl_categoriesCreateNestedOneWithoutGame_record_roundsInput } from '../fl-categories/fl-categories-create-nested-one-without-game-record-rounds.input';
+import { playersCreateNestedOneWithoutGame_record_roundsInput } from '../players/players-create-nested-one-without-game-record-rounds.input';
 
 @InputType()
 export class game_record_roundsCreateInput {
-
-    @Field(() => String, {nullable:true})
-    game_round_info_id?: string;
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
 
     @Field(() => String, {nullable:false})
     game_url!: string;
-
-    @Field(() => String, {nullable:false})
-    player_id!: string;
-
-    @Field(() => Int, {nullable:false})
-    rebate_category_id!: number;
 
     @Field(() => Float, {nullable:false})
     bet_amount!: number;
@@ -35,4 +28,13 @@ export class game_record_roundsCreateInput {
 
     @Field(() => String, {nullable:false})
     game_records_by_period_id!: string;
+
+    @Field(() => game_round_infosCreateNestedOneWithoutGame_record_roundsInput, {nullable:false})
+    game_round!: game_round_infosCreateNestedOneWithoutGame_record_roundsInput;
+
+    @Field(() => fl_categoriesCreateNestedOneWithoutGame_record_roundsInput, {nullable:false})
+    category!: fl_categoriesCreateNestedOneWithoutGame_record_roundsInput;
+
+    @Field(() => playersCreateNestedOneWithoutGame_record_roundsInput, {nullable:false})
+    player!: playersCreateNestedOneWithoutGame_record_roundsInput;
 }

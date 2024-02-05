@@ -3,10 +3,11 @@ import { InputType } from '@nestjs/graphql';
 import { UuidFilter } from '../prisma/uuid-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatNullableFilter } from '../prisma/float-nullable-filter.input';
-import { BoolFilter } from '../prisma/bool-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { BoolNullableFilter } from '../prisma/bool-nullable-filter.input';
+import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 
 @InputType()
 export class sg_gamesWhereInput {
@@ -41,11 +42,11 @@ export class sg_gamesWhereInput {
     @Field(() => IntFilter, {nullable:true})
     merchant_id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    sort?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    sort?: IntNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    page_code?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    page_code?: StringNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
     mobile_page_code?: StringNullableFilter;
@@ -53,8 +54,8 @@ export class sg_gamesWhereInput {
     @Field(() => FloatNullableFilter, {nullable:true})
     rtp?: FloatNullableFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    coun_rest_id?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    coun_rest_id?: IntNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
     external_code?: StringNullableFilter;
@@ -62,23 +63,23 @@ export class sg_gamesWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     mobile_external_code?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    table_id?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    table_id?: StringNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    has_demo?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    has_demo?: BoolNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    freeround?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    freeround?: BoolNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    bonus_buy?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    bonus_buy?: BoolNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    megaways?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    megaways?: BoolNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    freespins?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    freespins?: BoolNullableFilter;
 
     @Field(() => FloatNullableFilter, {nullable:true})
     min_bet_default?: FloatNullableFilter;
@@ -89,12 +90,12 @@ export class sg_gamesWhereInput {
     @Field(() => FloatNullableFilter, {nullable:true})
     max_multiplier?: FloatNullableFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    cdate?: DateTimeFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    cdate?: DateTimeNullableFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    udate?: DateTimeFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    udate?: DateTimeNullableFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    enabled?: BoolFilter;
+    @Field(() => BoolNullableFilter, {nullable:true})
+    enabled?: BoolNullableFilter;
 }

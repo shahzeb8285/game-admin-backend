@@ -3,10 +3,11 @@ import { InputType } from '@nestjs/graphql';
 import { UuidWithAggregatesFilter } from '../prisma/uuid-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { IntNullableWithAggregatesFilter } from '../prisma/int-nullable-with-aggregates-filter.input';
 import { StringNullableWithAggregatesFilter } from '../prisma/string-nullable-with-aggregates-filter.input';
 import { FloatNullableWithAggregatesFilter } from '../prisma/float-nullable-with-aggregates-filter.input';
-import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
-import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
+import { BoolNullableWithAggregatesFilter } from '../prisma/bool-nullable-with-aggregates-filter.input';
+import { DateTimeNullableWithAggregatesFilter } from '../prisma/date-time-nullable-with-aggregates-filter.input';
 
 @InputType()
 export class sg_gamesScalarWhereWithAggregatesInput {
@@ -41,11 +42,11 @@ export class sg_gamesScalarWhereWithAggregatesInput {
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     merchant_id?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    sort?: IntWithAggregatesFilter;
+    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
+    sort?: IntNullableWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    page_code?: StringWithAggregatesFilter;
+    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
+    page_code?: StringNullableWithAggregatesFilter;
 
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     mobile_page_code?: StringNullableWithAggregatesFilter;
@@ -53,8 +54,8 @@ export class sg_gamesScalarWhereWithAggregatesInput {
     @Field(() => FloatNullableWithAggregatesFilter, {nullable:true})
     rtp?: FloatNullableWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    coun_rest_id?: IntWithAggregatesFilter;
+    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
+    coun_rest_id?: IntNullableWithAggregatesFilter;
 
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     external_code?: StringNullableWithAggregatesFilter;
@@ -62,23 +63,23 @@ export class sg_gamesScalarWhereWithAggregatesInput {
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     mobile_external_code?: StringNullableWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    table_id?: StringWithAggregatesFilter;
+    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
+    table_id?: StringNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    has_demo?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    has_demo?: BoolNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    freeround?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    freeround?: BoolNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    bonus_buy?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    bonus_buy?: BoolNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    megaways?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    megaways?: BoolNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    freespins?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    freespins?: BoolNullableWithAggregatesFilter;
 
     @Field(() => FloatNullableWithAggregatesFilter, {nullable:true})
     min_bet_default?: FloatNullableWithAggregatesFilter;
@@ -89,12 +90,12 @@ export class sg_gamesScalarWhereWithAggregatesInput {
     @Field(() => FloatNullableWithAggregatesFilter, {nullable:true})
     max_multiplier?: FloatNullableWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    cdate?: DateTimeWithAggregatesFilter;
+    @Field(() => DateTimeNullableWithAggregatesFilter, {nullable:true})
+    cdate?: DateTimeNullableWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    udate?: DateTimeWithAggregatesFilter;
+    @Field(() => DateTimeNullableWithAggregatesFilter, {nullable:true})
+    udate?: DateTimeNullableWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    enabled?: BoolWithAggregatesFilter;
+    @Field(() => BoolNullableWithAggregatesFilter, {nullable:true})
+    enabled?: BoolNullableWithAggregatesFilter;
 }

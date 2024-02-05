@@ -5,7 +5,7 @@ import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 
 @Injectable()
 export class PlayersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   findAll({ skip, take, where }) {
     return this.prisma.players.findMany({
@@ -21,6 +21,20 @@ export class PlayersService {
     });
   }
 
+  findAllUserBonusHistory({ skip, take, where }) {
+    return this.prisma.rebate_transactions.findMany({
+      skip,
+      take,
+      where,
+      orderBy: {
+        cdate: 'desc',
+      },
+      include: {
+        player: true
+      },
+    });
+  }
+
   getUserLoginHistory({ skip, take, where }) {
     return this.prisma.player_login_logs.findMany({
       skip,
@@ -32,6 +46,67 @@ export class PlayersService {
       include: {
         players: true,
       },
+    });
+  }
+
+  findAllUserGameHistory({ skip, take, where }) {
+    return this.prisma.game_record_rounds.findMany({
+      skip,
+      take,
+      where,
+      orderBy: {
+        game_date: 'desc',
+      },
+
+      // include: {
+
+      //   player: true,
+      //   category:true,
+      //   game_round: true,
+      //   game:true
+      // },
+
+      select: {
+        game_round_info_id: true,
+
+        player: {
+          select: {
+            tg_id: true,
+          }
+        },
+
+        category: {
+          select: {
+            category_name: true,
+            enabled: true
+          }
+        },
+        payout: true,
+        effective_bet_amount: true,
+        is_processed: true,
+        game_round: {
+          select: {
+            cdate: true
+          }
+        },
+        
+        // game: {
+          
+        //   select: {
+        //     enabled: true,
+        //     game_name: true,
+        //     // merchant: {
+        //     //   select: {
+        //     //     enabled: true,
+        //     //     merchant_name: true
+        //     //   }
+        //     // }
+        //   }
+        // }
+      },
+
+
+
     });
   }
 

@@ -1,11 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { UuidFilter } from '../prisma/uuid-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { Game_round_infosRelationFilter } from '../prisma/game-round-infos-relation-filter.input';
+import { Fl_categoriesRelationFilter } from '../prisma/fl-categories-relation-filter.input';
+import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 
 @InputType()
 export class game_record_roundsWhereInput {
@@ -19,8 +21,8 @@ export class game_record_roundsWhereInput {
     @Field(() => [game_record_roundsWhereInput], {nullable:true})
     NOT?: Array<game_record_roundsWhereInput>;
 
-    @Field(() => UuidFilter, {nullable:true})
-    game_round_info_id?: UuidFilter;
+    @Field(() => StringFilter, {nullable:true})
+    game_round_info_id?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     game_date?: DateTimeFilter;
@@ -48,4 +50,13 @@ export class game_record_roundsWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     game_records_by_period_id?: StringFilter;
+
+    @Field(() => Game_round_infosRelationFilter, {nullable:true})
+    game_round?: Game_round_infosRelationFilter;
+
+    @Field(() => Fl_categoriesRelationFilter, {nullable:true})
+    category?: Fl_categoriesRelationFilter;
+
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    player?: PlayersRelationFilter;
 }
