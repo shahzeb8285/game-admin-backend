@@ -143,9 +143,13 @@ export class PlayersService {
       ...data,
     };
 
-    delete payload.playerID;
+    delete payload.player_id;
 
     return this.prisma.manual_adjustments.create({
+      include: {
+        players: true,
+        admins:true
+      },
       data: {
         ...payload,
         admins: {

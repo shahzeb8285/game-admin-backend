@@ -28,7 +28,6 @@ export class FinancesResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     const data = await this.financesService.getDeposits({ skip, take, where });
-    console.log("getDeposits",{dsaaa:data[0]})
     return data
   }
 

@@ -46,6 +46,9 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
+    if (!admin.enabled) {
+      throw new BadRequestException('Admin Not Enabled');
+    }
     await this.prisma.admin_login_logs.create({
       data: {
         ip,

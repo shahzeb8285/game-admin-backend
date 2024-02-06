@@ -506,6 +506,7 @@ type Query {
   manualAdjustmentCount: CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
+  usersBonusHistoryCount: CountDto!
   usersCount: CountDto!
   usersGameHistoryCount: CountDto!
   usersLoginCount: CountDto!

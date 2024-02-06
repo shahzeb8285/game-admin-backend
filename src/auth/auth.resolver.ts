@@ -29,7 +29,6 @@ export class AuthResolver {
     @Args('data') { admin_name, password }: LoginInput,
     @UserIp() ipAddress: string,
   ) {
-    console.log('asasasasasa', ipAddress);
 
     if (!ipAddress) {
       throw new BadGatewayException('IP not found');
