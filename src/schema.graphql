@@ -486,15 +486,15 @@ input PlayersRelationFilter {
 
 type Query {
   adminBankAccounts(skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [admin_bank_accounts!]!
-  adminCount: CountDto!
-  adminLoginCount: CountDto!
-  adminRolesCount: CountDto!
+  adminCount(where: adminsWhereInput! = {}): CountDto!
+  adminLoginCount(where: admin_login_logsWhereInput! = {}): CountDto!
+  adminRolesCount(where: admin_rolesWhereInput! = {}): CountDto!
   admins(skip: Int! = 0, take: Int! = 10, where: adminsWhereInput! = {}): [admins!]!
   agents(skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
-  agentsCount: CountDto!
-  bankAccountCount: CountDto!
+  agentsCount(where: agentsWhereInput! = {}): CountDto!
+  bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
   deposits(skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
-  depositsCount: CountDto!
+  depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
   gamerebates: [admin_bank_accounts!]!
   getAccesses(skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
   getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
@@ -503,14 +503,14 @@ type Query {
   getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
   getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
   getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [game_record_rounds!]!
-  manualAdjustmentCount: CountDto!
+  manualAdjustmentCount(where: manual_adjustmentsWhereInput! = {}): CountDto!
   manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
-  usersBonusHistoryCount: CountDto!
-  usersCount: CountDto!
-  usersGameHistoryCount: CountDto!
-  usersLoginCount: CountDto!
-  withdrawalCount: CountDto!
+  usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
+  usersCount(where: playersWhereInput! = {}): CountDto!
+  usersGameHistoryCount(where: game_record_roundsWhereInput! = {}): CountDto!
+  usersLoginCount(where: player_login_logsWhereInput! = {}): CountDto!
+  withdrawalCount(where: withdrawal_transactionsWhereInput! = {}): CountDto!
   withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
 }
 
