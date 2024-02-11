@@ -1,0 +1,16 @@
+1. change tg_username to tg_id
+2. in user list add filters with agent name and username ( tg_id) 
+3. user bonus history -> username -> tg_id, add filter with bonus type 
+4.change all username colomn to tg_id
+5. user game history filters -> tg_id, system name, game_category, and game name
+6. user login history add filter - > ip address
+7. manual adjustment filter -> tg_id, adjusted by
+8. income statement filter -> 
+9. deposit and withdrawal filter -> tg_id, agent name, account number , status ( enum )
+
+
+for eric:
+ 1. check income statement
+ 2. check financial statement
+ 3. game rebate
+ 

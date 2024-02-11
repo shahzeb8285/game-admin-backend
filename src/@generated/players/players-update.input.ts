@@ -7,6 +7,7 @@ import { player_login_logsUpdateManyWithoutPlayersNestedInput } from '../player-
 import { manual_adjustmentsUpdateManyWithoutPlayersNestedInput } from '../manual-adjustments/manual-adjustments-update-many-without-players-nested.input';
 import { rebate_transactionsUpdateManyWithoutPlayerNestedInput } from '../rebate-transactions/rebate-transactions-update-many-without-player-nested.input';
 import { game_record_roundsUpdateManyWithoutPlayerNestedInput } from '../game-record-rounds/game-record-rounds-update-many-without-player-nested.input';
+import { player_walletsUpdateOneWithoutPlayerNestedInput } from '../player-wallets/player-wallets-update-one-without-player-nested.input';
 
 @InputType()
 export class playersUpdateInput {
@@ -76,4 +77,7 @@ export class playersUpdateInput {
 
     @Field(() => game_record_roundsUpdateManyWithoutPlayerNestedInput, {nullable:true})
     game_record_rounds?: game_record_roundsUpdateManyWithoutPlayerNestedInput;
+
+    @Field(() => player_walletsUpdateOneWithoutPlayerNestedInput, {nullable:true})
+    wallet?: player_walletsUpdateOneWithoutPlayerNestedInput;
 }

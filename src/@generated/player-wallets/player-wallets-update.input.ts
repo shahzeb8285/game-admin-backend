@@ -2,15 +2,13 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { Float } from '@nestjs/graphql';
+import { playersUpdateOneRequiredWithoutWalletNestedInput } from '../players/players-update-one-required-without-wallet-nested.input';
 
 @InputType()
 export class player_walletsUpdateInput {
 
     @Field(() => String, {nullable:true})
     player_wallet_id?: string;
-
-    @Field(() => String, {nullable:true})
-    player_id?: string;
 
     @Field(() => game_currency, {nullable:true})
     currency?: keyof typeof game_currency;
@@ -26,4 +24,7 @@ export class player_walletsUpdateInput {
 
     @Field(() => Date, {nullable:true})
     udate?: Date | string;
+
+    @Field(() => playersUpdateOneRequiredWithoutWalletNestedInput, {nullable:true})
+    player?: playersUpdateOneRequiredWithoutWalletNestedInput;
 }

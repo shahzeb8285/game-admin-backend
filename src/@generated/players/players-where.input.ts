@@ -12,6 +12,7 @@ import { Player_login_logsListRelationFilter } from '../prisma/player-login-logs
 import { Manual_adjustmentsListRelationFilter } from '../prisma/manual-adjustments-list-relation-filter.input';
 import { Rebate_transactionsListRelationFilter } from '../prisma/rebate-transactions-list-relation-filter.input';
 import { Game_record_roundsListRelationFilter } from '../prisma/game-record-rounds-list-relation-filter.input';
+import { Player_walletsNullableRelationFilter } from '../prisma/player-wallets-nullable-relation-filter.input';
 
 @InputType()
 export class playersWhereInput {
@@ -40,8 +41,8 @@ export class playersWhereInput {
     @Field(() => StringFilter, {nullable:true})
     tg_last_name?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    tg_username?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    tg_username?: StringNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
     tg_photo_url?: StringNullableFilter;
@@ -93,4 +94,7 @@ export class playersWhereInput {
 
     @Field(() => Game_record_roundsListRelationFilter, {nullable:true})
     game_record_rounds?: Game_record_roundsListRelationFilter;
+
+    @Field(() => Player_walletsNullableRelationFilter, {nullable:true})
+    wallet?: Player_walletsNullableRelationFilter;
 }

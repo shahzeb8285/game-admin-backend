@@ -17,6 +17,8 @@ export class PlayersService {
       },
       include: {
         agent: true,
+        wallet:true
+        
       },
     });
   }

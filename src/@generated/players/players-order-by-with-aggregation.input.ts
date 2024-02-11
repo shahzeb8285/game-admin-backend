@@ -24,8 +24,8 @@ export class playersOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     tg_last_name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    tg_username?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    tg_username?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     tg_photo_url?: SortOrderInput;

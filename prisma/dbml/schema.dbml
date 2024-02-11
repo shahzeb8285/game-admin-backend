@@ -35,7 +35,7 @@ Table players {
   tg_id String [unique, not null]
   tg_first_name String [not null]
   tg_last_name String [not null]
-  tg_username String [unique, not null]
+  tg_username String [unique]
   tg_photo_url String
   user_language String [not null]
   registration_ip String [not null]
@@ -53,6 +53,7 @@ Table players {
   manual_adjustments manual_adjustments [not null]
   rebate_transactions rebate_transactions [not null]
   game_record_rounds game_record_rounds [not null]
+  wallet player_wallets
 }
 
 Table agents {
@@ -238,12 +239,13 @@ Table player_bank_accounts {
 
 Table player_wallets {
   player_wallet_id String [pk]
-  player_id String [not null]
+  player_id String [unique, not null]
   currency game_currency [not null]
   amount Float [not null]
   frozen_amount Float [not null]
   cdate DateTime [default: `now()`]
   udate DateTime
+  player players [not null]
 }
 
 Table deposit_transactions {
@@ -540,6 +542,8 @@ Ref: agent_rebate_rates.agent_id > agents.agent_id
 Ref: agent_shares.agent_id > agents.agent_id
 
 Ref: agent_records_by_day.agent_id > agents.agent_id
+
+Ref: player_wallets.player_id - players.player_id
 
 Ref: deposit_transactions.player_id > players.player_id
 

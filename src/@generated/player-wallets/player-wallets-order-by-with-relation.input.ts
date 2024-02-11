@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
+import { playersOrderByWithRelationInput } from '../players/players-order-by-with-relation.input';
 
 @InputType()
 export class player_walletsOrderByWithRelationInput {
@@ -26,4 +27,7 @@ export class player_walletsOrderByWithRelationInput {
 
     @Field(() => SortOrderInput, {nullable:true})
     udate?: SortOrderInput;
+
+    @Field(() => playersOrderByWithRelationInput, {nullable:true})
+    player?: playersOrderByWithRelationInput;
 }

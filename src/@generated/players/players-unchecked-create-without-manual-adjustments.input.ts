@@ -5,6 +5,7 @@ import { withdrawal_transactionsUncheckedCreateNestedManyWithoutPlayersInput } f
 import { player_login_logsUncheckedCreateNestedManyWithoutPlayersInput } from '../player-login-logs/player-login-logs-unchecked-create-nested-many-without-players.input';
 import { rebate_transactionsUncheckedCreateNestedManyWithoutPlayerInput } from '../rebate-transactions/rebate-transactions-unchecked-create-nested-many-without-player.input';
 import { game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput } from '../game-record-rounds/game-record-rounds-unchecked-create-nested-many-without-player.input';
+import { player_walletsUncheckedCreateNestedOneWithoutPlayerInput } from '../player-wallets/player-wallets-unchecked-create-nested-one-without-player.input';
 
 @InputType()
 export class playersUncheckedCreateWithoutManual_adjustmentsInput {
@@ -24,8 +25,8 @@ export class playersUncheckedCreateWithoutManual_adjustmentsInput {
     @Field(() => String, {nullable:false})
     tg_last_name!: string;
 
-    @Field(() => String, {nullable:false})
-    tg_username!: string;
+    @Field(() => String, {nullable:true})
+    tg_username?: string;
 
     @Field(() => String, {nullable:true})
     tg_photo_url?: string;
@@ -71,4 +72,7 @@ export class playersUncheckedCreateWithoutManual_adjustmentsInput {
 
     @Field(() => game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput, {nullable:true})
     game_record_rounds?: game_record_roundsUncheckedCreateNestedManyWithoutPlayerInput;
+
+    @Field(() => player_walletsUncheckedCreateNestedOneWithoutPlayerInput, {nullable:true})
+    wallet?: player_walletsUncheckedCreateNestedOneWithoutPlayerInput;
 }

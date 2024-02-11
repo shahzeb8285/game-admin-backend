@@ -9,9 +9,6 @@ export class player_walletsUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     player_wallet_id?: string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => game_currency, {nullable:true})
     currency?: keyof typeof game_currency;
 

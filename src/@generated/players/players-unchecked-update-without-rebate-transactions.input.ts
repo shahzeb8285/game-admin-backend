@@ -5,6 +5,7 @@ import { withdrawal_transactionsUncheckedUpdateManyWithoutPlayersNestedInput } f
 import { player_login_logsUncheckedUpdateManyWithoutPlayersNestedInput } from '../player-login-logs/player-login-logs-unchecked-update-many-without-players-nested.input';
 import { manual_adjustmentsUncheckedUpdateManyWithoutPlayersNestedInput } from '../manual-adjustments/manual-adjustments-unchecked-update-many-without-players-nested.input';
 import { game_record_roundsUncheckedUpdateManyWithoutPlayerNestedInput } from '../game-record-rounds/game-record-rounds-unchecked-update-many-without-player-nested.input';
+import { player_walletsUncheckedUpdateOneWithoutPlayerNestedInput } from '../player-wallets/player-wallets-unchecked-update-one-without-player-nested.input';
 
 @InputType()
 export class playersUncheckedUpdateWithoutRebate_transactionsInput {
@@ -71,4 +72,7 @@ export class playersUncheckedUpdateWithoutRebate_transactionsInput {
 
     @Field(() => game_record_roundsUncheckedUpdateManyWithoutPlayerNestedInput, {nullable:true})
     game_record_rounds?: game_record_roundsUncheckedUpdateManyWithoutPlayerNestedInput;
+
+    @Field(() => player_walletsUncheckedUpdateOneWithoutPlayerNestedInput, {nullable:true})
+    wallet?: player_walletsUncheckedUpdateOneWithoutPlayerNestedInput;
 }

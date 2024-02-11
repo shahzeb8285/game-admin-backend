@@ -22,8 +22,8 @@ export class PlayersGroupBy {
     @Field(() => String, {nullable:false})
     tg_last_name!: string;
 
-    @Field(() => String, {nullable:false})
-    tg_username!: string;
+    @Field(() => String, {nullable:true})
+    tg_username?: string;
 
     @Field(() => String, {nullable:true})
     tg_photo_url?: string;

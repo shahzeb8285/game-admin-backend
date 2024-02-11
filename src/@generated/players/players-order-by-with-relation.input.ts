@@ -9,6 +9,7 @@ import { player_login_logsOrderByRelationAggregateInput } from '../player-login-
 import { manual_adjustmentsOrderByRelationAggregateInput } from '../manual-adjustments/manual-adjustments-order-by-relation-aggregate.input';
 import { rebate_transactionsOrderByRelationAggregateInput } from '../rebate-transactions/rebate-transactions-order-by-relation-aggregate.input';
 import { game_record_roundsOrderByRelationAggregateInput } from '../game-record-rounds/game-record-rounds-order-by-relation-aggregate.input';
+import { player_walletsOrderByWithRelationInput } from '../player-wallets/player-wallets-order-by-with-relation.input';
 
 @InputType()
 export class playersOrderByWithRelationInput {
@@ -28,8 +29,8 @@ export class playersOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     tg_last_name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    tg_username?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    tg_username?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     tg_photo_url?: SortOrderInput;
@@ -81,4 +82,7 @@ export class playersOrderByWithRelationInput {
 
     @Field(() => game_record_roundsOrderByRelationAggregateInput, {nullable:true})
     game_record_rounds?: game_record_roundsOrderByRelationAggregateInput;
+
+    @Field(() => player_walletsOrderByWithRelationInput, {nullable:true})
+    wallet?: player_walletsOrderByWithRelationInput;
 }

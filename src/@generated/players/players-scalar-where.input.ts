@@ -33,8 +33,8 @@ export class playersScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     tg_last_name?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    tg_username?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    tg_username?: StringNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
     tg_photo_url?: StringNullableFilter;

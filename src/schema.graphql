@@ -464,6 +464,11 @@ input Player_login_logsListRelationFilter {
   some: player_login_logsWhereInput
 }
 
+input Player_walletsNullableRelationFilter {
+  is: player_walletsWhereInput
+  isNot: player_walletsWhereInput
+}
+
 type PlayersCount {
   deposit_transactions: Int!
   game_record_rounds: Int!
@@ -1115,6 +1120,31 @@ input player_login_logsWhereInput {
   players: PlayersRelationFilter
 }
 
+type player_wallets {
+  amount: Float!
+  cdate: DateTime
+  currency: game_currency!
+  frozen_amount: Float!
+  player: players!
+  player_id: String!
+  player_wallet_id: ID!
+  udate: DateTime
+}
+
+input player_walletsWhereInput {
+  AND: [player_walletsWhereInput!]
+  NOT: [player_walletsWhereInput!]
+  OR: [player_walletsWhereInput!]
+  amount: FloatFilter
+  cdate: DateTimeNullableFilter
+  currency: Enumgame_currencyFilter
+  frozen_amount: FloatFilter
+  player: PlayersRelationFilter
+  player_id: StringFilter
+  player_wallet_id: UuidFilter
+  udate: DateTimeNullableFilter
+}
+
 type players {
   _count: PlayersCount!
   agent: agents!
@@ -1136,9 +1166,10 @@ type players {
   tg_id: String!
   tg_last_name: String!
   tg_photo_url: String
-  tg_username: String!
+  tg_username: String
   udate: DateTime!
   user_language: String!
+  wallet: player_wallets
   withdrawal_transactions: [withdrawal_transactions!]
 }
 
@@ -1165,9 +1196,10 @@ input playersWhereInput {
   tg_id: StringFilter
   tg_last_name: StringFilter
   tg_photo_url: StringNullableFilter
-  tg_username: StringFilter
+  tg_username: StringNullableFilter
   udate: DateTimeFilter
   user_language: StringFilter
+  wallet: Player_walletsNullableRelationFilter
   withdrawal_transactions: Withdrawal_transactionsListRelationFilter
 }
 
