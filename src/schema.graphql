@@ -251,7 +251,7 @@ input GameRecordRoundsWhereInput {
   game_category: String
   game_name: String
   game_round_info_id: String
-  system_name: String
+  merchant_name: String
   tg_id: String
 }
 

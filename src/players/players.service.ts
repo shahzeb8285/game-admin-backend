@@ -67,20 +67,20 @@ export class PlayersService {
     if (whereQueryInput) {
       whereQuery = '';
       if (whereQueryInput.tg_id) {
-        whereQuery += ` AND pl.tg_id = '${whereQueryInput.tg_id}'`;
+        whereQuery += ` AND LOWER(pl.tg_id_ LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
       }
       if (whereQueryInput.game_round_info_id) {
-        whereQuery += ` AND grr.game_round_info_id = '${whereQueryInput.game_round_info_id}'`;
+        whereQuery += ` AND LOWER(grr.game_round_info_id) LIKE '%${whereQueryInput.game_round_info_id.toLowerCase()}%'`;
       }
-      if (whereQueryInput.system_name) {
-        whereQuery += ` AND grr.system_name = '${whereQueryInput.system_name}'`;
+      if (whereQueryInput.merchant_name) {
+        whereQuery += ` AND LOWER(sm.merchant_name) LIKE '%${whereQueryInput.merchant_name.toLowerCase()}%'`;
       }
       if (whereQueryInput.game_category) {
-        whereQuery += ` AND fc.category_name = '${whereQueryInput.game_category}'`;
+        whereQuery += ` AND LOWER(fc.category_name) LIKE '%${whereQueryInput.game_category.toLowerCase()}%'`;
       }
 
       if (whereQueryInput.game_name) {
-        whereQuery += ` AND sg.game_name = '${whereQueryInput.game_name}'`;
+        whereQuery += ` AND LOWER(sg.game_name) LIKE '%${whereQueryInput.game_name.toLowerCase()}%'`;
       }
 
       if (whereQueryInput.cdate) {
@@ -163,7 +163,7 @@ export class PlayersService {
    const req = this.httpService.post(`${securityConfig.externalApiPath}/manualAdjustment`, payload)
    const resp = await firstValueFrom(req)
    return {message:resp.data}
-    // console.log("Assassss",resp)
+  
 
     
 

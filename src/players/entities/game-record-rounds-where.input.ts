@@ -37,7 +37,7 @@ export class GameRecordRoundsWhereInput {
 
     
     @Field(() => String, {nullable:true})
-    system_name?: String;
+    merchant_name?: String;
 
     @Field(() => String, {nullable:true})
     game_category?: String;
