@@ -11,6 +11,8 @@ import { admin_rolesWhereInput as AdminRoleWhereInput } from '../../@generated/a
 import { admin_accessesWhereInput as AdminAccessesWhereInput } from '../../@generated/admin-accesses/admin-accesses-where.input';
 import { admin_roles } from 'src/@generated/admin-roles/admin-roles.model';
 import { UserEntity } from 'src/common/decorators/user.decorator';
+import { admin_rolesOrderByWithRelationInput } from 'src/@generated/admin-roles/admin-roles-order-by-with-relation.input';
+import { admin_accessesOrderByWithAggregationInput } from 'src/@generated/admin-accesses/admin-accesses-order-by-with-aggregation.input';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -31,8 +33,10 @@ export class RolesResolver {
     @Args({ name: 'where', defaultValue: {} }) where: AdminRoleWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) order: admin_rolesOrderByWithRelationInput,
+
   ) {
-    const roles = await this.rolesService.findAll({ skip, take, where });
+    const roles = await this.rolesService.findAll({ skip, take, where,order });
 
     const finalRoles = roles.map((role) => {
       return {
@@ -51,8 +55,10 @@ export class RolesResolver {
     @Args({ name: 'where', defaultValue: {} }) where: AdminAccessesWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: admin_accessesOrderByWithAggregationInput,
+
   ) {
-    return this.rolesService.findAllAccess({ skip, take, where });
+    return this.rolesService.findAllAccess({ skip, take, where,orderBy });
   }
 
   @Mutation(() => admin_roles)

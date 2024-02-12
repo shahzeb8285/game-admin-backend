@@ -1,47 +1,49 @@
-import { Field } from '@nestjs/graphql';
+import { Field, Float } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserGameHistory {
-
+   
     @Field(() => ID, {nullable:false})
     game_round_info_id: string;
 
     @Field(() => String, {nullable:false})
-    username: string;
+    player_id: string;
 
 
     @Field(() => String, {nullable:false})
-    system_name: string;
+    tg_id: string;
 
     @Field(() => String, {nullable:false})
-    game_category: string;
+    merchant_name: string;
+
+    @Field(() => String, {nullable:false})
+    category_name: string;
 
     @Field(() => String, {nullable:false})
     game_name: string;
 
-    @Field(() => Int, {nullable:false})
+    @Field(() => Float, {nullable:false})
     bet_amount!: number;
 
-    @Field(() => Int, {nullable:false})
+
+    @Field(() => Float, {nullable:false})
     effective_bet_amount!: number;
 
-    @Field(() => String, {nullable:true})
-    bet_result: string;
 
- 
-  
+    @Field(() => Float, {nullable:true})
+    payout?: number;
 
 
-    @Field(() => String, {nullable:false})
-    status: string;
+    @Field(() => Boolean, {nullable:true})
+    is_processed?: boolean;
 
-    @Field(() => Int, {nullable:false})
-    bet_time!: Date;
 
-  
+    @Field(() => Date, {nullable:false})
+    cdate!: Date;
+
 
     
 

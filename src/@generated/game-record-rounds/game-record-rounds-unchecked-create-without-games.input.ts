@@ -4,13 +4,16 @@ import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 
 @InputType()
-export class game_record_roundsCreateManyGameInput {
+export class game_record_roundsUncheckedCreateWithoutGamesInput {
 
     @Field(() => String, {nullable:false})
     game_round_info_id!: string;
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
+
+    @Field(() => String, {nullable:false})
+    game_url!: string;
 
     @Field(() => String, {nullable:false})
     player_id!: string;

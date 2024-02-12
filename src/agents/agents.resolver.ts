@@ -10,6 +10,7 @@ import { UserEntity } from '../common/decorators/user.decorator';
 import { admins as Admin } from '../@generated/admins/admins.model';
 import { agents as Agent } from '../@generated/agents/agents.model';
 import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents-where.input';
+import { agentsOrderByWithAggregationInput } from 'src/@generated/agents/agents-order-by-with-aggregation.input';
 // import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)
@@ -30,8 +31,10 @@ export class AgentsResolver {
     @Args({ name: 'where', defaultValue: {} }) where: AgentWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: agentsOrderByWithAggregationInput,
+
   ) {
-    return this.agentsService.findAll({ skip, take, where });
+    return this.agentsService.findAll({ skip, take, where,orderBy });
   }
 
   @Mutation(() => Agent)

@@ -15,6 +15,10 @@ import { admin_bank_accountsWhereInput as AdminBankAccountWhereInput } from '../
 import { deposit_transactions } from 'src/@generated/deposit-transactions/deposit-transactions.model';
 import { withdrawal_transactions } from 'src/@generated/withdrawal-transactions/withdrawal-transactions.model';
 import { admin_bank_accounts } from 'src/@generated/admin-bank-accounts/admin-bank-accounts.model';
+import {  } from 'src/@generated/admin-bank-accounts/admin-bank-accounts-max-order-by-aggregate.input';
+import { withdrawal_transactionsOrderByWithAggregationInput } from 'src/@generated/withdrawal-transactions/withdrawal-transactions-order-by-with-aggregation.input';
+import { deposit_transactionsOrderByWithAggregationInput } from 'src/@generated/deposit-transactions/deposit-transactions-order-by-with-aggregation.input';
+import { admin_bank_accountsOrderByWithAggregationInput } from 'src/@generated/admin-bank-accounts/admin-bank-accounts-order-by-with-aggregation.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
@@ -26,8 +30,10 @@ export class FinancesResolver {
     where: DepositTransactionWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: deposit_transactionsOrderByWithAggregationInput,
+
   ) {
-    const data = await this.financesService.getDeposits({ skip, take, where });
+    const data = await this.financesService.getDeposits({ skip, take, where,orderBy});
     return data
   }
 
@@ -37,8 +43,10 @@ export class FinancesResolver {
     where: WithdrawalTransactionWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: withdrawal_transactionsOrderByWithAggregationInput,
+
   ) {
-    return this.financesService.getWithdrawals({ skip, take, where });
+    return this.financesService.getWithdrawals({ skip, take, where ,orderBy});
   }
 
   @Query(() => [admin_bank_accounts], { name: 'adminBankAccounts' })
@@ -47,8 +55,10 @@ export class FinancesResolver {
     where: AdminBankAccountWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: admin_bank_accountsOrderByWithAggregationInput,
+
   ) {
-    return this.financesService.getBankAccounts({ skip, take, where });
+    return this.financesService.getBankAccounts({ skip, take, where,orderBy });
   }
 
   @Mutation(() => withdrawal_transactions)

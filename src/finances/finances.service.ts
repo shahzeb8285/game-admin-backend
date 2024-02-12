@@ -36,12 +36,10 @@ export class FinancesService {
     });
   }
 
-  getDeposits({ skip, take, where }) {
+  getDeposits({ skip, take, where, orderBy }) {
     return this.prisma.deposit_transactions.findMany({
       skip,
-      orderBy: {
-        transaction_date: 'desc',
-      },
+      orderBy,
       take,
       where,
       include: {
@@ -57,14 +55,13 @@ export class FinancesService {
     });
   }
 
-  getBankAccounts({ skip, take, where }) {
+  getBankAccounts({ skip, take, where,orderBy }) {
     return this.prisma.admin_bank_accounts.findMany({
       skip,
       take,
       where,
-      orderBy: {
-        holder_name: 'desc',
-      },
+      orderBy,
+      
       include: {
         deposit_transactions: true,
 
@@ -73,14 +70,12 @@ export class FinancesService {
     });
   }
 
-  getWithdrawals({ skip, take, where }) {
+  getWithdrawals({ skip, take, where ,orderBy}) {
     return this.prisma.withdrawal_transactions.findMany({
       skip,
       take,
       where,
-      orderBy: {
-        transaction_date: 'desc',
-      },
+      orderBy,
       include: {
         players: {
           include: {

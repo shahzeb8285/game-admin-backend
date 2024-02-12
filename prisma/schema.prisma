@@ -52,7 +52,7 @@ model players {
   tg_id                   String                    @unique
   tg_first_name           String
   tg_last_name            String
-  tg_username             String?                    @unique
+  tg_username             String?                   @unique
   tg_photo_url            String?
   user_language           String
   registration_ip         String
@@ -70,7 +70,7 @@ model players {
   manual_adjustments      manual_adjustments[]
   rebate_transactions     rebate_transactions[]
   game_record_rounds      game_record_rounds[]
-  wallet player_wallets?
+  wallet                  player_wallets?
 }
 
 model agents {

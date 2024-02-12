@@ -6,10 +6,13 @@ import { fl_categoriesCreateNestedOneWithoutGame_record_roundsInput } from '../f
 import { playersCreateNestedOneWithoutGame_record_roundsInput } from '../players/players-create-nested-one-without-game-record-rounds.input';
 
 @InputType()
-export class game_record_roundsCreateWithoutGameInput {
+export class game_record_roundsCreateWithoutGamesInput {
 
     @Field(() => Date, {nullable:true})
     game_date?: Date | string;
+
+    @Field(() => String, {nullable:false})
+    game_url!: string;
 
     @Field(() => Float, {nullable:true})
     bet_amount?: number;

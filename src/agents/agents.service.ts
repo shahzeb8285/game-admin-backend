@@ -50,12 +50,10 @@ export class AgentsService {
     });
   }
 
-  findAll({ skip, take, where }) {
+  findAll({ skip, take, where,orderBy}) {
     return this.prisma.agents.findMany({
       skip,
-      orderBy: {
-        cdate: 'desc',
-      },
+      orderBy,
       take,
       where,
       include: {

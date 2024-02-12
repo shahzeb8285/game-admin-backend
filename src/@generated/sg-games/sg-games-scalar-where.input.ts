@@ -98,4 +98,22 @@ export class sg_gamesScalarWhereInput {
 
     @Field(() => BoolNullableFilter, {nullable:true})
     enabled?: BoolNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_record_roundsGame_round_info_id?: StringNullableFilter;
+
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    game_record_roundsGame_date?: DateTimeNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_record_roundsGame_url?: StringNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_record_roundsPlayer_id?: StringNullableFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    game_record_roundsRebate_category_id?: IntNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_record_roundsGame_records_by_period_id?: StringNullableFilter;
 }

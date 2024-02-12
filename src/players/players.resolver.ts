@@ -21,6 +21,12 @@ import { rebate_transactions } from 'src/@generated/rebate-transactions/rebate-t
 import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
 import { UserGameHistory } from './entities/gamehistory.entity';
 import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
+import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
+import { GameRecordRoundsWhereInput } from './entities/game-record-rounds-where.input';
+import { playersOrderByWithAggregationInput } from 'src/@generated/players/players-order-by-with-aggregation.input';
+import { player_login_logsOrderByWithAggregationInput } from 'src/@generated/player-login-logs/player-login-logs-order-by-with-aggregation.input';
+import { manual_adjustmentsOrderByWithAggregationInput } from 'src/@generated/manual-adjustments/manual-adjustments-order-by-with-aggregation.input';
+import { rebate_transactionsOrderByWithAggregationInput } from 'src/@generated/rebate-transactions/rebate-transactions-order-by-with-aggregation.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -32,8 +38,10 @@ export class PlayersResolver {
     @Args({ name: 'where', defaultValue: {} }) where: PlayerWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: playersOrderByWithAggregationInput,
+
   ) {
-    return this.playersService.findAll({ skip, take, where });
+    return this.playersService.findAll({ skip, take, where ,orderBy});
   }
 
   @Query(() => [player_login_logs])
@@ -41,8 +49,10 @@ export class PlayersResolver {
     @Args({ name: 'where', defaultValue: {} }) where: PlayerLoginLogWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: player_login_logsOrderByWithAggregationInput,
+
   ) {
-    return this.playersService.getUserLoginHistory({ skip, take, where });
+    return this.playersService.getUserLoginHistory({ skip, take, where ,orderBy});
   }
 
   @Query(() => [ManualAdjustment], { name: 'manualadjustments' })
@@ -51,8 +61,10 @@ export class PlayersResolver {
     where: ManualAdjustmentWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: manual_adjustmentsOrderByWithAggregationInput,
+
   ) {
-    return this.playersService.getManualAdjustments({ skip, take, where });
+    return this.playersService.getManualAdjustments({ skip, take, where,orderBy });
   }
 
   @Query(() => [rebate_transactions])
@@ -61,8 +73,10 @@ export class PlayersResolver {
     where: rebate_transactionsWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: rebate_transactionsOrderByWithAggregationInput,
+
   ) {
-    return this.playersService.findAllUserBonusHistory({ skip, take, where });
+    return this.playersService.findAllUserBonusHistory({ skip, take, where ,orderBy});
   }
 
   @Mutation(() => Player)
@@ -78,10 +92,10 @@ export class PlayersResolver {
     return this.playersService.createManualAdjustment(user.admin_id, input);
   }
 
-  @Query(() => [game_record_rounds])
+  @Query(() => [UserGameHistory])
   getUsersGameHistory(
     @Args({ name: 'where', defaultValue: {} })
-    where: rebate_transactionsWhereInput,
+    where: GameRecordRoundsWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {

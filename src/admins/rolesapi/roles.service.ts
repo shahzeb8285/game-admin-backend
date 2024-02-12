@@ -16,12 +16,10 @@ export class RoleService {
     });
   }
 
-  async findAll({ skip, take, where }) {
+  async findAll({ skip, take, where,order }) {
     return this.prisma.admin_roles.findMany({
       skip,
-      orderBy: {
-        admin_role_name: 'desc',
-      },
+      orderBy: order,
       take,
       where,
       include: {
@@ -131,24 +129,24 @@ export class RoleService {
     });
   }
 
-  async findAllLoginHistory({ skip, take }) {
+  async findAllLoginHistory({ skip, take,where,orderBy }) {
     return this.prisma.admin_login_logs.findMany({
       skip,
+      orderBy,
       take,
-      orderBy: {
-        login_time: 'desc',
-      },
+      where,
       include: {
         admins: true,
       },
     });
   }
 
-  async findAllAccess({ skip, take, where }) {
+  async findAllAccess({ skip, take, where,orderBy }) {
     return this.prisma.admin_role_accesses.findMany({
       skip,
       take,
       where,
+      orderBy
     });
   }
 }

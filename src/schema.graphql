@@ -149,6 +149,11 @@ input CreateRoleInput {
   admin_role_name: String!
 }
 
+input DateFilter {
+  gte: DateTime
+  lte: DateTime
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -239,6 +244,15 @@ input FloatNullableFilter {
   lte: Float
   not: NestedFloatNullableFilter
   notIn: [Float!]
+}
+
+input GameRecordRoundsWhereInput {
+  cdate: DateFilter
+  game_category: String
+  game_name: String
+  game_round_info_id: String
+  system_name: String
+  tg_id: String
 }
 
 input Game_record_roundsListRelationFilter {
@@ -449,6 +463,11 @@ input NestedUuidFilter {
   notIn: [String!]
 }
 
+enum NullsOrder {
+  first
+  last
+}
+
 type Player_bank_accountsCount {
   withdrawal_transactions: Int!
 }
@@ -490,33 +509,33 @@ input PlayersRelationFilter {
 }
 
 type Query {
-  adminBankAccounts(skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [admin_bank_accounts!]!
+  adminBankAccounts(order: admin_bank_accountsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_bank_accountsWhereInput! = {}): [admin_bank_accounts!]!
   adminCount(where: adminsWhereInput! = {}): CountDto!
   adminLoginCount(where: admin_login_logsWhereInput! = {}): CountDto!
   adminRolesCount(where: admin_rolesWhereInput! = {}): CountDto!
-  admins(skip: Int! = 0, take: Int! = 10, where: adminsWhereInput! = {}): [admins!]!
-  agents(skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
+  admins(order: adminsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: adminsWhereInput! = {}): [admins!]!
+  agents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount(where: agentsWhereInput! = {}): CountDto!
   bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
-  deposits(skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
+  deposits(order: deposit_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
   depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
   gamerebates: [admin_bank_accounts!]!
-  getAccesses(skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
-  getAdminsLoginHistory(skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
-  getAdminsRoles(skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
+  getAccesses(order: admin_accessesOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
+  getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
+  getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getMe: admins!
-  getUserLoginHistory(skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
-  getUsersBonusHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
-  getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [game_record_rounds!]!
+  getUserLoginHistory(order: player_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
+  getUsersBonusHistory(order: rebate_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
+  getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: GameRecordRoundsWhereInput! = {}): [UserGameHistory!]!
   manualAdjustmentCount(where: manual_adjustmentsWhereInput! = {}): CountDto!
-  manualadjustments(skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
-  players(skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
+  manualadjustments(order: manual_adjustmentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
+  players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
   usersGameHistoryCount(where: game_record_roundsWhereInput! = {}): CountDto!
   usersLoginCount(where: player_login_logsWhereInput! = {}): CountDto!
   withdrawalCount(where: withdrawal_transactionsWhereInput! = {}): CountDto!
-  withdrawals(skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
+  withdrawals(order: withdrawal_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!
 }
 
 enum QueryMode {
@@ -528,6 +547,16 @@ input Rebate_transactionsListRelationFilter {
   every: rebate_transactionsWhereInput
   none: rebate_transactionsWhereInput
   some: rebate_transactionsWhereInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input SortOrderInput {
+  nulls: NullsOrder
+  sort: SortOrder!
 }
 
 input StringFilter {
@@ -610,6 +639,20 @@ input UpdateRoleInput {
   remove_access_names: [String!]
 }
 
+type UserGameHistory {
+  bet_amount: Float!
+  category_name: String!
+  cdate: DateTime!
+  effective_bet_amount: Float!
+  game_name: String!
+  game_round_info_id: ID!
+  is_processed: Boolean
+  merchant_name: String!
+  payout: Float
+  player_id: String!
+  tg_id: String!
+}
+
 input UuidFilter {
   equals: String
   gt: String
@@ -635,6 +678,29 @@ type admin_accesses {
   admin_role_accesses: [admin_role_accesses!]
 }
 
+input admin_accessesCountOrderByAggregateInput {
+  access_name: SortOrder
+  admin_access_id: SortOrder
+}
+
+input admin_accessesMaxOrderByAggregateInput {
+  access_name: SortOrder
+  admin_access_id: SortOrder
+}
+
+input admin_accessesMinOrderByAggregateInput {
+  access_name: SortOrder
+  admin_access_id: SortOrder
+}
+
+input admin_accessesOrderByWithAggregationInput {
+  _count: admin_accessesCountOrderByAggregateInput
+  _max: admin_accessesMaxOrderByAggregateInput
+  _min: admin_accessesMinOrderByAggregateInput
+  access_name: SortOrder
+  admin_access_id: SortOrder
+}
+
 input admin_accessesWhereInput {
   AND: [admin_accessesWhereInput!]
   NOT: [admin_accessesWhereInput!]
@@ -655,6 +721,53 @@ type admin_bank_accounts {
   holder_name: String!
   method: bank_method!
   udate: DateTime!
+}
+
+input admin_bank_accountsCountOrderByAggregateInput {
+  account_number: SortOrder
+  admin_bank_account_id: SortOrder
+  bank_name: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  holder_name: SortOrder
+  method: SortOrder
+  udate: SortOrder
+}
+
+input admin_bank_accountsMaxOrderByAggregateInput {
+  account_number: SortOrder
+  admin_bank_account_id: SortOrder
+  bank_name: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  holder_name: SortOrder
+  method: SortOrder
+  udate: SortOrder
+}
+
+input admin_bank_accountsMinOrderByAggregateInput {
+  account_number: SortOrder
+  admin_bank_account_id: SortOrder
+  bank_name: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  holder_name: SortOrder
+  method: SortOrder
+  udate: SortOrder
+}
+
+input admin_bank_accountsOrderByWithAggregationInput {
+  _count: admin_bank_accountsCountOrderByAggregateInput
+  _max: admin_bank_accountsMaxOrderByAggregateInput
+  _min: admin_bank_accountsMinOrderByAggregateInput
+  account_number: SortOrder
+  admin_bank_account_id: SortOrder
+  bank_name: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  holder_name: SortOrder
+  method: SortOrder
+  udate: SortOrder
 }
 
 input admin_bank_accountsWhereInput {
@@ -680,6 +793,37 @@ type admin_login_logs {
   login_time: DateTime!
 }
 
+input admin_login_logsCountOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_login_log_id: SortOrder
+  ip: SortOrder
+  login_time: SortOrder
+}
+
+input admin_login_logsMaxOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_login_log_id: SortOrder
+  ip: SortOrder
+  login_time: SortOrder
+}
+
+input admin_login_logsMinOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_login_log_id: SortOrder
+  ip: SortOrder
+  login_time: SortOrder
+}
+
+input admin_login_logsOrderByWithAggregationInput {
+  _count: admin_login_logsCountOrderByAggregateInput
+  _max: admin_login_logsMaxOrderByAggregateInput
+  _min: admin_login_logsMinOrderByAggregateInput
+  admin_id: SortOrder
+  admin_login_log_id: SortOrder
+  ip: SortOrder
+  login_time: SortOrder
+}
+
 input admin_login_logsWhereInput {
   AND: [admin_login_logsWhereInput!]
   NOT: [admin_login_logsWhereInput!]
@@ -702,6 +846,10 @@ type admin_role_accesses {
   enabled: Boolean!
   udate: DateTime!
   updated_by: String!
+}
+
+input admin_role_accessesOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input admin_role_accessesWhereInput {
@@ -732,6 +880,17 @@ type admin_roles {
   udate: DateTime!
 }
 
+input admin_rolesOrderByWithRelationInput {
+  admin_role_accesses: admin_role_accessesOrderByRelationAggregateInput
+  admin_role_id: SortOrder
+  admin_role_name: SortOrder
+  admins: adminsOrderByRelationAggregateInput
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  udate: SortOrder
+}
+
 input admin_rolesWhereInput {
   AND: [admin_rolesWhereInput!]
   NOT: [admin_rolesWhereInput!]
@@ -759,6 +918,57 @@ type admins {
   enabled: Boolean!
   manual_adjustments: [manual_adjustments!]
   udate: DateTime!
+}
+
+input adminsCountOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_name: SortOrder
+  admin_password: SortOrder
+  admin_role_id: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  udate: SortOrder
+}
+
+input adminsMaxOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_name: SortOrder
+  admin_password: SortOrder
+  admin_role_id: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  udate: SortOrder
+}
+
+input adminsMinOrderByAggregateInput {
+  admin_id: SortOrder
+  admin_name: SortOrder
+  admin_password: SortOrder
+  admin_role_id: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  udate: SortOrder
+}
+
+input adminsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input adminsOrderByWithAggregationInput {
+  _count: adminsCountOrderByAggregateInput
+  _max: adminsMaxOrderByAggregateInput
+  _min: adminsMinOrderByAggregateInput
+  admin_id: SortOrder
+  admin_name: SortOrder
+  admin_password: SortOrder
+  admin_role_id: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  udate: SortOrder
 }
 
 input adminsWhereInput {
@@ -885,6 +1095,53 @@ type agents {
   udate: DateTime!
 }
 
+input agentsCountOrderByAggregateInput {
+  agent_id: SortOrder
+  agent_name: SortOrder
+  agent_password: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  parent_agent_id: SortOrder
+  udate: SortOrder
+}
+
+input agentsMaxOrderByAggregateInput {
+  agent_id: SortOrder
+  agent_name: SortOrder
+  agent_password: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  parent_agent_id: SortOrder
+  udate: SortOrder
+}
+
+input agentsMinOrderByAggregateInput {
+  agent_id: SortOrder
+  agent_name: SortOrder
+  agent_password: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  parent_agent_id: SortOrder
+  udate: SortOrder
+}
+
+input agentsOrderByWithAggregationInput {
+  _count: agentsCountOrderByAggregateInput
+  _max: agentsMaxOrderByAggregateInput
+  _min: agentsMinOrderByAggregateInput
+  agent_id: SortOrder
+  agent_name: SortOrder
+  agent_password: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  enabled: SortOrder
+  parent_agent_id: SortOrderInput
+  udate: SortOrder
+}
+
 input agentsWhereInput {
   AND: [agentsWhereInput!]
   NOT: [agentsWhereInput!]
@@ -928,6 +1185,93 @@ type deposit_transactions {
   transaction_currency: real_currency!
   transaction_date: String!
   udate: DateTime!
+}
+
+input deposit_transactionsAvgOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input deposit_transactionsCountOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsMaxOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsMinOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsOrderByWithAggregationInput {
+  _avg: deposit_transactionsAvgOrderByAggregateInput
+  _count: deposit_transactionsCountOrderByAggregateInput
+  _max: deposit_transactionsMaxOrderByAggregateInput
+  _min: deposit_transactionsMinOrderByAggregateInput
+  _sum: deposit_transactionsSumOrderByAggregateInput
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrderInput
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrderInput
+  processed_by: SortOrderInput
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsSumOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
 }
 
 input deposit_transactionsWhereInput {
@@ -1057,6 +1401,55 @@ type manual_adjustments {
   reason: String!
 }
 
+input manual_adjustmentsAvgOrderByAggregateInput {
+  amount: SortOrder
+}
+
+input manual_adjustmentsCountOrderByAggregateInput {
+  amount: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  manual_adjustment_id: SortOrder
+  player_id: SortOrder
+  reason: SortOrder
+}
+
+input manual_adjustmentsMaxOrderByAggregateInput {
+  amount: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  manual_adjustment_id: SortOrder
+  player_id: SortOrder
+  reason: SortOrder
+}
+
+input manual_adjustmentsMinOrderByAggregateInput {
+  amount: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  manual_adjustment_id: SortOrder
+  player_id: SortOrder
+  reason: SortOrder
+}
+
+input manual_adjustmentsOrderByWithAggregationInput {
+  _avg: manual_adjustmentsAvgOrderByAggregateInput
+  _count: manual_adjustmentsCountOrderByAggregateInput
+  _max: manual_adjustmentsMaxOrderByAggregateInput
+  _min: manual_adjustmentsMinOrderByAggregateInput
+  _sum: manual_adjustmentsSumOrderByAggregateInput
+  amount: SortOrder
+  cdate: SortOrder
+  created_by: SortOrder
+  manual_adjustment_id: SortOrder
+  player_id: SortOrder
+  reason: SortOrder
+}
+
+input manual_adjustmentsSumOrderByAggregateInput {
+  amount: SortOrder
+}
+
 input manual_adjustmentsWhereInput {
   AND: [manual_adjustmentsWhereInput!]
   NOT: [manual_adjustmentsWhereInput!]
@@ -1107,6 +1500,37 @@ type player_login_logs {
   player_id: String!
   player_login_log_id: ID!
   players: players!
+}
+
+input player_login_logsCountOrderByAggregateInput {
+  ip: SortOrder
+  login_time: SortOrder
+  player_id: SortOrder
+  player_login_log_id: SortOrder
+}
+
+input player_login_logsMaxOrderByAggregateInput {
+  ip: SortOrder
+  login_time: SortOrder
+  player_id: SortOrder
+  player_login_log_id: SortOrder
+}
+
+input player_login_logsMinOrderByAggregateInput {
+  ip: SortOrder
+  login_time: SortOrder
+  player_id: SortOrder
+  player_login_log_id: SortOrder
+}
+
+input player_login_logsOrderByWithAggregationInput {
+  _count: player_login_logsCountOrderByAggregateInput
+  _max: player_login_logsMaxOrderByAggregateInput
+  _min: player_login_logsMinOrderByAggregateInput
+  ip: SortOrder
+  login_time: SortOrder
+  player_id: SortOrder
+  player_login_log_id: SortOrder
 }
 
 input player_login_logsWhereInput {
@@ -1173,6 +1597,85 @@ type players {
   withdrawal_transactions: [withdrawal_transactions!]
 }
 
+input playersCountOrderByAggregateInput {
+  agent_id: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  fundist_password: SortOrder
+  name: SortOrder
+  password: SortOrder
+  player_id: SortOrder
+  registration_date: SortOrder
+  registration_ip: SortOrder
+  tg_first_name: SortOrder
+  tg_id: SortOrder
+  tg_last_name: SortOrder
+  tg_photo_url: SortOrder
+  tg_username: SortOrder
+  udate: SortOrder
+  user_language: SortOrder
+}
+
+input playersMaxOrderByAggregateInput {
+  agent_id: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  fundist_password: SortOrder
+  name: SortOrder
+  password: SortOrder
+  player_id: SortOrder
+  registration_date: SortOrder
+  registration_ip: SortOrder
+  tg_first_name: SortOrder
+  tg_id: SortOrder
+  tg_last_name: SortOrder
+  tg_photo_url: SortOrder
+  tg_username: SortOrder
+  udate: SortOrder
+  user_language: SortOrder
+}
+
+input playersMinOrderByAggregateInput {
+  agent_id: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  fundist_password: SortOrder
+  name: SortOrder
+  password: SortOrder
+  player_id: SortOrder
+  registration_date: SortOrder
+  registration_ip: SortOrder
+  tg_first_name: SortOrder
+  tg_id: SortOrder
+  tg_last_name: SortOrder
+  tg_photo_url: SortOrder
+  tg_username: SortOrder
+  udate: SortOrder
+  user_language: SortOrder
+}
+
+input playersOrderByWithAggregationInput {
+  _count: playersCountOrderByAggregateInput
+  _max: playersMaxOrderByAggregateInput
+  _min: playersMinOrderByAggregateInput
+  agent_id: SortOrder
+  cdate: SortOrder
+  enabled: SortOrder
+  fundist_password: SortOrder
+  name: SortOrderInput
+  password: SortOrder
+  player_id: SortOrder
+  registration_date: SortOrder
+  registration_ip: SortOrder
+  tg_first_name: SortOrder
+  tg_id: SortOrder
+  tg_last_name: SortOrder
+  tg_photo_url: SortOrderInput
+  tg_username: SortOrderInput
+  udate: SortOrder
+  user_language: SortOrder
+}
+
 input playersWhereInput {
   AND: [playersWhereInput!]
   NOT: [playersWhereInput!]
@@ -1218,6 +1721,55 @@ type rebate_transactions {
   rebate_transaction_id: ID!
 }
 
+input rebate_transactionsAvgOrderByAggregateInput {
+  amount: SortOrder
+}
+
+input rebate_transactionsCountOrderByAggregateInput {
+  amount: SortOrder
+  bonus_type: SortOrder
+  cdate: SortOrder
+  description: SortOrder
+  player_id: SortOrder
+  rebate_transaction_id: SortOrder
+}
+
+input rebate_transactionsMaxOrderByAggregateInput {
+  amount: SortOrder
+  bonus_type: SortOrder
+  cdate: SortOrder
+  description: SortOrder
+  player_id: SortOrder
+  rebate_transaction_id: SortOrder
+}
+
+input rebate_transactionsMinOrderByAggregateInput {
+  amount: SortOrder
+  bonus_type: SortOrder
+  cdate: SortOrder
+  description: SortOrder
+  player_id: SortOrder
+  rebate_transaction_id: SortOrder
+}
+
+input rebate_transactionsOrderByWithAggregationInput {
+  _avg: rebate_transactionsAvgOrderByAggregateInput
+  _count: rebate_transactionsCountOrderByAggregateInput
+  _max: rebate_transactionsMaxOrderByAggregateInput
+  _min: rebate_transactionsMinOrderByAggregateInput
+  _sum: rebate_transactionsSumOrderByAggregateInput
+  amount: SortOrder
+  bonus_type: SortOrderInput
+  cdate: SortOrder
+  description: SortOrderInput
+  player_id: SortOrder
+  rebate_transaction_id: SortOrder
+}
+
+input rebate_transactionsSumOrderByAggregateInput {
+  amount: SortOrder
+}
+
 input rebate_transactionsWhereInput {
   AND: [rebate_transactionsWhereInput!]
   NOT: [rebate_transactionsWhereInput!]
@@ -1255,6 +1807,93 @@ type withdrawal_transactions {
   transaction_date: String!
   udate: DateTime!
   withdrawal_transaction_id: ID!
+}
+
+input withdrawal_transactionsAvgOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input withdrawal_transactionsCountOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_bank_account_id: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+  withdrawal_transaction_id: SortOrder
+}
+
+input withdrawal_transactionsMaxOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_bank_account_id: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+  withdrawal_transaction_id: SortOrder
+}
+
+input withdrawal_transactionsMinOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_bank_account_id: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+  withdrawal_transaction_id: SortOrder
+}
+
+input withdrawal_transactionsOrderByWithAggregationInput {
+  _avg: withdrawal_transactionsAvgOrderByAggregateInput
+  _count: withdrawal_transactionsCountOrderByAggregateInput
+  _max: withdrawal_transactionsMaxOrderByAggregateInput
+  _min: withdrawal_transactionsMinOrderByAggregateInput
+  _sum: withdrawal_transactionsSumOrderByAggregateInput
+  cdate: SortOrder
+  comment: SortOrderInput
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_bank_account_id: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrderInput
+  processed_by: SortOrderInput
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+  withdrawal_transaction_id: SortOrder
+}
+
+input withdrawal_transactionsSumOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
 }
 
 input withdrawal_transactionsWhereInput {

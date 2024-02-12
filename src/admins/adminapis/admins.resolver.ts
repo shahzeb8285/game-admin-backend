@@ -10,6 +10,8 @@ import { admins as Admin } from '../../@generated/admins/admins.model';
 import { adminsWhereInput as AdminWhereInput } from '../../@generated/admins/admins-where.input';
 import { admin_login_logsWhereInput as AdminLoginLogWhereInput } from '../../@generated/admin-login-logs/admin-login-logs-where.input';
 import { admin_login_logs } from 'src/@generated/admin-login-logs/admin-login-logs.model';
+import { adminsOrderByWithAggregationInput } from 'src/@generated/admins/admins-order-by-with-aggregation.input';
+import { admin_login_logsOrderByWithAggregationInput } from 'src/@generated/admin-login-logs/admin-login-logs-order-by-with-aggregation.input';
 
 @Resolver(() => Admin)
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
@@ -29,11 +31,14 @@ export class AdminsResolver {
     @Args({ name: 'where', defaultValue: {} }) where: AdminWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) order: adminsOrderByWithAggregationInput,
+
   ) {
     return this.adminsService.findAll({
       take,
       skip,
       where,
+      order
     });
   }
 
@@ -51,7 +56,9 @@ export class AdminsResolver {
     where: AdminLoginLogWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) order: admin_login_logsOrderByWithAggregationInput,
+
   ) {
-    return this.adminsService.findAllLoginHistory({ skip, take, where });
+    return this.adminsService.findAllLoginHistory({ skip, take, where,order });
   }
 }

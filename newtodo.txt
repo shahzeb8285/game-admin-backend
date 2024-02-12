@@ -7,10 +7,12 @@
 7. manual adjustment filter -> tg_id, adjusted by
 8. income statement filter -> 
 9. deposit and withdrawal filter -> tg_id, agent name, account number , status ( enum )
+10. user game history: 
+        remove table id 
+        show full game id 
+        
+
+11. implement backend sorting in all tables
+12. in agent list if there is no child then remvoe the arrow icon
 
 
-for eric:
- 1. check income statement
- 2. check financial statement
- 3. game rebate
- 

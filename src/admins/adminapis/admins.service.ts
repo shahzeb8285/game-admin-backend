@@ -34,14 +34,12 @@ export class AdminsService {
     });
   }
 
-  findAll({ skip, take, where }) {
+  findAll({ skip, take, where,order }) {
     return this.prisma.admins.findMany({
       take,
       skip,
       where,
-      orderBy: {
-        cdate: 'desc',
-      },
+      orderBy: order,
       include: {
         admin_roles: {
           include: {
@@ -77,12 +75,10 @@ export class AdminsService {
     });
   }
 
-  async findAllLoginHistory({ skip, take, where }) {
+  async findAllLoginHistory({ skip, take, where,order }) {
     return this.prisma.admin_login_logs.findMany({
       skip,
-      orderBy: {
-        login_time: 'desc',
-      },
+      orderBy: order,
       take,
       where,
       include: {
