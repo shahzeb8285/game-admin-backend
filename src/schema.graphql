@@ -536,7 +536,7 @@ type Query {
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
-  usersGameHistoryCount(where: game_record_roundsWhereInput! = {}): CountDto!
+  usersGameHistoryCount(where: GameRecordRoundsWhereInput! = {}): CountDto!
   usersLoginCount(where: player_login_logsWhereInput! = {}): CountDto!
   withdrawalCount(where: withdrawal_transactionsWhereInput! = {}): CountDto!
   withdrawals(order: withdrawal_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: withdrawal_transactionsWhereInput! = {}): [withdrawal_transactions!]!

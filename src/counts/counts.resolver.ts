@@ -15,6 +15,8 @@ import { withdrawal_transactionsWhereInput as WithdrawalTransactionWhereInput } 
 import { admin_bank_accountsWhereInput as AdminBankAccountWhereInput } from '../@generated/admin-bank-accounts/admin-bank-accounts-where.input';
 import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
 import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
+import { GameRecordRoundsWhereInput } from 'src/players/entities/game-record-rounds-where.input';
+import moment from 'moment';
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -24,9 +26,8 @@ export class CountsResolver {
   @Query(() => CountDto)
   async adminCount(
     @Args({ name: 'where', defaultValue: {} }) where: AdminWhereInput,
-
   ) {
-    const counts = await this.prismaService.admins.count({where});
+    const counts = await this.prismaService.admins.count({ where });
     return {
       counts,
     };
@@ -35,9 +36,8 @@ export class CountsResolver {
   @Query(() => CountDto)
   async agentsCount(
     @Args({ name: 'where', defaultValue: {} }) where: AgentWhereInput,
-
   ) {
-    const counts = await this.prismaService.agents.count({where});
+    const counts = await this.prismaService.agents.count({ where });
     return {
       counts,
     };
@@ -46,9 +46,8 @@ export class CountsResolver {
   @Query(() => CountDto)
   async adminLoginCount(
     @Args({ name: 'where', defaultValue: {} }) where: AdminLoginLogWhereInput,
-
   ) {
-    const counts = await this.prismaService.admin_login_logs.count({where});
+    const counts = await this.prismaService.admin_login_logs.count({ where });
     return {
       counts,
     };
@@ -57,9 +56,8 @@ export class CountsResolver {
   @Query(() => CountDto)
   async usersCount(
     @Args({ name: 'where', defaultValue: {} }) where: PlayerWhereInput,
-
   ) {
-    const counts = await this.prismaService.players.count({where});
+    const counts = await this.prismaService.players.count({ where });
     return {
       counts,
     };
@@ -68,20 +66,19 @@ export class CountsResolver {
   @Query(() => CountDto)
   async usersLoginCount(
     @Args({ name: 'where', defaultValue: {} }) where: PlayerLoginLogWhereInput,
-
   ) {
-    const counts = await this.prismaService.player_login_logs.count({where});
+    const counts = await this.prismaService.player_login_logs.count({ where });
     return {
       counts,
     };
   }
-  
 
   @Query(() => CountDto)
   async manualAdjustmentCount(
-    @Args({ name: 'where', defaultValue: {} }) where: ManualAdjustmentWhereInput,
+    @Args({ name: 'where', defaultValue: {} })
+    where: ManualAdjustmentWhereInput,
   ) {
-    const counts = await this.prismaService.manual_adjustments.count({where});
+    const counts = await this.prismaService.manual_adjustments.count({ where });
     return {
       counts,
     };
@@ -90,21 +87,21 @@ export class CountsResolver {
   @Query(() => CountDto)
   async adminRolesCount(
     @Args({ name: 'where', defaultValue: {} }) where: AdminRoleWhereInput,
-
   ) {
-    const counts = await this.prismaService.admin_roles.count({where});
+    const counts = await this.prismaService.admin_roles.count({ where });
     return {
       counts,
     };
   }
-
 
   @Query(() => CountDto)
   async depositsCount(
     @Args({ name: 'where', defaultValue: {} })
     where: DepositTransactionWhereInput,
   ) {
-    const counts = await this.prismaService.deposit_transactions.count({where});
+    const counts = await this.prismaService.deposit_transactions.count({
+      where,
+    });
     return {
       counts,
     };
@@ -115,32 +112,86 @@ export class CountsResolver {
     @Args({ name: 'where', defaultValue: {} })
     where: WithdrawalTransactionWhereInput,
   ) {
-    const counts = await this.prismaService.withdrawal_transactions.count({where});
+    const counts = await this.prismaService.withdrawal_transactions.count({
+      where,
+    });
     return {
       counts,
     };
   }
-
 
   @Query(() => CountDto)
   async bankAccountCount(
     @Args({ name: 'where', defaultValue: {} })
     where: AdminBankAccountWhereInput,
   ) {
-    const counts = await this.prismaService.admin_bank_accounts.count({where});
+    const counts = await this.prismaService.admin_bank_accounts.count({
+      where,
+    });
     return {
       counts,
     };
   }
-  
+
   @Query(() => CountDto)
   async usersGameHistoryCount(
     @Args({ name: 'where', defaultValue: {} })
-    where: game_record_roundsWhereInput,
+    where: GameRecordRoundsWhereInput,
   ) {
-    const counts = await this.prismaService.game_record_rounds.count({where});
+
+    const whereQueryInput: GameRecordRoundsWhereInput = where;
+
+    let whereQuery = '';
+    if (whereQueryInput) {
+      whereQuery = '';
+      if (whereQueryInput.tg_id) {
+        whereQuery += ` AND LOWER(pl.tg_id_ LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
+      }
+      if (whereQueryInput.game_round_info_id) {
+        whereQuery += ` AND LOWER(grr.game_round_info_id) LIKE '%${whereQueryInput.game_round_info_id.toLowerCase()}%'`;
+      }
+      if (whereQueryInput.merchant_name) {
+        whereQuery += ` AND LOWER(sm.merchant_name) LIKE '%${whereQueryInput.merchant_name.toLowerCase()}%'`;
+      }
+      if (whereQueryInput.game_category) {
+        whereQuery += ` AND LOWER(fc.category_name) LIKE '%${whereQueryInput.game_category.toLowerCase()}%'`;
+      }
+
+      if (whereQueryInput.game_name) {
+        whereQuery += ` AND LOWER(sg.game_name) LIKE '%${whereQueryInput.game_name.toLowerCase()}%'`;
+      }
+
+      if (whereQueryInput.cdate) {
+        if (whereQueryInput.cdate.gte) {
+          const timestamp = moment(whereQueryInput.cdate.gte)
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND gri.cdate >= '${timestamp}'`;
+          //from
+        }
+
+        if (whereQueryInput.cdate.lte) {
+          //to
+          const timestamp = moment(whereQueryInput.cdate.lte)
+            .set({ hour: 23, minute: 59, second: 59 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND gri.cdate <= '${timestamp}'`;
+        }
+      }
+    }
+
+    const query1 = `SELECT COUNT(*) AS record_count
+    FROM game_record_rounds grr 
+    JOIN players pl ON pl.player_id = grr.player_id  
+    JOIN sg_games sg ON grr.game_url = sg.url AND sg.enabled = true 
+    JOIN sg_merchants sm ON sm.merchant_id = sg.merchant_id AND sm.enabled = true
+    JOIN fl_categories fc ON fc.category_id = grr.rebate_category_id AND fc.enabled = true
+    JOIN game_round_infos gri ON gri.game_round_info_id = grr.game_round_info_id
+    WHERE 1=1 ${whereQuery} ;`;
+
+    const result = await this.prismaService.$queryRawUnsafe(query1);
     return {
-      counts,
+      counts: Number(result[0].record_count),
     };
   }
   @Query(() => CountDto)
@@ -148,7 +199,9 @@ export class CountsResolver {
     @Args({ name: 'where', defaultValue: {} })
     where: rebate_transactionsWhereInput,
   ) {
-    const counts = await this.prismaService.rebate_transactions.count({where});
+    const counts = await this.prismaService.rebate_transactions.count({
+      where,
+    });
     return {
       counts,
     };
