@@ -138,14 +138,13 @@ export class CountsResolver {
     @Args({ name: 'where', defaultValue: {} })
     where: GameRecordRoundsWhereInput,
   ) {
-
     const whereQueryInput: GameRecordRoundsWhereInput = where;
 
     let whereQuery = '';
     if (whereQueryInput) {
       whereQuery = '';
       if (whereQueryInput.tg_id) {
-        whereQuery += ` AND LOWER(pl.tg_id_ LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
+        whereQuery += ` AND LOWER(pl.tg_id) LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
       }
       if (whereQueryInput.game_round_info_id) {
         whereQuery += ` AND LOWER(grr.game_round_info_id) LIKE '%${whereQueryInput.game_round_info_id.toLowerCase()}%'`;
