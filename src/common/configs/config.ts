@@ -4,9 +4,14 @@ const config: Config = {
   nest: {
     port: 3000,
   },
+  appConfig: {
+    externalApiPath:"https://dev-webhook.foxland.io/admin"
+  },
+  
   cors: {
     enabled: true,
   },
+
 
   graphql: {
     playgroundEnabled: true,

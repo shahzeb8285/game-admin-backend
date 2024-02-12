@@ -5,10 +5,18 @@ import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 import { GameRecordRoundsWhereInput } from './entities/game-record-rounds-where.input';
 import { Prisma } from '@prisma/client';
 import moment from 'moment';
+import { HttpService } from '@nestjs/axios';
+import { AppConfig } from 'src/common/configs/config.interface';
+import { ConfigService } from '@nestjs/config';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class PlayersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService,
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
+
+  ) { }
 
   findAll({ skip, take, where,orderBy }) {
     return this.prisma.players.findMany({
@@ -140,31 +148,43 @@ export class PlayersService {
     });
   }
 
-  createManualAdjustment(createdBy: string, data: CreateManualAdjustment) {
-    const payload: any = {
-      ...data,
-    };
+ async createManualAdjustment(createdBy: string, data: CreateManualAdjustment) {
+    
 
-    delete payload.player_id;
+    const payload = {
+      userId: data.player_id,
+      reason:data.reason,
+      amount: data.amount,
+      adjustmentBy:createdBy,
+    }
 
-    return this.prisma.manual_adjustments.create({
-      include: {
-        players: true,
-        admins: true,
-      },
-      data: {
-        ...payload,
-        admins: {
-          connect: {
-            admin_id: createdBy,
-          },
-        },
-        players: {
-          connect: {
-            player_id: data.player_id,
-          },
-        },
-      },
-    });
+    const securityConfig = this.configService.get<AppConfig>('appConfig');
+
+   const req = this.httpService.post(`${securityConfig.externalApiPath}/manualAdjustment`, payload)
+   const resp = await firstValueFrom(req)
+   return {message:resp.data}
+    // console.log("Assassss",resp)
+
+    
+
+    // return this.prisma.manual_adjustments.create({
+    //   include: {
+    //     players: true,
+    //     admins: true,
+    //   },
+    //   data: {
+    //     ...payload,
+    //     admins: {
+    //       connect: {
+    //         admin_id: createdBy,
+    //       },
+    //     },
+    //     players: {
+    //       connect: {
+    //         player_id: data.player_id,
+    //       },
+    //     },
+    //   },
+    // });
   }
 }

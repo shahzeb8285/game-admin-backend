@@ -27,6 +27,7 @@ import { playersOrderByWithAggregationInput } from 'src/@generated/players/playe
 import { player_login_logsOrderByWithAggregationInput } from 'src/@generated/player-login-logs/player-login-logs-order-by-with-aggregation.input';
 import { manual_adjustmentsOrderByWithAggregationInput } from 'src/@generated/manual-adjustments/manual-adjustments-order-by-with-aggregation.input';
 import { rebate_transactionsOrderByWithAggregationInput } from 'src/@generated/rebate-transactions/rebate-transactions-order-by-with-aggregation.input';
+import { OkResponse } from 'src/common/models/OkResponse.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -84,7 +85,7 @@ export class PlayersResolver {
     return this.playersService.changePlayerStatus(input);
   }
 
-  @Mutation(() => ManualAdjustment)
+  @Mutation(() => OkResponse)
   createManualAdjustment(
     @UserEntity() user: Admin,
     @Args('data') input: CreateManualAdjustment,

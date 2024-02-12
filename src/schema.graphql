@@ -313,7 +313,7 @@ type Mutation {
   createAdminRole(data: CreateRoleInput!): admin_roles!
   createAgent(data: CreateAgentInput!): agents!
   createBankAccount(data: CreateBankAccountInput!): admin_bank_accounts!
-  createManualAdjustment(data: CreateManualAdjustment!): manual_adjustments!
+  createManualAdjustment(data: CreateManualAdjustment!): OkResponse!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   updateAdmin(data: UpdateAdminInput!): admins!
@@ -466,6 +466,10 @@ input NestedUuidFilter {
 enum NullsOrder {
   first
   last
+}
+
+type OkResponse {
+  message: String!
 }
 
 type Player_bank_accountsCount {
