@@ -12,13 +12,13 @@ import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class PlayersService {
-  constructor(private readonly prisma: PrismaService,
+  constructor(
+    private readonly prisma: PrismaService,
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
+  ) {}
 
-  ) { }
-
-  findAll({ skip, take, where,orderBy }) {
+  findAll({ skip, take, where, orderBy }) {
     return this.prisma.players.findMany({
       skip,
       take,
@@ -31,7 +31,7 @@ export class PlayersService {
     });
   }
 
-  findAllUserBonusHistory({ skip, take, where,orderBy }) {
+  findAllUserBonusHistory({ skip, take, where, orderBy }) {
     return this.prisma.rebate_transactions.findMany({
       skip,
       take,
@@ -44,22 +44,20 @@ export class PlayersService {
     });
   }
 
-  getUserLoginHistory({ skip, take, where ,orderBy}) {
+  getUserLoginHistory({ skip, take, where, orderBy }) {
     return this.prisma.player_login_logs.findMany({
       skip,
       take,
       orderBy,
 
       where,
-     
+
       include: {
         players: true,
       },
     });
   }
 
-
-  
   async findAllUserGameHistory({ skip, take, where }) {
     const whereQueryInput: GameRecordRoundsWhereInput = where;
 
@@ -67,7 +65,7 @@ export class PlayersService {
     if (whereQueryInput) {
       whereQuery = '';
       if (whereQueryInput.tg_id) {
-        whereQuery += ` AND LOWER(pl.tg_id_ LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
+        whereQuery += ` AND LOWER(pl.tg_id) LIKE '%${whereQueryInput.tg_id.toLowerCase()}%'`;
       }
       if (whereQueryInput.game_round_info_id) {
         whereQuery += ` AND LOWER(grr.game_round_info_id) LIKE '%${whereQueryInput.game_round_info_id.toLowerCase()}%'`;
@@ -85,23 +83,22 @@ export class PlayersService {
 
       if (whereQueryInput.cdate) {
         if (whereQueryInput.cdate.gte) {
-          const timestamp = moment(whereQueryInput.cdate.gte).set({hour:0,minute:0,second:0,millisecond:0})
-          .format('YYYY-MM-DD hh:mm:ss a')
+          const timestamp = moment(whereQueryInput.cdate.gte)
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .format('YYYY-MM-DD hh:mm:ss a');
           whereQuery += ` AND gri.cdate >= '${timestamp}'`;
           //from
-
         }
-        
+
         if (whereQueryInput.cdate.lte) {
           //to
-          const timestamp = moment(whereQueryInput.cdate.lte).set({hour:23,minute:59,second:59}).format('YYYY-MM-DD hh:mm:ss a')
+          const timestamp = moment(whereQueryInput.cdate.lte)
+            .set({ hour: 23, minute: 59, second: 59 })
+            .format('YYYY-MM-DD hh:mm:ss a');
           whereQuery += ` AND gri.cdate <= '${timestamp}'`;
         }
-
-       
       }
     }
-    
 
     const query1 = `SELECT grr.game_round_info_id, grr.player_id, pl.tg_id, sm.merchant_name, fc.category_name, sg.game_name, 
     grr.bet_amount, grr.effective_bet_amount, grr.payout, grr.is_processed, gri.cdate
@@ -111,16 +108,14 @@ export class PlayersService {
     JOIN sg_merchants sm ON sm.merchant_id = sg.merchant_id AND sm.enabled = true
     JOIN fl_categories fc ON fc.category_id = grr.rebate_category_id AND fc.enabled = true
     JOIN game_round_infos gri ON gri.game_round_info_id = grr.game_round_info_id
-    WHERE 1=1 ${whereQuery} OFFSET ${skip} ROWS FETCH NEXT ${take} ROWS ONLY;`
+    WHERE 1=1 ${whereQuery} OFFSET ${skip} ROWS FETCH NEXT ${take} ROWS ONLY;`;
 
-    const result = await this.prisma.$queryRawUnsafe(query1)
-
+    const result = await this.prisma.$queryRawUnsafe(query1);
 
     return result;
-   
   }
 
-  getManualAdjustments({ skip, take, where,orderBy }) {
+  getManualAdjustments({ skip, take, where, orderBy }) {
     return this.prisma.manual_adjustments.findMany({
       skip,
       take,
@@ -148,24 +143,25 @@ export class PlayersService {
     });
   }
 
- async createManualAdjustment(createdBy: string, data: CreateManualAdjustment) {
-    
-
+  async createManualAdjustment(
+    createdBy: string,
+    data: CreateManualAdjustment,
+  ) {
     const payload = {
       userId: data.player_id,
-      reason:data.reason,
+      reason: data.reason,
       amount: data.amount,
-      adjustmentBy:createdBy,
-    }
+      adjustmentBy: createdBy,
+    };
 
     const securityConfig = this.configService.get<AppConfig>('appConfig');
 
-   const req = this.httpService.post(`${securityConfig.externalApiPath}/manualAdjustment`, payload)
-   const resp = await firstValueFrom(req)
-   return {message:resp.data}
-  
-
-    
+    const req = this.httpService.post(
+      `${securityConfig.externalApiPath}/manualAdjustment`,
+      payload,
+    );
+    const resp = await firstValueFrom(req);
+    return { message: resp.data };
 
     // return this.prisma.manual_adjustments.create({
     //   include: {
