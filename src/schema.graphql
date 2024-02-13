@@ -538,13 +538,15 @@ type Query {
   agents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount(where: agentsWhereInput! = {}): CountDto!
   bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
-  deposits(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!
+  deposits(order: deposit_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
   depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
   gamerebates: [admin_bank_accounts!]!
   getAccesses(order: admin_accessesOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getMe: admins!
+  getTransferIn(order: transfer_in_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_in_transactionsWhereInput! = {}): [transfer_in_transactions!]!
+  getTransferOut(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!
   getUserLoginHistory(order: player_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
   getUsersBonusHistory(order: rebate_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
   getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: GameRecordRoundsWhereInput! = {}): [UserGameHistory!]!
@@ -1236,6 +1238,93 @@ type deposit_transactions {
   udate: DateTime!
 }
 
+input deposit_transactionsAvgOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input deposit_transactionsCountOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsMaxOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsMinOrderByAggregateInput {
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrder
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsOrderByWithAggregationInput {
+  _avg: deposit_transactionsAvgOrderByAggregateInput
+  _count: deposit_transactionsCountOrderByAggregateInput
+  _max: deposit_transactionsMaxOrderByAggregateInput
+  _min: deposit_transactionsMinOrderByAggregateInput
+  _sum: deposit_transactionsSumOrderByAggregateInput
+  admin_bank_account_id: SortOrder
+  cdate: SortOrder
+  comment: SortOrderInput
+  deposit_transaction_id: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrderInput
+  processed_by: SortOrderInput
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  udate: SortOrder
+}
+
+input deposit_transactionsSumOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
 input deposit_transactionsWhereInput {
   AND: [deposit_transactionsWhereInput!]
   NOT: [deposit_transactionsWhereInput!]
@@ -1776,6 +1865,97 @@ type transfer_in_transactions {
   transaction_date: String!
   transfer_in_transaction_id: ID!
   udate: DateTime!
+}
+
+input transfer_in_transactionsAvgOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input transfer_in_transactionsCountOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_in_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_in_transactionsMaxOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_in_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_in_transactionsMinOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_in_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_in_transactionsOrderByWithAggregationInput {
+  _avg: transfer_in_transactionsAvgOrderByAggregateInput
+  _count: transfer_in_transactionsCountOrderByAggregateInput
+  _max: transfer_in_transactionsMaxOrderByAggregateInput
+  _min: transfer_in_transactionsMinOrderByAggregateInput
+  _sum: transfer_in_transactionsSumOrderByAggregateInput
+  cdate: SortOrder
+  comment: SortOrderInput
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrderInput
+  processed_by: SortOrderInput
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_in_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_in_transactionsSumOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
 }
 
 input transfer_in_transactionsWhereInput {

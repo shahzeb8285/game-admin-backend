@@ -133,9 +133,12 @@ export class FinancesResolver {
       ...input,
       processedBy:user.admin_id
     }
+
+    console.log({payload})
     const securityConfig = this.configService.get<AppConfig>('appConfig');
     const req = this.httpService.post(`${securityConfig.externalApiPath}/transactionRequest`, payload)
     const resp = await firstValueFrom(req)
+    console.log("Asasas",resp)
     return {message:resp.data}
   }
 
