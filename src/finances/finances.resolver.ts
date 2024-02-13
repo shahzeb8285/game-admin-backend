@@ -57,7 +57,7 @@ export class FinancesResolver {
   }
 
 
-  @Query(() => [transfer_in_transactions], { name: 'deposits' })
+  @Query(() => [transfer_in_transactions])
   async getTransferIn(
     @Args({ name: 'where', defaultValue: {} })
     where: transfer_in_transactionsWhereInput,
@@ -70,7 +70,7 @@ export class FinancesResolver {
     return data
   }
 
-  @Query(() => [transfer_out_transactions], { name: 'deposits' })
+  @Query(() => [transfer_out_transactions])
   async getTransferOut(
     @Args({ name: 'where', defaultValue: {} })
     where: transfer_out_transactionsWhereInput,
