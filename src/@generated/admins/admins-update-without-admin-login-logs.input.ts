@@ -2,6 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { admin_rolesUpdateOneRequiredWithoutAdminsNestedInput } from '../admin-roles/admin-roles-update-one-required-without-admins-nested.input';
 import { manual_adjustmentsUpdateManyWithoutAdminsNestedInput } from '../manual-adjustments/manual-adjustments-update-many-without-admins-nested.input';
+import { transfer_out_transactionsUpdateManyWithoutProcessed_by_adminNestedInput } from '../transfer-out-transactions/transfer-out-transactions-update-many-without-processed-by-admin-nested.input';
+import { transfer_in_transactionsUpdateManyWithoutProcessed_by_adminNestedInput } from '../transfer-in-transactions/transfer-in-transactions-update-many-without-processed-by-admin-nested.input';
+import { deposit_transactionsUpdateManyWithoutProcessed_by_adminNestedInput } from '../deposit-transactions/deposit-transactions-update-many-without-processed-by-admin-nested.input';
+import { withdrawal_transactionsUpdateManyWithoutProcessed_by_adminNestedInput } from '../withdrawal-transactions/withdrawal-transactions-update-many-without-processed-by-admin-nested.input';
 
 @InputType()
 export class adminsUpdateWithoutAdmin_login_logsInput {
@@ -32,4 +36,16 @@ export class adminsUpdateWithoutAdmin_login_logsInput {
 
     @Field(() => manual_adjustmentsUpdateManyWithoutAdminsNestedInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsUpdateManyWithoutAdminsNestedInput;
+
+    @Field(() => transfer_out_transactionsUpdateManyWithoutProcessed_by_adminNestedInput, {nullable:true})
+    transfer_out_transactions?: transfer_out_transactionsUpdateManyWithoutProcessed_by_adminNestedInput;
+
+    @Field(() => transfer_in_transactionsUpdateManyWithoutProcessed_by_adminNestedInput, {nullable:true})
+    transfer_in_transactions?: transfer_in_transactionsUpdateManyWithoutProcessed_by_adminNestedInput;
+
+    @Field(() => deposit_transactionsUpdateManyWithoutProcessed_by_adminNestedInput, {nullable:true})
+    deposit_transactions?: deposit_transactionsUpdateManyWithoutProcessed_by_adminNestedInput;
+
+    @Field(() => withdrawal_transactionsUpdateManyWithoutProcessed_by_adminNestedInput, {nullable:true})
+    withdrawal_transactions?: withdrawal_transactionsUpdateManyWithoutProcessed_by_adminNestedInput;
 }

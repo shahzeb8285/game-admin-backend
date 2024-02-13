@@ -22,4 +22,10 @@ export class PlayersCount {
 
     @Field(() => Int, {nullable:false})
     game_record_rounds!: number;
+
+    @Field(() => Int, {nullable:false})
+    transfer_in_transactions!: number;
+
+    @Field(() => Int, {nullable:false})
+    transfer_out_transactions!: number;
 }

@@ -5,6 +5,8 @@ import {
   CreateBankAccountInput,
   UpdateBankAccountInput,
 } from './dto/create-finance.input';
+import { admins as Admin } from '../@generated/admins/admins.model';
+
 import { UpdateFinanceInput } from './dto/update-finance.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
@@ -19,10 +21,27 @@ import {  } from 'src/@generated/admin-bank-accounts/admin-bank-accounts-max-ord
 import { withdrawal_transactionsOrderByWithAggregationInput } from 'src/@generated/withdrawal-transactions/withdrawal-transactions-order-by-with-aggregation.input';
 import { deposit_transactionsOrderByWithAggregationInput } from 'src/@generated/deposit-transactions/deposit-transactions-order-by-with-aggregation.input';
 import { admin_bank_accountsOrderByWithAggregationInput } from 'src/@generated/admin-bank-accounts/admin-bank-accounts-order-by-with-aggregation.input';
+import { OkResponse } from 'src/common/models/OkResponse.model';
+import { TransactionActionDto } from './dto/transaction.action.input';
+import { UserEntity } from 'src/common/decorators/user.decorator';
+import { HttpService } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
+import { AppConfig } from 'src/common/configs/config.interface';
+import { firstValueFrom } from 'rxjs';
+import { transfer_in_transactions } from 'src/@generated/transfer-in-transactions/transfer-in-transactions.model';
+import { transfer_in_transactionsWhereInput } from 'src/@generated/transfer-in-transactions/transfer-in-transactions-where.input';
+import { transfer_in_transactionsOrderByWithAggregationInput } from 'src/@generated/transfer-in-transactions/transfer-in-transactions-order-by-with-aggregation.input';
+import { transfer_out_transactions } from 'src/@generated/transfer-out-transactions/transfer-out-transactions.model';
+import { transfer_out_transactionsWhereInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-where.input';
+import { transfer_out_transactionsOrderByWithAggregationInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-order-by-with-aggregation.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
-  constructor(private readonly financesService: FinancesService) {}
+  constructor(private readonly financesService: FinancesService,
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
+
+    ) { }
 
   @Query(() => [deposit_transactions], { name: 'deposits' })
   async getDeposits(
@@ -36,6 +55,34 @@ export class FinancesResolver {
     const data = await this.financesService.getDeposits({ skip, take, where,orderBy});
     return data
   }
+
+
+  @Query(() => [transfer_in_transactions], { name: 'deposits' })
+  async getTransferIn(
+    @Args({ name: 'where', defaultValue: {} })
+    where: transfer_in_transactionsWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: transfer_in_transactionsOrderByWithAggregationInput,
+
+  ) {
+    const data = await this.financesService.getTransferIn({ skip, take, where,orderBy});
+    return data
+  }
+
+  @Query(() => [transfer_out_transactions], { name: 'deposits' })
+  async getTransferOut(
+    @Args({ name: 'where', defaultValue: {} })
+    where: transfer_out_transactionsWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} }) orderBy: transfer_out_transactionsOrderByWithAggregationInput,
+
+  ) {
+    const data = await this.financesService.getTransferOut({ skip, take, where,orderBy});
+    return data
+  }
+
 
   @Query(() => [withdrawal_transactions], { name: 'withdrawals' })
   getWithdrawals(
@@ -75,6 +122,23 @@ export class FinancesResolver {
   createBankAccount(@Args('data') input: CreateBankAccountInput) {
     return this.financesService.createBankAccount(input);
   }
+
+
+
+  @Mutation(() => OkResponse)
+  async transactionAction(@Args('data') input: TransactionActionDto,
+    @UserEntity() user: Admin,
+  ) {
+    const payload = {
+      ...input,
+      processedBy:user.admin_id
+    }
+    const securityConfig = this.configService.get<AppConfig>('appConfig');
+    const req = this.httpService.post(`${securityConfig.externalApiPath}/transactionRequest`, payload)
+    const resp = await firstValueFrom(req)
+    return {message:resp.data}
+  }
+
 
   @Mutation(() => admin_bank_accounts)
   updateBankAccount(@Args('data') input: UpdateBankAccountInput) {

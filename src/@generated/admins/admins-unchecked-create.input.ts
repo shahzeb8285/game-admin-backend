@@ -2,6 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { admin_login_logsUncheckedCreateNestedManyWithoutAdminsInput } from '../admin-login-logs/admin-login-logs-unchecked-create-nested-many-without-admins.input';
 import { manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput } from '../manual-adjustments/manual-adjustments-unchecked-create-nested-many-without-admins.input';
+import { transfer_out_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput } from '../transfer-out-transactions/transfer-out-transactions-unchecked-create-nested-many-without-processed-by-admin.input';
+import { transfer_in_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput } from '../transfer-in-transactions/transfer-in-transactions-unchecked-create-nested-many-without-processed-by-admin.input';
+import { deposit_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput } from '../deposit-transactions/deposit-transactions-unchecked-create-nested-many-without-processed-by-admin.input';
+import { withdrawal_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput } from '../withdrawal-transactions/withdrawal-transactions-unchecked-create-nested-many-without-processed-by-admin.input';
 
 @InputType()
 export class adminsUncheckedCreateInput {
@@ -35,4 +39,16 @@ export class adminsUncheckedCreateInput {
 
     @Field(() => manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput, {nullable:true})
     manual_adjustments?: manual_adjustmentsUncheckedCreateNestedManyWithoutAdminsInput;
+
+    @Field(() => transfer_out_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput, {nullable:true})
+    transfer_out_transactions?: transfer_out_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput;
+
+    @Field(() => transfer_in_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput, {nullable:true})
+    transfer_in_transactions?: transfer_in_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput;
+
+    @Field(() => deposit_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput, {nullable:true})
+    deposit_transactions?: deposit_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput;
+
+    @Field(() => withdrawal_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput, {nullable:true})
+    withdrawal_transactions?: withdrawal_transactionsUncheckedCreateNestedManyWithoutProcessed_by_adminInput;
 }

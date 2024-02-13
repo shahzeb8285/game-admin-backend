@@ -5,6 +5,8 @@ import { real_currency } from '../prisma/real-currency.enum';
 import { Float } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
+import { players } from '../players/players.model';
+import { admins } from '../admins/admins.model';
 
 @ObjectType()
 export class transfer_in_transactions {
@@ -56,4 +58,10 @@ export class transfer_in_transactions {
 
     @Field(() => Date, {nullable:false})
     udate!: Date;
+
+    @Field(() => players, {nullable:false})
+    player?: players;
+
+    @Field(() => admins, {nullable:true})
+    processed_by_admin?: admins | null;
 }

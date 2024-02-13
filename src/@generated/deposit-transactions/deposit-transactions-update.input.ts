@@ -6,6 +6,7 @@ import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
 import { playersUpdateOneRequiredWithoutDeposit_transactionsNestedInput } from '../players/players-update-one-required-without-deposit-transactions-nested.input';
 import { admin_bank_accountsUpdateOneRequiredWithoutDeposit_transactionsNestedInput } from '../admin-bank-accounts/admin-bank-accounts-update-one-required-without-deposit-transactions-nested.input';
+import { adminsUpdateOneWithoutDeposit_transactionsNestedInput } from '../admins/admins-update-one-without-deposit-transactions-nested.input';
 
 @InputType()
 export class deposit_transactionsUpdateInput {
@@ -34,9 +35,6 @@ export class deposit_transactionsUpdateInput {
     @Field(() => String, {nullable:true})
     comment?: string;
 
-    @Field(() => String, {nullable:true})
-    processed_by?: string;
-
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;
 
@@ -54,4 +52,7 @@ export class deposit_transactionsUpdateInput {
 
     @Field(() => admin_bank_accountsUpdateOneRequiredWithoutDeposit_transactionsNestedInput, {nullable:true})
     admin_bank_account?: admin_bank_accountsUpdateOneRequiredWithoutDeposit_transactionsNestedInput;
+
+    @Field(() => adminsUpdateOneWithoutDeposit_transactionsNestedInput, {nullable:true})
+    processed_by_admin?: adminsUpdateOneWithoutDeposit_transactionsNestedInput;
 }

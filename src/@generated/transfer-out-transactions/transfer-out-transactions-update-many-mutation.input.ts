@@ -11,9 +11,6 @@ export class transfer_out_transactionsUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     transfer_out_transaction_id?: string;
 
-    @Field(() => String, {nullable:true})
-    player_id?: string;
-
     @Field(() => real_currency, {nullable:true})
     transaction_currency?: keyof typeof real_currency;
 
@@ -40,9 +37,6 @@ export class transfer_out_transactionsUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
     comment?: string;
-
-    @Field(() => String, {nullable:true})
-    processed_by?: string;
 
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;

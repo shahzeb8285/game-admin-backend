@@ -13,6 +13,8 @@ import { Manual_adjustmentsListRelationFilter } from '../prisma/manual-adjustmen
 import { Rebate_transactionsListRelationFilter } from '../prisma/rebate-transactions-list-relation-filter.input';
 import { Game_record_roundsListRelationFilter } from '../prisma/game-record-rounds-list-relation-filter.input';
 import { Player_walletsNullableRelationFilter } from '../prisma/player-wallets-nullable-relation-filter.input';
+import { Transfer_in_transactionsListRelationFilter } from '../prisma/transfer-in-transactions-list-relation-filter.input';
+import { Transfer_out_transactionsListRelationFilter } from '../prisma/transfer-out-transactions-list-relation-filter.input';
 
 @InputType()
 export class playersWhereUniqueInput {
@@ -97,4 +99,10 @@ export class playersWhereUniqueInput {
 
     @Field(() => Player_walletsNullableRelationFilter, {nullable:true})
     wallet?: Player_walletsNullableRelationFilter;
+
+    @Field(() => Transfer_in_transactionsListRelationFilter, {nullable:true})
+    transfer_in_transactions?: Transfer_in_transactionsListRelationFilter;
+
+    @Field(() => Transfer_out_transactionsListRelationFilter, {nullable:true})
+    transfer_out_transactions?: Transfer_out_transactionsListRelationFilter;
 }

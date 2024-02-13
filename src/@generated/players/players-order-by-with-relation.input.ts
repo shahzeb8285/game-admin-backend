@@ -10,6 +10,8 @@ import { manual_adjustmentsOrderByRelationAggregateInput } from '../manual-adjus
 import { rebate_transactionsOrderByRelationAggregateInput } from '../rebate-transactions/rebate-transactions-order-by-relation-aggregate.input';
 import { game_record_roundsOrderByRelationAggregateInput } from '../game-record-rounds/game-record-rounds-order-by-relation-aggregate.input';
 import { player_walletsOrderByWithRelationInput } from '../player-wallets/player-wallets-order-by-with-relation.input';
+import { transfer_in_transactionsOrderByRelationAggregateInput } from '../transfer-in-transactions/transfer-in-transactions-order-by-relation-aggregate.input';
+import { transfer_out_transactionsOrderByRelationAggregateInput } from '../transfer-out-transactions/transfer-out-transactions-order-by-relation-aggregate.input';
 
 @InputType()
 export class playersOrderByWithRelationInput {
@@ -85,4 +87,10 @@ export class playersOrderByWithRelationInput {
 
     @Field(() => player_walletsOrderByWithRelationInput, {nullable:true})
     wallet?: player_walletsOrderByWithRelationInput;
+
+    @Field(() => transfer_in_transactionsOrderByRelationAggregateInput, {nullable:true})
+    transfer_in_transactions?: transfer_in_transactionsOrderByRelationAggregateInput;
+
+    @Field(() => transfer_out_transactionsOrderByRelationAggregateInput, {nullable:true})
+    transfer_out_transactions?: transfer_out_transactionsOrderByRelationAggregateInput;
 }

@@ -4,15 +4,14 @@ import { real_currency } from '../prisma/real-currency.enum';
 import { Float } from '@nestjs/graphql';
 import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
+import { playersCreateNestedOneWithoutTransfer_out_transactionsInput } from '../players/players-create-nested-one-without-transfer-out-transactions.input';
+import { adminsCreateNestedOneWithoutTransfer_out_transactionsInput } from '../admins/admins-create-nested-one-without-transfer-out-transactions.input';
 
 @InputType()
 export class transfer_out_transactionsCreateInput {
 
     @Field(() => String, {nullable:true})
     transfer_out_transaction_id?: string;
-
-    @Field(() => String, {nullable:false})
-    player_id!: string;
 
     @Field(() => real_currency, {nullable:false})
     transaction_currency!: keyof typeof real_currency;
@@ -41,9 +40,6 @@ export class transfer_out_transactionsCreateInput {
     @Field(() => String, {nullable:true})
     comment?: string;
 
-    @Field(() => String, {nullable:true})
-    processed_by?: string;
-
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;
 
@@ -55,4 +51,10 @@ export class transfer_out_transactionsCreateInput {
 
     @Field(() => Date, {nullable:true})
     udate?: Date | string;
+
+    @Field(() => playersCreateNestedOneWithoutTransfer_out_transactionsInput, {nullable:false})
+    player!: playersCreateNestedOneWithoutTransfer_out_transactionsInput;
+
+    @Field(() => adminsCreateNestedOneWithoutTransfer_out_transactionsInput, {nullable:true})
+    processed_by_admin?: adminsCreateNestedOneWithoutTransfer_out_transactionsInput;
 }

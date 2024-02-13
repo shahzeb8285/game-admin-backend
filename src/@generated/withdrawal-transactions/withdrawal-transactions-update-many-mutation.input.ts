@@ -32,9 +32,6 @@ export class withdrawal_transactionsUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     comment?: string;
 
-    @Field(() => String, {nullable:true})
-    processed_by?: string;
-
     @Field(() => Date, {nullable:true})
     process_time?: Date | string;
 

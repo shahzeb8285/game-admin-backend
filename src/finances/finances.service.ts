@@ -43,9 +43,15 @@ export class FinancesService {
       take,
       where,
       include: {
+        processed_by_admin: {
+          select: {
+            admin_name:true,
+          }
+        },
         players: {
           include: {
             agent: true,
+            
           },
         },
 
@@ -55,6 +61,45 @@ export class FinancesService {
     });
   }
 
+  
+  getTransferIn({ skip, take, where, orderBy }) {
+    return this.prisma.transfer_in_transactions.findMany({
+      skip,
+      orderBy,
+      take,
+      where,
+      include: {
+        player: true,
+        processed_by_admin: {
+          select: {
+            admin_name:true,
+          }
+        },
+
+      }
+      
+    
+    });
+  }
+
+
+  getTransferOut({ skip, take, where, orderBy }) {
+    return this.prisma.transfer_out_transactions.findMany({
+      skip,
+      orderBy,
+      take,
+      where,
+      include: {
+        player: true,
+        processed_by_admin: {
+          select: {
+            admin_name:true,
+          }
+        },
+      }
+   
+    });
+  }
   getBankAccounts({ skip, take, where,orderBy }) {
     return this.prisma.admin_bank_accounts.findMany({
       skip,
@@ -81,6 +126,11 @@ export class FinancesService {
           include: {
             agent: true,
           },
+        },
+        processed_by_admin: {
+          select: {
+            admin_name:true,
+          }
         },
         player_bank_account: true,
       },

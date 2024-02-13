@@ -54,6 +54,8 @@ Table players {
   rebate_transactions rebate_transactions [not null]
   game_record_rounds game_record_rounds [not null]
   wallet player_wallets
+  transfer_in_transactions transfer_in_transactions [not null]
+  transfer_out_transactions transfer_out_transactions [not null]
 }
 
 Table agents {
@@ -85,6 +87,10 @@ Table admins {
   enabled Boolean [not null, default: true]
   admin_login_logs admin_login_logs [not null]
   manual_adjustments manual_adjustments [not null]
+  transfer_out_transactions transfer_out_transactions [not null]
+  transfer_in_transactions transfer_in_transactions [not null]
+  deposit_transactions deposit_transactions [not null]
+  withdrawal_transactions withdrawal_transactions [not null]
 }
 
 Table admin_roles {
@@ -262,6 +268,7 @@ Table deposit_transactions {
   player_remarks String [not null]
   comment String
   processed_by String
+  processed_by_admin admins
   process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
@@ -282,6 +289,7 @@ Table withdrawal_transactions {
   player_remarks String [not null]
   comment String
   processed_by String
+  processed_by_admin admins
   process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
@@ -291,6 +299,8 @@ Table withdrawal_transactions {
 Table transfer_in_transactions {
   transfer_in_transaction_id String [pk]
   player_id String [not null]
+  player players [not null]
+  processed_by_admin admins
   transaction_currency real_currency [not null]
   transaction_amount Float [not null]
   game_currency game_currency [not null]
@@ -310,6 +320,7 @@ Table transfer_in_transactions {
 Table transfer_out_transactions {
   transfer_out_transaction_id String [pk]
   player_id String [not null]
+  player players [not null]
   transaction_currency real_currency [not null]
   transaction_amount Float [not null]
   game_currency game_currency [not null]
@@ -320,6 +331,7 @@ Table transfer_out_transactions {
   player_remarks String [not null]
   comment String
   processed_by String
+  processed_by_admin admins
   process_time DateTime [default: `now()`]
   status wallet_transaction_status [not null, default: 'PENDING']
   cdate DateTime [default: `now()`, not null]
@@ -549,9 +561,21 @@ Ref: deposit_transactions.player_id > players.player_id
 
 Ref: deposit_transactions.admin_bank_account_id > admin_bank_accounts.admin_bank_account_id
 
+Ref: deposit_transactions.processed_by > admins.admin_id
+
 Ref: withdrawal_transactions.player_id > players.player_id
 
 Ref: withdrawal_transactions.player_bank_account_id > player_bank_accounts.player_bank_account_id
+
+Ref: withdrawal_transactions.processed_by > admins.admin_id
+
+Ref: transfer_in_transactions.player_id > players.player_id
+
+Ref: transfer_in_transactions.processed_by > admins.admin_id
+
+Ref: transfer_out_transactions.player_id > players.player_id
+
+Ref: transfer_out_transactions.processed_by > admins.admin_id
 
 Ref: game_record_rounds.game_round_info_id > game_round_infos.game_round_info_id
 

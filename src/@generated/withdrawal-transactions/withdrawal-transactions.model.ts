@@ -7,6 +7,7 @@ import { game_currency } from '../prisma/game-currency.enum';
 import { wallet_transaction_status } from '../prisma/wallet-transaction-status.enum';
 import { players } from '../players/players.model';
 import { player_bank_accounts } from '../player-bank-accounts/player-bank-accounts.model';
+import { admins } from '../admins/admins.model';
 
 @ObjectType()
 export class withdrawal_transactions {
@@ -61,4 +62,7 @@ export class withdrawal_transactions {
 
     @Field(() => player_bank_accounts, {nullable:false})
     player_bank_account?: player_bank_accounts;
+
+    @Field(() => admins, {nullable:true})
+    processed_by_admin?: admins | null;
 }

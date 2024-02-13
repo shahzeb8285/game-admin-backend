@@ -4,6 +4,7 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
 import { playersOrderByWithRelationInput } from '../players/players-order-by-with-relation.input';
 import { admin_bank_accountsOrderByWithRelationInput } from '../admin-bank-accounts/admin-bank-accounts-order-by-with-relation.input';
+import { adminsOrderByWithRelationInput } from '../admins/admins-order-by-with-relation.input';
 
 @InputType()
 export class deposit_transactionsOrderByWithRelationInput {
@@ -58,4 +59,7 @@ export class deposit_transactionsOrderByWithRelationInput {
 
     @Field(() => admin_bank_accountsOrderByWithRelationInput, {nullable:true})
     admin_bank_account?: admin_bank_accountsOrderByWithRelationInput;
+
+    @Field(() => adminsOrderByWithRelationInput, {nullable:true})
+    processed_by_admin?: adminsOrderByWithRelationInput;
 }

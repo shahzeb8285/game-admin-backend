@@ -47,30 +47,32 @@ model manual_adjustments {
 }
 
 model players {
-  player_id               String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name                    String?
-  tg_id                   String                    @unique
-  tg_first_name           String
-  tg_last_name            String
-  tg_username             String?                   @unique
-  tg_photo_url            String?
-  user_language           String
-  registration_ip         String
-  agent                   agents                    @relation(fields: [agent_id], references: [agent_id])
-  agent_id                String
-  registration_date       String
-  password                String
-  fundist_password        String
-  cdate                   DateTime                  @default(now())
-  udate                   DateTime                  @updatedAt
-  enabled                 Boolean                   @default(true)
-  deposit_transactions    deposit_transactions[]
-  withdrawal_transactions withdrawal_transactions[]
-  player_login_logs       player_login_logs[]
-  manual_adjustments      manual_adjustments[]
-  rebate_transactions     rebate_transactions[]
-  game_record_rounds      game_record_rounds[]
-  wallet                  player_wallets?
+  player_id                 String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                      String?
+  tg_id                     String                      @unique
+  tg_first_name             String
+  tg_last_name              String
+  tg_username               String?                     @unique
+  tg_photo_url              String?
+  user_language             String
+  registration_ip           String
+  agent                     agents                      @relation(fields: [agent_id], references: [agent_id])
+  agent_id                  String
+  registration_date         String
+  password                  String
+  fundist_password          String
+  cdate                     DateTime                    @default(now())
+  udate                     DateTime                    @updatedAt
+  enabled                   Boolean                     @default(true)
+  deposit_transactions      deposit_transactions[]
+  withdrawal_transactions   withdrawal_transactions[]
+  player_login_logs         player_login_logs[]
+  manual_adjustments        manual_adjustments[]
+  rebate_transactions       rebate_transactions[]
+  game_record_rounds        game_record_rounds[]
+  wallet                    player_wallets?
+  transfer_in_transactions  transfer_in_transactions[]
+  transfer_out_transactions transfer_out_transactions[]
 }
 
 model agents {
@@ -91,17 +93,21 @@ model agents {
 }
 
 model admins {
-  admin_id           String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  admin_name         String               @unique
-  admin_password     String
-  admin_roles        admin_roles          @relation(fields: [admin_role_id], references: [admin_role_id])
-  admin_role_id      String               @db.Uuid
-  created_by         String
-  cdate              DateTime             @default(now())
-  udate              DateTime             @updatedAt
-  enabled            Boolean              @default(true)
-  admin_login_logs   admin_login_logs[]
-  manual_adjustments manual_adjustments[]
+  admin_id                  String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  admin_name                String                      @unique
+  admin_password            String
+  admin_roles               admin_roles                 @relation(fields: [admin_role_id], references: [admin_role_id])
+  admin_role_id             String                      @db.Uuid
+  created_by                String
+  cdate                     DateTime                    @default(now())
+  udate                     DateTime                    @updatedAt
+  enabled                   Boolean                     @default(true)
+  admin_login_logs          admin_login_logs[]
+  manual_adjustments        manual_adjustments[]
+  transfer_out_transactions transfer_out_transactions[]
+  transfer_in_transactions  transfer_in_transactions[]
+  deposit_transactions      deposit_transactions[]
+  withdrawal_transactions   withdrawal_transactions[]
 }
 
 model admin_roles {
@@ -267,83 +273,97 @@ model player_wallets {
 }
 
 model deposit_transactions {
-  deposit_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  players                players                   @relation(fields: [player_id], references: [player_id])
+  deposit_transaction_id String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                players             @relation(fields: [player_id], references: [player_id])
   player_id              String
   transaction_currency   real_currency
   transaction_amount     Float
   game_currency          game_currency
   game_amount            Float
-  admin_bank_account     admin_bank_accounts       @relation(fields: [admin_bank_account_id], references: [admin_bank_account_id])
+  admin_bank_account     admin_bank_accounts @relation(fields: [admin_bank_account_id], references: [admin_bank_account_id])
   admin_bank_account_id  String
   transaction_date       String
   player_remarks         String
   comment                String?
   processed_by           String?
-  process_time           DateTime?                 @default(now())
-  status                 wallet_transaction_status @default(PENDING)
-  cdate                  DateTime                  @default(now())
-  udate                  DateTime                  @updatedAt
+  processed_by_admin     admins?             @relation(fields: [processed_by], references: [admin_id])
+
+  process_time DateTime?                 @default(now())
+  status       wallet_transaction_status @default(PENDING)
+  cdate        DateTime                  @default(now())
+  udate        DateTime                  @updatedAt
 }
 
 model withdrawal_transactions {
-  withdrawal_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  players                   players                   @relation(fields: [player_id], references: [player_id])
+  withdrawal_transaction_id String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  players                   players              @relation(fields: [player_id], references: [player_id])
   player_id                 String
   transaction_currency      real_currency
   transaction_amount        Float
   game_currency             game_currency
   game_amount               Float
-  player_bank_account       player_bank_accounts      @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
+  player_bank_account       player_bank_accounts @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
   player_bank_account_id    String
   transaction_date          String
   player_remarks            String
   comment                   String?
   processed_by              String?
-  process_time              DateTime?                 @default(now())
-  status                    wallet_transaction_status @default(PENDING)
-  cdate                     DateTime                  @default(now())
-  udate                     DateTime                  @updatedAt
+  processed_by_admin        admins?              @relation(fields: [processed_by], references: [admin_id])
+
+  process_time DateTime?                 @default(now())
+  status       wallet_transaction_status @default(PENDING)
+  cdate        DateTime                  @default(now())
+  udate        DateTime                  @updatedAt
   // admin_bank_accounts                      admin_bank_accounts?      @relation(fields: [admin_bank_accountsAdmin_bank_account_id], references: [admin_bank_account_id])
   // admin_bank_accountsAdmin_bank_account_id String?
 }
 
+
+
 model transfer_in_transactions {
-  transfer_in_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  transfer_in_transaction_id String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   player_id                  String
-  transaction_currency       real_currency
-  transaction_amount         Float
-  game_currency              game_currency
-  game_amount                Float
-  counterpart_platform       String
-  counterpart_username       String
-  transaction_date           String
-  player_remarks             String
-  comment                    String?
-  processed_by               String?
-  process_time               DateTime?                 @default(now())
-  status                     wallet_transaction_status @default(PENDING)
-  cdate                      DateTime                  @default(now())
-  udate                      DateTime                  @updatedAt
+  player                     players @relation(fields: [player_id], references: [player_id])
+  processed_by_admin         admins? @relation(fields: [processed_by], references: [admin_id])
+
+  transaction_currency real_currency
+  transaction_amount   Float
+  game_currency        game_currency
+  game_amount          Float
+  counterpart_platform String
+  counterpart_username String
+  transaction_date     String
+  player_remarks       String
+  comment              String?
+  processed_by         String?
+  process_time         DateTime?                 @default(now())
+  status               wallet_transaction_status @default(PENDING)
+  cdate                DateTime                  @default(now())
+  udate                DateTime                  @updatedAt
 }
 
 model transfer_out_transactions {
-  transfer_out_transaction_id String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  transfer_out_transaction_id String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   player_id                   String
-  transaction_currency        real_currency
-  transaction_amount          Float
-  game_currency               game_currency
-  game_amount                 Float
-  counterpart_platform        String
-  counterpart_username        String
-  transaction_date            String
-  player_remarks              String
-  comment                     String?
-  processed_by                String?
-  process_time                DateTime?                 @default(now())
-  status                      wallet_transaction_status @default(PENDING)
-  cdate                       DateTime                  @default(now())
-  udate                       DateTime                  @updatedAt
+  player                      players @relation(fields: [player_id], references: [player_id])
+
+  transaction_currency real_currency
+  transaction_amount   Float
+  game_currency        game_currency
+  game_amount          Float
+  counterpart_platform String
+  counterpart_username String
+  transaction_date     String
+  player_remarks       String
+  comment              String?
+
+  processed_by       String?
+  processed_by_admin admins? @relation(fields: [processed_by], references: [admin_id])
+
+  process_time DateTime?                 @default(now())
+  status       wallet_transaction_status @default(PENDING)
+  cdate        DateTime                  @default(now())
+  udate        DateTime                  @updatedAt
 }
 
 model all_ow_requests {

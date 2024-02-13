@@ -7,6 +7,8 @@ import { player_login_logsUpdateManyWithoutPlayersNestedInput } from '../player-
 import { manual_adjustmentsUpdateManyWithoutPlayersNestedInput } from '../manual-adjustments/manual-adjustments-update-many-without-players-nested.input';
 import { rebate_transactionsUpdateManyWithoutPlayerNestedInput } from '../rebate-transactions/rebate-transactions-update-many-without-player-nested.input';
 import { game_record_roundsUpdateManyWithoutPlayerNestedInput } from '../game-record-rounds/game-record-rounds-update-many-without-player-nested.input';
+import { transfer_in_transactionsUpdateManyWithoutPlayerNestedInput } from '../transfer-in-transactions/transfer-in-transactions-update-many-without-player-nested.input';
+import { transfer_out_transactionsUpdateManyWithoutPlayerNestedInput } from '../transfer-out-transactions/transfer-out-transactions-update-many-without-player-nested.input';
 
 @InputType()
 export class playersUpdateWithoutWalletInput {
@@ -76,4 +78,10 @@ export class playersUpdateWithoutWalletInput {
 
     @Field(() => game_record_roundsUpdateManyWithoutPlayerNestedInput, {nullable:true})
     game_record_rounds?: game_record_roundsUpdateManyWithoutPlayerNestedInput;
+
+    @Field(() => transfer_in_transactionsUpdateManyWithoutPlayerNestedInput, {nullable:true})
+    transfer_in_transactions?: transfer_in_transactionsUpdateManyWithoutPlayerNestedInput;
+
+    @Field(() => transfer_out_transactionsUpdateManyWithoutPlayerNestedInput, {nullable:true})
+    transfer_out_transactions?: transfer_out_transactionsUpdateManyWithoutPlayerNestedInput;
 }

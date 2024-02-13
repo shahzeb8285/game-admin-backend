@@ -11,6 +11,7 @@ import { Enumwallet_transaction_statusFilter } from '../prisma/enumwallet-transa
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 import { Player_bank_accountsRelationFilter } from '../prisma/player-bank-accounts-relation-filter.input';
+import { AdminsNullableRelationFilter } from '../prisma/admins-nullable-relation-filter.input';
 
 @InputType()
 export class withdrawal_transactionsWhereUniqueInput {
@@ -74,4 +75,7 @@ export class withdrawal_transactionsWhereUniqueInput {
 
     @Field(() => Player_bank_accountsRelationFilter, {nullable:true})
     player_bank_account?: Player_bank_accountsRelationFilter;
+
+    @Field(() => AdminsNullableRelationFilter, {nullable:true})
+    processed_by_admin?: AdminsNullableRelationFilter;
 }
