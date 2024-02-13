@@ -44,13 +44,22 @@ input Admin_rolesRelationFilter {
 
 type AdminsCount {
   admin_login_logs: Int!
+  deposit_transactions: Int!
   manual_adjustments: Int!
+  transfer_in_transactions: Int!
+  transfer_out_transactions: Int!
+  withdrawal_transactions: Int!
 }
 
 input AdminsListRelationFilter {
   every: adminsWhereInput
   none: adminsWhereInput
   some: adminsWhereInput
+}
+
+input AdminsNullableRelationFilter {
+  is: adminsWhereInput
+  isNot: adminsWhereInput
 }
 
 input AdminsRelationFilter {
@@ -98,6 +107,11 @@ input AgentsNullableRelationFilter {
 input AgentsRelationFilter {
   is: agentsWhereInput
   isNot: agentsWhereInput
+}
+
+enum ApprovalStatus {
+  APPROVED
+  REJECTED
 }
 
 type Auth {
@@ -316,6 +330,7 @@ type Mutation {
   createManualAdjustment(data: CreateManualAdjustment!): OkResponse!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  transactionAction(data: TransactionActionDto!): OkResponse!
   updateAdmin(data: UpdateAdminInput!): admins!
   updateAdminRole(data: UpdateRoleInput!): admin_roles!
   updateAgent(data: UpdateAgentInput!): agents!
@@ -498,6 +513,8 @@ type PlayersCount {
   manual_adjustments: Int!
   player_login_logs: Int!
   rebate_transactions: Int!
+  transfer_in_transactions: Int!
+  transfer_out_transactions: Int!
   withdrawal_transactions: Int!
 }
 
@@ -521,7 +538,7 @@ type Query {
   agents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount(where: agentsWhereInput! = {}): CountDto!
   bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
-  deposits(order: deposit_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
+  deposits(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!
   depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
   gamerebates: [admin_bank_accounts!]!
   getAccesses(order: admin_accessesOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
@@ -599,6 +616,25 @@ type Token {
 
   """JWT refresh token"""
   refresh_token: JWT!
+}
+
+input TransactionActionDto {
+  approvalStatus: ApprovalStatus!
+  comment: String!
+  transactionId: String!
+  transactionType: transactionType!
+}
+
+input Transfer_in_transactionsListRelationFilter {
+  every: transfer_in_transactionsWhereInput
+  none: transfer_in_transactionsWhereInput
+  some: transfer_in_transactionsWhereInput
+}
+
+input Transfer_out_transactionsListRelationFilter {
+  every: transfer_out_transactionsWhereInput
+  none: transfer_out_transactionsWhereInput
+  some: transfer_out_transactionsWhereInput
 }
 
 input UpdateAdminInput {
@@ -919,9 +955,13 @@ type admins {
   admin_roles: admin_roles!
   cdate: DateTime!
   created_by: String!
+  deposit_transactions: [deposit_transactions!]
   enabled: Boolean!
   manual_adjustments: [manual_adjustments!]
+  transfer_in_transactions: [transfer_in_transactions!]
+  transfer_out_transactions: [transfer_out_transactions!]
   udate: DateTime!
+  withdrawal_transactions: [withdrawal_transactions!]
 }
 
 input adminsCountOrderByAggregateInput {
@@ -987,9 +1027,13 @@ input adminsWhereInput {
   admin_roles: Admin_rolesRelationFilter
   cdate: DateTimeFilter
   created_by: StringFilter
+  deposit_transactions: Deposit_transactionsListRelationFilter
   enabled: BoolFilter
   manual_adjustments: Manual_adjustmentsListRelationFilter
+  transfer_in_transactions: Transfer_in_transactionsListRelationFilter
+  transfer_out_transactions: Transfer_out_transactionsListRelationFilter
   udate: DateTimeFilter
+  withdrawal_transactions: Withdrawal_transactionsListRelationFilter
 }
 
 type agent_rebate_rates {
@@ -1184,98 +1228,12 @@ type deposit_transactions {
   players: players!
   process_time: DateTime
   processed_by: String
+  processed_by_admin: admins
   status: wallet_transaction_status!
   transaction_amount: Float!
   transaction_currency: real_currency!
   transaction_date: String!
   udate: DateTime!
-}
-
-input deposit_transactionsAvgOrderByAggregateInput {
-  game_amount: SortOrder
-  transaction_amount: SortOrder
-}
-
-input deposit_transactionsCountOrderByAggregateInput {
-  admin_bank_account_id: SortOrder
-  cdate: SortOrder
-  comment: SortOrder
-  deposit_transaction_id: SortOrder
-  game_amount: SortOrder
-  game_currency: SortOrder
-  player_id: SortOrder
-  player_remarks: SortOrder
-  process_time: SortOrder
-  processed_by: SortOrder
-  status: SortOrder
-  transaction_amount: SortOrder
-  transaction_currency: SortOrder
-  transaction_date: SortOrder
-  udate: SortOrder
-}
-
-input deposit_transactionsMaxOrderByAggregateInput {
-  admin_bank_account_id: SortOrder
-  cdate: SortOrder
-  comment: SortOrder
-  deposit_transaction_id: SortOrder
-  game_amount: SortOrder
-  game_currency: SortOrder
-  player_id: SortOrder
-  player_remarks: SortOrder
-  process_time: SortOrder
-  processed_by: SortOrder
-  status: SortOrder
-  transaction_amount: SortOrder
-  transaction_currency: SortOrder
-  transaction_date: SortOrder
-  udate: SortOrder
-}
-
-input deposit_transactionsMinOrderByAggregateInput {
-  admin_bank_account_id: SortOrder
-  cdate: SortOrder
-  comment: SortOrder
-  deposit_transaction_id: SortOrder
-  game_amount: SortOrder
-  game_currency: SortOrder
-  player_id: SortOrder
-  player_remarks: SortOrder
-  process_time: SortOrder
-  processed_by: SortOrder
-  status: SortOrder
-  transaction_amount: SortOrder
-  transaction_currency: SortOrder
-  transaction_date: SortOrder
-  udate: SortOrder
-}
-
-input deposit_transactionsOrderByWithAggregationInput {
-  _avg: deposit_transactionsAvgOrderByAggregateInput
-  _count: deposit_transactionsCountOrderByAggregateInput
-  _max: deposit_transactionsMaxOrderByAggregateInput
-  _min: deposit_transactionsMinOrderByAggregateInput
-  _sum: deposit_transactionsSumOrderByAggregateInput
-  admin_bank_account_id: SortOrder
-  cdate: SortOrder
-  comment: SortOrderInput
-  deposit_transaction_id: SortOrder
-  game_amount: SortOrder
-  game_currency: SortOrder
-  player_id: SortOrder
-  player_remarks: SortOrder
-  process_time: SortOrderInput
-  processed_by: SortOrderInput
-  status: SortOrder
-  transaction_amount: SortOrder
-  transaction_currency: SortOrder
-  transaction_date: SortOrder
-  udate: SortOrder
-}
-
-input deposit_transactionsSumOrderByAggregateInput {
-  game_amount: SortOrder
-  transaction_amount: SortOrder
 }
 
 input deposit_transactionsWhereInput {
@@ -1294,6 +1252,7 @@ input deposit_transactionsWhereInput {
   players: PlayersRelationFilter
   process_time: DateTimeNullableFilter
   processed_by: StringNullableFilter
+  processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
@@ -1595,6 +1554,8 @@ type players {
   tg_last_name: String!
   tg_photo_url: String
   tg_username: String
+  transfer_in_transactions: [transfer_in_transactions!]
+  transfer_out_transactions: [transfer_out_transactions!]
   udate: DateTime!
   user_language: String!
   wallet: player_wallets
@@ -1704,6 +1665,8 @@ input playersWhereInput {
   tg_last_name: StringFilter
   tg_photo_url: StringNullableFilter
   tg_username: StringNullableFilter
+  transfer_in_transactions: Transfer_in_transactionsListRelationFilter
+  transfer_out_transactions: Transfer_out_transactionsListRelationFilter
   udate: DateTimeFilter
   user_language: StringFilter
   wallet: Player_walletsNullableRelationFilter
@@ -1787,6 +1750,194 @@ input rebate_transactionsWhereInput {
   rebate_transaction_id: UuidFilter
 }
 
+enum transactionType {
+  DEPOSIT
+  TRANSFER_IN
+  TRANSFER_OUT
+  WITHDRAWAL
+}
+
+type transfer_in_transactions {
+  cdate: DateTime!
+  comment: String
+  counterpart_platform: String!
+  counterpart_username: String!
+  game_amount: Float!
+  game_currency: game_currency!
+  player: players!
+  player_id: String!
+  player_remarks: String!
+  process_time: DateTime
+  processed_by: String
+  processed_by_admin: admins
+  status: wallet_transaction_status!
+  transaction_amount: Float!
+  transaction_currency: real_currency!
+  transaction_date: String!
+  transfer_in_transaction_id: ID!
+  udate: DateTime!
+}
+
+input transfer_in_transactionsWhereInput {
+  AND: [transfer_in_transactionsWhereInput!]
+  NOT: [transfer_in_transactionsWhereInput!]
+  OR: [transfer_in_transactionsWhereInput!]
+  cdate: DateTimeFilter
+  comment: StringNullableFilter
+  counterpart_platform: StringFilter
+  counterpart_username: StringFilter
+  game_amount: FloatFilter
+  game_currency: Enumgame_currencyFilter
+  player: PlayersRelationFilter
+  player_id: StringFilter
+  player_remarks: StringFilter
+  process_time: DateTimeNullableFilter
+  processed_by: StringNullableFilter
+  processed_by_admin: AdminsNullableRelationFilter
+  status: Enumwallet_transaction_statusFilter
+  transaction_amount: FloatFilter
+  transaction_currency: Enumreal_currencyFilter
+  transaction_date: StringFilter
+  transfer_in_transaction_id: UuidFilter
+  udate: DateTimeFilter
+}
+
+type transfer_out_transactions {
+  cdate: DateTime!
+  comment: String
+  counterpart_platform: String!
+  counterpart_username: String!
+  game_amount: Float!
+  game_currency: game_currency!
+  player: players!
+  player_id: String!
+  player_remarks: String!
+  process_time: DateTime
+  processed_by: String
+  processed_by_admin: admins
+  status: wallet_transaction_status!
+  transaction_amount: Float!
+  transaction_currency: real_currency!
+  transaction_date: String!
+  transfer_out_transaction_id: ID!
+  udate: DateTime!
+}
+
+input transfer_out_transactionsAvgOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input transfer_out_transactionsCountOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_out_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_out_transactionsMaxOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_out_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_out_transactionsMinOrderByAggregateInput {
+  cdate: SortOrder
+  comment: SortOrder
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrder
+  processed_by: SortOrder
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_out_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_out_transactionsOrderByWithAggregationInput {
+  _avg: transfer_out_transactionsAvgOrderByAggregateInput
+  _count: transfer_out_transactionsCountOrderByAggregateInput
+  _max: transfer_out_transactionsMaxOrderByAggregateInput
+  _min: transfer_out_transactionsMinOrderByAggregateInput
+  _sum: transfer_out_transactionsSumOrderByAggregateInput
+  cdate: SortOrder
+  comment: SortOrderInput
+  counterpart_platform: SortOrder
+  counterpart_username: SortOrder
+  game_amount: SortOrder
+  game_currency: SortOrder
+  player_id: SortOrder
+  player_remarks: SortOrder
+  process_time: SortOrderInput
+  processed_by: SortOrderInput
+  status: SortOrder
+  transaction_amount: SortOrder
+  transaction_currency: SortOrder
+  transaction_date: SortOrder
+  transfer_out_transaction_id: SortOrder
+  udate: SortOrder
+}
+
+input transfer_out_transactionsSumOrderByAggregateInput {
+  game_amount: SortOrder
+  transaction_amount: SortOrder
+}
+
+input transfer_out_transactionsWhereInput {
+  AND: [transfer_out_transactionsWhereInput!]
+  NOT: [transfer_out_transactionsWhereInput!]
+  OR: [transfer_out_transactionsWhereInput!]
+  cdate: DateTimeFilter
+  comment: StringNullableFilter
+  counterpart_platform: StringFilter
+  counterpart_username: StringFilter
+  game_amount: FloatFilter
+  game_currency: Enumgame_currencyFilter
+  player: PlayersRelationFilter
+  player_id: StringFilter
+  player_remarks: StringFilter
+  process_time: DateTimeNullableFilter
+  processed_by: StringNullableFilter
+  processed_by_admin: AdminsNullableRelationFilter
+  status: Enumwallet_transaction_statusFilter
+  transaction_amount: FloatFilter
+  transaction_currency: Enumreal_currencyFilter
+  transaction_date: StringFilter
+  transfer_out_transaction_id: UuidFilter
+  udate: DateTimeFilter
+}
+
 enum wallet_transaction_status {
   FAILED
   PENDING
@@ -1805,6 +1956,7 @@ type withdrawal_transactions {
   players: players!
   process_time: DateTime
   processed_by: String
+  processed_by_admin: admins
   status: wallet_transaction_status!
   transaction_amount: Float!
   transaction_currency: real_currency!
@@ -1915,6 +2067,7 @@ input withdrawal_transactionsWhereInput {
   players: PlayersRelationFilter
   process_time: DateTimeNullableFilter
   processed_by: StringNullableFilter
+  processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
