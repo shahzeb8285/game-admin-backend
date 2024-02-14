@@ -36,10 +36,14 @@ const ACCESS = {
   //VIEW
   VIEW_DEPOSIT_LIST: 'getDeposits',
   VIEW_WITHDRAWAL_LIST: 'getWithdrawals',
-  VIEW_FINANCIAL_STATEMENT:"getFinancialStatement",
+  VIEW_TRANSFER_IN_LIST: 'getTransferIn',
+  VIEW_TRANSFER_OUT_LIST: 'getTransferOut',
+  VIEW_FINANCIAL_STATEMENT: 'getFinancialStatement',
   //ACTIONS
   EDIT_WITHDRAWAL: 'updateWithdrawal',
   EDIT_DEPOSIT: 'updateDeposit',
+  EDIT_TRANSFER_IN: 'updateTransferIn',
+  EDIT_TRANSFER_OUT: 'updateTransferOut',
 
   //====SETTING PERMISSIONS====
   //VIEW

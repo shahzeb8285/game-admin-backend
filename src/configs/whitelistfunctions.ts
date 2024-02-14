@@ -1,5 +1,3 @@
-const whitelistFunctions = [
-"transactionAction"
-]
+const whitelistFunctions = ['transactionAction'];
 
-export default whitelistFunctions
+export default whitelistFunctions;
