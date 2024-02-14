@@ -17,6 +17,8 @@ import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transaction
 import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
 import { GameRecordRoundsWhereInput } from 'src/players/entities/game-record-rounds-where.input';
 import moment from 'moment';
+import { transfer_out_transactionsWhereInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-where.input';
+import { transfer_in_transactionsWhereInput } from 'src/@generated/transfer-in-transactions/transfer-in-transactions-where.input';
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -113,6 +115,30 @@ export class CountsResolver {
     where: WithdrawalTransactionWhereInput,
   ) {
     const counts = await this.prismaService.withdrawal_transactions.count({
+      where,
+    });
+    return {
+      counts,
+    };
+  }
+  @Query(() => CountDto)
+  async transferOutCount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: transfer_out_transactionsWhereInput,
+  ) {
+    const counts = await this.prismaService.transfer_out_transactions.count({
+      where,
+    });
+    return {
+      counts,
+    };
+  }
+  @Query(() => CountDto)
+  async transferInCount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: transfer_in_transactionsWhereInput,
+  ) {
+    const counts = await this.prismaService.transfer_in_transactions.count({
       where,
     });
     return {

@@ -553,6 +553,8 @@ type Query {
   manualAdjustmentCount(where: manual_adjustmentsWhereInput! = {}): CountDto!
   manualadjustments(order: manual_adjustmentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
+  transferInCount(where: transfer_in_transactionsWhereInput! = {}): CountDto!
+  transferOutCount(where: transfer_out_transactionsWhereInput! = {}): CountDto!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
   usersGameHistoryCount(where: GameRecordRoundsWhereInput! = {}): CountDto!
