@@ -87,15 +87,12 @@ export class FinancesService {
     }
   }
 
-
-
-
   async updatePlayerGameRebates(input: UpdateGameRebateInput, adminId: string) {
     const player = await this.prisma.players.findFirst({
       where: { player_id: input.id },
       select: {
         agent_id: true,
-        player_id:true
+        player_id: true,
       },
     });
 
@@ -136,9 +133,6 @@ export class FinancesService {
       });
     }
   }
-
-
-
 
   getDeposits({ skip, take, where, orderBy }) {
     return this.prisma.deposit_transactions.findMany({
@@ -214,7 +208,8 @@ export class FinancesService {
       select: {
         agent_id: true,
         player_id: true,
-        tg_username: true,
+        tg_id: true,
+        name: true,
         agent: {
           select: {
             agent_name: true,
