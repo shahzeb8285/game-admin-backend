@@ -34,6 +34,12 @@ import { transfer_in_transactionsOrderByWithAggregationInput } from 'src/@genera
 import { transfer_out_transactions } from 'src/@generated/transfer-out-transactions/transfer-out-transactions.model';
 import { transfer_out_transactionsWhereInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-where.input';
 import { transfer_out_transactionsOrderByWithAggregationInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-order-by-with-aggregation.input';
+import { GetGameRebateInput } from './dto/get-game-rebate-input';
+import {
+  AgentGameRebateEntity,
+  PlayerGameRebateEntity,
+} from './entities/gamerebate.entity';
+import { UpdateGameRebateInput } from './dto/update-game-rebate.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
@@ -121,6 +127,23 @@ export class FinancesResolver {
     return this.financesService.getBankAccounts({ skip, take, where, orderBy });
   }
 
+  @Query(() => AgentGameRebateEntity)
+  async getAgentGameRebate(
+    @Args({ name: 'where', defaultValue: {} })
+    where: GetGameRebateInput,
+  ) {
+    const resp = await this.financesService.getAgentGameRebate(where.id);
+    return resp;
+  }
+
+  @Query(() => PlayerGameRebateEntity)
+  getPlayerGameRebate(
+    @Args({ name: 'where', defaultValue: {} })
+    where: GetGameRebateInput,
+  ) {
+    return this.financesService.getPlayerGameRebate(where.id);
+  }
+
   @Mutation(() => withdrawal_transactions)
   updateWithdrawal(@Args('data') input: UpdateFinanceInput) {
     return this.financesService.updateWithdrawal(input);
@@ -146,7 +169,6 @@ export class FinancesResolver {
       processedBy: user.admin_id,
     };
 
-    console.log({ payload });
     const securityConfig = this.configService.get<AppConfig>('appConfig');
     const req = this.httpService.post(
       `${securityConfig.externalApiPath}/transactionRequest`,
@@ -162,6 +184,19 @@ export class FinancesResolver {
     return this.financesService.updateBankAccount(input);
   }
 
-  @Query(() => [admin_bank_accounts], { name: 'gamerebates' })
-  getGameRebates() {}
+  @Mutation(() => OkResponse)
+  updateAgentGameRebates(
+    @Args('data') input: UpdateGameRebateInput,
+    @UserEntity() user: Admin,
+  ) {
+    return this.financesService.updateAgentGameRebates(input, user.admin_id);
+  }
+
+  @Mutation(() => OkResponse)
+  updatePlayerGameRebates(
+    @Args('data') input: UpdateGameRebateInput,
+    @UserEntity() user: Admin,
+  ) {
+    return this.financesService.updatePlayerGameRebates(input, user.admin_id);
+  }
 }

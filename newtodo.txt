@@ -1,7 +1,6 @@
 1. change tg_username to tg_id
 2. in user list add filters with agent name and username ( tg_id) 
 3. user bonus history -> username -> tg_id, add filter with bonus type 
-4.change all username colomn to tg_id
 5. user game history filters -> tg_id, system name, game_category, and game name
 6. user login history add filter - > ip address
 7. manual adjustment filter -> tg_id, adjusted by
@@ -16,3 +15,18 @@
 12. in agent list if there is no child then remvoe the arrow icon
 
 
+
+
+
+
+
+
+1.change all username colomn to tg_id
+2. in deposit/withdrae the status is not visible on small screen
+3. sorting on all columns 
+4. agent rebate page and player rebate rate ( ref asana )
+ 4.1 fetch category from fl_categories 
+ 4.2. fetch rates from agent_rebate_rates ( if not found place 0)
+ 4.3. if rate is updated mark last rate  is-active = false
+        and create new record
+        

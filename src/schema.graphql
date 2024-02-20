@@ -67,6 +67,13 @@ input AdminsRelationFilter {
   isNot: adminsWhereInput
 }
 
+type AgentGameRebateEntity {
+  agent: agents
+  agentRebates: [agent_rebate_rates!]
+  categories: [fl_categories!]
+  parentRebates: [agent_rebate_rates!]
+}
+
 input Agent_rebate_ratesListRelationFilter {
   every: agent_rebate_ratesWhereInput
   none: agent_rebate_ratesWhereInput
@@ -260,6 +267,12 @@ input FloatNullableFilter {
   notIn: [Float!]
 }
 
+input GameRebateInput {
+  categoryId: Int!
+  newRate: Int!
+  previousRebateId: String!
+}
+
 input GameRecordRoundsWhereInput {
   cdate: DateFilter
   game_category: String
@@ -282,6 +295,10 @@ type Game_round_infosCount {
 input Game_round_infosRelationFilter {
   is: game_round_infosWhereInput
   isNot: game_round_infosWhereInput
+}
+
+input GetGameRebateInput {
+  id: String!
 }
 
 input IntFilter {
@@ -334,8 +351,10 @@ type Mutation {
   updateAdmin(data: UpdateAdminInput!): admins!
   updateAdminRole(data: UpdateRoleInput!): admin_roles!
   updateAgent(data: UpdateAgentInput!): agents!
+  updateAgentGameRebates(data: UpdateGameRebateInput!): OkResponse!
   updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
   updateDeposit(data: UpdateFinanceInput!): deposit_transactions!
+  updatePlayerGameRebates(data: UpdateGameRebateInput!): OkResponse!
   updateUser(data: UpdatePlayerInput!): players!
   updateWithdrawal(data: UpdateFinanceInput!): withdrawal_transactions!
 }
@@ -487,6 +506,13 @@ type OkResponse {
   message: String!
 }
 
+type PlayerGameRebateEntity {
+  categories: [fl_categories!]
+  parentRebates: [agent_rebate_rates!]
+  player: players
+  player_rebate: [player_rebate_rates!]
+}
+
 type Player_bank_accountsCount {
   withdrawal_transactions: Int!
 }
@@ -540,11 +566,12 @@ type Query {
   bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
   deposits(order: deposit_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
   depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
-  gamerebates: [admin_bank_accounts!]!
   getAccesses(order: admin_accessesOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
+  getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
   getMe: admins!
+  getPlayerGameRebate(where: GetGameRebateInput! = {}): PlayerGameRebateEntity!
   getTransferIn(order: transfer_in_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_in_transactionsWhereInput! = {}): [transfer_in_transactions!]!
   getTransferOut(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!
   getUserLoginHistory(order: player_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
@@ -668,6 +695,11 @@ input UpdateBankAccountInput {
 input UpdateFinanceInput {
   id: String!
   is_enabled: Boolean!
+}
+
+input UpdateGameRebateInput {
+  id: String!
+  rabates: [GameRebateInput!]!
 }
 
 input UpdatePlayerInput {
@@ -1596,6 +1628,16 @@ input player_login_logsWhereInput {
   player_id: StringFilter
   player_login_log_id: UuidFilter
   players: PlayersRelationFilter
+}
+
+type player_rebate_rates {
+  cdate: DateTime!
+  created_by: String!
+  is_active: Boolean!
+  player_id: String!
+  player_rebate_rate_id: ID!
+  rebate: Float!
+  rebate_category_id: Int!
 }
 
 type player_wallets {
