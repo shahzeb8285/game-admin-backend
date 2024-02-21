@@ -33,7 +33,7 @@ export class AgentAuthService {
     };
   }
 
-  async getAgentById(agentId: string) {
+  async validateAgent(agentId: string) {
     return this.prisma.agents.findUnique({
       where: { agent_id: agentId },
     });

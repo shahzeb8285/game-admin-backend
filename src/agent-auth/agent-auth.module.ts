@@ -1,4 +1,3 @@
-// agent-auth.module.ts
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AgentAuthService } from './agent-auth.service';
@@ -8,6 +7,8 @@ import { PasswordService } from 'src/auth/password.service';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { SecurityConfig } from 'src/common/configs/config.interface';
+import { JwtStrategy } from './jwt.strategy';
+import { GqlAuthGuard } from './gql-auth.guard';
 
 @Module({
   imports: [
@@ -29,7 +30,10 @@ import { SecurityConfig } from 'src/common/configs/config.interface';
     AgentAuthService,
     AgentAuthResolver,
     PrismaService,
+    JwtStrategy,
+    GqlAuthGuard,
     PasswordService,
   ],
+  exports: [GqlAuthGuard],
 })
 export class AgentAuthModule {}

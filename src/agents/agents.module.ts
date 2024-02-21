@@ -4,6 +4,6 @@ import { AgentsResolver } from './agents.resolver';
 import { PasswordService } from '../auth/password.service';
 
 @Module({
-  providers: [AgentsResolver, AgentsService,PasswordService]
+  providers: [AgentsResolver, AgentsService, PasswordService],
 })
 export class AgentsModule {}

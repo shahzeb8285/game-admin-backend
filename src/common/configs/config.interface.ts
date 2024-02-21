@@ -3,14 +3,12 @@ export interface Config {
   cors: CorsConfig;
   graphql: GraphqlConfig;
   security: SecurityConfig;
-  appConfig:AppConfig
+  appConfig: AppConfig;
 }
-
 
 export interface AppConfig {
   externalApiPath: string;
 }
-
 
 export interface NestConfig {
   port: number;
@@ -19,8 +17,6 @@ export interface NestConfig {
 export interface CorsConfig {
   enabled: boolean;
 }
-
-
 
 export interface GraphqlConfig {
   playgroundEnabled: boolean;

@@ -570,6 +570,7 @@ type Query {
   getAccesses(order: admin_accessesOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_accessesWhereInput! = {}): [admin_accesses!]!
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
+  getAgent: agents!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
   getMe: admins!
   getPlayerGameRebate(where: GetGameRebateInput! = {}): PlayerGameRebateEntity!
