@@ -1,10 +1,10 @@
 // agent-auth.resolver.ts
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AgentAuthService } from './agent-auth.service';
 // import { agents as Agent } from '../@generated/agents/agents.model';
 import { UseGuards } from '@nestjs/common';
+import { agents } from 'src/@generated/agents/agents.model';
 import { Token } from 'src/auth/models/token.model';
-import { agents as Agent, agents } from 'src/@generated/agents/agents.model';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { GqlAuthGuard } from './gql-auth.guard';
 
