@@ -340,6 +340,7 @@ input Manual_adjustmentsListRelationFilter {
 }
 
 type Mutation {
+  agentLogin(agentName: String!, password: String!): Token!
   createAdmin(data: CreateAdminInput!): admins!
   createAdminRole(data: CreateRoleInput!): admin_roles!
   createAgent(data: CreateAgentInput!): agents!
