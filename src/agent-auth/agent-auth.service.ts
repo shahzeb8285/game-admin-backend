@@ -32,4 +32,10 @@ export class AgentAuthService {
       refresh_token: this.jwtService.sign(payload),
     };
   }
+
+  async getAgentById(agentId: string) {
+    return this.prisma.agents.findUnique({
+      where: { agent_id: agentId },
+    });
+  }
 }
