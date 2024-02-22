@@ -39,10 +39,10 @@ export class PlayersResolver {
     @Args({ name: 'where', defaultValue: {} }) where: PlayerWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args({ name: 'order', defaultValue: {} }) orderBy: playersOrderByWithAggregationInput,
-
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: playersOrderByWithAggregationInput,
   ) {
-    return this.playersService.findAll({ skip, take, where ,orderBy});
+    return this.playersService.findAll({ skip, take, where, orderBy });
   }
 
   @Query(() => [player_login_logs])
@@ -50,10 +50,15 @@ export class PlayersResolver {
     @Args({ name: 'where', defaultValue: {} }) where: PlayerLoginLogWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args({ name: 'order', defaultValue: {} }) orderBy: player_login_logsOrderByWithAggregationInput,
-
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: player_login_logsOrderByWithAggregationInput,
   ) {
-    return this.playersService.getUserLoginHistory({ skip, take, where ,orderBy});
+    return this.playersService.getUserLoginHistory({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
   }
 
   @Query(() => [ManualAdjustment], { name: 'manualadjustments' })
@@ -62,10 +67,15 @@ export class PlayersResolver {
     where: ManualAdjustmentWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args({ name: 'order', defaultValue: {} }) orderBy: manual_adjustmentsOrderByWithAggregationInput,
-
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: manual_adjustmentsOrderByWithAggregationInput,
   ) {
-    return this.playersService.getManualAdjustments({ skip, take, where,orderBy });
+    return this.playersService.getManualAdjustments({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
   }
 
   @Query(() => [rebate_transactions])
@@ -74,10 +84,15 @@ export class PlayersResolver {
     where: rebate_transactionsWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args({ name: 'order', defaultValue: {} }) orderBy: rebate_transactionsOrderByWithAggregationInput,
-
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: rebate_transactionsOrderByWithAggregationInput,
   ) {
-    return this.playersService.findAllUserBonusHistory({ skip, take, where ,orderBy});
+    return this.playersService.findAllUserBonusHistory({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
   }
 
   @Mutation(() => Player)

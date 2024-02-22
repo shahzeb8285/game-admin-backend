@@ -75,4 +75,17 @@ export class AgentAuthService {
       },
     });
   }
+  findAllMyPlayers({ skip, take, where, orderBy, user }) {
+    return this.prisma.players.findMany({
+      skip,
+      orderBy,
+      take,
+      where: {
+        ...where,
+        agent_id: {
+          equals: user.agent_id,
+        },
+      },
+    });
+  }
 }

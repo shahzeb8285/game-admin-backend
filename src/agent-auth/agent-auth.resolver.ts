@@ -8,9 +8,11 @@ import { UserEntity } from 'src/common/decorators/user.decorator';
 import { GqlAuthGuard } from './gql-auth.guard';
 import { agentsOrderByWithAggregationInput } from 'src/@generated/agents/agents-order-by-with-aggregation.input';
 import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents-where.input';
+import { players as Player } from '../@generated/players/players.model';
+import { playersOrderByWithAggregationInput } from '../@generated/players/players-order-by-with-aggregation.input';
+import { playersWhereInput as PlayerWhereInput } from '../@generated/players/players-where.input';
 
 @Resolver('AgentAuth')
-// @UseGuards(GqlAuthGuard)
 export class AgentAuthResolver {
   constructor(private readonly agentAuthService: AgentAuthService) {}
 
@@ -39,6 +41,25 @@ export class AgentAuthResolver {
     orderBy: agentsOrderByWithAggregationInput,
   ) {
     return this.agentAuthService.findAllMyAgents({
+      skip,
+      take,
+      where,
+      orderBy,
+      user,
+    });
+  }
+
+  @Query(() => [Player])
+  @UseGuards(GqlAuthGuard)
+  getMyPlayers(
+    @UserEntity() user,
+    @Args({ name: 'where', defaultValue: {} }) where: PlayerWhereInput,
+    @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
+    @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: playersOrderByWithAggregationInput,
+  ) {
+    return this.agentAuthService.findAllMyPlayers({
       skip,
       take,
       where,

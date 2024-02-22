@@ -574,6 +574,7 @@ type Query {
   getAgentMe: agents!
   getMe: admins!
   getMyAgents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
+  getMyPlayers(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   getPlayerGameRebate(where: GetGameRebateInput! = {}): PlayerGameRebateEntity!
   getTransferIn(order: transfer_in_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_in_transactionsWhereInput! = {}): [transfer_in_transactions!]!
   getTransferOut(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!
