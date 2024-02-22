@@ -403,6 +403,7 @@ input Manual_adjustmentsListRelationFilter {
 }
 
 type Mutation {
+  agentLogin(agentName: String!, password: String!): Token!
   createAdmin(data: CreateAdminInput!): admins!
   createAdminRole(data: CreateRoleInput!): admin_roles!
   createAgent(data: CreateAgentInput!): agents!
@@ -633,9 +634,12 @@ type Query {
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
+  getAgentMe: agents!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
+  getMyAgents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
+  getMyPlayers(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   getPlayerGameRebate(where: GetGameRebateInput! = {}): PlayerGameRebateEntity!
   getTransferIn(order: transfer_in_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_in_transactionsWhereInput! = {}): [transfer_in_transactions!]!
   getTransferOut(order: transfer_out_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_out_transactionsWhereInput! = {}): [transfer_out_transactions!]!

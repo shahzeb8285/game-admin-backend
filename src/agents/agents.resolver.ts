@@ -31,10 +31,10 @@ export class AgentsResolver {
     @Args({ name: 'where', defaultValue: {} }) where: AgentWhereInput,
     @Args({ name: 'take', type: () => Int, defaultValue: 10 }) take: number,
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
-    @Args({ name: 'order', defaultValue: {} }) orderBy: agentsOrderByWithAggregationInput,
-
+    @Args({ name: 'order', defaultValue: {} })
+    orderBy: agentsOrderByWithAggregationInput,
   ) {
-    return this.agentsService.findAll({ skip, take, where,orderBy });
+    return this.agentsService.findAll({ skip, take, where, orderBy });
   }
 
   @Mutation(() => Agent)
