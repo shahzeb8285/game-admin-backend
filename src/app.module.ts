@@ -15,7 +15,7 @@ import { AgentsModule } from './agents/agents.module';
 import { PlayersModule } from './players/players.module';
 import { FinancesModule } from './finances/finances.module';
 import { CountsModule } from './counts/counts.module';
-import { AgentAuthModule } from './agent-auth/agent-auth.module';
+// import { AgentAuthModule } from './agent-auth/agent-auth.module';
 
 @Module({
   imports: [
@@ -50,7 +50,7 @@ import { AgentAuthModule } from './agent-auth/agent-auth.module';
 
     CountsModule,
 
-    AgentAuthModule,
+    // AgentAuthModule,
     // UsersModule,
     // PostsModule,
   ],
