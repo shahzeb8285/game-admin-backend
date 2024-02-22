@@ -58,4 +58,21 @@ export class AgentAuthService {
       where: { agent_id: agentId },
     });
   }
+
+  findAllMyAgents({ skip, take, where, orderBy, user }) {
+    return this.prisma.agents.findMany({
+      skip,
+      orderBy,
+      take,
+      where: {
+        ...where,
+        parent_agent_id: {
+          equals: user.agent_id,
+        },
+      },
+      include: {
+        parent: true,
+      },
+    });
+  }
 }

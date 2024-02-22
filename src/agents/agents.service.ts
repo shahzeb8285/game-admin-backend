@@ -50,7 +50,7 @@ export class AgentsService {
     });
   }
 
-  findAll({ skip, take, where,orderBy}) {
+  findAll({ skip, take, where, orderBy }) {
     return this.prisma.agents.findMany({
       skip,
       orderBy,
