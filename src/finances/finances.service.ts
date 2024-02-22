@@ -3,15 +3,18 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { PrismaService } from 'nestjs-prisma';
+import { bank_method } from 'src/@generated/prisma/bank-method.enum';
+import { wallet_transaction_status } from 'src/@generated/prisma/wallet-transaction-status.enum';
 import {
   CreateBankAccountInput,
   UpdateBankAccountInput,
 } from './dto/create-finance.input';
 import { UpdateFinanceInput } from './dto/update-finance.input';
-import { PrismaService } from 'nestjs-prisma';
-import { bank_method } from 'src/@generated/prisma/bank-method.enum';
-import { wallet_transaction_status } from 'src/@generated/prisma/wallet-transaction-status.enum';
 import { UpdateGameRebateInput } from './dto/update-game-rebate.input';
+import { FinancialStatementEntity } from './entities/financialstatement.entity';
+import { FinancialStatementWhereInput } from './dto/financialstatement-where.input';
+import { IncomeStatementWhereInput } from './dto/income-statement.where.input';
 
 @Injectable()
 export class FinancesService {
@@ -158,6 +161,153 @@ export class FinancesService {
     });
   }
 
+  async getIncomeStatementByParent(input: IncomeStatementWhereInput) {
+    const fromDate = input.fromDate;
+    const toDate = input.toDate;
+    const parentId = input.parentId;
+
+    const agentQuery = ` select a.agent_id, a.agent_name, a.parent_agent_id, sum(effective_bet_amount) as "effective_bet", sum(rebate_income) as "rebate_income", sum(rebate_expense) as "rebate_expense", 
+    sum(game_pnl_income) as "pnl", sum(game_pnl_expense) as "pnl_expense", 
+    sum(rebate_income) - sum(rebate_expense) - sum(game_pnl_income) + sum(game_pnl_expense) as "net_income"
+    from agent_records_by_day arbd 
+      join agents a on a.agent_id = arbd.agent_id and a.enabled = true
+      where arbd.game_date BETWEEN '${fromDate}' AND '${toDate}' AND a.parent_agent_id = '${parentId}'
+      group by a.agent_id ;`;
+
+    const playerQuery = ` select p.player_id, p.agent_id , sum(effective_bet_amount) as "effective_bet", sum(pnl) as "pnl", sum(rebate_amount) as "rebate"
+    from game_records_by_day grbd 
+    join players p on p.player_id = grbd.player_id and p.enabled = true
+    where game_date BETWEEN '${fromDate}' AND '${toDate}'
+    AND p.agent_id = '${parentId}'
+    group by p.player_id 
+    ; `;
+
+    const agentResponse = await this.prisma.$queryRawUnsafe(agentQuery);
+    const playerResponse = await this.prisma.$queryRawUnsafe(playerQuery);
+
+
+    return {
+      agents:agentResponse,
+      players:playerResponse
+    }
+  }
+
+  async getFinancialStatement(where: FinancialStatementWhereInput) {
+    const fromDate = where.fromDate;
+    const toDate = where.toDate;
+    const agentName = where.agentName;
+    const playerName = where.playerName;
+
+    const agentWhereQuery = agentName
+      ? `AND  LOWER(a.agent_name) LIKE '%${agentName.toLowerCase()}%' `
+      : '';
+
+    const playerWhereQuery = playerName
+      ? `AND  LOWER(p.tg_id) LIKE '%${playerName.toLowerCase()}%' `
+      : '';
+
+    const q1 = `WITH combined_transactions AS (
+      SELECT 
+        dt.player_id, 
+        dt.game_amount
+      FROM 
+        deposit_transactions dt 
+      WHERE 
+        dt.status = 'SUCCESS' 
+        AND dt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      
+      UNION ALL
+      
+      SELECT 
+        tit.player_id, 
+        tit.game_amount
+      FROM 
+        transfer_in_transactions tit 
+      WHERE 
+        tit.status = 'SUCCESS' 
+        AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+    )
+    
+    SELECT 
+      p.player_id, 
+      p.tg_id,
+      a.agent_name,
+      COUNT(*) AS deposit_number, 
+      SUM(game_amount) AS deposit_amount
+    FROM combined_transactions ct
+    JOIN players p ON p.player_id = ct.player_id AND p.enabled = TRUE
+    LEFT JOIN agents a ON p.agent_id = a.agent_id AND a.enabled = TRUE
+    WHERE 1=1 ${playerWhereQuery} ${agentWhereQuery}
+
+    GROUP BY p.player_id, p.tg_id, a.agent_name
+    ;
+
+
+    `;
+
+    const q2 = `with combined_transactions as (
+    SELECT 
+      wt.player_id, 
+      wt.game_amount
+    FROM 
+      withdrawal_transactions wt 
+    WHERE 
+      wt.status = 'SUCCESS' 
+      AND wt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+    
+    UNION ALL
+    
+    SELECT 
+      tit.player_id, 
+      tit.game_amount
+    FROM 
+      transfer_out_transactions tit 
+    WHERE 
+      tit.status = 'SUCCESS' 
+      AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      )
+  SELECT 
+    p.player_id, 
+    COUNT(*) AS withdrawal_number, 
+    SUM(game_amount) AS withdrawal_amount
+  FROM combined_transactions ct
+  join players p on p.player_id = ct.player_id and p.enabled = true
+  left join agents a on p.agent_id = a.agent_id and a.enabled = true
+  WHERE 1=1 ${playerWhereQuery} ${agentWhereQuery} 
+
+  GROUP BY p.player_id, a.agent_name;
+
+  `;
+
+    const q3 = `select p.player_id, sum(pnl)
+    from game_records_by_period grbp
+    join players p on p.player_id = grbp.player_id and p.enabled = true
+    left join agents a on p.agent_id = a.agent_id and a.enabled = true
+    where grbp.game_date BETWEEN '${fromDate}' AND '${toDate}' 
+     ${playerWhereQuery} ${agentWhereQuery}
+
+    group by p.player_id, a.agent_name
+    ;
+
+    `;
+
+    const q1Resp = await this.prisma.$queryRawUnsafe(q1);
+
+    const q2Resp = await this.prisma.$queryRawUnsafe(q2);
+    const q3Resp = await this.prisma.$queryRawUnsafe(q3);
+
+    const response = {
+      deposits: q1Resp,
+      withdrawals: q2Resp,
+      pnl: q3Resp,
+    };
+
+    const replacer = (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value;
+    const finalResp = JSON.parse(JSON.stringify(response, replacer));
+    console.log(finalResp.pnl);
+    return finalResp;
+  }
   async getAgentGameRebate(agentId: string) {
     const agent = await this.prisma.agents.findFirst({
       where: { agent_id: agentId },

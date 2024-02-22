@@ -30,3 +30,10 @@
  4.3. if rate is updated mark last rate  is-active = false
         and create new record
         
+
+
+
+
+
+
+1. if the rebate rate is greated then show error in red text

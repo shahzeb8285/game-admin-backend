@@ -40,6 +40,12 @@ import {
   PlayerGameRebateEntity,
 } from './entities/gamerebate.entity';
 import { UpdateGameRebateInput } from './dto/update-game-rebate.input';
+import { FinancialStatementEntity } from './entities/financialstatement.entity';
+import { FinancialStatementWhereInput } from './dto/financialstatement-where.input';
+import { IncomeStatementWhereInput } from './dto/income-statement.where.input';
+import { IncomeStatementEntity } from './entities/incomestatement.entity';
+import { RebateShare } from './entities/rebate_share.entity';
+import { RebateShareInput } from './dto/rebate_share.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
@@ -103,6 +109,8 @@ export class FinancesResolver {
     return data;
   }
 
+  
+
   @Query(() => [withdrawal_transactions], { name: 'withdrawals' })
   getWithdrawals(
     @Args({ name: 'where', defaultValue: {} })
@@ -143,6 +151,36 @@ export class FinancesResolver {
   ) {
     return this.financesService.getPlayerGameRebate(where.id);
   }
+
+
+  @Query(() => FinancialStatementEntity)
+  getFinancialStatement(
+    @Args({ name: 'where', defaultValue: {} })
+    where: FinancialStatementWhereInput,
+  ) {
+    return this.financesService.getFinancialStatement(where);
+  }
+
+
+
+
+  @Query(() => IncomeStatementEntity)
+  getIncomeStatement(
+    @Args({ name: 'where', defaultValue: {} })
+    where: IncomeStatementWhereInput,
+  ) {
+    return this.financesService.getIncomeStatementByParent(where);
+  }
+
+
+
+  // @Query(() => RebateShare)
+  // getAgentShare(
+  //   @Args({ name: 'data', defaultValue: {} })
+  //   input: RebateShareInput,
+  // ) {
+  //   return this.financesService.getIncomeStatementByParent(data);
+  // }
 
   @Mutation(() => withdrawal_transactions)
   updateWithdrawal(@Args('data') input: UpdateFinanceInput) {

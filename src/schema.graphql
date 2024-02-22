@@ -236,6 +236,38 @@ input Enumwallet_transaction_statusFilter {
   notIn: [wallet_transaction_status!]
 }
 
+type FinancialStatementDepositEntity {
+  agent_name: String!
+  deposit_amount: Int!
+  deposit_number: Int!
+  player_id: String!
+  tg_id: String!
+}
+
+type FinancialStatementEntity {
+  deposits: [FinancialStatementDepositEntity!]
+  pnl: [FinancialStatementPnlEntity!]
+  withdrawals: [FinancialStatementWithdrawEntity!]
+}
+
+type FinancialStatementPnlEntity {
+  player_id: String!
+  sum: String!
+}
+
+input FinancialStatementWhereInput {
+  agentName: String
+  fromDate: String!
+  playerName: String
+  toDate: String!
+}
+
+type FinancialStatementWithdrawEntity {
+  player_id: String!
+  withdrawal_amount: Int!
+  withdrawal_number: Int!
+}
+
 type Fl_categoriesCount {
   game_record_rounds: Int!
 }
@@ -299,6 +331,37 @@ input Game_round_infosRelationFilter {
 
 input GetGameRebateInput {
   id: String!
+}
+
+type IncomeStatementAgentEntity {
+  agent_id: String!
+  agent_name: String!
+  effective_bet: Int!
+  net_income: Int!
+  parent_agent_id: String!
+  pnl: Int!
+  pnl_expense: Int!
+  rebate_expense: Int!
+  rebate_income: Int!
+}
+
+type IncomeStatementEntity {
+  agents: [IncomeStatementAgentEntity!]
+  players: [IncomeStatementPlayerEntity!]
+}
+
+type IncomeStatementPlayerEntity {
+  agent_id: String!
+  effective_bet: Int!
+  player_id: String!
+  pnl: Int!
+  rebate: Int!
+}
+
+input IncomeStatementWhereInput {
+  fromDate: String!
+  parentId: String!
+  toDate: String!
 }
 
 input IntFilter {
@@ -570,6 +633,8 @@ type Query {
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
+  getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
+  getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
   getPlayerGameRebate(where: GetGameRebateInput! = {}): PlayerGameRebateEntity!
   getTransferIn(order: transfer_in_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: transfer_in_transactionsWhereInput! = {}): [transfer_in_transactions!]!
