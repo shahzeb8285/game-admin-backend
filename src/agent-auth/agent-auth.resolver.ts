@@ -5,12 +5,13 @@ import { agents as Agent } from '../@generated/agents/agents.model';
 import { UseGuards } from '@nestjs/common';
 import { Token } from 'src/auth/models/token.model';
 import { UserEntity } from 'src/common/decorators/user.decorator';
-import { GqlAuthGuard } from './gql-auth.guard';
+// import { GqlAuthGuard } from './gql-auth.guard';
 import { agentsOrderByWithAggregationInput } from 'src/@generated/agents/agents-order-by-with-aggregation.input';
 import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents-where.input';
 import { players as Player } from '../@generated/players/players.model';
 import { playersOrderByWithAggregationInput } from '../@generated/players/players-order-by-with-aggregation.input';
 import { playersWhereInput as PlayerWhereInput } from '../@generated/players/players-where.input';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 
 @Resolver('AgentAuth')
 export class AgentAuthResolver {
