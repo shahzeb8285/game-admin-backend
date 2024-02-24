@@ -301,7 +301,7 @@ input FloatNullableFilter {
 
 input GameRebateInput {
   categoryId: Int!
-  newRate: Int!
+  newRate: Float!
   previousRebateId: String!
 }
 
@@ -336,13 +336,13 @@ input GetGameRebateInput {
 type IncomeStatementAgentEntity {
   agent_id: String!
   agent_name: String!
-  effective_bet: Int!
-  net_income: Int!
+  effective_bet: Float!
+  net_income: Float!
   parent_agent_id: String!
-  pnl: Int!
-  pnl_expense: Int!
-  rebate_expense: Int!
-  rebate_income: Int!
+  pnl: Float!
+  pnl_expense: Float!
+  rebate_expense: Float!
+  rebate_income: Float!
 }
 
 type IncomeStatementEntity {
@@ -352,10 +352,10 @@ type IncomeStatementEntity {
 
 type IncomeStatementPlayerEntity {
   agent_id: String!
-  effective_bet: Int!
+  effective_bet: Float!
   player_id: String!
-  pnl: Int!
-  rebate: Int!
+  pnl: Float!
+  rebate: Float!
 }
 
 input IncomeStatementWhereInput {

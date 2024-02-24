@@ -88,6 +88,7 @@ export class FinancesService {
         },
       });
     }
+    return { message: 'OK' };
   }
 
   async updatePlayerGameRebates(input: UpdateGameRebateInput, adminId: string) {
@@ -135,6 +136,7 @@ export class FinancesService {
         },
       });
     }
+    return { message: 'OK' };
   }
 
   getDeposits({ skip, take, where, orderBy }) {
@@ -185,11 +187,10 @@ export class FinancesService {
     const agentResponse = await this.prisma.$queryRawUnsafe(agentQuery);
     const playerResponse = await this.prisma.$queryRawUnsafe(playerQuery);
 
-
     return {
-      agents:agentResponse,
-      players:playerResponse
-    }
+      agents: agentResponse,
+      players: playerResponse,
+    };
   }
 
   async getFinancialStatement(where: FinancialStatementWhereInput) {

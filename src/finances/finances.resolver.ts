@@ -109,8 +109,6 @@ export class FinancesResolver {
     return data;
   }
 
-  
-
   @Query(() => [withdrawal_transactions], { name: 'withdrawals' })
   getWithdrawals(
     @Args({ name: 'where', defaultValue: {} })
@@ -152,7 +150,6 @@ export class FinancesResolver {
     return this.financesService.getPlayerGameRebate(where.id);
   }
 
-
   @Query(() => FinancialStatementEntity)
   getFinancialStatement(
     @Args({ name: 'where', defaultValue: {} })
@@ -161,9 +158,6 @@ export class FinancesResolver {
     return this.financesService.getFinancialStatement(where);
   }
 
-
-
-
   @Query(() => IncomeStatementEntity)
   getIncomeStatement(
     @Args({ name: 'where', defaultValue: {} })
@@ -171,8 +165,6 @@ export class FinancesResolver {
   ) {
     return this.financesService.getIncomeStatementByParent(where);
   }
-
-
 
   // @Query(() => RebateShare)
   // getAgentShare(
