@@ -28,6 +28,9 @@ export class Rebate_transactionsGroupBy {
     @Field(() => String, {nullable:true})
     description?: string;
 
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
+
     @Field(() => Rebate_transactionsCountAggregate, {nullable:true})
     _count?: Rebate_transactionsCountAggregate;
 

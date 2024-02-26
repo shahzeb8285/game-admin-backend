@@ -11,7 +11,7 @@ export enum PlayersScalarFieldEnum {
     user_language = "user_language",
     registration_ip = "registration_ip",
     agent_id = "agent_id",
-    registration_date = "registration_date",
+    reg_date = "reg_date",
     password = "password",
     fundist_password = "fundist_password",
     cdate = "cdate",

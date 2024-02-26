@@ -26,8 +26,8 @@ export class deposit_transactionsCreateInput {
     @Field(() => Float, {nullable:false})
     game_amount!: number;
 
-    @Field(() => String, {nullable:false})
-    transaction_date!: string;
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
 
     @Field(() => String, {nullable:false})
     player_remarks!: string;

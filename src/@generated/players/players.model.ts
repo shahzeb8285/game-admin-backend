@@ -46,8 +46,8 @@ export class players {
     @Field(() => String, {nullable:false})
     agent_id!: string;
 
-    @Field(() => String, {nullable:false})
-    registration_date!: string;
+    @Field(() => Date, {nullable:false})
+    reg_date!: Date;
 
     @Field(() => String, {nullable:false})
     password!: string;

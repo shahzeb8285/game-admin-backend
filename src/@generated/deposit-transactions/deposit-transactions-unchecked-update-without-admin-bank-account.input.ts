@@ -26,8 +26,8 @@ export class deposit_transactionsUncheckedUpdateWithoutAdmin_bank_accountInput {
     @Field(() => Float, {nullable:true})
     game_amount?: number;
 
-    @Field(() => String, {nullable:true})
-    transaction_date?: string;
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     player_remarks?: string;

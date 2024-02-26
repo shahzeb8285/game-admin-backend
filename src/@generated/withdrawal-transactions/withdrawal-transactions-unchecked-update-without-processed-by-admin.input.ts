@@ -29,8 +29,8 @@ export class withdrawal_transactionsUncheckedUpdateWithoutProcessed_by_adminInpu
     @Field(() => String, {nullable:true})
     player_bank_account_id?: string;
 
-    @Field(() => String, {nullable:true})
-    transaction_date?: string;
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     player_remarks?: string;

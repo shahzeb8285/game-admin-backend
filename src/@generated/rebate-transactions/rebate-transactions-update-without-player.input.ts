@@ -19,4 +19,7 @@ export class rebate_transactionsUpdateWithoutPlayerInput {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 }

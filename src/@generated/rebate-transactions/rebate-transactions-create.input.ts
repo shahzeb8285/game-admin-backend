@@ -21,6 +21,9 @@ export class rebate_transactionsCreateInput {
     @Field(() => String, {nullable:true})
     description?: string;
 
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
+
     @Field(() => playersCreateNestedOneWithoutRebate_transactionsInput, {nullable:false})
     player!: playersCreateNestedOneWithoutRebate_transactionsInput;
 }

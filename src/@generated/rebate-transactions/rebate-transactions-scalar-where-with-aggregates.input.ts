@@ -35,4 +35,7 @@ export class rebate_transactionsScalarWhereWithAggregatesInput {
 
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     description?: StringNullableWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    trans_date?: DateTimeWithAggregatesFilter;
 }

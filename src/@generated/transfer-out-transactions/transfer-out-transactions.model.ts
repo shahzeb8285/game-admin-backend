@@ -35,8 +35,8 @@ export class transfer_out_transactions {
     @Field(() => String, {nullable:false})
     counterpart_username!: string;
 
-    @Field(() => String, {nullable:false})
-    transaction_date!: string;
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date;
 
     @Field(() => String, {nullable:false})
     player_remarks!: string;

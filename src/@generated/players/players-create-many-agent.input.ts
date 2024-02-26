@@ -31,8 +31,8 @@ export class playersCreateManyAgentInput {
     @Field(() => String, {nullable:false})
     registration_ip!: string;
 
-    @Field(() => String, {nullable:false})
-    registration_date!: string;
+    @Field(() => Date, {nullable:false})
+    reg_date!: Date | string;
 
     @Field(() => String, {nullable:false})
     password!: string;

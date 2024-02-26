@@ -9,7 +9,7 @@ export enum Transfer_in_transactionsScalarFieldEnum {
     game_amount = "game_amount",
     counterpart_platform = "counterpart_platform",
     counterpart_username = "counterpart_username",
-    transaction_date = "transaction_date",
+    trans_date = "trans_date",
     player_remarks = "player_remarks",
     comment = "comment",
     processed_by = "processed_by",

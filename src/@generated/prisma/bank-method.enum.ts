@@ -2,7 +2,8 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum bank_method {
     FPS = "FPS",
-    BANK = "BANK"
+    BANK = "BANK",
+    USDT = "USDT"
 }
 
 

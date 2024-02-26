@@ -5,10 +5,10 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { Enumreal_currencyFilter } from '../prisma/enumreal-currency-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { Enumgame_currencyFilter } from '../prisma/enumgame-currency-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { Enumwallet_transaction_statusFilter } from '../prisma/enumwallet-transaction-status-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { PlayersRelationFilter } from '../prisma/players-relation-filter.input';
 import { AdminsNullableRelationFilter } from '../prisma/admins-nullable-relation-filter.input';
 
@@ -48,8 +48,8 @@ export class transfer_out_transactionsWhereInput {
     @Field(() => StringFilter, {nullable:true})
     counterpart_username?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    transaction_date?: StringFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    trans_date?: DateTimeFilter;
 
     @Field(() => StringFilter, {nullable:true})
     player_remarks?: StringFilter;

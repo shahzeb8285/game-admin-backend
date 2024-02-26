@@ -29,6 +29,9 @@ export class rebate_transactionsOrderByWithAggregationInput {
     @Field(() => SortOrderInput, {nullable:true})
     description?: SortOrderInput;
 
+    @Field(() => SortOrder, {nullable:true})
+    trans_date?: keyof typeof SortOrder;
+
     @Field(() => rebate_transactionsCountOrderByAggregateInput, {nullable:true})
     _count?: rebate_transactionsCountOrderByAggregateInput;
 

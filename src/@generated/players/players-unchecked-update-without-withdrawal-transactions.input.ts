@@ -42,8 +42,8 @@ export class playersUncheckedUpdateWithoutWithdrawal_transactionsInput {
     @Field(() => String, {nullable:true})
     agent_id?: string;
 
-    @Field(() => String, {nullable:true})
-    registration_date?: string;
+    @Field(() => Date, {nullable:true})
+    reg_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     password?: string;

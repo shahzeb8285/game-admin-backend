@@ -41,7 +41,7 @@ Table players {
   registration_ip String [not null]
   agent agents [not null]
   agent_id String [not null]
-  registration_date String [not null]
+  reg_date DateTime [not null]
   password String [not null]
   fundist_password String [not null]
   cdate DateTime [default: `now()`, not null]
@@ -140,6 +140,7 @@ Table rebate_transactions {
   cdate DateTime [default: `now()`, not null]
   bonus_type String
   description String
+  trans_date DateTime [not null]
   player players [not null]
 }
 
@@ -264,7 +265,7 @@ Table deposit_transactions {
   game_amount Float [not null]
   admin_bank_account admin_bank_accounts [not null]
   admin_bank_account_id String [not null]
-  transaction_date String [not null]
+  trans_date DateTime [not null]
   player_remarks String [not null]
   comment String
   processed_by String
@@ -285,7 +286,7 @@ Table withdrawal_transactions {
   game_amount Float [not null]
   player_bank_account player_bank_accounts [not null]
   player_bank_account_id String [not null]
-  transaction_date String [not null]
+  trans_date DateTime [not null]
   player_remarks String [not null]
   comment String
   processed_by String
@@ -307,7 +308,7 @@ Table transfer_in_transactions {
   game_amount Float [not null]
   counterpart_platform String [not null]
   counterpart_username String [not null]
-  transaction_date String [not null]
+  trans_date DateTime [not null]
   player_remarks String [not null]
   comment String
   processed_by String
@@ -327,7 +328,7 @@ Table transfer_out_transactions {
   game_amount Float [not null]
   counterpart_platform String [not null]
   counterpart_username String [not null]
-  transaction_date String [not null]
+  trans_date DateTime [not null]
   player_remarks String [not null]
   comment String
   processed_by String
@@ -512,12 +513,14 @@ Enum rebate_status {
 Enum bank_method {
   FPS
   BANK
+  USDT
 }
 
 Enum wallet_transaction_status {
   PENDING
   SUCCESS
-  FAILED
+  REJECTED
+  CANCELLED
 }
 
 Enum real_currency {

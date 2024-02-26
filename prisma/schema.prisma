@@ -58,7 +58,7 @@ model players {
   registration_ip           String
   agent                     agents                      @relation(fields: [agent_id], references: [agent_id])
   agent_id                  String
-  registration_date         String
+  reg_date                  DateTime
   password                  String
   fundist_password          String
   cdate                     DateTime                    @default(now())
@@ -157,6 +157,7 @@ model rebate_transactions {
   cdate                 DateTime @default(now())
   bonus_type            String?
   description           String?
+  trans_date            DateTime
   player                players  @relation(fields: [player_id], references: [player_id])
 }
 
@@ -282,7 +283,7 @@ model deposit_transactions {
   game_amount            Float
   admin_bank_account     admin_bank_accounts @relation(fields: [admin_bank_account_id], references: [admin_bank_account_id])
   admin_bank_account_id  String
-  transaction_date       String
+  trans_date             DateTime
   player_remarks         String
   comment                String?
   processed_by           String?
@@ -304,7 +305,7 @@ model withdrawal_transactions {
   game_amount               Float
   player_bank_account       player_bank_accounts @relation(fields: [player_bank_account_id], references: [player_bank_account_id])
   player_bank_account_id    String
-  transaction_date          String
+  trans_date                DateTime
   player_remarks            String
   comment                   String?
   processed_by              String?
@@ -318,8 +319,6 @@ model withdrawal_transactions {
   // admin_bank_accountsAdmin_bank_account_id String?
 }
 
-
-
 model transfer_in_transactions {
   transfer_in_transaction_id String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   player_id                  String
@@ -332,7 +331,7 @@ model transfer_in_transactions {
   game_amount          Float
   counterpart_platform String
   counterpart_username String
-  transaction_date     String
+  trans_date           DateTime
   player_remarks       String
   comment              String?
   processed_by         String?
@@ -353,7 +352,7 @@ model transfer_out_transactions {
   game_amount          Float
   counterpart_platform String
   counterpart_username String
-  transaction_date     String
+  trans_date           DateTime
   player_remarks       String
   comment              String?
 
@@ -544,12 +543,14 @@ enum rebate_status {
 enum bank_method {
   FPS
   BANK
+  USDT
 }
 
 enum wallet_transaction_status {
   PENDING
   SUCCESS
-  FAILED
+  REJECTED
+  CANCELLED
 }
 
 enum real_currency {

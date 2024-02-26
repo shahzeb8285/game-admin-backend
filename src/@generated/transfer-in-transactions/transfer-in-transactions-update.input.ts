@@ -31,8 +31,8 @@ export class transfer_in_transactionsUpdateInput {
     @Field(() => String, {nullable:true})
     counterpart_username?: string;
 
-    @Field(() => String, {nullable:true})
-    transaction_date?: string;
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     player_remarks?: string;

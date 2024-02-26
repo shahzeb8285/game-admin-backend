@@ -25,6 +25,9 @@ export class rebate_transactions {
     @Field(() => String, {nullable:true})
     description!: string | null;
 
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date;
+
     @Field(() => players, {nullable:false})
     player?: players;
 }

@@ -22,4 +22,7 @@ export class rebate_transactionsCreateManyInput {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
 }

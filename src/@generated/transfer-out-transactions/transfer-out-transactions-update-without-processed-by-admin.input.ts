@@ -30,8 +30,8 @@ export class transfer_out_transactionsUpdateWithoutProcessed_by_adminInput {
     @Field(() => String, {nullable:true})
     counterpart_username?: string;
 
-    @Field(() => String, {nullable:true})
-    transaction_date?: string;
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 
     @Field(() => String, {nullable:true})
     player_remarks?: string;

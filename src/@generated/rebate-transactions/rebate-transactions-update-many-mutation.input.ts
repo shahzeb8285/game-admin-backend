@@ -19,4 +19,7 @@ export class rebate_transactionsUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 }

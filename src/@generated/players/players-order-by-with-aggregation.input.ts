@@ -40,7 +40,7 @@ export class playersOrderByWithAggregationInput {
     agent_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    registration_date?: keyof typeof SortOrder;
+    reg_date?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;

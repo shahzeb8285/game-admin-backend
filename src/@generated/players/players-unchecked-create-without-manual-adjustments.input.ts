@@ -42,8 +42,8 @@ export class playersUncheckedCreateWithoutManual_adjustmentsInput {
     @Field(() => String, {nullable:false})
     agent_id!: string;
 
-    @Field(() => String, {nullable:false})
-    registration_date!: string;
+    @Field(() => Date, {nullable:false})
+    reg_date!: Date | string;
 
     @Field(() => String, {nullable:false})
     password!: string;

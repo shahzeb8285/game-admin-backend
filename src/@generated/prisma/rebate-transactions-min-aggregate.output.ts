@@ -22,4 +22,7 @@ export class Rebate_transactionsMinAggregate {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Date, {nullable:true})
+    trans_date?: Date | string;
 }

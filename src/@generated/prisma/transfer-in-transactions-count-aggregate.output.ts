@@ -30,7 +30,7 @@ export class Transfer_in_transactionsCountAggregate {
     counterpart_username!: number;
 
     @Field(() => Int, {nullable:false})
-    transaction_date!: number;
+    trans_date!: number;
 
     @Field(() => Int, {nullable:false})
     player_remarks!: number;

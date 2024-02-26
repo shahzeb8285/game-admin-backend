@@ -5,10 +5,10 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { Enumreal_currencyFilter } from '../prisma/enumreal-currency-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { Enumgame_currencyFilter } from '../prisma/enumgame-currency-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { Enumwallet_transaction_statusFilter } from '../prisma/enumwallet-transaction-status-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class deposit_transactionsScalarWhereInput {
@@ -43,8 +43,8 @@ export class deposit_transactionsScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     admin_bank_account_id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    transaction_date?: StringFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    trans_date?: DateTimeFilter;
 
     @Field(() => StringFilter, {nullable:true})
     player_remarks?: StringFilter;

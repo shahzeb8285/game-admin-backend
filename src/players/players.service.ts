@@ -119,7 +119,6 @@ export class PlayersService {
     return this.prisma.manual_adjustments.findMany({
       skip,
       take,
-
       where,
       orderBy,
       include: {

@@ -3,7 +3,8 @@ import { registerEnumType } from '@nestjs/graphql';
 export enum wallet_transaction_status {
     PENDING = "PENDING",
     SUCCESS = "SUCCESS",
-    FAILED = "FAILED"
+    REJECTED = "REJECTED",
+    CANCELLED = "CANCELLED"
 }
 
 

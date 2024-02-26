@@ -58,8 +58,8 @@ export class playersWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     agent_id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    registration_date?: StringFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    reg_date?: DateTimeFilter;
 
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;

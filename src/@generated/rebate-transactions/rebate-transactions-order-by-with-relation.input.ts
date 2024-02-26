@@ -25,6 +25,9 @@ export class rebate_transactionsOrderByWithRelationInput {
     @Field(() => SortOrderInput, {nullable:true})
     description?: SortOrderInput;
 
+    @Field(() => SortOrder, {nullable:true})
+    trans_date?: keyof typeof SortOrder;
+
     @Field(() => playersOrderByWithRelationInput, {nullable:true})
     player?: playersOrderByWithRelationInput;
 }

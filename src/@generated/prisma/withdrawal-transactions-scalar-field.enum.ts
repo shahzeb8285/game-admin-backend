@@ -8,7 +8,7 @@ export enum Withdrawal_transactionsScalarFieldEnum {
     game_currency = "game_currency",
     game_amount = "game_amount",
     player_bank_account_id = "player_bank_account_id",
-    transaction_date = "transaction_date",
+    trans_date = "trans_date",
     player_remarks = "player_remarks",
     comment = "comment",
     processed_by = "processed_by",

@@ -27,7 +27,7 @@ export class Withdrawal_transactionsCountAggregate {
     player_bank_account_id!: number;
 
     @Field(() => Int, {nullable:false})
-    transaction_date!: number;
+    trans_date!: number;
 
     @Field(() => Int, {nullable:false})
     player_remarks!: number;

@@ -30,7 +30,7 @@ export class transfer_in_transactionsMinOrderByAggregateInput {
     counterpart_username?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    transaction_date?: keyof typeof SortOrder;
+    trans_date?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     player_remarks?: keyof typeof SortOrder;

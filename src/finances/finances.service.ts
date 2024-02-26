@@ -476,7 +476,7 @@ export class FinancesService {
       data: {
         status: data.is_enabled
           ? wallet_transaction_status.SUCCESS
-          : wallet_transaction_status.FAILED,
+          : wallet_transaction_status.REJECTED,
       },
       include: {
         players: true,
@@ -493,7 +493,7 @@ export class FinancesService {
       data: {
         status: data.is_enabled
           ? wallet_transaction_status.SUCCESS
-          : wallet_transaction_status.FAILED,
+          : wallet_transaction_status.REJECTED,
       },
       include: {
         players: true,

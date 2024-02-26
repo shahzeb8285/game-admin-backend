@@ -24,5 +24,8 @@ export class Rebate_transactionsCountAggregate {
     description!: number;
 
     @Field(() => Int, {nullable:false})
+    trans_date!: number;
+
+    @Field(() => Int, {nullable:false})
     _all!: number;
 }

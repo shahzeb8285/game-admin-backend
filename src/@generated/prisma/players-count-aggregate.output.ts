@@ -36,7 +36,7 @@ export class PlayersCountAggregate {
     agent_id!: number;
 
     @Field(() => Int, {nullable:false})
-    registration_date!: number;
+    reg_date!: number;
 
     @Field(() => Int, {nullable:false})
     password!: number;

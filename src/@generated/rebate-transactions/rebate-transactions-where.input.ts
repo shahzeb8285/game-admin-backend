@@ -37,6 +37,9 @@ export class rebate_transactionsWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     description?: StringNullableFilter;
 
+    @Field(() => DateTimeFilter, {nullable:true})
+    trans_date?: DateTimeFilter;
+
     @Field(() => PlayersRelationFilter, {nullable:true})
     player?: PlayersRelationFilter;
 }

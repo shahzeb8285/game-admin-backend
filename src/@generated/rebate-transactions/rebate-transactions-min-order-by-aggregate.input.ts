@@ -22,4 +22,7 @@ export class rebate_transactionsMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    trans_date?: keyof typeof SortOrder;
 }

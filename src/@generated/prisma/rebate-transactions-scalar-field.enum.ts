@@ -6,7 +6,8 @@ export enum Rebate_transactionsScalarFieldEnum {
     amount = "amount",
     cdate = "cdate",
     bonus_type = "bonus_type",
-    description = "description"
+    description = "description",
+    trans_date = "trans_date"
 }
 
 

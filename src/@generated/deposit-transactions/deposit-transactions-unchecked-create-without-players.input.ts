@@ -26,8 +26,8 @@ export class deposit_transactionsUncheckedCreateWithoutPlayersInput {
     @Field(() => String, {nullable:false})
     admin_bank_account_id!: string;
 
-    @Field(() => String, {nullable:false})
-    transaction_date!: string;
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
 
     @Field(() => String, {nullable:false})
     player_remarks!: string;

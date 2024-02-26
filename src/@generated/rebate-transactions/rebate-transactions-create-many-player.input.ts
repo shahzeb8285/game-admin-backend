@@ -19,4 +19,7 @@ export class rebate_transactionsCreateManyPlayerInput {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Date, {nullable:false})
+    trans_date!: Date | string;
 }
