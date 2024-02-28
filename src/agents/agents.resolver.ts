@@ -11,6 +11,8 @@ import { admins as Admin } from '../@generated/admins/admins.model';
 import { agents as Agent } from '../@generated/agents/agents.model';
 import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents-where.input';
 import { agentsOrderByWithAggregationInput } from 'src/@generated/agents/agents-order-by-with-aggregation.input';
+import { GetAgentShareInput, UpdateAgentShareInput } from './dto/get-agentshare.input';
+import { OkResponse } from 'src/common/models/OkResponse.model';
 // import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)
@@ -44,4 +46,25 @@ export class AgentsResolver {
       updateAgentInput,
     );
   }
+
+
+  @Query(() => [Agent])
+  getAgentShare(
+    @Args({ name: 'where', defaultValue: {} }) where: GetAgentShareInput,
+  ) {
+    return this.agentsService.getAgentShare(where.agentId);
+  }
+
+
+  @Query(() => [OkResponse])
+  updateAgentShare(
+    @UserEntity() user: Admin,
+
+    @Args('data') input: UpdateAgentShareInput,
+
+  ) {
+    return this.agentsService.updateAgentShare(user.admin_id,input);
+  }
+  
+  
 }

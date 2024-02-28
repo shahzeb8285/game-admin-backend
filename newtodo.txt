@@ -1,39 +1,28 @@
-1. change tg_username to tg_id
-2. in user list add filters with agent name and username ( tg_id) 
-3. user bonus history -> username -> tg_id, add filter with bonus type 
-5. user game history filters -> tg_id, system name, game_category, and game name
-6. user login history add filter - > ip address
-7. manual adjustment filter -> tg_id, adjusted by
-8. income statement filter -> 
-9. deposit and withdrawal filter -> tg_id, agent name, account number , status ( enum )
-10. user game history: 
-        remove table id 
-        show full game id 
-        
+1. in income stament child should be indented 
+    show arrow to expand
 
-11. implement backend sorting in all tables
-12. in agent list if there is no child then remvoe the arrow icon
+2. in agent game rebate remove root from dropdown
+3. add share table in agent game rebate
+4. in agent rebate update if the rate is lower than the any child then throw error 
+  error shoud mention the child id and rate
 
-
-
-
-
-
-
-
-1.change all username colomn to tg_id
-2. in deposit/withdrae the status is not visible on small screen
-3. sorting on all columns 
-4. agent rebate page and player rebate rate ( ref asana )
- 4.1 fetch category from fl_categories 
- 4.2. fetch rates from agent_rebate_rates ( if not found place 0)
- 4.3. if rate is updated mark last rate  is-active = false
-        and create new record
-        
+5. save rebate should make the api call remove submit button
+6. bank -> holder name all caps 
+7. translations
+8. admin login history shou,ld have only filter button no search button but filfer on user name also
+9.in deposit/ withdrawal/ transfer in/ transfer out if not pending, then no need "Approve"/ "Reject"
+10. other than user list show replace tg id to username , in filters also
+11. show users under agentlist
+12. MTD is from 1st of this month to today , add last month button in income statement from 1 to 30
+13. for approval no need for reason , we only need reason for Reject
+14. agent list should show domin name and no of players
+15. if any notification number increases play a sound
 
 
 
 
 
 
-1. if the rebate rate is greated then show error in red text
+1. check if data is correct in income statements
+2. check financial statement data
+3. create bank name table

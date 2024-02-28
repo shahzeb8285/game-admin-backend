@@ -329,6 +329,10 @@ input Game_round_infosRelationFilter {
   isNot: game_round_infosWhereInput
 }
 
+input GetAgentShareInput {
+  agentId: String!
+}
+
 input GetGameRebateInput {
   id: String!
 }
@@ -633,6 +637,7 @@ type Query {
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
+  getAgentShare(where: GetAgentShareInput! = {}): [agents!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
@@ -647,6 +652,7 @@ type Query {
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   transferInCount(where: transfer_in_transactionsWhereInput! = {}): CountDto!
   transferOutCount(where: transfer_out_transactionsWhereInput! = {}): CountDto!
+  updateAgentShare(data: UpdateAgentShareInput!): [OkResponse!]!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
   usersGameHistoryCount(where: GameRecordRoundsWhereInput! = {}): CountDto!
@@ -746,6 +752,11 @@ input UpdateAgentInput {
   agent_name: String
   agent_password: String
   enabled: Boolean
+}
+
+input UpdateAgentShareInput {
+  agentId: String!
+  share: Int!
 }
 
 input UpdateBankAccountInput {
@@ -1332,7 +1343,7 @@ type deposit_transactions {
   processed_by: String
   processed_by_admin: admins
   status: wallet_transaction_status!
-  trans_date: String!
+  trans_date: DateTime!
   transaction_amount: Float!
   transaction_currency: real_currency!
   udate: DateTime!
@@ -1443,7 +1454,7 @@ input deposit_transactionsWhereInput {
   processed_by: StringNullableFilter
   processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
-  trans_date: StringFilter
+  trans_date: DateTimeFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
   udate: DateTimeFilter
@@ -1746,7 +1757,7 @@ type players {
   player_id: ID!
   player_login_logs: [player_login_logs!]
   rebate_transactions: [rebate_transactions!]
-  reg_date: String!
+  reg_date: DateTime!
   registration_ip: String!
   tg_first_name: String!
   tg_id: String!
@@ -1857,7 +1868,7 @@ input playersWhereInput {
   player_id: UuidFilter
   player_login_logs: Player_login_logsListRelationFilter
   rebate_transactions: Rebate_transactionsListRelationFilter
-  reg_date: StringFilter
+  reg_date: DateTimeFilter
   registration_ip: StringFilter
   tg_first_name: StringFilter
   tg_id: StringFilter
@@ -1885,6 +1896,7 @@ type rebate_transactions {
   player: players!
   player_id: String!
   rebate_transaction_id: ID!
+  trans_date: DateTime!
 }
 
 input rebate_transactionsAvgOrderByAggregateInput {
@@ -1898,6 +1910,7 @@ input rebate_transactionsCountOrderByAggregateInput {
   description: SortOrder
   player_id: SortOrder
   rebate_transaction_id: SortOrder
+  trans_date: SortOrder
 }
 
 input rebate_transactionsMaxOrderByAggregateInput {
@@ -1907,6 +1920,7 @@ input rebate_transactionsMaxOrderByAggregateInput {
   description: SortOrder
   player_id: SortOrder
   rebate_transaction_id: SortOrder
+  trans_date: SortOrder
 }
 
 input rebate_transactionsMinOrderByAggregateInput {
@@ -1916,6 +1930,7 @@ input rebate_transactionsMinOrderByAggregateInput {
   description: SortOrder
   player_id: SortOrder
   rebate_transaction_id: SortOrder
+  trans_date: SortOrder
 }
 
 input rebate_transactionsOrderByWithAggregationInput {
@@ -1930,6 +1945,7 @@ input rebate_transactionsOrderByWithAggregationInput {
   description: SortOrderInput
   player_id: SortOrder
   rebate_transaction_id: SortOrder
+  trans_date: SortOrder
 }
 
 input rebate_transactionsSumOrderByAggregateInput {
@@ -1947,6 +1963,7 @@ input rebate_transactionsWhereInput {
   player: PlayersRelationFilter
   player_id: StringFilter
   rebate_transaction_id: UuidFilter
+  trans_date: DateTimeFilter
 }
 
 enum transactionType {
@@ -1970,7 +1987,7 @@ type transfer_in_transactions {
   processed_by: String
   processed_by_admin: admins
   status: wallet_transaction_status!
-  trans_date: String!
+  trans_date: DateTime!
   transaction_amount: Float!
   transaction_currency: real_currency!
   transfer_in_transaction_id: ID!
@@ -2085,7 +2102,7 @@ input transfer_in_transactionsWhereInput {
   processed_by: StringNullableFilter
   processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
-  trans_date: StringFilter
+  trans_date: DateTimeFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
   transfer_in_transaction_id: UuidFilter
@@ -2106,7 +2123,7 @@ type transfer_out_transactions {
   processed_by: String
   processed_by_admin: admins
   status: wallet_transaction_status!
-  trans_date: String!
+  trans_date: DateTime!
   transaction_amount: Float!
   transaction_currency: real_currency!
   transfer_out_transaction_id: ID!
@@ -2221,7 +2238,7 @@ input transfer_out_transactionsWhereInput {
   processed_by: StringNullableFilter
   processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
-  trans_date: StringFilter
+  trans_date: DateTimeFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
   transfer_out_transaction_id: UuidFilter
@@ -2249,7 +2266,7 @@ type withdrawal_transactions {
   processed_by: String
   processed_by_admin: admins
   status: wallet_transaction_status!
-  trans_date: String!
+  trans_date: DateTime!
   transaction_amount: Float!
   transaction_currency: real_currency!
   udate: DateTime!
@@ -2360,7 +2377,7 @@ input withdrawal_transactionsWhereInput {
   processed_by: StringNullableFilter
   processed_by_admin: AdminsNullableRelationFilter
   status: Enumwallet_transaction_statusFilter
-  trans_date: StringFilter
+  trans_date: DateTimeFilter
   transaction_amount: FloatFilter
   transaction_currency: Enumreal_currencyFilter
   udate: DateTimeFilter
