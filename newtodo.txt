@@ -4,12 +4,12 @@
 2. in agent game rebate remove root from dropdown
 3. add share table in agent game rebate
 4. in agent rebate update if the rate is lower than the any child then throw error 
-  error shoud mention the child id and rate
+  error shoud mention the child id and rate ( shahzeb )
 
 5. save rebate should make the api call remove submit button
 6. bank -> holder name all caps 
-7. translations
-8. admin login history shou,ld have only filter button no search button but filfer on user name also
+7. translations 
+8. admin login history should have only filter button no search button but filfer on user name also
 9.in deposit/ withdrawal/ transfer in/ transfer out if not pending, then no need "Approve"/ "Reject"
 10. other than user list show replace tg id to username , in filters also
 11. show users under agentlist

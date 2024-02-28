@@ -1,4 +1,4 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, Float } from '@nestjs/graphql';
 
 @InputType()
 export class GetAgentShareInput {
@@ -14,7 +14,7 @@ export class UpdateAgentShareInput {
   @Field(() => String, {nullable:false})
   agentId: string;
 
-  @Field(() => Number, {nullable:false})
+  @Field(() => Float, {nullable:false})
   share: number;
 
 

@@ -13,6 +13,7 @@ import { agentsWhereInput as AgentWhereInput } from '../@generated/agents/agents
 import { agentsOrderByWithAggregationInput } from 'src/@generated/agents/agents-order-by-with-aggregation.input';
 import { GetAgentShareInput, UpdateAgentShareInput } from './dto/get-agentshare.input';
 import { OkResponse } from 'src/common/models/OkResponse.model';
+import { AgentShareEntity } from './entities/agentShare.entity';
 // import { Admin } from '../admins/entities/admin.entity';
 
 @Resolver(() => Agent)
@@ -48,7 +49,7 @@ export class AgentsResolver {
   }
 
 
-  @Query(() => [Agent])
+  @Query(() => [AgentShareEntity])
   getAgentShare(
     @Args({ name: 'where', defaultValue: {} }) where: GetAgentShareInput,
   ) {
