@@ -69,9 +69,10 @@ export class FinancesService {
         );
       }
 
-      await this.prisma.agent_rebate_rates.update({
+      await this.prisma.agent_rebate_rates.updateMany({
         where: {
-          agent_rebate_rate_id: rebate.previousRebateId,
+          agent_id: input.id,
+          rebate_category_id: rebate.categoryId,
         },
         data: {
           is_active: false,
