@@ -642,7 +642,7 @@ type Query {
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
-  getAgentShare(where: GetAgentShareInput! = {}): [AgentShareEntity!]!
+  getAgentShare(where: GetAgentShareInput! = {}): AgentShareEntity!
   getAgentsPlayers(where: GetAgentShareInput! = {}): [players!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!

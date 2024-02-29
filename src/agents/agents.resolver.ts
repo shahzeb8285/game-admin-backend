@@ -52,7 +52,7 @@ export class AgentsResolver {
     );
   }
 
-  @Query(() => [AgentShareEntity])
+  @Query(() => AgentShareEntity)
   getAgentShare(
     @Args({ name: 'where', defaultValue: {} }) where: GetAgentShareInput,
   ) {
