@@ -21,6 +21,9 @@ export class agentsMaxOrderByAggregateInput {
     created_by?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    domain?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     cdate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

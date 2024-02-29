@@ -24,6 +24,9 @@ export class agentsOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     created_by?: keyof typeof SortOrder;
 
+    @Field(() => SortOrderInput, {nullable:true})
+    domain?: SortOrderInput;
+
     @Field(() => SortOrder, {nullable:true})
     cdate?: keyof typeof SortOrder;
 

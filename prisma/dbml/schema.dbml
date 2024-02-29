@@ -66,6 +66,7 @@ Table agents {
   parent_agent_id String
   children agents [not null]
   created_by String [not null]
+  domain String
   cdate DateTime [default: `now()`, not null]
   udate DateTime [not null]
   enabled Boolean [not null, default: true]

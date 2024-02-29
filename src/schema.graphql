@@ -306,7 +306,7 @@ input FloatNullableFilter {
 input GameRebateInput {
   categoryId: Int!
   newRate: Float!
-  previousRebateId: String!
+  previousRebateId: String
 }
 
 input GameRecordRoundsWhereInput {
@@ -1253,6 +1253,7 @@ type agents {
   cdate: DateTime!
   children: [agents!]
   created_by: String!
+  domain: String
   enabled: Boolean!
   parent: agents
   parent_agent_id: String
@@ -1266,6 +1267,7 @@ input agentsCountOrderByAggregateInput {
   agent_password: SortOrder
   cdate: SortOrder
   created_by: SortOrder
+  domain: SortOrder
   enabled: SortOrder
   parent_agent_id: SortOrder
   udate: SortOrder
@@ -1277,6 +1279,7 @@ input agentsMaxOrderByAggregateInput {
   agent_password: SortOrder
   cdate: SortOrder
   created_by: SortOrder
+  domain: SortOrder
   enabled: SortOrder
   parent_agent_id: SortOrder
   udate: SortOrder
@@ -1288,6 +1291,7 @@ input agentsMinOrderByAggregateInput {
   agent_password: SortOrder
   cdate: SortOrder
   created_by: SortOrder
+  domain: SortOrder
   enabled: SortOrder
   parent_agent_id: SortOrder
   udate: SortOrder
@@ -1302,6 +1306,7 @@ input agentsOrderByWithAggregationInput {
   agent_password: SortOrder
   cdate: SortOrder
   created_by: SortOrder
+  domain: SortOrderInput
   enabled: SortOrder
   parent_agent_id: SortOrderInput
   udate: SortOrder
@@ -1320,6 +1325,7 @@ input agentsWhereInput {
   cdate: DateTimeFilter
   children: AgentsListRelationFilter
   created_by: StringFilter
+  domain: StringNullableFilter
   enabled: BoolFilter
   parent: AgentsNullableRelationFilter
   parent_agent_id: StringNullableFilter

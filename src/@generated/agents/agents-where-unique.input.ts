@@ -39,6 +39,9 @@ export class agentsWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     created_by?: StringFilter;
 
+    @Field(() => StringNullableFilter, {nullable:true})
+    domain?: StringNullableFilter;
+
     @Field(() => DateTimeFilter, {nullable:true})
     cdate?: DateTimeFilter;
 

@@ -22,6 +22,9 @@ export class AgentsGroupBy {
     @Field(() => String, {nullable:false})
     created_by!: string;
 
+    @Field(() => String, {nullable:true})
+    domain?: string;
+
     @Field(() => Date, {nullable:false})
     cdate!: Date | string;
 

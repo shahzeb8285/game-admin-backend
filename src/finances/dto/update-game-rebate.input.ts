@@ -15,7 +15,7 @@ export class GameRebateInput {
   @Field(() => Number, { nullable: false })
   categoryId: number;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => String, { nullable: true })
   previousRebateId: string;
 
   @Field(() => Float, { nullable: false })

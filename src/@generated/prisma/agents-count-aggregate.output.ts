@@ -21,6 +21,9 @@ export class AgentsCountAggregate {
     created_by!: number;
 
     @Field(() => Int, {nullable:false})
+    domain!: number;
+
+    @Field(() => Int, {nullable:false})
     cdate!: number;
 
     @Field(() => Int, {nullable:false})
