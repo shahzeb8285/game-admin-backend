@@ -19,6 +19,7 @@ import { GameRecordRoundsWhereInput } from 'src/players/entities/game-record-rou
 import moment from 'moment';
 import { transfer_out_transactionsWhereInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-where.input';
 import { transfer_in_transactionsWhereInput } from 'src/@generated/transfer-in-transactions/transfer-in-transactions-where.input';
+import { GetAgentShareInput } from 'src/agents/dto/get-agentshare.input';
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -219,6 +220,7 @@ export class CountsResolver {
       counts: Number(result[0].record_count),
     };
   }
+
   @Query(() => CountDto)
   async usersBonusHistoryCount(
     @Args({ name: 'where', defaultValue: {} })
@@ -226,6 +228,21 @@ export class CountsResolver {
   ) {
     const counts = await this.prismaService.rebate_transactions.count({
       where,
+    });
+    return {
+      counts,
+    };
+  }
+
+  @Query(() => CountDto)
+  async agentsPlayersCount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: GetAgentShareInput,
+  ) {
+    const counts = await this.prismaService.players.count({
+      where: {
+        agent_id: where.agentId,
+      },
     });
     return {
       counts,

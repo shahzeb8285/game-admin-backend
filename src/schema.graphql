@@ -634,6 +634,7 @@ type Query {
   admins(order: adminsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: adminsWhereInput! = {}): [admins!]!
   agents(order: agentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: agentsWhereInput! = {}): [agents!]!
   agentsCount(where: agentsWhereInput! = {}): CountDto!
+  agentsPlayersCount(where: GetAgentShareInput! = {}): CountDto!
   bankAccountCount(where: admin_bank_accountsWhereInput! = {}): CountDto!
   deposits(order: deposit_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: deposit_transactionsWhereInput! = {}): [deposit_transactions!]!
   depositsCount(where: deposit_transactionsWhereInput! = {}): CountDto!
