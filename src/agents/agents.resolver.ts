@@ -66,7 +66,7 @@ export class AgentsResolver {
     return this.agentsService.getAgentsPlayers(where.agentId);
   }
 
-  @Query(() => [OkResponse])
+  @Mutation(() => [OkResponse])
   updateAgentShare(
     @UserEntity() user: Admin,
 

@@ -423,6 +423,7 @@ type Mutation {
   updateAdminRole(data: UpdateRoleInput!): admin_roles!
   updateAgent(data: UpdateAgentInput!): agents!
   updateAgentGameRebates(data: UpdateGameRebateInput!): OkResponse!
+  updateAgentShare(data: UpdateAgentShareInput!): [OkResponse!]!
   updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
   updateDeposit(data: UpdateFinanceInput!): deposit_transactions!
   updatePlayerGameRebates(data: UpdateGameRebateInput!): OkResponse!
@@ -658,7 +659,6 @@ type Query {
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   transferInCount(where: transfer_in_transactionsWhereInput! = {}): CountDto!
   transferOutCount(where: transfer_out_transactionsWhereInput! = {}): CountDto!
-  updateAgentShare(data: UpdateAgentShareInput!): [OkResponse!]!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
   usersGameHistoryCount(where: GameRecordRoundsWhereInput! = {}): CountDto!
