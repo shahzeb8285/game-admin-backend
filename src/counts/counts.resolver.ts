@@ -20,6 +20,7 @@ import moment from 'moment';
 import { transfer_out_transactionsWhereInput } from 'src/@generated/transfer-out-transactions/transfer-out-transactions-where.input';
 import { transfer_in_transactionsWhereInput } from 'src/@generated/transfer-in-transactions/transfer-in-transactions-where.input';
 import { GetAgentShareInput } from 'src/agents/dto/get-agentshare.input';
+import { statsWhereInput } from 'src/players/dto/stats';
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -59,6 +60,16 @@ export class CountsResolver {
   @Query(() => CountDto)
   async usersCount(
     @Args({ name: 'where', defaultValue: {} }) where: PlayerWhereInput,
+  ) {
+    const counts = await this.prismaService.players.count({ where });
+    return {
+      counts,
+    };
+  }
+
+  @Query(() => CountDto)
+  async getUsersStats(
+    @Args({ name: 'where', defaultValue: {} }) where: statsWhereInput,
   ) {
     const counts = await this.prismaService.players.count({ where });
     return {
@@ -122,6 +133,32 @@ export class CountsResolver {
       counts,
     };
   }
+  @Query(() => CountDto)
+  async getDepositStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    const counts = await this.prismaService.deposit_transactions.count({
+      where,
+    });
+    return {
+      counts,
+    };
+  }
+
+  @Query(() => CountDto)
+  async getWithdrawalStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    const counts = await this.prismaService.withdrawal_transactions.count({
+      where,
+    });
+    return {
+      counts,
+    };
+  }
+
   @Query(() => CountDto)
   async transferOutCount(
     @Args({ name: 'where', defaultValue: {} })
@@ -225,6 +262,19 @@ export class CountsResolver {
   async usersBonusHistoryCount(
     @Args({ name: 'where', defaultValue: {} })
     where: rebate_transactionsWhereInput,
+  ) {
+    const counts = await this.prismaService.rebate_transactions.count({
+      where,
+    });
+    return {
+      counts,
+    };
+  }
+
+  @Query(() => CountDto)
+  async getBonusStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
   ) {
     const counts = await this.prismaService.rebate_transactions.count({
       where,

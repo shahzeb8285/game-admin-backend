@@ -9,7 +9,6 @@ import { UpdatePlayerInput } from './dto/update-player.input';
 // import { ManualAdjustment } from './entities/manualadjustment.entity';
 import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 // import { Admin } from '../admins/entities/admin.entity';
-import { deposit_transactionsWhereInput } from 'src/@generated/deposit-transactions/deposit-transactions-where.input';
 import { manual_adjustmentsOrderByWithAggregationInput } from 'src/@generated/manual-adjustments/manual-adjustments-order-by-with-aggregation.input';
 import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
 import { player_login_logsOrderByWithAggregationInput } from 'src/@generated/player-login-logs/player-login-logs-order-by-with-aggregation.input';
@@ -25,10 +24,10 @@ import { admins as Admin } from '../@generated/admins/admins.model';
 import { manual_adjustments as ManualAdjustment } from '../@generated/manual-adjustments/manual-adjustments.model';
 import { players as Player } from '../@generated/players/players.model';
 import { UserEntity } from '../common/decorators/user.decorator';
-import { depositAmount } from './dto/deposit-amount';
+import { statsAmount } from './dto/amount';
+import { statsWhereInput } from './dto/stats';
 import { GameRecordRoundsWhereInput } from './entities/game-record-rounds-where.input';
 import { UserGameHistory } from './entities/gamehistory.entity';
-import { withdrawal_transactionsWhereInput } from 'src/@generated/withdrawal-transactions/withdrawal-transactions-where.input';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -119,26 +118,26 @@ export class PlayersResolver {
     return this.playersService.findAllUserGameHistory({ skip, take, where });
   }
 
-  @Query(() => [depositAmount])
+  @Query(() => statsAmount)
   getDepositAmount(
     @Args({ name: 'where', defaultValue: {} })
-    where: deposit_transactionsWhereInput,
+    where: statsWhereInput,
   ) {
     return this.playersService.getDepositAmount({ where });
   }
 
-  @Query(() => [depositAmount])
+  @Query(() => statsAmount)
   getWithdrawalAmount(
     @Args({ name: 'where', defaultValue: {} })
-    where: withdrawal_transactionsWhereInput,
+    where: statsWhereInput,
   ) {
     return this.playersService.getWithdrawalAmount({ where });
   }
 
-  @Query(() => [depositAmount])
+  @Query(() => statsAmount)
   getBonusAmount(
     @Args({ name: 'where', defaultValue: {} })
-    where: rebate_transactionsWhereInput,
+    where: statsWhereInput,
   ) {
     return this.playersService.getBonusAmount({ where });
   }

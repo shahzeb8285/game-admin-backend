@@ -140,13 +140,14 @@ export class PlayersService {
         }
       }
     }
-
+    // ?241650
     const query1 = `
-    SELECT trans_date, SUM(transaction_amount) 
+    SELECT SUM(transaction_amount) 
     FROM deposit_transactions dt 
-    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery} GROUP BY trans_date;`;
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result;
+    return result[0];
   }
 
   async getWithdrawalAmount({ where }) {
@@ -175,11 +176,12 @@ export class PlayersService {
     }
 
     const query1 = `
-    SELECT trans_date, SUM(transaction_amount) 
+    SELECT SUM(transaction_amount) 
     FROM withdrawal_transactions wt 
-    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery} GROUP BY trans_date;`;
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result;
+    return result[0];
   }
 
   async getBonusAmount({ where }) {
@@ -208,11 +210,12 @@ export class PlayersService {
     }
 
     const query1 = `
-    SELECT trans_date, SUM(amount) 
+    SELECT SUM(amount) 
     FROM rebate_transactions rt 
-    WHERE 1=1 ${whereQuery} GROUP BY trans_date;`;
+    WHERE 1=1 ${whereQuery};`;
+
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result;
+    return result[0];
   }
 
   getManualAdjustments({ skip, take, where, orderBy }) {
