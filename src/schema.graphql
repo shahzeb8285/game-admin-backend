@@ -646,6 +646,8 @@ type Query {
   getAgentShare(where: GetAgentShareInput! = {}): AgentShareEntity!
   getAgentsPlayers(where: GetAgentShareInput! = {}): [players!]!
   getBanks: [banks!]!
+  getBonusAmount(where: rebate_transactionsWhereInput! = {}): [depositAmount!]!
+  getDepositAmount(where: deposit_transactionsWhereInput! = {}): [depositAmount!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
@@ -655,6 +657,7 @@ type Query {
   getUserLoginHistory(order: player_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: player_login_logsWhereInput! = {}): [player_login_logs!]!
   getUsersBonusHistory(order: rebate_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
   getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: GameRecordRoundsWhereInput! = {}): [UserGameHistory!]!
+  getWithdrawalAmount(where: withdrawal_transactionsWhereInput! = {}): [depositAmount!]!
   manualAdjustmentCount(where: manual_adjustmentsWhereInput! = {}): CountDto!
   manualadjustments(order: manual_adjustmentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
@@ -1343,6 +1346,11 @@ enum bank_method {
 
 type banks {
   bank_name: String!
+}
+
+type depositAmount {
+  sum: Float!
+  trans_date: DateTime!
 }
 
 type deposit_transactions {

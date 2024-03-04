@@ -7,6 +7,9 @@ const whitelistFunctions = [
   'updateAgentShare',
   'getAgentShare',
   'getBanks',
+  'getWithdrawalAmount',
+  'getBonusAmount',
+  'getDepositAmount',
   'getAgentsPlayers',
 ];
 
