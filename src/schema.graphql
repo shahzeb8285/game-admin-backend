@@ -645,6 +645,7 @@ type Query {
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
   getAgentShare(where: GetAgentShareInput! = {}): AgentShareEntity!
   getAgentsPlayers(where: GetAgentShareInput! = {}): [players!]!
+  getBanks: [banks!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
@@ -1338,6 +1339,10 @@ enum bank_method {
   BANK
   FPS
   USDT
+}
+
+type banks {
+  bank_name: String!
 }
 
 type deposit_transactions {

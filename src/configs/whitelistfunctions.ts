@@ -6,6 +6,7 @@ const whitelistFunctions = [
   'updateAgentGameRebates',
   'updateAgentShare',
   'getAgentShare',
+  'getBanks',
   'getAgentsPlayers',
 ];
 

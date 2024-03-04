@@ -7,34 +7,33 @@ import { Admin_bank_accountsCount } from '../prisma/admin-bank-accounts-count.ou
 
 @ObjectType()
 export class admin_bank_accounts {
+  @Field(() => ID, { nullable: false })
+  admin_bank_account_id!: string;
 
-    @Field(() => ID, {nullable:false})
-    admin_bank_account_id!: string;
+  @Field(() => String, { nullable: false })
+  bank_name!: string;
 
-    @Field(() => String, {nullable:false})
-    bank_name!: string;
+  @Field(() => String, { nullable: false })
+  account_number!: string;
 
-    @Field(() => String, {nullable:false})
-    account_number!: string;
+  @Field(() => String, { nullable: false })
+  holder_name!: string;
 
-    @Field(() => String, {nullable:false})
-    holder_name!: string;
+  @Field(() => bank_method, { nullable: false })
+  method!: keyof typeof bank_method;
 
-    @Field(() => bank_method, {nullable:false})
-    method!: keyof typeof bank_method;
+  @Field(() => Date, { nullable: false })
+  cdate!: Date;
 
-    @Field(() => Date, {nullable:false})
-    cdate!: Date;
+  @Field(() => Date, { nullable: false })
+  udate!: Date;
 
-    @Field(() => Date, {nullable:false})
-    udate!: Date;
+  @Field(() => Boolean, { nullable: false, defaultValue: true })
+  enabled!: boolean;
 
-    @Field(() => Boolean, {nullable:false,defaultValue:true})
-    enabled!: boolean;
+  @Field(() => [deposit_transactions], { nullable: true })
+  deposit_transactions?: Array<deposit_transactions>;
 
-    @Field(() => [deposit_transactions], {nullable:true})
-    deposit_transactions?: Array<deposit_transactions>;
-
-    @Field(() => Admin_bank_accountsCount, {nullable:false})
-    _count?: Admin_bank_accountsCount;
+  @Field(() => Admin_bank_accountsCount, { nullable: false })
+  _count?: Admin_bank_accountsCount;
 }
