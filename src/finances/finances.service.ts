@@ -216,7 +216,7 @@ export class FinancesService {
         deposit_transactions dt 
       WHERE 
         dt.status = 'SUCCESS' 
-        AND dt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+        AND dt.trans_date BETWEEN '${fromDate}' AND '${toDate}'
       
       UNION ALL
       
@@ -227,7 +227,7 @@ export class FinancesService {
         transfer_in_transactions tit 
       WHERE 
         tit.status = 'SUCCESS' 
-        AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+        AND tit.trans_date BETWEEN '${fromDate}' AND '${toDate}'
     )
     
     SELECT 
@@ -255,7 +255,7 @@ export class FinancesService {
       withdrawal_transactions wt 
     WHERE 
       wt.status = 'SUCCESS' 
-      AND wt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      AND wt.trans_date BETWEEN '${fromDate}' AND '${toDate}'
     
     UNION ALL
     
@@ -266,7 +266,7 @@ export class FinancesService {
       transfer_out_transactions tit 
     WHERE 
       tit.status = 'SUCCESS' 
-      AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      AND tit.trans_date BETWEEN '${fromDate}' AND '${toDate}'
       )
   SELECT 
     p.player_id, 
@@ -307,7 +307,6 @@ export class FinancesService {
     const replacer = (key, value) =>
       typeof value === 'bigint' ? value.toString() : value;
     const finalResp = JSON.parse(JSON.stringify(response, replacer));
-    console.log(finalResp.pnl);
     return finalResp;
   }
   async getAgentGameRebate(agentId: string) {
