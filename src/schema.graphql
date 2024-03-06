@@ -1350,6 +1350,8 @@ enum bank_method {
 }
 
 type banks {
+  bank_code: String!
+  bank_id: ID!
   bank_name: String!
 }
 

@@ -46,7 +46,7 @@ import { IncomeStatementWhereInput } from './dto/income-statement.where.input';
 import { IncomeStatementEntity } from './entities/incomestatement.entity';
 import { RebateShare } from './entities/rebate_share.entity';
 import { RebateShareInput } from './dto/rebate_share.input';
-import { banks } from './dto/banks';
+import { banks } from 'src/@generated/banks/banks.model';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {

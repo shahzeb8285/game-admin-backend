@@ -433,12 +433,7 @@ export class FinancesService {
   }
 
   getBanks() {
-    return this.prisma.admin_bank_accounts.findMany({
-      select: {
-        bank_name: true,
-      },
-      distinct: ['bank_name'],
-    });
+    return this.prisma.banks.findMany();
   }
 
   getBankAccounts({ skip, take, where, orderBy }) {

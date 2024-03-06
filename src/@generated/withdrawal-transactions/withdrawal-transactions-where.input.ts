@@ -15,66 +15,67 @@ import { AdminsNullableRelationFilter } from '../prisma/admins-nullable-relation
 
 @InputType()
 export class withdrawal_transactionsWhereInput {
-  @Field(() => [withdrawal_transactionsWhereInput], { nullable: true })
-  AND?: Array<withdrawal_transactionsWhereInput>;
 
-  @Field(() => [withdrawal_transactionsWhereInput], { nullable: true })
-  OR?: Array<withdrawal_transactionsWhereInput>;
+    @Field(() => [withdrawal_transactionsWhereInput], {nullable:true})
+    AND?: Array<withdrawal_transactionsWhereInput>;
 
-  @Field(() => [withdrawal_transactionsWhereInput], { nullable: true })
-  NOT?: Array<withdrawal_transactionsWhereInput>;
+    @Field(() => [withdrawal_transactionsWhereInput], {nullable:true})
+    OR?: Array<withdrawal_transactionsWhereInput>;
 
-  @Field(() => UuidFilter, { nullable: true })
-  withdrawal_transaction_id?: UuidFilter;
+    @Field(() => [withdrawal_transactionsWhereInput], {nullable:true})
+    NOT?: Array<withdrawal_transactionsWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  player_id?: StringFilter;
+    @Field(() => UuidFilter, {nullable:true})
+    withdrawal_transaction_id?: UuidFilter;
 
-  @Field(() => Enumreal_currencyFilter, { nullable: true })
-  transaction_currency?: Enumreal_currencyFilter;
+    @Field(() => StringFilter, {nullable:true})
+    player_id?: StringFilter;
 
-  @Field(() => FloatFilter, { nullable: true })
-  transaction_amount?: FloatFilter;
+    @Field(() => Enumreal_currencyFilter, {nullable:true})
+    transaction_currency?: Enumreal_currencyFilter;
 
-  @Field(() => Enumgame_currencyFilter, { nullable: true })
-  game_currency?: Enumgame_currencyFilter;
+    @Field(() => FloatFilter, {nullable:true})
+    transaction_amount?: FloatFilter;
 
-  @Field(() => FloatFilter, { nullable: true })
-  game_amount?: FloatFilter;
+    @Field(() => Enumgame_currencyFilter, {nullable:true})
+    game_currency?: Enumgame_currencyFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  player_bank_account_id?: StringFilter;
+    @Field(() => FloatFilter, {nullable:true})
+    game_amount?: FloatFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  trans_date?: DateTimeFilter;
+    @Field(() => StringFilter, {nullable:true})
+    player_bank_account_id?: StringFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  player_remarks?: StringFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    trans_date?: DateTimeFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  comment?: StringNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    player_remarks?: StringFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  processed_by?: StringNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    comment?: StringNullableFilter;
 
-  @Field(() => DateTimeNullableFilter, { nullable: true })
-  process_time?: DateTimeNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    processed_by?: StringNullableFilter;
 
-  @Field(() => Enumwallet_transaction_statusFilter, { nullable: true })
-  status?: Enumwallet_transaction_statusFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    process_time?: DateTimeNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  cdate?: DateTimeFilter;
+    @Field(() => Enumwallet_transaction_statusFilter, {nullable:true})
+    status?: Enumwallet_transaction_statusFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  udate?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    cdate?: DateTimeFilter;
 
-  @Field(() => PlayersRelationFilter, { nullable: true })
-  players?: PlayersRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    udate?: DateTimeFilter;
 
-  @Field(() => Player_bank_accountsRelationFilter, { nullable: true })
-  player_bank_account?: Player_bank_accountsRelationFilter;
+    @Field(() => PlayersRelationFilter, {nullable:true})
+    players?: PlayersRelationFilter;
 
-  @Field(() => AdminsNullableRelationFilter, { nullable: true })
-  processed_by_admin?: AdminsNullableRelationFilter;
+    @Field(() => Player_bank_accountsRelationFilter, {nullable:true})
+    player_bank_account?: Player_bank_accountsRelationFilter;
+
+    @Field(() => AdminsNullableRelationFilter, {nullable:true})
+    processed_by_admin?: AdminsNullableRelationFilter;
 }

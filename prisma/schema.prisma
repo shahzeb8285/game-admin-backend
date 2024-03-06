@@ -263,6 +263,12 @@ model player_bank_accounts {
   withdrawal_transactions withdrawal_transactions[]
 }
 
+model banks {
+  bank_id   String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bank_name String
+  bank_code String
+}
+
 model player_wallets {
   player_wallet_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   player_id        String        @unique

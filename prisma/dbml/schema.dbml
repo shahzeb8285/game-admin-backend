@@ -245,6 +245,12 @@ Table player_bank_accounts {
   withdrawal_transactions withdrawal_transactions [not null]
 }
 
+Table banks {
+  bank_id String [pk]
+  bank_name String [not null]
+  bank_code String [not null]
+}
+
 Table player_wallets {
   player_wallet_id String [pk]
   player_id String [unique, not null]
