@@ -74,6 +74,10 @@ type AgentGameRebateEntity {
   parentRebates: [agent_rebate_rates!]
 }
 
+type AgentShareEntity {
+  shares: Float!
+}
+
 input Agent_rebate_ratesListRelationFilter {
   every: agent_rebate_ratesWhereInput
   none: agent_rebate_ratesWhereInput
@@ -357,6 +361,7 @@ type IncomeStatementEntity {
 type IncomeStatementPlayerEntity {
   agent_id: String!
   effective_bet: Float!
+  name: String
   player_id: String!
   pnl: Float!
   rebate: Float!
@@ -419,6 +424,7 @@ type Mutation {
   updateAdminRole(data: UpdateRoleInput!): admin_roles!
   updateAgent(data: UpdateAgentInput!): agents!
   updateAgentGameRebates(data: UpdateGameRebateInput!): OkResponse!
+  updateAgentShare(data: UpdateAgentShareInput!): [OkResponse!]!
   updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
   updateDeposit(data: UpdateFinanceInput!): deposit_transactions!
   updatePlayerGameRebates(data: UpdateGameRebateInput!): OkResponse!
@@ -637,7 +643,7 @@ type Query {
   getAdminsLoginHistory(order: admin_login_logsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_login_logsWhereInput! = {}): [admin_login_logs!]!
   getAdminsRoles(order: admin_rolesOrderByWithRelationInput! = {}, skip: Int! = 0, take: Int! = 10, where: admin_rolesWhereInput! = {}): [admin_roles!]!
   getAgentGameRebate(where: GetGameRebateInput! = {}): AgentGameRebateEntity!
-  getAgentShare(where: GetAgentShareInput! = {}): [agents!]!
+  getAgentShare(where: GetAgentShareInput! = {}): [AgentShareEntity!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
@@ -652,7 +658,6 @@ type Query {
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
   transferInCount(where: transfer_in_transactionsWhereInput! = {}): CountDto!
   transferOutCount(where: transfer_out_transactionsWhereInput! = {}): CountDto!
-  updateAgentShare(data: UpdateAgentShareInput!): [OkResponse!]!
   usersBonusHistoryCount(where: rebate_transactionsWhereInput! = {}): CountDto!
   usersCount(where: playersWhereInput! = {}): CountDto!
   usersGameHistoryCount(where: GameRecordRoundsWhereInput! = {}): CountDto!
@@ -756,7 +761,7 @@ input UpdateAgentInput {
 
 input UpdateAgentShareInput {
   agentId: String!
-  share: Int!
+  share: Float!
 }
 
 input UpdateBankAccountInput {

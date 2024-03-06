@@ -48,6 +48,10 @@ export class IncomeStatementPlayerEntity {
   @Field(() => String, { nullable: false })
   agent_id?: string;
 
+  @Field(() => String, { nullable: true })
+  name?: string;
+
+
   @Field(() => Float, { nullable: false })
   effective_bet?: number;
 

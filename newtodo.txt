@@ -1,28 +1,6 @@
-1. in income stament child should be indented 
-    show arrow to expand
-
-2. in agent game rebate remove root from dropdown
-3. add share table in agent game rebate
-4. in agent rebate update if the rate is lower than the any child then throw error 
+1. for agent rebate check new design
+2. . in agent rebate update if the rate is lower than the any child then throw error 
   error shoud mention the child id and rate ( shahzeb )
+3. financial statemnt not showing data
 
-5. save rebate should make the api call remove submit button
-6. bank -> holder name all caps 
-7. translations 
-8. admin login history should have only filter button no search button but filfer on user name also
-9.in deposit/ withdrawal/ transfer in/ transfer out if not pending, then no need "Approve"/ "Reject"
-10. other than user list show replace tg id to username , in filters also
-11. show users under agentlist
-12. MTD is from 1st of this month to today , add last month button in income statement from 1 to 30
-13. for approval no need for reason , we only need reason for Reject
-14. agent list should show domin name and no of players
-15. if any notification number increases play a sound
-
-
-
-
-
-
-1. check if data is correct in income statements
-2. check financial statement data
-3. create bank name table
+4. seach box in bank should be case insensitive

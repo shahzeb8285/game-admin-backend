@@ -176,7 +176,7 @@ export class FinancesService {
       where arbd.game_date BETWEEN '${fromDate}' AND '${toDate}' AND a.parent_agent_id = '${parentId}'
       group by a.agent_id ;`;
 
-    const playerQuery = ` select p.player_id, p.agent_id , sum(effective_bet_amount) as "effective_bet", sum(pnl) as "pnl", sum(rebate_amount) as "rebate"
+    const playerQuery = ` select p.player_id, p.name, p.agent_id , sum(effective_bet_amount) as "effective_bet", sum(pnl) as "pnl", sum(rebate_amount) as "rebate"
     from game_records_by_day grbd 
     join players p on p.player_id = grbd.player_id and p.enabled = true
     where game_date BETWEEN '${fromDate}' AND '${toDate}'

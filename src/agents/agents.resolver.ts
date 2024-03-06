@@ -57,7 +57,7 @@ export class AgentsResolver {
   }
 
 
-  @Query(() => [OkResponse])
+  @Mutation(() => [OkResponse])
   updateAgentShare(
     @UserEntity() user: Admin,
 
