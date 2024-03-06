@@ -1,33 +1,33 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PlayersService } from './players.service';
 // import { Player } from './entities/player.entity';
-import { UpdatePlayerInput } from './dto/update-player.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthorizationGuard } from '../auth/authorization.guard';
 import { GqlAuthGuard } from '../auth/gql-auth.guard';
+import { UpdatePlayerInput } from './dto/update-player.input';
 // import { UserLoginHistory } from './entities/loginhistory.entity';
 // import { ManualAdjustment } from './entities/manualadjustment.entity';
 import { CreateManualAdjustment } from './dto/create-manual-adjustment.input';
 // import { Admin } from '../admins/entities/admin.entity';
-import { UserEntity } from '../common/decorators/user.decorator';
-import { admins as Admin } from '../@generated/admins/admins.model';
-import { players as Player } from '../@generated/players/players.model';
-import { manual_adjustments as ManualAdjustment } from '../@generated/manual-adjustments/manual-adjustments.model';
-import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/players-where.input';
-import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
-import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
-import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
-import { rebate_transactions } from 'src/@generated/rebate-transactions/rebate-transactions.model';
-import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
-import { UserGameHistory } from './entities/gamehistory.entity';
-import { game_record_rounds } from 'src/@generated/game-record-rounds/game-record-rounds.model';
-import { game_record_roundsWhereInput } from 'src/@generated/game-record-rounds/game-record-rounds-where.input';
-import { GameRecordRoundsWhereInput } from './entities/game-record-rounds-where.input';
-import { playersOrderByWithAggregationInput } from 'src/@generated/players/players-order-by-with-aggregation.input';
-import { player_login_logsOrderByWithAggregationInput } from 'src/@generated/player-login-logs/player-login-logs-order-by-with-aggregation.input';
 import { manual_adjustmentsOrderByWithAggregationInput } from 'src/@generated/manual-adjustments/manual-adjustments-order-by-with-aggregation.input';
+import { manual_adjustmentsWhereInput as ManualAdjustmentWhereInput } from 'src/@generated/manual-adjustments/manual-adjustments-where.input';
+import { player_login_logsOrderByWithAggregationInput } from 'src/@generated/player-login-logs/player-login-logs-order-by-with-aggregation.input';
+import { player_login_logsWhereInput as PlayerLoginLogWhereInput } from 'src/@generated/player-login-logs/player-login-logs-where.input';
+import { player_login_logs } from 'src/@generated/player-login-logs/player-login-logs.model';
+import { playersOrderByWithAggregationInput } from 'src/@generated/players/players-order-by-with-aggregation.input';
+import { playersWhereInput as PlayerWhereInput } from 'src/@generated/players/players-where.input';
 import { rebate_transactionsOrderByWithAggregationInput } from 'src/@generated/rebate-transactions/rebate-transactions-order-by-with-aggregation.input';
+import { rebate_transactionsWhereInput } from 'src/@generated/rebate-transactions/rebate-transactions-where.input';
+import { rebate_transactions } from 'src/@generated/rebate-transactions/rebate-transactions.model';
 import { OkResponse } from 'src/common/models/OkResponse.model';
+import { admins as Admin } from '../@generated/admins/admins.model';
+import { manual_adjustments as ManualAdjustment } from '../@generated/manual-adjustments/manual-adjustments.model';
+import { players as Player } from '../@generated/players/players.model';
+import { UserEntity } from '../common/decorators/user.decorator';
+import { statsAmount } from './dto/amount';
+import { statsWhereInput } from './dto/stats';
+import { GameRecordRoundsWhereInput } from './entities/game-record-rounds-where.input';
+import { UserGameHistory } from './entities/gamehistory.entity';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 @Resolver(() => Player)
@@ -116,5 +116,29 @@ export class PlayersResolver {
     @Args({ name: 'skip', type: () => Int, defaultValue: 0 }) skip: number,
   ) {
     return this.playersService.findAllUserGameHistory({ skip, take, where });
+  }
+
+  @Query(() => statsAmount)
+  getDepositAmount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getDepositAmount({ where });
+  }
+
+  @Query(() => statsAmount)
+  getWithdrawalAmount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getWithdrawalAmount({ where });
+  }
+
+  @Query(() => statsAmount)
+  getBonusAmount(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getBonusAmount({ where });
   }
 }

@@ -12,7 +12,7 @@ export class AgentsService {
     private readonly passwordService: PasswordService,
   ) {}
 
-  async updateAgentShare(createdBy:string,input: UpdateAgentShareInput) {
+  async updateAgentShare(createdBy: string, input: UpdateAgentShareInput) {
     const parent = await this.prisma.agents.findFirst({
       where: {
         agent_id: input.agentId,
@@ -53,19 +53,18 @@ export class AgentsService {
       });
     }
 
-
     await this.prisma.agent_shares.create({
       data: {
-        agent_id:input.agentId,
+        agent_id: input.agentId,
         shares: input.share,
         is_active: true,
-        created_by:createdBy,
-      }
-    })
+        created_by: createdBy,
+      },
+    });
 
     return {
-      message:"Success"
-    }
+      message: 'Success',
+    };
   }
 
   getAgentShare(agentId: string) {
@@ -79,6 +78,15 @@ export class AgentsService {
       },
     });
   }
+
+  getAgentsPlayers(agentId: string) {
+    return this.prisma.players.findMany({
+      where: {
+        agent_id: agentId,
+      },
+    });
+  }
+
   async getRootParentId() {
     const agent = await this.prisma.agents.findFirst({
       where: {

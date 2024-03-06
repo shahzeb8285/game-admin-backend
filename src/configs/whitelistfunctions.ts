@@ -4,8 +4,13 @@ const whitelistFunctions = [
   'getPlayerGameRebate',
   'updatePlayerGameRebates',
   'updateAgentGameRebates',
-  "updateAgentShare",
-  "getAgentShare"
+  'updateAgentShare',
+  'getAgentShare',
+  'getBanks',
+  'getWithdrawalAmount',
+  'getBonusAmount',
+  'getDepositAmount',
+  'getAgentsPlayers',
 ];
 
 export default whitelistFunctions;

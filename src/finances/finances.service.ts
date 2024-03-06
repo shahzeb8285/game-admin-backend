@@ -69,9 +69,10 @@ export class FinancesService {
         );
       }
 
-      await this.prisma.agent_rebate_rates.update({
+      await this.prisma.agent_rebate_rates.updateMany({
         where: {
-          agent_rebate_rate_id: rebate.previousRebateId,
+          agent_id: input.id,
+          rebate_category_id: rebate.categoryId,
         },
         data: {
           is_active: false,
@@ -215,7 +216,7 @@ export class FinancesService {
         deposit_transactions dt 
       WHERE 
         dt.status = 'SUCCESS' 
-        AND dt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+        AND dt.trans_date BETWEEN '${fromDate}' AND '${toDate}'
       
       UNION ALL
       
@@ -226,7 +227,7 @@ export class FinancesService {
         transfer_in_transactions tit 
       WHERE 
         tit.status = 'SUCCESS' 
-        AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+        AND tit.trans_date BETWEEN '${fromDate}' AND '${toDate}'
     )
     
     SELECT 
@@ -254,7 +255,7 @@ export class FinancesService {
       withdrawal_transactions wt 
     WHERE 
       wt.status = 'SUCCESS' 
-      AND wt.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      AND wt.trans_date BETWEEN '${fromDate}' AND '${toDate}'
     
     UNION ALL
     
@@ -265,7 +266,7 @@ export class FinancesService {
       transfer_out_transactions tit 
     WHERE 
       tit.status = 'SUCCESS' 
-      AND tit.transaction_date BETWEEN '${fromDate}' AND '${toDate}'
+      AND tit.trans_date BETWEEN '${fromDate}' AND '${toDate}'
       )
   SELECT 
     p.player_id, 
@@ -306,7 +307,6 @@ export class FinancesService {
     const replacer = (key, value) =>
       typeof value === 'bigint' ? value.toString() : value;
     const finalResp = JSON.parse(JSON.stringify(response, replacer));
-    console.log(finalResp.pnl);
     return finalResp;
   }
   async getAgentGameRebate(agentId: string) {
@@ -431,6 +431,16 @@ export class FinancesService {
       },
     });
   }
+
+  getBanks() {
+    return this.prisma.admin_bank_accounts.findMany({
+      select: {
+        bank_name: true,
+      },
+      distinct: ['bank_name'],
+    });
+  }
+
   getBankAccounts({ skip, take, where, orderBy }) {
     return this.prisma.admin_bank_accounts.findMany({
       skip,

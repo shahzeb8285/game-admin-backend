@@ -46,6 +46,7 @@ import { IncomeStatementWhereInput } from './dto/income-statement.where.input';
 import { IncomeStatementEntity } from './entities/incomestatement.entity';
 import { RebateShare } from './entities/rebate_share.entity';
 import { RebateShareInput } from './dto/rebate_share.input';
+import { banks } from './dto/banks';
 
 @UseGuards(GqlAuthGuard, GqlAuthorizationGuard)
 export class FinancesResolver {
@@ -131,6 +132,11 @@ export class FinancesResolver {
     orderBy: admin_bank_accountsOrderByWithAggregationInput,
   ) {
     return this.financesService.getBankAccounts({ skip, take, where, orderBy });
+  }
+
+  @Query(() => [banks], { name: 'getBanks' })
+  getBanks() {
+    return this.financesService.getBanks();
   }
 
   @Query(() => AgentGameRebateEntity)

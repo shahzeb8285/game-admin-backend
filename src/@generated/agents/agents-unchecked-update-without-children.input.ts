@@ -23,6 +23,9 @@ export class agentsUncheckedUpdateWithoutChildrenInput {
     @Field(() => String, {nullable:true})
     created_by?: string;
 
+    @Field(() => String, {nullable:true})
+    domain?: string;
+
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
 

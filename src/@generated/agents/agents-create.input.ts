@@ -22,6 +22,9 @@ export class agentsCreateInput {
     @Field(() => String, {nullable:false})
     created_by!: string;
 
+    @Field(() => String, {nullable:true})
+    domain?: string;
+
     @Field(() => Date, {nullable:true})
     cdate?: Date | string;
 

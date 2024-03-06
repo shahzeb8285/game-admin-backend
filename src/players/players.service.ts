@@ -9,6 +9,7 @@ import { HttpService } from '@nestjs/axios';
 import { AppConfig } from 'src/common/configs/config.interface';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
+import { deposit_transactionsWhereInput } from 'src/@generated/deposit-transactions/deposit-transactions-where.input';
 
 @Injectable()
 export class PlayersService {
@@ -113,6 +114,108 @@ export class PlayersService {
     const result = await this.prisma.$queryRawUnsafe(query1);
 
     return result;
+  }
+
+  async getDepositAmount({ where }) {
+    const whereQueryInput: deposit_transactionsWhereInput = where;
+    let whereQuery = '';
+    if (whereQueryInput) {
+      whereQuery = '';
+
+      if (whereQueryInput.trans_date) {
+        if (whereQueryInput.trans_date.gte) {
+          const timestamp = moment(whereQueryInput.trans_date.gte)
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND dt.trans_date >= '${timestamp}'`;
+          //from
+        }
+
+        if (whereQueryInput.trans_date.lte) {
+          //to
+          const timestamp = moment(whereQueryInput.trans_date.lte)
+            .set({ hour: 23, minute: 59, second: 59 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND dt.trans_date <= '${timestamp}'`;
+        }
+      }
+    }
+    // ?241650
+    const query1 = `
+    SELECT SUM(transaction_amount) 
+    FROM deposit_transactions dt 
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+
+    const result = await this.prisma.$queryRawUnsafe(query1);
+    return result[0];
+  }
+
+  async getWithdrawalAmount({ where }) {
+    const whereQueryInput: deposit_transactionsWhereInput = where;
+    let whereQuery = '';
+    if (whereQueryInput) {
+      whereQuery = '';
+
+      if (whereQueryInput.trans_date) {
+        if (whereQueryInput.trans_date.gte) {
+          const timestamp = moment(whereQueryInput.trans_date.gte)
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND wt.trans_date >= '${timestamp}'`;
+          //from
+        }
+
+        if (whereQueryInput.trans_date.lte) {
+          //to
+          const timestamp = moment(whereQueryInput.trans_date.lte)
+            .set({ hour: 23, minute: 59, second: 59 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND wt.trans_date <= '${timestamp}'`;
+        }
+      }
+    }
+
+    const query1 = `
+    SELECT SUM(transaction_amount) 
+    FROM withdrawal_transactions wt 
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+
+    const result = await this.prisma.$queryRawUnsafe(query1);
+    return result[0];
+  }
+
+  async getBonusAmount({ where }) {
+    const whereQueryInput: deposit_transactionsWhereInput = where;
+    let whereQuery = '';
+    if (whereQueryInput) {
+      whereQuery = '';
+
+      if (whereQueryInput.trans_date) {
+        if (whereQueryInput.trans_date.gte) {
+          const timestamp = moment(whereQueryInput.trans_date.gte)
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND rt.trans_date >= '${timestamp}'`;
+          //from
+        }
+
+        if (whereQueryInput.trans_date.lte) {
+          //to
+          const timestamp = moment(whereQueryInput.trans_date.lte)
+            .set({ hour: 23, minute: 59, second: 59 })
+            .format('YYYY-MM-DD hh:mm:ss a');
+          whereQuery += ` AND rt.trans_date <= '${timestamp}'`;
+        }
+      }
+    }
+
+    const query1 = `
+    SELECT SUM(amount) 
+    FROM rebate_transactions rt 
+    WHERE 1=1 ${whereQuery};`;
+
+    const result = await this.prisma.$queryRawUnsafe(query1);
+    return result[0];
   }
 
   getManualAdjustments({ skip, take, where, orderBy }) {

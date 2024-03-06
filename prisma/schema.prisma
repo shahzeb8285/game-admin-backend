@@ -83,6 +83,7 @@ model agents {
   parent_agent_id      String?
   children             agents[]               @relation("children")
   created_by           String
+  domain               String?
   cdate                DateTime               @default(now())
   udate                DateTime               @updatedAt
   enabled              Boolean                @default(true)

@@ -6,6 +6,7 @@ export enum AgentsScalarFieldEnum {
     agent_password = "agent_password",
     parent_agent_id = "parent_agent_id",
     created_by = "created_by",
+    domain = "domain",
     cdate = "cdate",
     udate = "udate",
     enabled = "enabled"
