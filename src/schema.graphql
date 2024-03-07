@@ -647,10 +647,10 @@ type Query {
   getAgentShare(where: GetAgentShareInput! = {}): AgentShareEntity!
   getAgentsPlayers(where: GetAgentShareInput! = {}): [players!]!
   getBanks: [banks!]!
-  getBonusAmount(where: statsWhereInput! = {}): statsAmount!
-  getBonusStats(where: statsWhereInput! = {}): CountDto!
-  getDepositAmount(where: statsWhereInput! = {}): statsAmount!
-  getDepositStats(where: statsWhereInput! = {}): CountDto!
+  getBonusAmount(where: statsWhereInput! = {}): [statsAmount!]!
+  getBonusStats(where: statsWhereInput! = {}): [statsAmount!]!
+  getDepositAmount(where: statsWhereInput! = {}): [statsAmount!]!
+  getDepositStats(where: statsWhereInput! = {}): [statsAmount!]!
   getFinancialStatement(where: FinancialStatementWhereInput! = {}): FinancialStatementEntity!
   getIncomeStatement(where: IncomeStatementWhereInput! = {}): IncomeStatementEntity!
   getMe: admins!
@@ -661,8 +661,8 @@ type Query {
   getUsersBonusHistory(order: rebate_transactionsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: rebate_transactionsWhereInput! = {}): [rebate_transactions!]!
   getUsersGameHistory(skip: Int! = 0, take: Int! = 10, where: GameRecordRoundsWhereInput! = {}): [UserGameHistory!]!
   getUsersStats(where: statsWhereInput! = {}): CountDto!
-  getWithdrawalAmount(where: statsWhereInput! = {}): statsAmount!
-  getWithdrawalStats(where: statsWhereInput! = {}): CountDto!
+  getWithdrawalAmount(where: statsWhereInput! = {}): [statsAmount!]!
+  getWithdrawalStats(where: statsWhereInput! = {}): [statsAmount!]!
   manualAdjustmentCount(where: manual_adjustmentsWhereInput! = {}): CountDto!
   manualadjustments(order: manual_adjustmentsOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: manual_adjustmentsWhereInput! = {}): [manual_adjustments!]!
   players(order: playersOrderByWithAggregationInput! = {}, skip: Int! = 0, take: Int! = 10, where: playersWhereInput! = {}): [players!]!
@@ -1994,12 +1994,14 @@ input rebate_transactionsWhereInput {
 }
 
 type statsAmount {
+  reg_date: DateTime
   sum: Float
+  trans_date: DateTime
+  transaction_count: Float
 }
 
 input statsWhereInput {
   reg_date: DateTimeFilter
-  status: Enumwallet_transaction_statusFilter
   trans_date: DateTimeFilter
 }
 

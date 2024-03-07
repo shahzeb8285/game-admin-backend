@@ -133,31 +133,6 @@ export class CountsResolver {
       counts,
     };
   }
-  @Query(() => CountDto)
-  async getDepositStats(
-    @Args({ name: 'where', defaultValue: {} })
-    where: statsWhereInput,
-  ) {
-    const counts = await this.prismaService.deposit_transactions.count({
-      where,
-    });
-    return {
-      counts,
-    };
-  }
-
-  @Query(() => CountDto)
-  async getWithdrawalStats(
-    @Args({ name: 'where', defaultValue: {} })
-    where: statsWhereInput,
-  ) {
-    const counts = await this.prismaService.withdrawal_transactions.count({
-      where,
-    });
-    return {
-      counts,
-    };
-  }
 
   @Query(() => CountDto)
   async transferOutCount(
@@ -262,19 +237,6 @@ export class CountsResolver {
   async usersBonusHistoryCount(
     @Args({ name: 'where', defaultValue: {} })
     where: rebate_transactionsWhereInput,
-  ) {
-    const counts = await this.prismaService.rebate_transactions.count({
-      where,
-    });
-    return {
-      counts,
-    };
-  }
-
-  @Query(() => CountDto)
-  async getBonusStats(
-    @Args({ name: 'where', defaultValue: {} })
-    where: statsWhereInput,
   ) {
     const counts = await this.prismaService.rebate_transactions.count({
       where,

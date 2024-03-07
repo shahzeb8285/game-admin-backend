@@ -118,7 +118,7 @@ export class PlayersResolver {
     return this.playersService.findAllUserGameHistory({ skip, take, where });
   }
 
-  @Query(() => statsAmount)
+  @Query(() => [statsAmount])
   getDepositAmount(
     @Args({ name: 'where', defaultValue: {} })
     where: statsWhereInput,
@@ -126,7 +126,7 @@ export class PlayersResolver {
     return this.playersService.getDepositAmount({ where });
   }
 
-  @Query(() => statsAmount)
+  @Query(() => [statsAmount])
   getWithdrawalAmount(
     @Args({ name: 'where', defaultValue: {} })
     where: statsWhereInput,
@@ -134,11 +134,35 @@ export class PlayersResolver {
     return this.playersService.getWithdrawalAmount({ where });
   }
 
-  @Query(() => statsAmount)
+  @Query(() => [statsAmount])
   getBonusAmount(
     @Args({ name: 'where', defaultValue: {} })
     where: statsWhereInput,
   ) {
     return this.playersService.getBonusAmount({ where });
+  }
+
+  @Query(() => [statsAmount])
+  getDepositStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getDepositStats({ where });
+  }
+
+  @Query(() => [statsAmount])
+  getWithdrawalStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getWithdrawalStats({ where });
+  }
+
+  @Query(() => [statsAmount])
+  getBonusStats(
+    @Args({ name: 'where', defaultValue: {} })
+    where: statsWhereInput,
+  ) {
+    return this.playersService.getBonusStats({ where });
   }
 }

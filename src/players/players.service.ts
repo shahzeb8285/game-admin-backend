@@ -59,6 +59,57 @@ export class PlayersService {
     });
   }
 
+  async getDepositStats({ where }) {
+    const result = await this.prisma.deposit_transactions.groupBy({
+      by: ['trans_date'],
+      _count: {
+        trans_date: true,
+      },
+      where: {
+        ...where,
+        status: 'SUCCESS',
+      },
+    });
+
+    return result.map(({ trans_date, _count }) => ({
+      trans_date,
+      transaction_count: _count.trans_date,
+    }));
+  }
+
+  async getWithdrawalStats({ where }) {
+    const result = await this.prisma.withdrawal_transactions.groupBy({
+      by: ['trans_date'],
+      _count: {
+        trans_date: true,
+      },
+      where: {
+        ...where,
+        status: 'SUCCESS',
+      },
+    });
+
+    return result.map(({ trans_date, _count }) => ({
+      trans_date,
+      transaction_count: _count.trans_date,
+    }));
+  }
+
+  async getBonusStats({ where }) {
+    const result = await this.prisma.rebate_transactions.groupBy({
+      by: ['trans_date'],
+      _count: {
+        trans_date: true,
+      },
+      where,
+    });
+
+    return result.map(({ trans_date, _count }) => ({
+      trans_date,
+      transaction_count: _count.trans_date,
+    }));
+  }
+
   async findAllUserGameHistory({ skip, take, where }) {
     const whereQueryInput: GameRecordRoundsWhereInput = where;
 
@@ -142,12 +193,12 @@ export class PlayersService {
     }
     // ?241650
     const query1 = `
-    SELECT SUM(transaction_amount) 
+    SELECT trans_date, SUM(transaction_amount) 
     FROM deposit_transactions dt 
-    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery}  GROUP BY trans_date`;
 
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result[0];
+    return result;
   }
 
   async getWithdrawalAmount({ where }) {
@@ -176,12 +227,12 @@ export class PlayersService {
     }
 
     const query1 = `
-    SELECT SUM(transaction_amount) 
+    SELECT trans_date, SUM(transaction_amount) 
     FROM withdrawal_transactions wt 
-    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery};`;
+    WHERE 1=1 AND status = 'SUCCESS' ${whereQuery}  GROUP BY trans_date;`;
 
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result[0];
+    return result;
   }
 
   async getBonusAmount({ where }) {
@@ -210,12 +261,12 @@ export class PlayersService {
     }
 
     const query1 = `
-    SELECT SUM(amount) 
+    SELECT trans_date, SUM(amount) 
     FROM rebate_transactions rt 
-    WHERE 1=1 ${whereQuery};`;
+    WHERE 1=1 ${whereQuery}  GROUP BY trans_date;`;
 
     const result = await this.prisma.$queryRawUnsafe(query1);
-    return result[0];
+    return result;
   }
 
   getManualAdjustments({ skip, take, where, orderBy }) {

@@ -51,7 +51,6 @@ export class IncomeStatementPlayerEntity {
   @Field(() => String, { nullable: true })
   name?: string;
 
-
   @Field(() => Float, { nullable: false })
   effective_bet?: number;
 
