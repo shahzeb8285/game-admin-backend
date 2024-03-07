@@ -73,7 +73,7 @@ export class PlayersService {
 
     return result.map(({ trans_date, _count }) => ({
       trans_date,
-      transaction_count: _count.trans_date,
+      sum: _count.trans_date,
     }));
   }
 
@@ -91,7 +91,7 @@ export class PlayersService {
 
     return result.map(({ trans_date, _count }) => ({
       trans_date,
-      transaction_count: _count.trans_date,
+      sum: _count.trans_date,
     }));
   }
 
@@ -106,7 +106,7 @@ export class PlayersService {
 
     return result.map(({ trans_date, _count }) => ({
       trans_date,
-      transaction_count: _count.trans_date,
+      sum: _count.trans_date,
     }));
   }
 
