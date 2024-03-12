@@ -135,6 +135,48 @@ export class FinancesService {
     }
     return { message: 'OK' };
   }
+  async updateAllPlayerGameRebates(
+    input: UpdateGameRebateInput,
+    adminId: string,
+  ) {
+    const agentsPlayers = await this.prisma.players.findMany({
+      where: {
+        agent_id: input.id,
+      },
+      select: {
+        player_id: true,
+      },
+    });
+    for (const rebate of input.rabates) {
+      // if (agentRebate.rebate < rebate.newRate) {
+      //   throw new BadRequestException(
+      //     `Cant Set higher rebate than parent in ${rebate.categoryId}`,
+      //   );
+      // }
+      for (const player of agentsPlayers) {
+        await this.prisma.player_rebate_rates.updateMany({
+          where: {
+            player_id: player.player_id,
+            rebate_category_id: rebate.categoryId,
+          },
+          data: {
+            is_active: false,
+          },
+        });
+
+        await this.prisma.player_rebate_rates.create({
+          data: {
+            player_id: player.player_id,
+            rebate_category_id: rebate.categoryId,
+            rebate: rebate.newRate,
+            is_active: true,
+            created_by: adminId,
+          },
+        });
+      }
+    }
+    return { message: 'OK' };
+  }
 
   async updatePlayerGameRebates(input: UpdateGameRebateInput, adminId: string) {
     const player = await this.prisma.players.findFirst({
@@ -146,9 +188,9 @@ export class FinancesService {
     });
 
     for (const rebate of input.rabates) {
-      const parentRebate = await this.prisma.player_rebate_rates.findFirst({
+      const parentRebate = await this.prisma.agent_rebate_rates.findFirst({
         where: {
-          player_id: player.player_id,
+          agent_id: player.agent_id,
           rebate_category_id: rebate.categoryId,
         },
         select: {
@@ -162,9 +204,10 @@ export class FinancesService {
         );
       }
 
-      await this.prisma.player_rebate_rates.update({
+      await this.prisma.player_rebate_rates.updateMany({
         where: {
-          player_rebate_rate_id: rebate.previousRebateId,
+          player_id: input.id,
+          rebate_category_id: rebate.categoryId,
         },
         data: {
           is_active: false,
@@ -391,7 +434,8 @@ export class FinancesService {
     const defaultPlayerRebateRates =
       await this.prisma.player_default_rebate_rates.findMany({
         where: {
-          agent_id: agent.parent.agent_id,
+          agent_id: agentId,
+          is_active: true,
         },
       });
 

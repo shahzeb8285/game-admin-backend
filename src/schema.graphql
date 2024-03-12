@@ -426,6 +426,7 @@ type Mutation {
   updateAgent(data: UpdateAgentInput!): agents!
   updateAgentGameRebates(data: UpdateGameRebateInput!): OkResponse!
   updateAgentShare(data: UpdateAgentShareInput!): OkResponse!
+  updateAllPlayerGameRebates(data: UpdateGameRebateInput!): OkResponse!
   updateBankAccount(data: UpdateBankAccountInput!): admin_bank_accounts!
   updateDefaultPlayerGameRebates(data: UpdateGameRebateInput!): OkResponse!
   updateDeposit(data: UpdateFinanceInput!): deposit_transactions!

@@ -238,6 +238,16 @@ export class FinancesResolver {
       user.admin_id,
     );
   }
+  @Mutation(() => OkResponse)
+  updateAllPlayerGameRebates(
+    @Args('data') input: UpdateGameRebateInput,
+    @UserEntity() user: Admin,
+  ) {
+    return this.financesService.updateAllPlayerGameRebates(
+      input,
+      user.admin_id,
+    );
+  }
 
   @Mutation(() => OkResponse)
   updatePlayerGameRebates(
