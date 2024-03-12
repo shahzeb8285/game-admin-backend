@@ -4,6 +4,7 @@ const whitelistFunctions = [
   'getPlayerGameRebate',
   'updatePlayerGameRebates',
   'updateAgentGameRebates',
+  'updateDefaultPlayerGameRebates',
   'updateAgentShare',
   'getAgentShare',
   'getBanks',
