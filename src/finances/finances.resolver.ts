@@ -229,6 +229,17 @@ export class FinancesResolver {
   }
 
   @Mutation(() => OkResponse)
+  updateDefaultPlayerGameRebates(
+    @Args('data') input: UpdateGameRebateInput,
+    @UserEntity() user: Admin,
+  ) {
+    return this.financesService.updateDefaultPlayerGameRebates(
+      input,
+      user.admin_id,
+    );
+  }
+
+  @Mutation(() => OkResponse)
   updatePlayerGameRebates(
     @Args('data') input: UpdateGameRebateInput,
     @UserEntity() user: Admin,

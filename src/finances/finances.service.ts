@@ -92,6 +92,50 @@ export class FinancesService {
     return { message: 'OK' };
   }
 
+  async updateDefaultPlayerGameRebates(
+    input: UpdateGameRebateInput,
+    adminId: string,
+  ) {
+    for (const rebate of input.rabates) {
+      const agentRebate = await this.prisma.agent_rebate_rates.findFirst({
+        where: {
+          agent_id: input.id,
+          rebate_category_id: rebate.categoryId,
+        },
+        select: {
+          rebate: true,
+        },
+      });
+
+      if (agentRebate.rebate < rebate.newRate) {
+        throw new BadRequestException(
+          `Cant Set higher rebate than parent in ${rebate.categoryId}`,
+        );
+      }
+
+      await this.prisma.player_default_rebate_rates.updateMany({
+        where: {
+          agent_id: input.id,
+          rebate_category_id: rebate.categoryId,
+        },
+        data: {
+          is_active: false,
+        },
+      });
+
+      await this.prisma.player_default_rebate_rates.create({
+        data: {
+          agent_id: input.id,
+          rebate_category_id: rebate.categoryId,
+          rebate: rebate.newRate,
+          is_active: true,
+          created_by: adminId,
+        },
+      });
+    }
+    return { message: 'OK' };
+  }
+
   async updatePlayerGameRebates(input: UpdateGameRebateInput, adminId: string) {
     const player = await this.prisma.players.findFirst({
       where: { player_id: input.id },
