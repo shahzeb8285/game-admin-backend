@@ -166,6 +166,16 @@ Table player_rebate_rates {
   is_active Boolean [not null]
 }
 
+Table player_default_rebate_rates {
+  player_default_rebate_rate_id String [pk]
+  agent_id String [not null]
+  rebate_category_id Int [not null]
+  rebate Float [not null]
+  created_by String [not null]
+  cdate DateTime [default: `now()`, not null]
+  is_active Boolean [not null]
+}
+
 Table agent_shares {
   agent_share_id String [pk]
   agents agents [not null]

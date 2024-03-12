@@ -71,6 +71,7 @@ type AgentGameRebateEntity {
   agent: agents
   agentRebates: [agent_rebate_rates!]
   categories: [fl_categories!]
+  defaultPlayerRebates: [player_default_rebate_rates!]
   parentRebates: [agent_rebate_rates!]
 }
 
@@ -1682,6 +1683,16 @@ input player_bank_accountsWhereInput {
   player_id: StringFilter
   udate: DateTimeFilter
   withdrawal_transactions: Withdrawal_transactionsListRelationFilter
+}
+
+type player_default_rebate_rates {
+  agent_id: String!
+  cdate: DateTime!
+  created_by: String!
+  is_active: Boolean!
+  player_default_rebate_rate_id: ID!
+  rebate: Float!
+  rebate_category_id: Int!
 }
 
 type player_login_logs {

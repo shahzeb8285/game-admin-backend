@@ -183,6 +183,16 @@ model player_rebate_rates {
   is_active             Boolean
 }
 
+model player_default_rebate_rates {
+  player_default_rebate_rate_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  agent_id                      String
+  rebate_category_id            Int
+  rebate                        Float
+  created_by                    String
+  cdate                         DateTime @default(now())
+  is_active                     Boolean
+}
+
 model agent_shares {
   agent_share_id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   agents         agents   @relation(fields: [agent_id], references: [agent_id])

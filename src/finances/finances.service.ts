@@ -344,12 +344,19 @@ export class FinancesService {
           agent_id: agent.parent.agent_id,
         },
       });
+    const defaultPlayerRebateRates =
+      await this.prisma.player_default_rebate_rates.findMany({
+        where: {
+          agent_id: agent.parent.agent_id,
+        },
+      });
 
     return {
       agent,
       categories,
       agentRebates: currentAgentRebateRates,
       parentRebates: parentAgentRebateRates,
+      defaultPlayerRebates: defaultPlayerRebateRates,
     };
   }
 
